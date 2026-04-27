@@ -3,16 +3,8 @@
 #include "main.h"
 /*********************************************************     
 **********************************************************/	 
-/* USER CODE BEGIN 0 */
-// 强制定义 PEin/PEout 宏
-#define GPIOE_ODR_Addr    (GPIOE_BASE + 0x14)
-#define GPIOE_IDR_Addr    (GPIOE_BASE + 0x10)
-#define BITBAND(addr, bitnum) (((addr) & 0xF0000000) + 0x02000000 + (((addr) & 0xFFFFF) << 5) + ((bitnum) << 2))
-#define BIT_ADDR(addr, bitnum) (*(volatile uint32_t *)BITBAND(addr, bitnum))
-#define PEout(n)   BIT_ADDR(GPIOE_ODR_Addr, n)
-#define PEin(n)    BIT_ADDR(GPIOE_IDR_Addr, n)
 
-// 强制覆盖所有HAL函数，统一使用位带宏
+// 强制覆盖所有原来的操作宏
 #undef PS2_CS_H
 #undef PS2_CS_L
 #undef PS2_SCK_H
@@ -20,14 +12,20 @@
 #undef PS2_DO_H
 #undef PS2_DO_L
 #undef PS2_DI
+// CS (片选)
+#define PS2_CS_H()     HAL_GPIO_WritePin(PS2_CS_GPIO_Port, PS2_CS_Pin, GPIO_PIN_SET)
+#define PS2_CS_L()     HAL_GPIO_WritePin(PS2_CS_GPIO_Port, PS2_CS_Pin, GPIO_PIN_RESET)
 
-#define PS2_CS_H()     (PEout(4) = 1)
-#define PS2_CS_L()     (PEout(4) = 0)
-#define PS2_SCK_H()    (PEout(12) = 1)
-#define PS2_SCK_L()    (PEout(12) = 0)
-#define PS2_DO_H()     (PEout(6) = 1)
-#define PS2_DO_L()     (PEout(6) = 0)
-#define PS2_DI()       (PEin(5))
+// SCK/CLK (时钟)
+#define PS2_SCK_H()    HAL_GPIO_WritePin(PS2_CLK_GPIO_Port, PS2_CLK_Pin, GPIO_PIN_SET)
+#define PS2_SCK_L()    HAL_GPIO_WritePin(PS2_CLK_GPIO_Port, PS2_CLK_Pin, GPIO_PIN_RESET)
+
+// DO/CMD (单片机发出命令)
+#define PS2_DO_H()     HAL_GPIO_WritePin(PS2_CMD_GPIO_Port, PS2_CMD_Pin, GPIO_PIN_SET)
+#define PS2_DO_L()     HAL_GPIO_WritePin(PS2_CMD_GPIO_Port, PS2_CMD_Pin, GPIO_PIN_RESET)
+
+// DI/DAT (单片机读取数据)
+#define PS2_DI()       HAL_GPIO_ReadPin(PS2_DAT_GPIO_Port, PS2_DAT_Pin)
 
 // 在ps2.c中重写
 void PS2_Delay_US(uint32_t us) {

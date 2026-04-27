@@ -57,16 +57,14 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define PS2_CS_Pin GPIO_PIN_4
-#define PS2_CS_GPIO_Port GPIOE
-#define PS2_DAT_Pin GPIO_PIN_5
-#define PS2_DAT_GPIO_Port GPIOE
-#define PS2_CMD_Pin GPIO_PIN_6
-#define PS2_CMD_GPIO_Port GPIOE
 #define DBUS_Pin GPIO_PIN_6
 #define DBUS_GPIO_Port GPIOB
 #define Bluetooth_Pin GPIO_PIN_5
 #define Bluetooth_GPIO_Port GPIOD
+#define PS2_CMD_Pin GPIO_PIN_9
+#define PS2_CMD_GPIO_Port GPIOI
+#define D_Reverse_Pin GPIO_PIN_0
+#define D_Reverse_GPIO_Port GPIOI
 #define POWER1_Pin GPIO_PIN_2
 #define POWER1_GPIO_Port GPIOH
 #define POWER2_Pin GPIO_PIN_3
@@ -83,41 +81,43 @@ void Error_Handler(void);
 #define LED6_GPIO_Port GPIOG
 #define IMU_CS_Pin GPIO_PIN_5
 #define IMU_CS_GPIO_Port GPIOF
+#define C_Reverse_Pin GPIO_PIN_12
+#define C_Reverse_GPIO_Port GPIOH
 #define LED5_Pin GPIO_PIN_5
 #define LED5_GPIO_Port GPIOG
 #define LED4_Pin GPIO_PIN_4
 #define LED4_GPIO_Port GPIOG
 #define LED3_Pin GPIO_PIN_3
 #define LED3_GPIO_Port GPIOG
+#define PS2_DAT_Pin GPIO_PIN_10
+#define PS2_DAT_GPIO_Port GPIOF
+#define B_Reverse_Pin GPIO_PIN_11
+#define B_Reverse_GPIO_Port GPIOH
+#define A_Reverse_Pin GPIO_PIN_10
+#define A_Reverse_GPIO_Port GPIOH
+#define D_Brake_Pin GPIO_PIN_15
+#define D_Brake_GPIO_Port GPIOD
 #define LED2_Pin GPIO_PIN_2
 #define LED2_GPIO_Port GPIOG
-#define C_Brake_Pin GPIO_PIN_0
-#define C_Brake_GPIO_Port GPIOC
-#define D_Brake_Pin GPIO_PIN_1
-#define D_Brake_GPIO_Port GPIOC
-#define A_Reverse_Pin GPIO_PIN_2
-#define A_Reverse_GPIO_Port GPIOC
-#define B_Reverse_Pin GPIO_PIN_3
-#define B_Reverse_GPIO_Port GPIOC
 #define KEY_Pin GPIO_PIN_2
 #define KEY_GPIO_Port GPIOB
 #define KEY_EXTI_IRQn EXTI2_IRQn
 #define LED1_Pin GPIO_PIN_1
 #define LED1_GPIO_Port GPIOG
-#define C_Reverse_Pin GPIO_PIN_4
-#define C_Reverse_GPIO_Port GPIOC
-#define D_Reverse_Pin GPIO_PIN_5
-#define D_Reverse_GPIO_Port GPIOC
+#define C_Brake_Pin GPIO_PIN_14
+#define C_Brake_GPIO_Port GPIOD
+#define B_Brake_Pin GPIO_PIN_13
+#define B_Brake_GPIO_Port GPIOD
+#define PS2_CLK_Pin GPIO_PIN_4
+#define PS2_CLK_GPIO_Port GPIOA
+#define A_Brake_Pin GPIO_PIN_12
+#define A_Brake_GPIO_Port GPIOD
+#define PS2_CS_Pin GPIO_PIN_5
+#define PS2_CS_GPIO_Port GPIOA
 #define LED_Red_Pin GPIO_PIN_11
 #define LED_Red_GPIO_Port GPIOE
-#define B_Brake_Pin GPIO_PIN_1
-#define B_Brake_GPIO_Port GPIOB
-#define A_Brake_Pin GPIO_PIN_0
-#define A_Brake_GPIO_Port GPIOB
 #define LED_Green_Pin GPIO_PIN_14
 #define LED_Green_GPIO_Port GPIOF
-#define PS2_CLK_Pin GPIO_PIN_12
-#define PS2_CLK_GPIO_Port GPIOE
 
 /* USER CODE BEGIN Private defines */
 

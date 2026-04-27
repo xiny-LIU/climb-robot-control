@@ -1,0 +1,5 @@
+--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware
+-I.\RTE\_main
+-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include
+-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx
+-o main\can_receive.o --omf_browse main\can_receive.crf --depend main\can_receive.d "..\Hardware\can\CAN_receive.c"

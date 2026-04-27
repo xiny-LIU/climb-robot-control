@@ -29,12 +29,11 @@ main\bluetooth_motor.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_
 main\bluetooth_motor.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h
 main\bluetooth_motor.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h
 main\bluetooth_motor.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
-main\bluetooth_motor.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h
 main\bluetooth_motor.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 main\bluetooth_motor.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 main\bluetooth_motor.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 main\bluetooth_motor.o: D:\keil5\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdio.h
-main\bluetooth_motor.o: ..\Hardware\user_usart\user_usart.h
-main\bluetooth_motor.o: ..\Hardware\can\CAN_receive.h
-main\bluetooth_motor.o: ..\Hardware\can\struct_typedef.h
+main\bluetooth_motor.o: ../Hardware/user_usart/user_usart.h
+main\bluetooth_motor.o: ../Hardware/can/CAN_receive.h
+main\bluetooth_motor.o: ../Hardware/can/struct_typedef.h
 main\bluetooth_motor.o: D:\keil5\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\string.h

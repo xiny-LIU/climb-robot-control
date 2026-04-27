@@ -20,7 +20,6 @@
 #include "main.h"
 #include "can.h"
 #include "dma.h"
-#include "spi.h"
 #include "tim.h"
 #include "usart.h"
 #include "gpio.h"
@@ -115,10 +114,8 @@ int main(void)
   MX_USART1_UART_Init();
   MX_CAN1_Init();
   MX_CAN2_Init();
-  MX_SPI5_Init();
   MX_USART2_UART_Init();
   MX_TIM3_Init();
-  MX_TIM4_Init();
   MX_UART7_Init();
   MX_USART3_UART_Init();
   MX_USART6_UART_Init();
@@ -126,7 +123,7 @@ int main(void)
   MX_TIM5_Init();
   MX_TIM12_Init();
   /* USER CODE BEGIN 2 */
-//  USART2_init();  //BT“—∞¸∫¨
+//  USART2_init();  //exit in BT
   Buzzer_Init();
   Motor_Init_All(); 
   
@@ -140,13 +137,13 @@ int main(void)
   PS2_Control_Init();
   PID_Init();
 
-    // ≥ı ºªØIMU¥Æø⁄ƒ£øÈ
+    // imu
     IMU_USART_Init(&huart6);
-    IMU_USART_StartReceive(); // ∆Ù∂ØDMAΩ” ’
+    IMU_USART_StartReceive(); // 
   
-  Buzzer_StartUp_Sound();//∑‰√˘∆˜Ã· æ“Ù
+  Buzzer_StartUp_Sound();//ËúÇÈ∏£Âô®ÂêØÂä®
   Buzzer_StartUp_Sound();
-  //ø™∆ÙcanΩ” ’£¨√ª…∂”√
+  //unusable
 //  HAL_CAN_Start(&hcan1);
 //  HAL_CAN_ActivateNotification(&hcan1, CAN_IT_RX_FIFO0_MSG_PENDING);
 
@@ -159,7 +156,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    TIM3_Task_Execute();//imuπ§◊˜
+    TIM3_Task_Execute();//imu
   }
   /* USER CODE END 3 */
 }
