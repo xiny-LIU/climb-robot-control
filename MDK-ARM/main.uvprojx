@@ -340,7 +340,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F427xx</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include;../Hardware/bluetooth;../Hardware/buzzer;../Hardware/can;../Hardware/imu;../Hardware/Led;../Hardware/num_command;../Hardware/PS2;../Hardware/pwm_motor;../Hardware/user_tim;../Hardware/user_usart;../Hardware;..\Hardware\spi4</IncludePath>
+              <IncludePath>../Core/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include;../Hardware/bluetooth;../Hardware/buzzer;../Hardware/can;../Hardware/imu;../Hardware/Led;../Hardware/num_command;../Hardware/PS2;../Hardware/pwm_motor;../Hardware/user_tim;../Hardware/user_usart;../Hardware;../Hardware/spi4</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>

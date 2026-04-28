@@ -473,27 +473,20 @@ static void handle_led_feedback(void)
     {
         HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_SET);
     }
+    if (print_mode == 1)
+    {
+        HAL_GPIO_WritePin(LED2_GPIO_Port, LED3_Pin, GPIO_PIN_RESET);
+    }
+    else
+    {
+        HAL_GPIO_WritePin(LED2_GPIO_Port, LED3_Pin, GPIO_PIN_SET);
+    }   
 }
 
 /**
  * @brief 红灯模式下按下pink键切换打印模式
  */
 uint8_t print_mode = 0;      // 0=打印M3508数据, 1=打印姿态数据
-//static void printmode_switch(void)
-//{   
-//    static uint8_t pink_last = 0; 
-//    
-//    // 无论什么模式都时刻更新按键状态，保证 edge (边缘) 检测的准确性
-//    uint8_t pink_now = ps2_get_key_state(PSB_PINK);
-//    
-//    // 只有在红灯模式下，且检测到按下沿时才切换
-//    if ((current_mode == PSB_REDLIGHT_MODE) && pink_now && !pink_last)
-//    {
-//        print_mode = !print_mode;  // 切换打印模式
-//    }
-//    pink_last = pink_now; // 每次 10ms 都更新上一次的状态
-//}
-
 static void printmode_switch(void)
 {
     static uint8_t pink_last_raw = 0;      // 记录上一次的【瞬时】状态

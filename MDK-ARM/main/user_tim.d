@@ -42,3 +42,4 @@ main\user_tim.o: ../Hardware/imu/usart6.h
 main\user_tim.o: D:\keil5\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdbool.h
 main\user_tim.o: ../Hardware/imu/analysis_data.h
 main\user_tim.o: ../Hardware/user_usart/user_usart.h
+main\user_tim.o: ../Hardware/spi4/spi4.h

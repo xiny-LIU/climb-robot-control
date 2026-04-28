@@ -101,6 +101,10 @@ void Error_Handler(void);
 #define D_Brake_GPIO_Port GPIOD
 #define LED2_Pin GPIO_PIN_2
 #define LED2_GPIO_Port GPIOG
+#define CS_ENC1_Pin GPIO_PIN_2
+#define CS_ENC1_GPIO_Port GPIOC
+#define CS_ENC2_Pin GPIO_PIN_3
+#define CS_ENC2_GPIO_Port GPIOC
 #define KEY_Pin GPIO_PIN_2
 #define KEY_GPIO_Port GPIOB
 #define KEY_EXTI_IRQn EXTI2_IRQn
@@ -112,10 +116,14 @@ void Error_Handler(void);
 #define B_Brake_GPIO_Port GPIOD
 #define PS2_CLK_Pin GPIO_PIN_4
 #define PS2_CLK_GPIO_Port GPIOA
+#define CS_ENC3_Pin GPIO_PIN_4
+#define CS_ENC3_GPIO_Port GPIOC
 #define A_Brake_Pin GPIO_PIN_12
 #define A_Brake_GPIO_Port GPIOD
 #define PS2_CS_Pin GPIO_PIN_5
 #define PS2_CS_GPIO_Port GPIOA
+#define CS_ENC4_Pin GPIO_PIN_5
+#define CS_ENC4_GPIO_Port GPIOC
 #define LED_Red_Pin GPIO_PIN_11
 #define LED_Red_GPIO_Port GPIOE
 #define LED_Green_Pin GPIO_PIN_14

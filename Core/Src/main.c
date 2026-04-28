@@ -159,8 +159,8 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    TIM3_Task_Execute();//imu
-    Read_PQY13_Encoder();
+    TIM3_Task_Execute();//tim
+
   }
   /* USER CODE END 3 */
 }
@@ -221,27 +221,35 @@ void SystemClock_Config(void)
 
 /* USER CODE END 4 */
 
-///**
-//  * @brief  Period elapsed callback in non blocking mode
-//  * @note   This function is called  when TIM6 interrupt took place, inside
-//  * HAL_TIM_IRQHandler(). It makes a direct call to HAL_IncTick() to increment
-//  * a global variable "uwTick" used as application time base.
-//  * @param  htim : TIM handle
-//  * @retval None
-//  */
-//void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
-//{
-//  /* USER CODE BEGIN Callback 0 */
+/**
+  * @brief  Period elapsed callback in non blocking mode
+  * @note   This function is called  when TIM6 interrupt took place, inside
+  * HAL_TIM_IRQHandler(). It makes a direct call to HAL_IncTick() to increment
+  * a global variable "uwTick" used as application time base.
+  * @param  htim : TIM handle
+  * @retval None
+  */
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+  /* USER CODE BEGIN Callback 0 */
+    if (htim->Instance == TIM3)  // 5ms
+    {
+        TIM3_PeriodElapsed_Handler(); 
+    }
+    else if (htim->Instance == TIM6) // sys
+    {
+        HAL_IncTick();
+    }
+    else if (htim->Instance == TIM5)  // 1ms
+    {
+        PID_Loop_1ms();  // PID计算通常要求极高实时性，放在中断内执行是合理的
+    }
+  /* USER CODE END Callback 0 */
 
-//  /* USER CODE END Callback 0 */
-//  if (htim->Instance == TIM6)
-//  {
-//    HAL_IncTick();
-//  }
-//  /* USER CODE BEGIN Callback 1 */
+  /* USER CODE BEGIN Callback 1 */
 
-//  /* USER CODE END Callback 1 */
-//}
+  /* USER CODE END Callback 1 */
+}
 
 /**
   * @brief  This function is executed in case of error occurrence.

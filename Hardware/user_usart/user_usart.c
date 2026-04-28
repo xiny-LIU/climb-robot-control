@@ -226,7 +226,12 @@ void Print_Task(void)
                imu->accel_x, imu->accel_y, imu->accel_z);//加速度
         printf("Angle: %.2f, %.2f, %.2f\r\n", 
                imu->angle_x, imu->angle_y, imu->angle_z);//角速度
-        printf("Encoder Angle: %.2f degree\r\n", encoder_data.degree);
+        
+        printf("ENC: %.1f | %.1f | %.1f | %.1f\r\n", 
+                encoder_data[ENC_1].degree, 
+                encoder_data[ENC_2].degree, 
+                encoder_data[ENC_3].degree, 
+                encoder_data[ENC_4].degree);
     }
     else
     {

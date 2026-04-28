@@ -2,4 +2,4 @@
 -I.\RTE\_main
 -ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include
 -D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx
--o main\stm32f4xx_hal_gpio.o --omf_browse main\stm32f4xx_hal_gpio.crf --depend main\stm32f4xx_hal_gpio.d "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c"
+-o main\user_usart.o --omf_browse main\user_usart.crf --depend main\user_usart.d "..\Hardware\user_usart\user_usart.c"

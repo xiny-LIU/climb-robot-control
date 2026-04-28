@@ -59,4 +59,4 @@ main\main.o: ../Hardware/can/PID.h
 main\main.o: ../Hardware/imu/usart6.h
 main\main.o: D:\keil5\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdbool.h
 main\main.o: ../Hardware/imu/analysis_data.h
-main\main.o: ..\Hardware\spi4\spi4.h
+main\main.o: ../Hardware/spi4/spi4.h

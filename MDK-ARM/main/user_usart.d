@@ -43,6 +43,6 @@ main\user_usart.o: D:\keil5\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdio
 main\user_usart.o: ../Hardware/imu/usart6.h
 main\user_usart.o: D:\keil5\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdbool.h
 main\user_usart.o: ../Hardware/imu/analysis_data.h
-main\user_usart.o: ..\Hardware\spi4\spi4.h
+main\user_usart.o: ../Hardware/spi4/spi4.h
 main\user_usart.o: ../Hardware/PS2/ps2_control.h
 main\user_usart.o: ../Hardware/PS2/ps2.h
