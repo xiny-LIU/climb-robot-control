@@ -30,6 +30,7 @@ main\user_usart.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h
 main\user_usart.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h
 main\user_usart.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h
 main\user_usart.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
+main\user_usart.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h
 main\user_usart.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 main\user_usart.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 main\user_usart.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
@@ -42,5 +43,6 @@ main\user_usart.o: D:\keil5\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdio
 main\user_usart.o: ../Hardware/imu/usart6.h
 main\user_usart.o: D:\keil5\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdbool.h
 main\user_usart.o: ../Hardware/imu/analysis_data.h
+main\user_usart.o: ..\Hardware\spi4\spi4.h
 main\user_usart.o: ../Hardware/PS2/ps2_control.h
 main\user_usart.o: ../Hardware/PS2/ps2.h

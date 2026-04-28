@@ -55,6 +55,9 @@ void MX_GPIO_Init(void)
   __HAL_RCC_GPIOF_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOE, SPI4_CS_Pin|LED_Red_Pin, GPIO_PIN_SET);
+
+  /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(PS2_CMD_GPIO_Port, PS2_CMD_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pin Output Level */
@@ -79,8 +82,12 @@ void MX_GPIO_Init(void)
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOA, PS2_CLK_Pin|PS2_CS_Pin, GPIO_PIN_SET);
 
-  /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(LED_Red_GPIO_Port, LED_Red_Pin, GPIO_PIN_SET);
+  /*Configure GPIO pin : SPI4_CS_Pin */
+  GPIO_InitStruct.Pin = SPI4_CS_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+  HAL_GPIO_Init(SPI4_CS_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pin : PS2_CMD_Pin */
   GPIO_InitStruct.Pin = PS2_CMD_Pin;

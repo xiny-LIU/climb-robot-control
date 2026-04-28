@@ -1,9 +1,9 @@
 Dependencies for Project 'main', Target 'main': (DO NOT MODIFY !)
 CompilerVersion: 5060960::V5.06 update 7 (build 960)::.\ARM_Compiler_5.06u7
-F (startup_stm32f427xx.s)(0x69EF556A)(--cpu Cortex-M4.fp.sp -g --apcs=interwork -I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include--pd "__UVISION_VERSION SETA 542" --pd "STM32F427xx SETA 1" --pd "_RTE_ SETA 1"--list startup_stm32f427xx.lst --xref -o main\startup_stm32f427xx.o --depend main\startup_stm32f427xx.d)
-F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c)(0x693F6A6E)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\stm32f4xx_hal_tim.o --omf_browse main\stm32f4xx_hal_tim.crf --depend main\stm32f4xx_hal_tim.d)
+F (startup_stm32f427xx.s)(0x69F07A04)(--cpu Cortex-M4.fp.sp -g --apcs=interwork -I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include--pd "__UVISION_VERSION SETA 542" --pd "STM32F427xx SETA 1" --pd "_RTE_ SETA 1"--list startup_stm32f427xx.lst --xref -o main\startup_stm32f427xx.o --depend main\startup_stm32f427xx.d)
+F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c)(0x693F6A6E)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware -I ..\Hardware\spi4-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\stm32f4xx_hal_tim.o --omf_browse main\stm32f4xx_hal_tim.crf --depend main\stm32f4xx_hal_tim.d)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x693F6A6E)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69EF3DEE)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69F07A02)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x693F6A6E)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x693F6A6E)
@@ -30,12 +30,13 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x693F6A6E)
-F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c)(0x693F6A6E)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\stm32f4xx_hal_tim_ex.o --omf_browse main\stm32f4xx_hal_tim_ex.crf --depend main\stm32f4xx_hal_tim_ex.d)
+F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c)(0x693F6A6E)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware -I ..\Hardware\spi4-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\stm32f4xx_hal_tim_ex.o --omf_browse main\stm32f4xx_hal_tim_ex.crf --depend main\stm32f4xx_hal_tim_ex.d)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x693F6A6E)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69EF3DEE)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69F07A02)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x693F6A6E)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x693F6A6E)
@@ -62,12 +63,13 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x693F6A6E)
-F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_can.c)(0x693F6A6E)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\stm32f4xx_hal_can.o --omf_browse main\stm32f4xx_hal_can.crf --depend main\stm32f4xx_hal_can.d)
+F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_can.c)(0x693F6A6E)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware -I ..\Hardware\spi4-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\stm32f4xx_hal_can.o --omf_browse main\stm32f4xx_hal_can.crf --depend main\stm32f4xx_hal_can.d)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x693F6A6E)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69EF3DEE)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69F07A02)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x693F6A6E)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x693F6A6E)
@@ -94,12 +96,13 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x693F6A6E)
-F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c)(0x693F6A6E)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\stm32f4xx_hal_rcc.o --omf_browse main\stm32f4xx_hal_rcc.crf --depend main\stm32f4xx_hal_rcc.d)
+F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c)(0x693F6A6E)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware -I ..\Hardware\spi4-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\stm32f4xx_hal_rcc.o --omf_browse main\stm32f4xx_hal_rcc.crf --depend main\stm32f4xx_hal_rcc.d)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x693F6A6E)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69EF3DEE)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69F07A02)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x693F6A6E)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x693F6A6E)
@@ -126,12 +129,13 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x693F6A6E)
-F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c)(0x693F6A6E)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\stm32f4xx_hal_rcc_ex.o --omf_browse main\stm32f4xx_hal_rcc_ex.crf --depend main\stm32f4xx_hal_rcc_ex.d)
+F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c)(0x693F6A6E)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware -I ..\Hardware\spi4-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\stm32f4xx_hal_rcc_ex.o --omf_browse main\stm32f4xx_hal_rcc_ex.crf --depend main\stm32f4xx_hal_rcc_ex.d)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x693F6A6E)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69EF3DEE)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69F07A02)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x693F6A6E)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x693F6A6E)
@@ -158,12 +162,13 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x693F6A6E)
-F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c)(0x693F6A6E)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\stm32f4xx_hal_flash.o --omf_browse main\stm32f4xx_hal_flash.crf --depend main\stm32f4xx_hal_flash.d)
+F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c)(0x693F6A6E)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware -I ..\Hardware\spi4-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\stm32f4xx_hal_flash.o --omf_browse main\stm32f4xx_hal_flash.crf --depend main\stm32f4xx_hal_flash.d)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x693F6A6E)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69EF3DEE)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69F07A02)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x693F6A6E)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x693F6A6E)
@@ -190,12 +195,13 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x693F6A6E)
-F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c)(0x693F6A6E)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\stm32f4xx_hal_flash_ex.o --omf_browse main\stm32f4xx_hal_flash_ex.crf --depend main\stm32f4xx_hal_flash_ex.d)
+F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c)(0x693F6A6E)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware -I ..\Hardware\spi4-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\stm32f4xx_hal_flash_ex.o --omf_browse main\stm32f4xx_hal_flash_ex.crf --depend main\stm32f4xx_hal_flash_ex.d)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x693F6A6E)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69EF3DEE)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69F07A02)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x693F6A6E)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x693F6A6E)
@@ -222,12 +228,13 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x693F6A6E)
-F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c)(0x693F6A6E)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\stm32f4xx_hal_flash_ramfunc.o --omf_browse main\stm32f4xx_hal_flash_ramfunc.crf --depend main\stm32f4xx_hal_flash_ramfunc.d)
+F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c)(0x693F6A6E)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware -I ..\Hardware\spi4-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\stm32f4xx_hal_flash_ramfunc.o --omf_browse main\stm32f4xx_hal_flash_ramfunc.crf --depend main\stm32f4xx_hal_flash_ramfunc.d)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x693F6A6E)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69EF3DEE)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69F07A02)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x693F6A6E)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x693F6A6E)
@@ -254,12 +261,13 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x693F6A6E)
-F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c)(0x693F6A6E)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\stm32f4xx_hal_gpio.o --omf_browse main\stm32f4xx_hal_gpio.crf --depend main\stm32f4xx_hal_gpio.d)
+F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c)(0x693F6A6E)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware -I ..\Hardware\spi4-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\stm32f4xx_hal_gpio.o --omf_browse main\stm32f4xx_hal_gpio.crf --depend main\stm32f4xx_hal_gpio.d)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x693F6A6E)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69EF3DEE)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69F07A02)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x693F6A6E)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x693F6A6E)
@@ -286,12 +294,13 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x693F6A6E)
-F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c)(0x693F6A6E)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\stm32f4xx_hal_dma_ex.o --omf_browse main\stm32f4xx_hal_dma_ex.crf --depend main\stm32f4xx_hal_dma_ex.d)
+F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c)(0x693F6A6E)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware -I ..\Hardware\spi4-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\stm32f4xx_hal_dma_ex.o --omf_browse main\stm32f4xx_hal_dma_ex.crf --depend main\stm32f4xx_hal_dma_ex.d)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x693F6A6E)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69EF3DEE)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69F07A02)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x693F6A6E)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x693F6A6E)
@@ -318,12 +327,13 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x693F6A6E)
-F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c)(0x693F6A6E)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\stm32f4xx_hal_dma.o --omf_browse main\stm32f4xx_hal_dma.crf --depend main\stm32f4xx_hal_dma.d)
+F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c)(0x693F6A6E)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware -I ..\Hardware\spi4-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\stm32f4xx_hal_dma.o --omf_browse main\stm32f4xx_hal_dma.crf --depend main\stm32f4xx_hal_dma.d)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x693F6A6E)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69EF3DEE)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69F07A02)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x693F6A6E)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x693F6A6E)
@@ -350,12 +360,13 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x693F6A6E)
-F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c)(0x693F6A6E)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\stm32f4xx_hal_pwr.o --omf_browse main\stm32f4xx_hal_pwr.crf --depend main\stm32f4xx_hal_pwr.d)
+F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c)(0x693F6A6E)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware -I ..\Hardware\spi4-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\stm32f4xx_hal_pwr.o --omf_browse main\stm32f4xx_hal_pwr.crf --depend main\stm32f4xx_hal_pwr.d)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x693F6A6E)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69EF3DEE)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69F07A02)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x693F6A6E)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x693F6A6E)
@@ -382,12 +393,13 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x693F6A6E)
-F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c)(0x693F6A6E)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\stm32f4xx_hal_pwr_ex.o --omf_browse main\stm32f4xx_hal_pwr_ex.crf --depend main\stm32f4xx_hal_pwr_ex.d)
+F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c)(0x693F6A6E)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware -I ..\Hardware\spi4-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\stm32f4xx_hal_pwr_ex.o --omf_browse main\stm32f4xx_hal_pwr_ex.crf --depend main\stm32f4xx_hal_pwr_ex.d)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x693F6A6E)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69EF3DEE)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69F07A02)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x693F6A6E)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x693F6A6E)
@@ -414,12 +426,13 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x693F6A6E)
-F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c)(0x693F6A6E)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\stm32f4xx_hal_cortex.o --omf_browse main\stm32f4xx_hal_cortex.crf --depend main\stm32f4xx_hal_cortex.d)
+F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c)(0x693F6A6E)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware -I ..\Hardware\spi4-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\stm32f4xx_hal_cortex.o --omf_browse main\stm32f4xx_hal_cortex.crf --depend main\stm32f4xx_hal_cortex.d)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x693F6A6E)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69EF3DEE)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69F07A02)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x693F6A6E)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x693F6A6E)
@@ -446,12 +459,13 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x693F6A6E)
-F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c)(0x693F6A6E)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\stm32f4xx_hal.o --omf_browse main\stm32f4xx_hal.crf --depend main\stm32f4xx_hal.d)
+F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c)(0x693F6A6E)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware -I ..\Hardware\spi4-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\stm32f4xx_hal.o --omf_browse main\stm32f4xx_hal.crf --depend main\stm32f4xx_hal.d)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x693F6A6E)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69EF3DEE)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69F07A02)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x693F6A6E)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x693F6A6E)
@@ -478,12 +492,13 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x693F6A6E)
-F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c)(0x693F6A6E)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\stm32f4xx_hal_exti.o --omf_browse main\stm32f4xx_hal_exti.crf --depend main\stm32f4xx_hal_exti.d)
+F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c)(0x693F6A6E)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware -I ..\Hardware\spi4-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\stm32f4xx_hal_exti.o --omf_browse main\stm32f4xx_hal_exti.crf --depend main\stm32f4xx_hal_exti.d)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x693F6A6E)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69EF3DEE)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69F07A02)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x693F6A6E)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x693F6A6E)
@@ -510,12 +525,13 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x693F6A6E)
-F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c)(0x693F6A6E)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\stm32f4xx_hal_uart.o --omf_browse main\stm32f4xx_hal_uart.crf --depend main\stm32f4xx_hal_uart.d)
+F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c)(0x693F6A6E)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware -I ..\Hardware\spi4-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\stm32f4xx_hal_spi.o --omf_browse main\stm32f4xx_hal_spi.crf --depend main\stm32f4xx_hal_spi.d)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x693F6A6E)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69EF3DEE)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69F07A02)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x693F6A6E)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x693F6A6E)
@@ -542,10 +558,15 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x693F6A6E)
-F (../Core/Src/system_stm32f4xx.c)(0x693F6A6E)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\system_stm32f4xx.o --omf_browse main\system_stm32f4xx.crf --depend main\system_stm32f4xx.d)
+F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c)(0x693F6A6E)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware -I ..\Hardware\spi4-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\stm32f4xx_hal_uart.o --omf_browse main\stm32f4xx_hal_uart.crf --depend main\stm32f4xx_hal_uart.d)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x693F6A6E)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69F07A02)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x693F6A6E)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x693F6A6E)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f427xx.h)(0x693F6A6E)
 I (../Drivers/CMSIS/Include/core_cm4.h)(0x693F6A6E)
@@ -555,10 +576,6 @@ I (../Drivers/CMSIS/Include/cmsis_compiler.h)(0x693F6A6E)
 I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x693F6A6E)
 I (../Drivers/CMSIS/Include/mpu_armv7.h)(0x693F6A6E)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h)(0x693F6A6E)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x693F6A6E)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69EF3DEE)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x693F6A6E)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h)(0x693F6A6E)
 I (D:\keil5\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stddef.h)(0x5E8E3CC2)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h)(0x693F6A6E)
@@ -574,13 +591,47 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x693F6A6E)
-F (../Core/Src/main.c)(0x69EF5800)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\main.o --omf_browse main\main.crf --depend main\main.d)
-I (../Core/Inc/main.h)(0x69EF556A)
+F (../Core/Src/system_stm32f4xx.c)(0x693F6A6E)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware -I ..\Hardware\spi4-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\system_stm32f4xx.o --omf_browse main\system_stm32f4xx.crf --depend main\system_stm32f4xx.d)
+I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x693F6A6E)
+I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f427xx.h)(0x693F6A6E)
+I (../Drivers/CMSIS/Include/core_cm4.h)(0x693F6A6E)
+I (D:\keil5\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdint.h)(0x5E8E3CC2)
+I (../Drivers/CMSIS/Include/cmsis_version.h)(0x693F6A6E)
+I (../Drivers/CMSIS/Include/cmsis_compiler.h)(0x693F6A6E)
+I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x693F6A6E)
+I (../Drivers/CMSIS/Include/mpu_armv7.h)(0x693F6A6E)
+I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x693F6A6E)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69EF3DEE)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69F07A02)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h)(0x693F6A6E)
+I (D:\keil5\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stddef.h)(0x5E8E3CC2)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_exti.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_can.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x693F6A6E)
+F (../Core/Src/main.c)(0x69F08100)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware -I ..\Hardware\spi4-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\main.o --omf_browse main\main.crf --depend main\main.d)
+I (../Core/Inc/main.h)(0x69F07A02)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x693F6A6E)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69F07A02)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x693F6A6E)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x693F6A6E)
@@ -607,11 +658,13 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x693F6A6E)
 I (../Core/Inc/can.h)(0x69EEEC36)
 I (../Core/Inc/dma.h)(0x69EEEC36)
+I (../Core/Inc/spi.h)(0x69F07A00)
 I (../Core/Inc/tim.h)(0x69EF4564)
 I (../Core/Inc/usart.h)(0x69EEEC38)
 I (../Core/Inc/gpio.h)(0x69EEEC34)
@@ -635,11 +688,12 @@ I (../Hardware/can/PID.h)(0x697C8606)
 I (../Hardware/imu/usart6.h)(0x69CB9960)
 I (D:\keil5\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdbool.h)(0x5E8E3CC2)
 I (../Hardware/imu/analysis_data.h)(0x69CB8428)
-F (../Core/Src/gpio.c)(0x69EF5566)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\gpio.o --omf_browse main\gpio.crf --depend main\gpio.d)
+I (..\Hardware\spi4\spi4.h)(0x69F07ADC)
+F (../Core/Src/gpio.c)(0x69F079FE)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware -I ..\Hardware\spi4-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\gpio.o --omf_browse main\gpio.crf --depend main\gpio.d)
 I (../Core/Inc/gpio.h)(0x69EEEC34)
-I (../Core/Inc/main.h)(0x69EF556A)
+I (../Core/Inc/main.h)(0x69F07A02)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x693F6A6E)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69EF3DEE)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69F07A02)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x693F6A6E)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x693F6A6E)
@@ -666,14 +720,15 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x693F6A6E)
-F (../Core/Src/can.c)(0x69EEEC36)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\can.o --omf_browse main\can.crf --depend main\can.d)
+F (../Core/Src/can.c)(0x69EEEC36)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware -I ..\Hardware\spi4-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\can.o --omf_browse main\can.crf --depend main\can.d)
 I (../Core/Inc/can.h)(0x69EEEC36)
-I (../Core/Inc/main.h)(0x69EF556A)
+I (../Core/Inc/main.h)(0x69F07A02)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x693F6A6E)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69EF3DEE)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69F07A02)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x693F6A6E)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x693F6A6E)
@@ -700,14 +755,15 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x693F6A6E)
-F (../Core/Src/dma.c)(0x69EEEC36)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\dma.o --omf_browse main\dma.crf --depend main\dma.d)
+F (../Core/Src/dma.c)(0x69EEEC36)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware -I ..\Hardware\spi4-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\dma.o --omf_browse main\dma.crf --depend main\dma.d)
 I (../Core/Inc/dma.h)(0x69EEEC36)
-I (../Core/Inc/main.h)(0x69EF556A)
+I (../Core/Inc/main.h)(0x69F07A02)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x693F6A6E)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69EF3DEE)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69F07A02)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x693F6A6E)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x693F6A6E)
@@ -734,14 +790,50 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x693F6A6E)
-F (../Core/Src/tim.c)(0x69EF4564)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\tim.o --omf_browse main\tim.crf --depend main\tim.d)
+F (../Core/Src/spi.c)(0x69F07A00)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware -I ..\Hardware\spi4-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\spi.o --omf_browse main\spi.crf --depend main\spi.d)
+I (../Core/Inc/spi.h)(0x69F07A00)
+I (../Core/Inc/main.h)(0x69F07A02)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x693F6A6E)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69F07A02)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x693F6A6E)
+I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x693F6A6E)
+I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f427xx.h)(0x693F6A6E)
+I (../Drivers/CMSIS/Include/core_cm4.h)(0x693F6A6E)
+I (D:\keil5\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdint.h)(0x5E8E3CC2)
+I (../Drivers/CMSIS/Include/cmsis_version.h)(0x693F6A6E)
+I (../Drivers/CMSIS/Include/cmsis_compiler.h)(0x693F6A6E)
+I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x693F6A6E)
+I (../Drivers/CMSIS/Include/mpu_armv7.h)(0x693F6A6E)
+I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h)(0x693F6A6E)
+I (D:\keil5\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stddef.h)(0x5E8E3CC2)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_exti.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_can.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x693F6A6E)
+F (../Core/Src/tim.c)(0x69EF4564)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware -I ..\Hardware\spi4-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\tim.o --omf_browse main\tim.crf --depend main\tim.d)
 I (../Core/Inc/tim.h)(0x69EF4564)
-I (../Core/Inc/main.h)(0x69EF556A)
+I (../Core/Inc/main.h)(0x69F07A02)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x693F6A6E)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69EF3DEE)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69F07A02)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x693F6A6E)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x693F6A6E)
@@ -768,14 +860,15 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x693F6A6E)
-F (../Core/Src/usart.c)(0x69EEEC38)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\usart.o --omf_browse main\usart.crf --depend main\usart.d)
+F (../Core/Src/usart.c)(0x69EEEC38)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware -I ..\Hardware\spi4-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\usart.o --omf_browse main\usart.crf --depend main\usart.d)
 I (../Core/Inc/usart.h)(0x69EEEC38)
-I (../Core/Inc/main.h)(0x69EF556A)
+I (../Core/Inc/main.h)(0x69F07A02)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x693F6A6E)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69EF3DEE)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69F07A02)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x693F6A6E)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x693F6A6E)
@@ -802,13 +895,14 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x693F6A6E)
-F (../Core/Src/stm32f4xx_it.c)(0x69EF4564)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\stm32f4xx_it.o --omf_browse main\stm32f4xx_it.crf --depend main\stm32f4xx_it.d)
-I (../Core/Inc/main.h)(0x69EF556A)
+F (../Core/Src/stm32f4xx_it.c)(0x69EF4564)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware -I ..\Hardware\spi4-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\stm32f4xx_it.o --omf_browse main\stm32f4xx_it.crf --depend main\stm32f4xx_it.d)
+I (../Core/Inc/main.h)(0x69F07A02)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x693F6A6E)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69EF3DEE)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69F07A02)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x693F6A6E)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x693F6A6E)
@@ -835,14 +929,15 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x693F6A6E)
 I (../Core/Inc/stm32f4xx_it.h)(0x69EF4564)
-F (../Core/Src/stm32f4xx_hal_msp.c)(0x69EEEC38)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\stm32f4xx_hal_msp.o --omf_browse main\stm32f4xx_hal_msp.crf --depend main\stm32f4xx_hal_msp.d)
-I (../Core/Inc/main.h)(0x69EF556A)
+F (../Core/Src/stm32f4xx_hal_msp.c)(0x69EEEC38)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware -I ..\Hardware\spi4-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\stm32f4xx_hal_msp.o --omf_browse main\stm32f4xx_hal_msp.crf --depend main\stm32f4xx_hal_msp.d)
+I (../Core/Inc/main.h)(0x69F07A02)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x693F6A6E)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69EF3DEE)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69F07A02)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x693F6A6E)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x693F6A6E)
@@ -869,12 +964,13 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x693F6A6E)
-F (../Core/Src/stm32f4xx_hal_timebase_tim.c)(0x69EEEC38)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\stm32f4xx_hal_timebase_tim.o --omf_browse main\stm32f4xx_hal_timebase_tim.crf --depend main\stm32f4xx_hal_timebase_tim.d)
+F (../Core/Src/stm32f4xx_hal_timebase_tim.c)(0x69EEEC38)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware -I ..\Hardware\spi4-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\stm32f4xx_hal_timebase_tim.o --omf_browse main\stm32f4xx_hal_timebase_tim.crf --depend main\stm32f4xx_hal_timebase_tim.d)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x693F6A6E)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69EF3DEE)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69F07A02)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x693F6A6E)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x693F6A6E)
@@ -901,13 +997,14 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x693F6A6E)
-F (..\Hardware\bluetooth\bluetooth_motor.c)(0x697852C0)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\bluetooth_motor.o --omf_browse main\bluetooth_motor.crf --depend main\bluetooth_motor.d)
+F (..\Hardware\bluetooth\bluetooth_motor.c)(0x697852C0)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware -I ..\Hardware\spi4-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\bluetooth_motor.o --omf_browse main\bluetooth_motor.crf --depend main\bluetooth_motor.d)
 I (..\Hardware\bluetooth\bluetooth_motor.h)(0x697852C0)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x693F6A6E)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69EF3DEE)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69F07A02)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x693F6A6E)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x693F6A6E)
@@ -934,6 +1031,7 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x693F6A6E)
@@ -942,11 +1040,11 @@ I (../Hardware/user_usart/user_usart.h)(0x69EB2DA4)
 I (../Hardware/can/CAN_receive.h)(0x69CCF28E)
 I (../Hardware/can/struct_typedef.h)(0x5EEF57FE)
 I (D:\keil5\Keil_v5\ARM\ARM_Compiler_5.06u7\include\string.h)(0x5E8E3CC2)
-F (..\Hardware\buzzer\buzzer.c)(0x69CCCC04)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\buzzer.o --omf_browse main\buzzer.crf --depend main\buzzer.d)
+F (..\Hardware\buzzer\buzzer.c)(0x69CCCC04)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware -I ..\Hardware\spi4-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\buzzer.o --omf_browse main\buzzer.crf --depend main\buzzer.d)
 I (..\Hardware\buzzer\buzzer.h)(0x69CCCC04)
-I (../Core/Inc/main.h)(0x69EF556A)
+I (../Core/Inc/main.h)(0x69F07A02)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x693F6A6E)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69EF3DEE)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69F07A02)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x693F6A6E)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x693F6A6E)
@@ -973,15 +1071,16 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x693F6A6E)
 I (../Core/Inc/tim.h)(0x69EF4564)
-F (..\Hardware\Led\led.c)(0x6952296A)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\led.o --omf_browse main\led.crf --depend main\led.d)
+F (..\Hardware\Led\led.c)(0x6952296A)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware -I ..\Hardware\spi4-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\led.o --omf_browse main\led.crf --depend main\led.d)
 I (..\Hardware\Led\led.h)(0x69521F2C)
-I (../Core/Inc/main.h)(0x69EF556A)
+I (../Core/Inc/main.h)(0x69F07A02)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x693F6A6E)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69EF3DEE)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69F07A02)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x693F6A6E)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x693F6A6E)
@@ -1008,14 +1107,15 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x693F6A6E)
 I (D:\keil5\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdio.h)(0x5E8E3CC2)
-F (..\Hardware\num_command\num_command.c)(0x695E23F0)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\num_command.o --omf_browse main\num_command.crf --depend main\num_command.d)
+F (..\Hardware\num_command\num_command.c)(0x695E23F0)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware -I ..\Hardware\spi4-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\num_command.o --omf_browse main\num_command.crf --depend main\num_command.d)
 I (..\Hardware\num_command\num_command.h)(0x695E176C)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x693F6A6E)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69EF3DEE)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69F07A02)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x693F6A6E)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x693F6A6E)
@@ -1042,17 +1142,18 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x693F6A6E)
 I (../Hardware/user_usart/user_usart.h)(0x69EB2DA4)
 I (D:\keil5\Keil_v5\ARM\ARM_Compiler_5.06u7\include\string.h)(0x5E8E3CC2)
 I (D:\keil5\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdio.h)(0x5E8E3CC2)
-F (..\Hardware\pwm_motor\pwm_motor.c)(0x69DDFAAA)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\pwm_motor.o --omf_browse main\pwm_motor.crf --depend main\pwm_motor.d)
+F (..\Hardware\pwm_motor\pwm_motor.c)(0x69DDFAAA)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware -I ..\Hardware\spi4-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\pwm_motor.o --omf_browse main\pwm_motor.crf --depend main\pwm_motor.d)
 I (..\Hardware\pwm_motor\pwm_motor.h)(0x6981A500)
-I (../Core/Inc/main.h)(0x69EF556A)
+I (../Core/Inc/main.h)(0x69F07A02)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x693F6A6E)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69EF3DEE)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69F07A02)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x693F6A6E)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x693F6A6E)
@@ -1079,16 +1180,17 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x693F6A6E)
 I (../Core/Inc/tim.h)(0x69EF4564)
-F (..\Hardware\user_tim\user_tim.c)(0x69EB2E10)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\user_tim.o --omf_browse main\user_tim.crf --depend main\user_tim.d)
+F (..\Hardware\user_tim\user_tim.c)(0x69EB2E10)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware -I ..\Hardware\spi4-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\user_tim.o --omf_browse main\user_tim.crf --depend main\user_tim.d)
 I (..\Hardware\user_tim\user_tim.h)(0x69CB9E96)
 I (D:\keil5\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdint.h)(0x5E8E3CC2)
-I (../Core/Inc/main.h)(0x69EF556A)
+I (../Core/Inc/main.h)(0x69F07A02)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x693F6A6E)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69EF3DEE)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69F07A02)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x693F6A6E)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x693F6A6E)
@@ -1114,6 +1216,7 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x693F6A6E)
@@ -1125,11 +1228,11 @@ I (../Hardware/imu/usart6.h)(0x69CB9960)
 I (D:\keil5\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdbool.h)(0x5E8E3CC2)
 I (../Hardware/imu/analysis_data.h)(0x69CB8428)
 I (../Hardware/user_usart/user_usart.h)(0x69EB2DA4)
-F (..\Hardware\user_usart\user_usart.c)(0x69EB2D8E)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\user_usart.o --omf_browse main\user_usart.crf --depend main\user_usart.d)
+F (..\Hardware\user_usart\user_usart.c)(0x69F08180)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware -I ..\Hardware\spi4-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\user_usart.o --omf_browse main\user_usart.crf --depend main\user_usart.d)
 I (../Core/Inc/usart.h)(0x69EEEC38)
-I (../Core/Inc/main.h)(0x69EF556A)
+I (../Core/Inc/main.h)(0x69F07A02)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x693F6A6E)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69EF3DEE)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69F07A02)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x693F6A6E)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x693F6A6E)
@@ -1156,6 +1259,7 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x693F6A6E)
@@ -1168,9 +1272,46 @@ I (D:\keil5\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdio.h)(0x5E8E3CC2)
 I (../Hardware/imu/usart6.h)(0x69CB9960)
 I (D:\keil5\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdbool.h)(0x5E8E3CC2)
 I (../Hardware/imu/analysis_data.h)(0x69CB8428)
+I (..\Hardware\spi4\spi4.h)(0x69F07ADC)
 I (../Hardware/PS2/ps2_control.h)(0x69EB2C92)
 I (../Hardware/PS2/ps2.h)(0x696DABF0)
-F (..\Hardware\PS2\ps2.c)(0x69EF585E)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\ps2.o --omf_browse main\ps2.crf --depend main\ps2.d)
+F (..\Hardware\spi4\spi4.c)(0x69F07ADC)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware -I ..\Hardware\spi4-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\spi4.o --omf_browse main\spi4.crf --depend main\spi4.d)
+I (..\Hardware\spi4\spi4.h)(0x69F07ADC)
+I (../Core/Inc/main.h)(0x69F07A02)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x693F6A6E)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69F07A02)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x693F6A6E)
+I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x693F6A6E)
+I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f427xx.h)(0x693F6A6E)
+I (../Drivers/CMSIS/Include/core_cm4.h)(0x693F6A6E)
+I (D:\keil5\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdint.h)(0x5E8E3CC2)
+I (../Drivers/CMSIS/Include/cmsis_version.h)(0x693F6A6E)
+I (../Drivers/CMSIS/Include/cmsis_compiler.h)(0x693F6A6E)
+I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x693F6A6E)
+I (../Drivers/CMSIS/Include/mpu_armv7.h)(0x693F6A6E)
+I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h)(0x693F6A6E)
+I (D:\keil5\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stddef.h)(0x5E8E3CC2)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_exti.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_can.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x693F6A6E)
+I (../Core/Inc/spi.h)(0x69F07A00)
+F (..\Hardware\PS2\ps2.c)(0x69EF585E)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware -I ..\Hardware\spi4-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\ps2.o --omf_browse main\ps2.crf --depend main\ps2.d)
 I (..\Hardware\PS2\ps2.h)(0x696DABF0)
 I (D:\keil5\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdint.h)(0x5E8E3CC2)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x693F6A6E)
@@ -1182,7 +1323,7 @@ I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x693F6A6E)
 I (../Drivers/CMSIS/Include/mpu_armv7.h)(0x693F6A6E)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x693F6A6E)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69EF3DEE)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69F07A02)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h)(0x693F6A6E)
@@ -1200,18 +1341,19 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x693F6A6E)
-I (../Core/Inc/main.h)(0x69EF556A)
-F (..\Hardware\PS2\ps2_control.c)(0x69EB3252)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\ps2_control.o --omf_browse main\ps2_control.crf --depend main\ps2_control.d)
+I (../Core/Inc/main.h)(0x69F07A02)
+F (..\Hardware\PS2\ps2_control.c)(0x69EB3252)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware -I ..\Hardware\spi4-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\ps2_control.o --omf_browse main\ps2_control.crf --depend main\ps2_control.d)
 I (..\Hardware\PS2\ps2_control.h)(0x69EB2C92)
 I (D:\keil5\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdint.h)(0x5E8E3CC2)
 I (..\Hardware\PS2\ps2.h)(0x696DABF0)
 I (../Hardware/pwm_motor/pwm_motor.h)(0x6981A500)
-I (../Core/Inc/main.h)(0x69EF556A)
+I (../Core/Inc/main.h)(0x69F07A02)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x693F6A6E)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69EF3DEE)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69F07A02)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x693F6A6E)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x693F6A6E)
@@ -1237,6 +1379,7 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x693F6A6E)
@@ -1250,21 +1393,21 @@ I (D:\keil5\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdlib.h)(0x5E8E3CC2)
 I (../Hardware/user_tim/user_tim.h)(0x69CB9E96)
 I (../Hardware/can/PID.h)(0x697C8606)
 I (..\Hardware\PS2\ps2_filter.h)(0x6981B7D0)
-F (..\Hardware\PS2\ps2_filter.c)(0x6981BE86)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\ps2_filter.o --omf_browse main\ps2_filter.crf --depend main\ps2_filter.d)
+F (..\Hardware\PS2\ps2_filter.c)(0x6981BE86)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware -I ..\Hardware\spi4-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\ps2_filter.o --omf_browse main\ps2_filter.crf --depend main\ps2_filter.d)
 I (..\Hardware\PS2\ps2_filter.h)(0x6981B7D0)
 I (D:\keil5\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdint.h)(0x5E8E3CC2)
 I (D:\keil5\Keil_v5\ARM\ARM_Compiler_5.06u7\include\string.h)(0x5E8E3CC2)
 I (D:\keil5\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdlib.h)(0x5E8E3CC2)
-F (..\Hardware\imu\analysis_data.c)(0x69CB8428)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\analysis_data.o --omf_browse main\analysis_data.crf --depend main\analysis_data.d)
+F (..\Hardware\imu\analysis_data.c)(0x69CB8428)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware -I ..\Hardware\spi4-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\analysis_data.o --omf_browse main\analysis_data.crf --depend main\analysis_data.d)
 I (D:\keil5\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stddef.h)(0x5E8E3CC2)
 I (D:\keil5\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdint.h)(0x5E8E3CC2)
 I (..\Hardware\imu\analysis_data.h)(0x69CB8428)
 I (D:\keil5\Keil_v5\ARM\ARM_Compiler_5.06u7\include\string.h)(0x5E8E3CC2)
 I (D:\keil5\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdio.h)(0x5E8E3CC2)
-F (..\Hardware\imu\usart6.c)(0x69CB9DA8)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\usart6.o --omf_browse main\usart6.crf --depend main\usart6.d)
+F (..\Hardware\imu\usart6.c)(0x69CB9DA8)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware -I ..\Hardware\spi4-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\usart6.o --omf_browse main\usart6.crf --depend main\usart6.d)
 I (..\Hardware\imu\usart6.h)(0x69CB9960)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x693F6A6E)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69EF3DEE)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69F07A02)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x693F6A6E)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x693F6A6E)
@@ -1291,20 +1434,21 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x693F6A6E)
-I (../Core/Inc/main.h)(0x69EF556A)
+I (../Core/Inc/main.h)(0x69F07A02)
 I (D:\keil5\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdbool.h)(0x5E8E3CC2)
 I (..\Hardware\imu\analysis_data.h)(0x69CB8428)
 I (../Core/Inc/usart.h)(0x69EEEC38)
 I (D:\keil5\Keil_v5\ARM\ARM_Compiler_5.06u7\include\string.h)(0x5E8E3CC2)
-F (..\Hardware\can\bsp_can.c)(0x69771B1E)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\bsp_can.o --omf_browse main\bsp_can.crf --depend main\bsp_can.d)
+F (..\Hardware\can\bsp_can.c)(0x69771B1E)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware -I ..\Hardware\spi4-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\bsp_can.o --omf_browse main\bsp_can.crf --depend main\bsp_can.d)
 I (..\Hardware\can\bsp_can.h)(0x5EEF57FE)
 I (..\Hardware\can\struct_typedef.h)(0x5EEF57FE)
-I (../Core/Inc/main.h)(0x69EF556A)
+I (../Core/Inc/main.h)(0x69F07A02)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x693F6A6E)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69EF3DEE)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69F07A02)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x693F6A6E)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x693F6A6E)
@@ -1331,15 +1475,16 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x693F6A6E)
-F (..\Hardware\can\CAN_receive.c)(0x69DDC314)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\can_receive.o --omf_browse main\can_receive.crf --depend main\can_receive.d)
+F (..\Hardware\can\CAN_receive.c)(0x69DDC314)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware -I ..\Hardware\spi4-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\can_receive.o --omf_browse main\can_receive.crf --depend main\can_receive.d)
 I (..\Hardware\can\CAN_receive.h)(0x69CCF28E)
 I (..\Hardware\can\struct_typedef.h)(0x5EEF57FE)
-I (../Core/Inc/main.h)(0x69EF556A)
+I (../Core/Inc/main.h)(0x69F07A02)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x693F6A6E)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69EF3DEE)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x69F07A02)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x693F6A6E)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x693F6A6E)
@@ -1366,17 +1511,18 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x693F6A6E)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x693F6A6E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x693F6A6E)
 I (..\Hardware\can\encoder_counter.h)(0x69DDC2CE)
-F (..\Hardware\can\encoder_counter.c)(0x69DDC2CE)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\encoder_counter.o --omf_browse main\encoder_counter.crf --depend main\encoder_counter.d)
+F (..\Hardware\can\encoder_counter.c)(0x69DDC2CE)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware -I ..\Hardware\spi4-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\encoder_counter.o --omf_browse main\encoder_counter.crf --depend main\encoder_counter.d)
 I (..\Hardware\can\encoder_counter.h)(0x69DDC2CE)
 I (D:\keil5\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdint.h)(0x5E8E3CC2)
 I (..\Hardware\can\CAN_receive.h)(0x69CCF28E)
 I (..\Hardware\can\struct_typedef.h)(0x5EEF57FE)
 I (D:\keil5\Keil_v5\ARM\ARM_Compiler_5.06u7\include\string.h)(0x5E8E3CC2)
-F (..\Hardware\can\PID.c)(0x697C8606)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\pid.o --omf_browse main\pid.crf --depend main\pid.d)
+F (..\Hardware\can\PID.c)(0x697C8606)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware/bluetooth -I ../Hardware/buzzer -I ../Hardware/can -I ../Hardware/imu -I ../Hardware/Led -I ../Hardware/num_command -I ../Hardware/PS2 -I ../Hardware/pwm_motor -I ../Hardware/user_tim -I ../Hardware/user_usart -I ../Hardware -I ..\Hardware\spi4-I.\RTE\_main-ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include-D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx-o main\pid.o --omf_browse main\pid.crf --depend main\pid.d)
 I (..\Hardware\can\PID.h)(0x697C8606)
 I (D:\keil5\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdint.h)(0x5E8E3CC2)
 I (..\Hardware\can\CAN_receive.h)(0x69CCF28E)

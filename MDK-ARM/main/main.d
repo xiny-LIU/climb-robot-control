@@ -29,11 +29,13 @@ main\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h
 main\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h
 main\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h
 main\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
+main\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h
 main\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 main\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 main\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 main\main.o: ../Core/Inc/can.h
 main\main.o: ../Core/Inc/dma.h
+main\main.o: ../Core/Inc/spi.h
 main\main.o: ../Core/Inc/tim.h
 main\main.o: ../Core/Inc/usart.h
 main\main.o: ../Core/Inc/gpio.h
@@ -57,3 +59,4 @@ main\main.o: ../Hardware/can/PID.h
 main\main.o: ../Hardware/imu/usart6.h
 main\main.o: D:\keil5\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdbool.h
 main\main.o: ../Hardware/imu/analysis_data.h
+main\main.o: ..\Hardware\spi4\spi4.h

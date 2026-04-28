@@ -20,6 +20,7 @@
 #include "main.h"
 #include "can.h"
 #include "dma.h"
+#include "spi.h"
 #include "tim.h"
 #include "usart.h"
 #include "gpio.h"
@@ -46,6 +47,7 @@
 
 #include "usart6.h"
 #include "analysis_data.h" 
+#include "spi4.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -122,6 +124,7 @@ int main(void)
   MX_UART8_Init();
   MX_TIM5_Init();
   MX_TIM12_Init();
+  MX_SPI4_Init();
   /* USER CODE BEGIN 2 */
 //  USART2_init();  //exit in BT
   Buzzer_Init();
@@ -157,6 +160,7 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
     TIM3_Task_Execute();//imu
+    Read_PQY13_Encoder();
   }
   /* USER CODE END 3 */
 }
