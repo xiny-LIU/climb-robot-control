@@ -236,7 +236,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
     {
         TIM3_PeriodElapsed_Handler(); 
     }
-    else if (htim->Instance == TIM6) // sys
+    else if (htim->Instance == TIM6) // systick
     {
         HAL_IncTick();
     }
