@@ -1,0 +1,23 @@
+# Keil 生成的临时文件和编译文件
+*.o
+*.d
+*.crf
+*.htm
+*.dep
+*.lnp
+*.sct
+*.map
+*.lst
+*.hex
+*.axf
+*.uvguix.*
+*.uvoptx
+*.uvprojx
+Objects/
+Listings/
+DebugConfig/
+*.Administrator
+*.bak
+
+# CubeMX 备份文件
+*.ioc.bak
