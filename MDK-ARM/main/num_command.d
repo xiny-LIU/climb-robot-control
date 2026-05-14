@@ -33,6 +33,6 @@ main\num_command.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h
 main\num_command.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 main\num_command.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 main\num_command.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
-main\num_command.o: ..\Hardware\user_usart\user_usart.h
+main\num_command.o: ../Hardware/user_usart/user_usart.h
 main\num_command.o: D:\keil5\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\string.h
 main\num_command.o: D:\keil5\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdio.h

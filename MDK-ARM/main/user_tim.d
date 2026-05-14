@@ -37,8 +37,9 @@ main\user_tim.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 main\user_tim.o: D:\keil5\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\string.h
 main\user_tim.o: D:\keil5\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdio.h
 main\user_tim.o: ../Core/Inc/tim.h
-main\user_tim.o: ..\Hardware\can\PID.h
-main\user_tim.o: ..\Hardware\imu\usart6.h
+main\user_tim.o: ../Hardware/can/PID.h
+main\user_tim.o: ../Hardware/imu/usart6.h
 main\user_tim.o: D:\keil5\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdbool.h
-main\user_tim.o: ..\Hardware\imu\analysis_data.h
-main\user_tim.o: ..\Hardware\user_usart\user_usart.h
+main\user_tim.o: ../Hardware/imu/analysis_data.h
+main\user_tim.o: ../Hardware/user_usart/user_usart.h
+main\user_tim.o: ../Hardware/spi4/spi4.h

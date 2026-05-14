@@ -47,6 +47,7 @@
 
 #include "usart6.h"
 #include "analysis_data.h" 
+#include "spi4.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -115,18 +116,17 @@ int main(void)
   MX_USART1_UART_Init();
   MX_CAN1_Init();
   MX_CAN2_Init();
-  MX_SPI5_Init();
   MX_USART2_UART_Init();
   MX_TIM3_Init();
-  MX_TIM4_Init();
   MX_UART7_Init();
   MX_USART3_UART_Init();
   MX_USART6_UART_Init();
   MX_UART8_Init();
   MX_TIM5_Init();
   MX_TIM12_Init();
+  MX_SPI4_Init();
   /* USER CODE BEGIN 2 */
-//  USART2_init();  //BTÒÑ°üº¬
+//  USART2_init();  //exit in BT
   Buzzer_Init();
   Motor_Init_All(); 
   
@@ -140,13 +140,13 @@ int main(void)
   PS2_Control_Init();
   PID_Init();
 
-    // ³õÊ¼»¯IMU´®¿ÚÄ£¿é
+    // imu
     IMU_USART_Init(&huart6);
-    IMU_USART_StartReceive(); // Æô¶¯DMA½ÓÊÕ
+    IMU_USART_StartReceive(); // 
   
-  Buzzer_StartUp_Sound();//·äÃùÆ÷ÌáÊ¾Òô
+  Buzzer_StartUp_Sound();//èœ‚é¸£å™¨å¯åŠ¨
   Buzzer_StartUp_Sound();
-  //¿ªÆôcan½ÓÊÕ£¬Ã»É¶ÓÃ
+  //unusable
 //  HAL_CAN_Start(&hcan1);
 //  HAL_CAN_ActivateNotification(&hcan1, CAN_IT_RX_FIFO0_MSG_PENDING);
 
@@ -159,7 +159,8 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    TIM3_Task_Execute();//imu¹¤×÷
+    TIM3_Task_Execute();//tim
+
   }
   /* USER CODE END 3 */
 }
@@ -220,27 +221,35 @@ void SystemClock_Config(void)
 
 /* USER CODE END 4 */
 
-///**
-//  * @brief  Period elapsed callback in non blocking mode
-//  * @note   This function is called  when TIM6 interrupt took place, inside
-//  * HAL_TIM_IRQHandler(). It makes a direct call to HAL_IncTick() to increment
-//  * a global variable "uwTick" used as application time base.
-//  * @param  htim : TIM handle
-//  * @retval None
-//  */
-//void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
-//{
-//  /* USER CODE BEGIN Callback 0 */
+/**
+  * @brief  Period elapsed callback in non blocking mode
+  * @note   This function is called  when TIM6 interrupt took place, inside
+  * HAL_TIM_IRQHandler(). It makes a direct call to HAL_IncTick() to increment
+  * a global variable "uwTick" used as application time base.
+  * @param  htim : TIM handle
+  * @retval None
+  */
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+  /* USER CODE BEGIN Callback 0 */
+    if (htim->Instance == TIM3)  // 5ms
+    {
+        TIM3_PeriodElapsed_Handler(); 
+    }
+    else if (htim->Instance == TIM6) // systick
+    {
+        HAL_IncTick();
+    }
+    else if (htim->Instance == TIM5)  // 1ms
+    {
+        PID_Loop_1ms();  // PIDè®¡ç®—é€šå¸¸è¦æ±‚æžé«˜å®žæ—¶æ€§ï¼Œæ”¾åœ¨ä¸­æ–­å†…æ‰§è¡Œæ˜¯åˆç†çš„
+    }
+  /* USER CODE END Callback 0 */
 
-//  /* USER CODE END Callback 0 */
-//  if (htim->Instance == TIM6)
-//  {
-//    HAL_IncTick();
-//  }
-//  /* USER CODE BEGIN Callback 1 */
+  /* USER CODE BEGIN Callback 1 */
 
-//  /* USER CODE END Callback 1 */
-//}
+  /* USER CODE END Callback 1 */
+}
 
 /**
   * @brief  This function is executed in case of error occurrence.

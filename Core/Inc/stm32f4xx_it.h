@@ -64,7 +64,6 @@ void CAN1_TX_IRQHandler(void);
 void CAN1_RX0_IRQHandler(void);
 void TIM2_IRQHandler(void);
 void TIM3_IRQHandler(void);
-void TIM4_IRQHandler(void);
 void USART1_IRQHandler(void);
 void USART2_IRQHandler(void);
 void USART3_IRQHandler(void);
@@ -77,7 +76,6 @@ void CAN2_RX0_IRQHandler(void);
 void DMA2_Stream6_IRQHandler(void);
 void DMA2_Stream7_IRQHandler(void);
 void USART6_IRQHandler(void);
-void SPI5_IRQHandler(void);
 /* USER CODE BEGIN EFP */
 
 /* USER CODE END EFP */
