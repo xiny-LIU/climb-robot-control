@@ -4,12 +4,21 @@
 #include "stdint.h"
 
 /* 物理常量定义 */
-#define WHEEL_RADIUS        50.0f    // 车轮半径 R (mm)
+#define WHEEL_RADIUS        162.76f    // 车轮半径 R (mm)
 #define BODY_L_W            270.0f   // 横向安装距 Lw (mm)
-#define D3_MIN_LENGTH       550.0f   // 伸缩杆最小长度 (mm)
 #define SAFE_HEIGHT         60.0f    // 肩关节离墙安全距离 H_safe (mm)
-#define PULLEY_RADIUS       19.0f    // 绕线轮半径 (38mm直径/2)
+#define PULLEY_RADIUS       19.0f    // 摩擦轮半径 (38mm直径/2)
 #define EXT_GEAR_RATIO      36.0f    // 伸缩电机减速比
+
+/* 物理常量更新 */
+#define D3_MIN_LENGTH       550.0f   // 伸缩杆最小长度 (mm)
+#define D3_MAX_LENGTH       2000.0f   // 【新增】伸缩杆最大长度 (mm) 需根据你的管长设定
+
+/* 关节角度软限位 (度) */
+#define YAW_MIN             -6.0f    // 偏航角极小值
+#define YAW_MAX             22.0f    // 偏航角极大值
+#define PITCH_MIN           -8.0f    // 俯仰角极小值
+#define PITCH_MAX           30.0f    // 俯仰角极大值
 
 /* 攀爬状态枚举 */
 typedef enum {

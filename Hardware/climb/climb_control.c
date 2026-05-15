@@ -9,17 +9,14 @@
 
 #define PI 3.14159265f
 
-/* DH 参数 (来自讨论记录0506) */
+/* DH 参数 */
 static const float L1 = 25.21f;
 static const float L2 = 8.65f;
 static const float L3 = 5.66f;
 static const float L4_LEFT = 6.21f;
 static const float L4_RIGHT = 0.59f;
 
-/* 安装偏置 (肩关节相对于机身中心) */
-static const float SHOULDER_DX = 50.0f;  // 假设值，需实测
-static const float SHOULDER_DZ = 20.0f;  // 假设值，需实测
-
+/* 全局机器人状态结构体实例 */
 Climb_Robot_t robot;
 
 /* 内部数学辅助函数 */
@@ -27,8 +24,16 @@ static float Deg2Rad(float deg) { return deg * PI / 180.0f; }
 static float Rad2Deg(float rad) { return rad * 180.0f / PI; }
 
 /**
+ * @brief [详细解释] 这是一个限位工具函数，防止算出来的值超出物理极限
+ */
+static float Clamp_Float(float value, float min, float max) {
+    if (value < min) return min;
+    if (value > max) return max;
+    return value;
+}
+
+/**
  * @brief 单臂局部正运动学 (FK)
- * @return 锚点相对于手臂基座坐标系 {0} 的位置
  */
 Point3D_t Kinematics_FK(JointAngle_t joint, float l4) {
     Point3D_t p;
@@ -43,18 +48,6 @@ Point3D_t Kinematics_FK(JointAngle_t joint, float l4) {
 }
 
 /**
- * @brief 计算理论俯仰角 γ(t) (策略2: 安全间隙法)
- */
-float Calculate_Target_Gamma(void) {
-    float C = SAFE_HEIGHT - WHEEL_RADIUS;
-    float A = SHOULDER_DZ;
-    float B = SHOULDER_DX;
-    // γ(t) = arcsin((H_safe - R)/sqrt(dx^2+dz^2)) - arctan(dz/-dx)
-    float gamma = asinf(C / sqrtf(B * B + A * A)) - atan2f(A, -B);
-    return Rad2Deg(gamma);
-}
-
-/**
  * @brief 更新运动里程计 (视角反转)
  */
 void Update_Odometry(void) {
@@ -65,53 +58,63 @@ void Update_Odometry(void) {
     JointAngle_t left_joint;
     left_joint.theta1 = encoder_data[ENC_2].degree; // 左偏航
     left_joint.theta2 = encoder_data[ENC_1].degree; // 左俯仰
-    left_joint.d3 = (float)Encoder_Get_Total_Angle(0) / 8192.0f * PI * 38.0f; // 假设d0=0
+    left_joint.d3 = (float)Encoder_Get_Total_Angle(0) / 8192.0f * PI * 38.0f; 
 
     Point3D_t p_local = Kinematics_FK(left_joint, L4_LEFT);
     
-    // 反算机身世界坐标 (简化版)
-    // XB = Anchor_X - (cos(gamma)*px + sin(gamma)*pz)
     robot.body_pos_w.x = robot.anchor_left_w.x - (cosf(gamma) * p_local.x + sinf(gamma) * p_local.z);
     robot.body_pos_w.y = robot.anchor_left_w.y - p_local.y;
 }
 
 /**
- * @brief 电机指令发送包装
+ * @brief [详细解释] 电机指令发送包装。不管上面怎么算，在这里必须经过限位检查才能发给电机。
  */
 void Execute_Joint_Commands(JointAngle_t left, JointAngle_t right) {
-    // 1. 伸缩电机 (PID速度环或位置环，此处简化为设置目标)
-    // 实际应根据当前位置与目标的差值计算速度
-    PID_SetTargetSpeed(0, (int16_t)left.d3);  // 逻辑需根据PID.h调整
+    
+    // 1. 严格的安全软限位 (Clamp拦截)
+    left.theta1 = Clamp_Float(left.theta1, YAW_MIN, YAW_MAX);
+    left.theta2 = Clamp_Float(left.theta2, PITCH_MIN, PITCH_MAX);
+    left.d3     = Clamp_Float(left.d3, D3_MIN_LENGTH, D3_MAX_LENGTH);
+    
+    right.theta1 = Clamp_Float(right.theta1, YAW_MIN, YAW_MAX);
+    right.theta2 = Clamp_Float(right.theta2, PITCH_MIN, PITCH_MAX);
+    right.d3     = Clamp_Float(right.d3, D3_MIN_LENGTH, D3_MAX_LENGTH);
+
+    // 2. 发送伸缩电机指令 (这里需要你后续补充位置环逻辑，暂用速度环代指)
+    PID_SetTargetSpeed(0, (int16_t)left.d3);  
     PID_SetTargetSpeed(1, (int16_t)right.d3);
 
-    // 2. 俯仰/偏航电机 (PWM控制)
-    // 这里需要一个简单的关节角度闭环：Angle_Error -> PWM_Speed
+    // 3. 发送俯仰/偏航电机(PWM)指令
     float err_l_p = left.theta2 - encoder_data[ENC_1].degree;
-    Motor_SetSpeed(MOTOR_A, (uint8_t)fabsf(err_l_p * 5.0f)); 
+    Motor_SetSpeed(MOTOR_A, (uint8_t)Clamp_Float(fabsf(err_l_p * 5.0f), 0, 100)); 
     Motor_SetDirection(MOTOR_A, err_l_p > 0 ? DIRECTION_FORWARD : DIRECTION_REVERSE);
 
     float err_l_y = left.theta1 - encoder_data[ENC_2].degree;
-    Motor_SetSpeed(MOTOR_B, (uint8_t)fabsf(err_l_y * 5.0f));
+    Motor_SetSpeed(MOTOR_B, (uint8_t)Clamp_Float(fabsf(err_l_y * 5.0f), 0, 100));
     Motor_SetDirection(MOTOR_B, err_l_y > 0 ? DIRECTION_FORWARD : DIRECTION_REVERSE);
     
-    // 右臂同理...
+    float err_r_p = right.theta2 - encoder_data[ENC_3].degree;
+    Motor_SetSpeed(MOTOR_C, (uint8_t)Clamp_Float(fabsf(err_r_p * 5.0f), 0, 100)); 
+    Motor_SetDirection(MOTOR_C, err_r_p > 0 ? DIRECTION_FORWARD : DIRECTION_REVERSE);
+
+    float err_r_y = right.theta1 - encoder_data[ENC_4].degree;
+    Motor_SetSpeed(MOTOR_D, (uint8_t)Clamp_Float(fabsf(err_r_y * 5.0f), 0, 100));
+    Motor_SetDirection(MOTOR_D, err_r_y > 0 ? DIRECTION_FORWARD : DIRECTION_REVERSE);
 }
 
 /**
- * @brief 重心预偏置子程序 (受控弧线下坠)
+ * @brief 重心预偏置子程序
  */
 void Subroutine_CoG_PreBias(uint8_t to_right) {
     if (to_right) {
-        // 目标：YB = Y_anchor_right, d3R = D3_MIN
-        // 逆解过程...
         JointAngle_t target_r = {0, 0, D3_MIN_LENGTH}; 
-        JointAngle_t release_l = {0, 0, 0}; // 左臂放松
+        JointAngle_t release_l = {0, 0, 0}; 
         Execute_Joint_Commands(release_l, target_r);
     }
 }
 
 /**
- * @brief 攀爬控制初始化
+ * @brief 初始化
  */
 void Climb_Control_Init(void) {
     robot.state = CLIMB_IDLE;
@@ -120,26 +123,32 @@ void Climb_Control_Init(void) {
 }
 
 /**
- * @brief 主控制循环 (由 user_tim.c 的 5ms 任务调用)
+ * @brief [详细解释] 这就是所谓的“主状态机”！
+ * 它被外面的定时器每5ms调用一次，里面的 switch(robot.state) 根据当前的状态去执行对应的代码块。
  */
 void Climb_Control_Loop_5ms(void) {
     Update_Odometry();
 
     switch (robot.state) {
+        
         case CLIMB_IDLE:
             Motor_Stop_All();
             break;
 
         case CLIMB_PULL_UP: {
-            float target_gamma = Calculate_Target_Gamma();
-            // 协同计算各关节目标值并发送指令
-            // 此处省略具体的 IK 实时解算过程代码
+            // [详细解释] 删除了复杂的 Calculate_Target_Gamma 函数！
+            // 因为车轮很大，离墙很远，这里直接“传 0”，强行让机身在数学解算中保持垂直！
+            float target_gamma = 0.0f; 
+            
+            // 后续我们会根据这个 target_gamma = 0 去逆向算出 theta1, theta2, d3
+            // 然后调用 Execute_Joint_Commands(算出左臂角度, 算出右臂角度);
             break;
         }
 
         case CLIMB_PRE_BIAS_TO_RIGHT:
             Subroutine_CoG_PreBias(1);
             if (fabsf(robot.body_pos_w.y - robot.anchor_right_w.y) < 5.0f) {
+                // 如果重心移到了右边，就把状态改为“释放左臂”，下一次循环就会去执行释放动作
                 robot.state = CLIMB_RELEASE_LEFT;
             }
             break;
@@ -154,7 +163,7 @@ void Climb_Control_Loop_5ms(void) {
 }
 
 /**
- * @brief 启动攀爬指令
+ * @brief 启动指令
  */
 void Climb_Start(float distance) {
     robot.target_dist = distance;
