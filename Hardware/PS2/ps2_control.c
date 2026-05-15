@@ -199,42 +199,42 @@ static void process_can_control(void)
         Encoder_Counter_Reset(0);
         Encoder_Counter_Reset(1);
     }
-    else if (ps2_get_key_state(PSB_PAD_UP))
-    {
-//电机12同时正转
-//        CAN_cmd_chassis(0, -CAN_MOTOR_SPEED, 0, 0);
-        PID_SetTargetSpeed(0, CAN_MOTOR_SPEED);
-        PID_SetTargetSpeed(1, -CAN_MOTOR_SPEED);
-        can_active = 1;
-//        printf("PSB_PAD_LEFT\r\n");
-    }
-    else if (ps2_get_key_state(PSB_PAD_DOWN))
-    {
-//电机12同时反转
-//        CAN_cmd_chassis(0, -CAN_MOTOR_SPEED, 0, 0);
-        PID_SetTargetSpeed(0, -CAN_MOTOR_SPEED);
-        PID_SetTargetSpeed(1, CAN_MOTOR_SPEED);
-        can_active = 1;
-//        printf("PSB_PAD_RIGHT\r\n");
-    }
+//    else if (ps2_get_key_state(PSB_PAD_UP))
+//    {
+////电机12同时正转
+////        CAN_cmd_chassis(0, -CAN_MOTOR_SPEED, 0, 0);
+//        PID_SetTargetSpeed(0, CAN_MOTOR_SPEED);
+//        PID_SetTargetSpeed(1, -CAN_MOTOR_SPEED);
+//        can_active = 1;
+////        printf("PSB_PAD_LEFT\r\n");
+//    }
+//    else if (ps2_get_key_state(PSB_PAD_DOWN))
+//    {
+////电机12同时反转
+////        CAN_cmd_chassis(0, -CAN_MOTOR_SPEED, 0, 0);
+//        PID_SetTargetSpeed(0, -CAN_MOTOR_SPEED);
+//        PID_SetTargetSpeed(1, CAN_MOTOR_SPEED);
+//        can_active = 1;
+////        printf("PSB_PAD_RIGHT\r\n");
+//    }
 
-    //转速加减
-    if (KeyNum)
-    {
-        if (ps2_get_key_state(PSB_PAD_RIGHT))
-        {
-            CAN_MOTOR_SPEED += 100;
-            can_active = 1;
-        }
-        else if (ps2_get_key_state(PSB_PAD_LEFT))
-        {
-            CAN_MOTOR_SPEED -= 100;
-            can_active = 1;
-        } 
-        // 速度限幅（500RPM~5000RPM）
-        if (CAN_MOTOR_SPEED > 5000) CAN_MOTOR_SPEED = 5000;
-        if (CAN_MOTOR_SPEED < 500) CAN_MOTOR_SPEED = 500;
-    }
+//    //转速加减
+//    if (KeyNum)
+//    {
+//        if (ps2_get_key_state(PSB_PAD_RIGHT))
+//        {
+//            CAN_MOTOR_SPEED += 100;
+//            can_active = 1;
+//        }
+//        else if (ps2_get_key_state(PSB_PAD_LEFT))
+//        {
+//            CAN_MOTOR_SPEED -= 100;
+//            can_active = 1;
+//        } 
+//        // 速度限幅（500RPM~5000RPM）
+//        if (CAN_MOTOR_SPEED > 5000) CAN_MOTOR_SPEED = 5000;
+//        if (CAN_MOTOR_SPEED < 500) CAN_MOTOR_SPEED = 500;
+//    }
   }
 //    // 无CAN输入时发送停止命令（可选）
 //    if (!can_active)

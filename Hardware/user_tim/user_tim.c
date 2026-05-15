@@ -7,6 +7,7 @@
 #include "usart6.h"
 #include "user_usart.h"
 #include "spi4.h"
+#include "climb_control.h"
 
 // 统一声明外部调用的任务函数
 extern void PS2_Control_TIM3_Callback(void);
@@ -68,7 +69,8 @@ void TIM3_Task_Execute(void)
     {
         tim3_mgr.flag_imu = 0;      
         tim3_mgr.imu_busy = 1;      
-        IMU_Process_Task();         
+        IMU_Process_Task(); 
+        Climb_Control_Loop_5ms();        
         tim3_mgr.imu_busy = 0;      
     }
     

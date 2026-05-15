@@ -46,6 +46,7 @@
 "main\can_receive.o"
 "main\encoder_counter.o"
 "main\pid.o"
+"main\climb_control.o"
 --strict --scatter "main\main.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

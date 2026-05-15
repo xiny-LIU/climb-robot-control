@@ -1,6 +1,6 @@
 #include "spi4.h"
 #include "spi.h"
-
+//该文件为编码器通过硬件spi收发转动角度数据（绝对式编码器）
 // 实例化含有4个编码器数据的数组
 PQY13_Data_t encoder_data[4];
 
