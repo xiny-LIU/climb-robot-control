@@ -85,10 +85,10 @@ void TIM3_Task_Execute(void)
     /* ------------- 3. 攀爬运动学协同控制任务 (5ms) ------------- */
 // 此时 IMU 和 编码器都刚刚刷新完，数据是最热乎的！
 // 借用 flag_imu 或 flag_encoder 作为 5ms 的触发条件即可
-    if (tim3_mgr.flag_imu == 0 && tim3_mgr.flag_encoder == 0) // 确保前置传感器都读完了
-    {
-        Climb_Control_Loop_5ms();
-    }
+//    if (tim3_mgr.flag_imu == 0 && tim3_mgr.flag_encoder == 0) // 确保前置传感器都读完了
+//    {
+//        Climb_Control_Loop_5ms();
+//    }
 
     /* ---------------- 3. PS2 遥控器控制任务 (25ms) ---------------- */
     // 移出中断，防止串口/SPI按键解析阻塞中断
