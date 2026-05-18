@@ -48,6 +48,7 @@
 #include "usart6.h"
 #include "analysis_data.h" 
 #include "spi4.h"
+#include "climb_control.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
