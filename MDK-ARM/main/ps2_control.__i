@@ -2,4 +2,4 @@
 -I.\RTE\_main
 -ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include
 -D__UVISION_VERSION="542" -DSTM32F427xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F427xx
--o main\system_stm32f4xx.o --omf_browse main\system_stm32f4xx.crf --depend main\system_stm32f4xx.d "../Core/Src/system_stm32f4xx.c"
+-o main\ps2_control.o --omf_browse main\ps2_control.crf --depend main\ps2_control.d "..\Hardware\PS2\ps2_control.c"
