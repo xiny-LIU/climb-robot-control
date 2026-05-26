@@ -17,9 +17,10 @@ typedef enum {
 void PID_Init(void);
 
 /**
- * @brief 设置电机目标转速
- * @param motor_id: 电机编号（0或1）
- * @param speed_rpm: 目标转速（RPM），正值正转，负值反转，0=停止
+ * @brief 设置伸缩电机目标转子转速
+ * @param motor_id: 电机编号，0=左臂伸缩电机，1=右臂伸缩电机
+ * @param speed_rpm: 目标转子转速，单位 rpm。
+ *                   该值应与 C620 CAN 反馈的 motor->speed_rpm 同单位
  */
 void PID_SetTargetSpeed(uint8_t motor_id, int16_t speed_rpm);
 

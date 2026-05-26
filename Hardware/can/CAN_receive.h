@@ -41,7 +41,8 @@ typedef enum
 typedef struct
 {
     uint16_t ecd; 
-    int16_t speed_rpm; 
+    int16_t rotor_speed_rpm;
+    int16_t speed_rpm; //电机转子转速
     int16_t given_current; 
     uint8_t temperate;
     int16_t last_ecd;

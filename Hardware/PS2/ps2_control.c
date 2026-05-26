@@ -236,11 +236,7 @@ static void process_can_control(void)
 //        if (CAN_MOTOR_SPEED < 500) CAN_MOTOR_SPEED = 500;
 //    }
   }
-//    // 无CAN输入时发送停止命令（可选）
-//    if (!can_active)
-//    {
-//        CAN_cmd_chassis(0, 0, 0, 0);  // 根据需求决定是否启用
-//    }
+
     // 消抖处理：只有持续无输入超过阈值才停止
     if (can_active)
     {

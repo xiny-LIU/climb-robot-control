@@ -13,8 +13,13 @@
 static const float L1 = 25.21f;
 static const float L2 = 8.65f;
 static const float L3 = 5.66f;
-static const float L4_LEFT = 6.21f;
-static const float L4_RIGHT = 0.59f;
+static const float L4_LEFT = 0.59f;
+static const float L4_RIGHT = 6.21f;
+
+/* =============== 安装偏置常量 =============== */
+// 肩关节相对于机身中心(车轮轴心)的偏差
+static const float SHOULDER_DX = 53.74f;  // 实测的水平距离
+static const float SHOULDER_DZ = 0.0f;    // 同高度，垂直偏置为0
 
 /* 全局机器人状态结构体实例 */
 Climb_Robot_t robot;
@@ -45,6 +50,53 @@ Point3D_t Kinematics_FK(JointAngle_t joint, float l4) {
     p.y = sinf(t1) * (l4 * cosf(t2) - d3 * sinf(t2) + L2) + L3 * cosf(t1);
     p.z = -l4 * sinf(t2) - d3 * cosf(t2) + L1;
     return p;
+}
+
+/**
+ * @brief 单臂局部逆运动学 (IK) 解析解
+ * @param p_local 锚点在手臂基座坐标系下的目标坐标 (x, y, z)
+ * @param l4 该手臂的偏置参数 (L4_LEFT 或 L4_RIGHT)
+ * @param out_joint 输出解算出的关节角度
+ * @retval 1:有解  0:无解(目标点超出物理极限)
+ */
+uint8_t Kinematics_IK(Point3D_t p_local, float l4, JointAngle_t* out_joint) {
+    float px = p_local.x;
+    float py = p_local.y;
+    float pz = p_local.z;
+
+    // 1. 求解偏航角 Theta1
+    float r_xy_sq = px * px + py * py;
+    if (r_xy_sq < L3 * L3) return 0; // 目标点太近，处于死区
+    
+    float r_xy = sqrtf(r_xy_sq);
+    float phi = atan2f(py, px);
+    float asin_val = Clamp_Float(L3 / r_xy, -1.0f, 1.0f); // 防浮点溢出
+    
+    float theta1_rad = phi - asinf(asin_val);
+    out_joint->theta1 = Rad2Deg(theta1_rad);
+
+    // 2. 求解伸缩量 d3
+    float K = px * cosf(theta1_rad) + py * sinf(theta1_rad);
+    float M = K - L2;
+    float N = pz - L1;
+    
+    float d3_sq_plus_l4_sq = M * M + N * N;
+    if (d3_sq_plus_l4_sq < l4 * l4) return 0; // 伸缩杆算得虚数，无法到达
+    
+    float d3 = sqrtf(d3_sq_plus_l4_sq - l4 * l4);
+    out_joint->d3 = d3;
+
+    // 3. 求解俯仰角 Theta2
+    // 线性方程组推导结果：
+    // sin(theta2) = (-d3 * M - l4 * N) / (l4^2 + d3^2)
+    // cos(theta2) = (l4 * M - d3 * N) / (l4^2 + d3^2)
+    float denominator = l4 * l4 + d3 * d3;
+    float sin_t2 = (-d3 * M - l4 * N) / denominator;
+    float cos_t2 = (l4 * M - d3 * N) / denominator;
+    
+    out_joint->theta2 = Rad2Deg(atan2f(sin_t2, cos_t2));
+
+    return 1; // 成功解出
 }
 
 /**
@@ -136,12 +188,49 @@ void Climb_Control_Loop_5ms(void) {
             break;
 
         case CLIMB_PULL_UP: {
-            // [详细解释] 删除了复杂的 Calculate_Target_Gamma 函数！
-            // 因为车轮很大，离墙很远，这里直接“传 0”，强行让机身在数学解算中保持垂直！
-            float target_gamma = 0.0f; 
+            // 定义拉升速度：假设每 5ms 向上移动 0.5mm (相当于 10cm/s 的平稳速度)
+            float step = 0.5f; 
             
-            // 后续我们会根据这个 target_gamma = 0 去逆向算出 theta1, theta2, d3
-            // 然后调用 Execute_Joint_Commands(算出左臂角度, 算出右臂角度);
+            // 1. 机身全局坐标更新 (直线向上)
+            robot.body_pos_w.x += step;
+            robot.current_dist += step;
+            // robot.body_pos_w.y 保持不变，维持直线
+            // robot.body_pos_w.z 恒定等于 WHEEL_RADIUS (162.76)
+
+            // 2. 计算左臂的局部目标点 ^0P_L
+            Point3D_t p_base_l;
+            p_base_l.x = robot.anchor_left_w.x - robot.body_pos_w.x - SHOULDER_DX;
+            // 左臂偏置为 +Lw/2 (即 +135mm)
+            p_base_l.y = robot.anchor_left_w.y - robot.body_pos_w.y - (BODY_L_W / 2.0f);
+            p_base_l.z = 0.0f - WHEEL_RADIUS - SHOULDER_DZ; // 墙面Z=0，车身Z=R
+
+            JointAngle_t target_left;
+            uint8_t ok_l = Kinematics_IK(p_base_l, L4_LEFT, &target_left);
+
+            // 3. 计算右臂的局部目标点 ^0P_R
+            Point3D_t p_base_r;
+            p_base_r.x = robot.anchor_right_w.x - robot.body_pos_w.x - SHOULDER_DX;
+            // 右臂偏置为 -Lw/2 (即 -135mm)
+            p_base_r.y = robot.anchor_right_w.y - robot.body_pos_w.y - (-BODY_L_W / 2.0f);
+            p_base_r.z = 0.0f - WHEEL_RADIUS - SHOULDER_DZ;
+
+            JointAngle_t target_right;
+            uint8_t ok_r = Kinematics_IK(p_base_r, L4_RIGHT, &target_right);
+
+            // 4. 下发指令并进行限位保护
+            if (ok_l && ok_r) {
+                Execute_Joint_Commands(target_left, target_right);
+            } else {
+                // IK 无解说明超出了机械臂极限长度或角度，立刻停车保护！
+                robot.state = CLIMB_EMERGENCY_STOP;
+                break;
+            }
+
+            // 5. 检查是否达到了单次攀爬的步长极限
+            if (robot.current_dist >= robot.target_dist) {
+                robot.state = CLIMB_PRE_BIAS_TO_RIGHT; // 拉升完毕，准备换手，重心右偏
+                robot.current_dist = 0.0f; // 清零，为下一阶段做准备
+            }
             break;
         }
 
