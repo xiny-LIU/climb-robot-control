@@ -25,14 +25,23 @@
 extern CAN_HandleTypeDef hcan1;
 
 //motor data read
-#define get_motor_measure(ptr, data)                                    \
-    {                                                                   \
-        (ptr)->last_ecd = (ptr)->ecd;                                   \
-        (ptr)->ecd = (uint16_t)((data)[0] << 8 | (data)[1]);            \
-        (ptr)->speed_rpm = (uint16_t)((data)[2] << 8 | (data)[3]);      \
-        (ptr)->given_current = (uint16_t)((data)[4] << 8 | (data)[5]);  \
-        (ptr)->temperate = (data)[6];                                   \
-    }
+//#define get_motor_measure(ptr, data)                                    \
+//    {                                                                   \
+//        (ptr)->last_ecd = (ptr)->ecd;                                   \
+//        (ptr)->ecd = (uint16_t)((data)[0] << 8 | (data)[1]);            \
+//        (ptr)->speed_rpm = (uint16_t)((data)[2] << 8 | (data)[3]);      \
+//        (ptr)->given_current = (uint16_t)((data)[4] << 8 | (data)[5]);  \
+//        (ptr)->temperate = (data)[6];                                   \
+//    }
+//gpt½¨Òé
+#define get_motor_measure(ptr, data)                                            \
+    do {                                                                        \
+        (ptr)->last_ecd = (ptr)->ecd;                                           \
+        (ptr)->ecd = (uint16_t)(((uint16_t)(data)[0] << 8) | (data)[1]);        \
+        (ptr)->speed_rpm = (int16_t)(((uint16_t)(data)[2] << 8) | (data)[3]);   \
+        (ptr)->given_current = (int16_t)(((uint16_t)(data)[4] << 8) | (data)[5]);\
+        (ptr)->temperate = (data)[6];                                           \
+    } while (0)    
 /*
 motor data,  0:chassis motor1 3508;1:chassis motor3 3508;2:chassis motor3 3508;3:chassis motor4 3508;
 4:yaw gimbal motor 6020;5:pitch gimbal motor 6020;6:trigger motor 2006;
