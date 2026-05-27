@@ -604,6 +604,7 @@ static void ps2_redlight_reset_handle(void)
         else if (pink_pressed)
         {
             PWM_AngleServo_SetAllCurrentAsZero();
+
         }
     }
 }

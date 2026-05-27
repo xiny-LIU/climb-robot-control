@@ -156,7 +156,7 @@ int main(void)
     PWM_AngleServo_Init();
     
     // 3. 确认安全后，开启总开关
-    PWM_AngleServo_Enable(0);
+    PWM_AngleServo_Enable(1);
     
   /* USER CODE END 2 */
 

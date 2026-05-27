@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include "usart6.h"
 #include "spi4.h"
+#include "pwm_angle_servo.h"
 
 #include "ps2_control.h"
 #include "ps2.h"
@@ -349,19 +350,26 @@ void Print_Task(void)
         
         case 3:
         {
+            PWM_AngleDebug_t dbg;
+            PWM_AngleServo_GetDebugInfo(&dbg);
             /* --------------- 子任务 3：专门打印编码器角度数据 --------------- */
             printf("=== Encoder Degree Data ===\r\n");
-            printf("ENC: %.1f | %.1f | %.1f | %.1f\r\n", 
-                    encoder_data[ENC_1].degree, 
-                    encoder_data[ENC_2].degree, 
-                    encoder_data[ENC_3].degree, 
-                    encoder_data[ENC_4].degree);
+//            printf("ENC: %.1f | %.1f | %.1f | %.1f\r\n", 
+//                    encoder_data[ENC_1].degree, 
+//                    encoder_data[ENC_2].degree, 
+//                    encoder_data[ENC_3].degree, 
+//                    encoder_data[ENC_4].degree);
+            printf("CurrentAngle: %.1f | %.1f | %.1f | %.1f\r\n", 
+                dbg.joint[PWM_ANGLE_LEFT_PITCH].current_deg, 
+                dbg.joint[PWM_ANGLE_LEFT_YAW].current_deg, 
+                dbg.joint[PWM_ANGLE_RIGHT_PITCH].current_deg, 
+                dbg.joint[PWM_ANGLE_RIGHT_YAW].current_deg);
             break;
         }
         
         default:
             // 兜底防御，防止外界异常篡改变量
-            print_mode = 2;
+            print_mode = 3;
             break;
     }
 }

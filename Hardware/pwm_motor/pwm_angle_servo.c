@@ -37,7 +37,20 @@ typedef struct {
     Encoder_ID_t encoder_id;   // 编码器ID（告诉系统这个关节的数据由哪个传感器读取，如 ENC_1）
 
     float zero_offset_deg;     // 机械零点偏置（组装时有误差，用来校准的机械零位角度）
-    int8_t direction_sign;     // 方向正负号（+1 或 -1，用来调整电机正转是角度变大还是变小）
+    
+     /*
+     * 编码器方向符号：
+     * +1：编码器角度增加方向 = DH 关节角正方向
+     * -1：编码器角度增加方向与 DH 关节角正方向相反
+     */
+    int8_t encoder_sign;
+
+    /*
+     * 电机方向符号：
+     * +1：DIRECTION_FORWARD 会让 DH 关节角增大
+     * -1：DIRECTION_REVERSE 会让 DH 关节角增大
+     */
+    int8_t direction_sign;
 
     float target_deg;          // 当前这个关节的目标角度（用户发出的指令）
     float min_deg;             // 该关节允许的最小安全角度（软限位）
@@ -52,22 +65,22 @@ typedef struct {
 // 创建一个数组，里面包含 4 个关节的硬件绑定和默认安全角度限制
 static PWM_AngleJointConfig_t g_pwm_angle_joint[PWM_ANGLE_JOINT_NUM] = {
     /* 1. 左臂俯仰关节：绑定 MOTOR_A 和 ENC_1 */
-    {MOTOR_A, ENC_1, 0.0f, +1, 0.0f,
+    {MOTOR_A, ENC_1, 0.0f, +1, +1, 0.0f,
      PWM_ANGLE_DEFAULT_PITCH_MIN_DEG,
      PWM_ANGLE_DEFAULT_PITCH_MAX_DEG},
 
     /* 2. 左臂偏航关节：绑定 MOTOR_B 和 ENC_2 */
-    {MOTOR_B, ENC_2, 0.0f, +1, 0.0f,
+    {MOTOR_B, ENC_2, 0.0f, +1, +1, 0.0f,
      PWM_ANGLE_LEFT_YAW_MIN_DEG,
      PWM_ANGLE_LEFT_YAW_MAX_DEG},
 
     /* 3. 右臂俯仰关节：绑定 MOTOR_C 和 ENC_3 */
-    {MOTOR_C, ENC_3, 0.0f, +1, 0.0f,
+    {MOTOR_C, ENC_3, 0.0f, +1, +1, 0.0f,
      PWM_ANGLE_DEFAULT_PITCH_MIN_DEG,
      PWM_ANGLE_DEFAULT_PITCH_MAX_DEG},
 
     /* 4. 右臂偏航关节：绑定 MOTOR_D 和 ENC_4 */
-    {MOTOR_D, ENC_4, 0.0f, +1, 0.0f,
+    {MOTOR_D, ENC_4, 0.0f, +1, +1, 0.0f,
      PWM_ANGLE_RIGHT_YAW_MIN_DEG,
      PWM_ANGLE_RIGHT_YAW_MAX_DEG}
 };
@@ -156,9 +169,21 @@ float PWM_AngleServo_GetCurrentAngle(PWM_AngleJoint_t joint)
     float enc_deg = encoder_data[enc_id].degree;
 
     // 4. 重点：实际角度 = 传感器读数 - 零点偏置
-    // 比如：传感器读数是 10 度，但组装时歪了 10 度（零点偏置是 10），那实际角度就是 0 度。
-    float joint_deg =
+
+    // 先计算编码器相对机械零点的角度变化。
+    float delta_deg =
         PWM_Angle_Normalize180(enc_deg - g_pwm_angle_joint[joint].zero_offset_deg);
+    /*
+     * 再根据 encoder_sign 转换成 DH 法定义下的关节角。
+     *
+     * encoder_sign = +1：
+     *     编码器角度增加方向与 DH 正方向一致；
+     *
+     * encoder_sign = -1：
+     *     编码器角度增加方向与 DH 正方向相反。
+     */
+    float joint_deg =
+        PWM_Angle_Normalize180((float)g_pwm_angle_joint[joint].encoder_sign * delta_deg);
 
     return joint_deg; // 返回计算后的真实关节角度
 }
@@ -285,7 +310,8 @@ void PWM_AngleServo_Init(void)
     g_pwm_angle_joint[PWM_ANGLE_LEFT_PITCH].motor_id = MOTOR_A;
     g_pwm_angle_joint[PWM_ANGLE_LEFT_PITCH].encoder_id = ENC_1;
     g_pwm_angle_joint[PWM_ANGLE_LEFT_PITCH].zero_offset_deg = 0.0f;
-    g_pwm_angle_joint[PWM_ANGLE_LEFT_PITCH].direction_sign = +1;
+    g_pwm_angle_joint[PWM_ANGLE_LEFT_PITCH].encoder_sign = +1;
+    g_pwm_angle_joint[PWM_ANGLE_LEFT_PITCH].direction_sign = -1;
     g_pwm_angle_joint[PWM_ANGLE_LEFT_PITCH].target_deg = 0.0f;
     g_pwm_angle_joint[PWM_ANGLE_LEFT_PITCH].min_deg = PWM_ANGLE_DEFAULT_PITCH_MIN_DEG;
     g_pwm_angle_joint[PWM_ANGLE_LEFT_PITCH].max_deg = PWM_ANGLE_DEFAULT_PITCH_MAX_DEG;
@@ -293,6 +319,7 @@ void PWM_AngleServo_Init(void)
     g_pwm_angle_joint[PWM_ANGLE_LEFT_YAW].motor_id = MOTOR_B;
     g_pwm_angle_joint[PWM_ANGLE_LEFT_YAW].encoder_id = ENC_2;
     g_pwm_angle_joint[PWM_ANGLE_LEFT_YAW].zero_offset_deg = 0.0f;
+    g_pwm_angle_joint[PWM_ANGLE_LEFT_YAW].encoder_sign = -1;
     g_pwm_angle_joint[PWM_ANGLE_LEFT_YAW].direction_sign = +1;
     g_pwm_angle_joint[PWM_ANGLE_LEFT_YAW].target_deg = 0.0f;
     g_pwm_angle_joint[PWM_ANGLE_LEFT_YAW].min_deg = PWM_ANGLE_LEFT_YAW_MIN_DEG;
@@ -301,6 +328,7 @@ void PWM_AngleServo_Init(void)
     g_pwm_angle_joint[PWM_ANGLE_RIGHT_PITCH].motor_id = MOTOR_C;
     g_pwm_angle_joint[PWM_ANGLE_RIGHT_PITCH].encoder_id = ENC_3;
     g_pwm_angle_joint[PWM_ANGLE_RIGHT_PITCH].zero_offset_deg = 0.0f;
+    g_pwm_angle_joint[PWM_ANGLE_RIGHT_PITCH].encoder_sign = +1;
     g_pwm_angle_joint[PWM_ANGLE_RIGHT_PITCH].direction_sign = +1;
     g_pwm_angle_joint[PWM_ANGLE_RIGHT_PITCH].target_deg = 0.0f;
     g_pwm_angle_joint[PWM_ANGLE_RIGHT_PITCH].min_deg = PWM_ANGLE_DEFAULT_PITCH_MIN_DEG;
@@ -309,6 +337,7 @@ void PWM_AngleServo_Init(void)
     g_pwm_angle_joint[PWM_ANGLE_RIGHT_YAW].motor_id = MOTOR_D;
     g_pwm_angle_joint[PWM_ANGLE_RIGHT_YAW].encoder_id = ENC_4;
     g_pwm_angle_joint[PWM_ANGLE_RIGHT_YAW].zero_offset_deg = 0.0f;
+    g_pwm_angle_joint[PWM_ANGLE_RIGHT_YAW].encoder_sign = +1;
     g_pwm_angle_joint[PWM_ANGLE_RIGHT_YAW].direction_sign = +1;
     g_pwm_angle_joint[PWM_ANGLE_RIGHT_YAW].target_deg = 0.0f;
     g_pwm_angle_joint[PWM_ANGLE_RIGHT_YAW].min_deg = PWM_ANGLE_RIGHT_YAW_MIN_DEG;
@@ -503,7 +532,21 @@ void PWM_AngleServo_SetDirectionSignAll(int8_t left_pitch_sign,
     PWM_AngleServo_SetDirectionSign(PWM_ANGLE_RIGHT_PITCH, right_pitch_sign);
     PWM_AngleServo_SetDirectionSign(PWM_ANGLE_RIGHT_YAW, right_yaw_sign);
 }
-
+void PWM_AngleServo_SetEncoderSign(PWM_AngleJoint_t joint, int8_t sign)
+{
+    if (!PWM_Angle_IsValidJoint(joint)) return;
+    g_pwm_angle_joint[joint].encoder_sign = PWM_Angle_NormalizeSign(sign);
+}
+void PWM_AngleServo_SetEncoderSignAll(int8_t left_pitch_sign,
+                                      int8_t left_yaw_sign,
+                                      int8_t right_pitch_sign,
+                                      int8_t right_yaw_sign)
+{
+    PWM_AngleServo_SetEncoderSign(PWM_ANGLE_LEFT_PITCH, left_pitch_sign);
+    PWM_AngleServo_SetEncoderSign(PWM_ANGLE_LEFT_YAW, left_yaw_sign);
+    PWM_AngleServo_SetEncoderSign(PWM_ANGLE_RIGHT_PITCH, right_pitch_sign);
+    PWM_AngleServo_SetEncoderSign(PWM_ANGLE_RIGHT_YAW, right_yaw_sign);
+}
 void PWM_AngleServo_SetLimit(PWM_AngleJoint_t joint, float min_deg, float max_deg)
 {
     if (!PWM_Angle_IsValidJoint(joint)) return;

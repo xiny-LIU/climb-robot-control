@@ -251,15 +251,6 @@ void PWM_AngleServo_GetDebugInfo(PWM_AngleDebug_t *out_debug);
  */
 float PWM_AngleServo_GetCurrentAngle(PWM_AngleJoint_t joint);
 
-/*
- * @brief 获取某个 PWM 关节目标角度
- *
- * @param joint       目标关节。
- *
- * @return       目标角度，单位 deg。
- */
-float PWM_AngleServo_GetTargetAngle(PWM_AngleJoint_t joint);
-
 
 /************************************************
  * 参数配置
@@ -323,6 +314,17 @@ void PWM_AngleServo_SetDirectionSignAll(int8_t left_pitch_sign,
                                         int8_t left_yaw_sign,
                                         int8_t right_pitch_sign,
                                         int8_t right_yaw_sign);
+/*
+ * @brief 设置某个 PWM 关节的编码器方向符号
+ *
+ * @param joint
+ *        目标关节。
+ *
+ * @param sign
+ *        +1：编码器角度增加方向与 DH 关节角正方向一致；
+ *        -1：编码器角度增加方向与 DH 关节角正方向相反。
+ */
+void PWM_AngleServo_SetEncoderSign(PWM_AngleJoint_t joint, int8_t sign);
 
 /*
  * @brief 设置某个 PWM 关节角度软限位
