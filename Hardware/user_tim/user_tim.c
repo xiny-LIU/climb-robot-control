@@ -8,6 +8,7 @@
 #include "user_usart.h"
 #include "spi4.h"
 #include "climb_control.h"
+#include "pwm_angle_servo.h"
 
 // 统一声明外部调用的任务函数
 extern void PS2_Control_TIM3_Callback(void);
@@ -84,11 +85,12 @@ void TIM3_Task_Execute(void)
     
     /* ---------------- 3. 串口调试指令解析任务 (5ms) ---------------- */
     // 借用 flag_imu 或者 flag_encoder 作为 5ms 的触发节拍即可（不需要单开变量）
-    // 每次 IMU 刷新时（每 5ms），就顺便去检查一下串口有没有按键输入
     if (tim3_mgr.flag_imu == 0 && tim3_mgr.flag_encoder == 0) 
     {
         USART2_ProcessCommand();
+    if (PWM_AngleServo_IsEnabled()) {
         PWM_AngleServo_Update_5ms();
+    }
     }
     
     /* ------------- 4. 攀爬运动学协同控制任务 (5ms) ------------- */

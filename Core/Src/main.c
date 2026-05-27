@@ -151,11 +151,12 @@ int main(void)
   //unusable
 //  HAL_CAN_Start(&hcan1);
 //  HAL_CAN_ActivateNotification(&hcan1, CAN_IT_RX_FIFO0_MSG_PENDING);
-// 2. 初始化我们的角度控制模块
+
+// 初始化角度控制模块
     PWM_AngleServo_Init();
     
     // 3. 确认安全后，开启总开关
-    PWM_AngleServo_Enable(1);
+    PWM_AngleServo_Enable(0);
     
   /* USER CODE END 2 */
 

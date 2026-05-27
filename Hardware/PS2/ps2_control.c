@@ -35,6 +35,7 @@ static void process_can_control(void);
 static void process_motor_control(void);
 static void handle_led_feedback(void);
 //static void printmode_switch(void);
+static void ps2_redlight_reset_handle(void);
 // 在tim3.c中调用的回调函数
 void PS2_Control_TIM3_Callback(void);
 
@@ -80,6 +81,9 @@ void PS2_Control_TIM3_Callback(void)
     
 //    //7. 切换打印模式
 //    printmode_switch();
+
+    // 8. 置零处理
+    ps2_redlight_reset_handle();
     
 }
 uint8_t PS2_GetCurrentMode(void) {      // 外部通过函数访问current_mode
@@ -191,19 +195,20 @@ static void process_can_control(void)
         can_active = 1;
 //        printf("PSB_R2\r\n");
     }
-    // 只在红灯模式下处理CAN控制
-    if (ps2_mode_get() == PSB_REDLIGHT_MODE)
-  { 
-    //重置电机圈数计数器
-    if (ps2_get_key_state(PSB_GREEN))
-    {
-        Encoder_Counter_Reset(0);
-        Encoder_Counter_Reset(1);
-    }
-    else if (ps2_get_key_state(PSB_PINK))
-    {
-    PWM_AngleServo_SetAllCurrentAsZero();
-    }
+//    // 只在红灯模式下处理CAN控制
+//    if (ps2_mode_get() == PSB_REDLIGHT_MODE)
+//  { 
+//    //重置电机圈数计数器
+//    if (ps2_get_key_state(PSB_GREEN))
+//    {
+//        Encoder_Counter_Reset(0);
+//        Encoder_Counter_Reset(1);
+//    }
+//    //重置电机编码器零点
+//    else if (ps2_get_key_state(PSB_PINK))
+//    {
+//    PWM_AngleServo_SetAllCurrentAsZero();
+//    }
 //    else if (ps2_get_key_state(PSB_PAD_UP))
 //    {
 ////电机12同时正转
@@ -240,7 +245,7 @@ static void process_can_control(void)
 //        if (CAN_MOTOR_SPEED > 5000) CAN_MOTOR_SPEED = 5000;
 //        if (CAN_MOTOR_SPEED < 500) CAN_MOTOR_SPEED = 500;
 //    }
-  }
+//  }
 //    // 无CAN输入时发送停止命令（可选）
 //    if (!can_active)
 //    {
@@ -523,3 +528,82 @@ static void handle_led_feedback(void)
 //    pink_last_stable = pink_stable;
 //}
     
+/**
+ * @brief PS2 按键消抖结构体
+ */
+typedef struct
+{
+    uint8_t last_raw;              // 上一次读取到的瞬时状态
+    uint8_t stable;                // 当前确认稳定后的状态
+    uint8_t last_stable;           // 上一次稳定状态，用于检测按下沿
+    uint32_t state_change_timer;   // 状态发生跳变时的时间戳
+} PS2_KeyDebounce_t;
+
+
+/**
+ * @brief PS2 按键消抖 + 按下沿检测
+ * @param key PS2 按键宏，例如 PSB_GREEN、PSB_PINK
+ * @param db  对应该按键的消抖状态结构体
+ * @return 1 = 按键完成一次稳定按下；0 = 没有新的稳定按下
+ */
+static uint8_t ps2_key_pressed_debounce(uint16_t key, PS2_KeyDebounce_t *db)
+{
+    uint8_t key_now = ps2_get_key_state(key);
+
+    /* --------------- 消抖过滤层 --------------- */
+    if (key_now != db->last_raw)
+    {
+        // 只要瞬时状态发生变化，就重新计时
+        db->state_change_timer = tim3_mgr.tick_count;
+    }
+    else if ((uint32_t)(tim3_mgr.tick_count - db->state_change_timer) > BUTTON_STABLE_DELAY_MS)
+    {
+        // 状态持续稳定超过消抖时间，确认当前状态
+        db->stable = key_now;
+    }
+
+    db->last_raw = key_now;
+
+    /* --------------- 按下沿检测层 --------------- */
+    if (db->stable && !db->last_stable)
+    {
+        db->last_stable = db->stable;
+        return 1;
+    }
+
+    db->last_stable = db->stable;
+    return 0;
+}
+
+
+/**
+ * @brief 红灯模式下的重置功能
+ * 
+ * GREEN：重置电机圈数计数器
+ * PINK ：将当前 PWM 电机角度位置设为零点
+ * 
+ * 注意：本函数需要在主循环中周期性调用。
+ */
+static void ps2_redlight_reset_handle(void)
+{
+    static PS2_KeyDebounce_t green_db = {0};
+    static PS2_KeyDebounce_t pink_db  = {0};
+
+    uint8_t green_pressed = ps2_key_pressed_debounce(PSB_GREEN, &green_db);
+    uint8_t pink_pressed  = ps2_key_pressed_debounce(PSB_PINK,  &pink_db);
+
+    if (ps2_mode_get() == PSB_REDLIGHT_MODE)
+    {
+        // GREEN 键：重置电机圈数计数器
+        if (green_pressed)
+        {
+            Encoder_Counter_Reset(0);
+            Encoder_Counter_Reset(1);
+        }
+        // PINK 键：重置电机编码器零点
+        else if (pink_pressed)
+        {
+            PWM_AngleServo_SetAllCurrentAsZero();
+        }
+    }
+}

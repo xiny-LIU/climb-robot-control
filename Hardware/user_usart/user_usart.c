@@ -361,7 +361,7 @@ void Print_Task(void)
         
         default:
             // 兜底防御，防止外界异常篡改变量
-            print_mode = 3;
+            print_mode = 2;
             break;
     }
 }
