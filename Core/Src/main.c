@@ -49,6 +49,7 @@
 #include "analysis_data.h" 
 #include "spi4.h"
 #include "climb_control.h"
+#include "pwm_angle_servo.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -150,7 +151,12 @@ int main(void)
   //unusable
 //  HAL_CAN_Start(&hcan1);
 //  HAL_CAN_ActivateNotification(&hcan1, CAN_IT_RX_FIFO0_MSG_PENDING);
-
+// 2. 初始化我们的角度控制模块
+    PWM_AngleServo_Init();
+    
+    // 3. 确认安全后，开启总开关
+    PWM_AngleServo_Enable(1);
+    
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -162,7 +168,8 @@ int main(void)
     /* USER CODE BEGIN 3 */
     TIM3_Task_Execute();//tim
 //    USART2_PrintMessage();
-
+    // 4. 让右臂俯仰角抬高到  度
+    PWM_AngleServo_SetTarget(PWM_ANGLE_LEFT_PITCH, num_input);
   }
   /* USER CODE END 3 */
 }

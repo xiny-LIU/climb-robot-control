@@ -527,3 +527,63 @@ void PWM_AngleServo_SetLimit(PWM_AngleJoint_t joint, float min_deg, float max_de
         g_pwm_angle_debug.joint[joint].status = PWM_ANGLE_TARGET_LIMITED;
     }
 }
+
+/************************************************
+ * 当前角度设为零点功能
+ ************************************************/
+
+void PWM_AngleServo_SetCurrentAsZero(PWM_AngleJoint_t joint)
+{
+    // 1. 安全检查：防止关节编号非法导致数组越界
+    if (!PWM_Angle_IsValidJoint(joint)) return;
+
+    // 2. 找到该关节对应的编码器 ID
+    Encoder_ID_t enc_id = g_pwm_angle_joint[joint].encoder_id;
+
+    // 3. 读取当前绝对式编码器角度
+    // 绝对式编码器上电后读数通常不是 0°，
+    // 这里直接把当前读数作为新的 zero_offset。
+    float current_encoder_deg = encoder_data[enc_id].degree;
+
+    // 4. 将当前编码器角度设置为该关节的零点偏置
+    // 之后 PWM_AngleServo_GetCurrentAngle(joint) 的计算结果就是：
+    // Normalize180(encoder_degree - current_encoder_deg)
+    // 所以当前姿态会被定义为 0°。
+    g_pwm_angle_joint[joint].zero_offset_deg = current_encoder_deg;
+
+    // 5. 将目标角度也设置为 0°
+    // 这样可以防止设完零点后，电机因为旧目标角度突然运动。
+    g_pwm_angle_joint[joint].target_deg = 0.0f;
+
+    // 6. 更新调试信息
+    g_pwm_angle_debug.joint[joint].current_deg = 0.0f;
+    g_pwm_angle_debug.joint[joint].target_deg = 0.0f;
+    g_pwm_angle_debug.joint[joint].error_deg = 0.0f;
+    g_pwm_angle_debug.joint[joint].speed_percent = 0;
+
+    // 7. 根据模块当前使能状态设置状态标志
+    if (g_pwm_angle_enabled) {
+        g_pwm_angle_debug.joint[joint].status = PWM_ANGLE_OK;
+    } else {
+        g_pwm_angle_debug.joint[joint].status = PWM_ANGLE_DISABLED;
+    }
+
+    // 8. 安全起见，设零点后先停止该关节电机
+    Motor_Stop(g_pwm_angle_joint[joint].motor_id);
+}
+
+
+void PWM_AngleServo_SetAllCurrentAsZero(void)
+{
+    // 将左俯仰当前位置设为 0°
+    PWM_AngleServo_SetCurrentAsZero(PWM_ANGLE_LEFT_PITCH);
+
+    // 将左偏航当前位置设为 0°
+    PWM_AngleServo_SetCurrentAsZero(PWM_ANGLE_LEFT_YAW);
+
+    // 将右俯仰当前位置设为 0°
+    PWM_AngleServo_SetCurrentAsZero(PWM_ANGLE_RIGHT_PITCH);
+
+    // 将右偏航当前位置设为 0°
+    PWM_AngleServo_SetCurrentAsZero(PWM_ANGLE_RIGHT_YAW);
+}

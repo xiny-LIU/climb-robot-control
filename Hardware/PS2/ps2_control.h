@@ -11,6 +11,6 @@ void PS2_Control_Process(void);
 void PS2_Control_TIM3_Callback(void);
 // 新增：获取当前PS2模式
 uint8_t PS2_GetCurrentMode(void);
-extern uint8_t print_mode;
+//extern uint8_t print_mode;
 #endif
 

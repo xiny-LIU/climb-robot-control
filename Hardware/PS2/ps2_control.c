@@ -11,6 +11,7 @@
 #include "user_tim.h"  // 引入TIM3管理器
 #include "PID.h"
 #include "ps2_filter.h"
+#include "pwm_angle_servo.h"
 
 // 内部静态变量（文件作用域，外部不可访问）
 static uint8_t last_mode = 0xFF;  // 记录上一次的PS2模式
@@ -33,7 +34,7 @@ static void handle_lock_unlock(void);
 static void process_can_control(void);
 static void process_motor_control(void);
 static void handle_led_feedback(void);
-static void printmode_switch(void);
+//static void printmode_switch(void);
 // 在tim3.c中调用的回调函数
 void PS2_Control_TIM3_Callback(void);
 
@@ -77,8 +78,8 @@ void PS2_Control_TIM3_Callback(void)
     // 6. LED反馈处理
     handle_led_feedback();
     
-    //7. 切换打印模式
-    printmode_switch();
+//    //7. 切换打印模式
+//    printmode_switch();
     
 }
 uint8_t PS2_GetCurrentMode(void) {      // 外部通过函数访问current_mode
@@ -198,6 +199,10 @@ static void process_can_control(void)
     {
         Encoder_Counter_Reset(0);
         Encoder_Counter_Reset(1);
+    }
+    else if (ps2_get_key_state(PSB_PINK))
+    {
+    PWM_AngleServo_SetAllCurrentAsZero();
     }
 //    else if (ps2_get_key_state(PSB_PAD_UP))
 //    {
@@ -473,48 +478,48 @@ static void handle_led_feedback(void)
     {
         HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_SET);
     }
-    if (print_mode == 1)
-    {
-        HAL_GPIO_WritePin(LED2_GPIO_Port, LED3_Pin, GPIO_PIN_RESET);
-    }
-    else
-    {
-        HAL_GPIO_WritePin(LED2_GPIO_Port, LED3_Pin, GPIO_PIN_SET);
-    }   
+//    if (print_mode == 1)
+//    {
+//        HAL_GPIO_WritePin(LED2_GPIO_Port, LED3_Pin, GPIO_PIN_RESET);
+//    }
+//    else
+//    {
+//        HAL_GPIO_WritePin(LED2_GPIO_Port, LED3_Pin, GPIO_PIN_SET);
+//    }   
 }
 
-/**
- * @brief 红灯模式下按下pink键切换打印模式
- */
-uint8_t print_mode = 0;      // 0=打印M3508数据, 1=打印姿态数据
-static void printmode_switch(void)
-{
-    static uint8_t pink_last_raw = 0;      // 记录上一次的【瞬时】状态
-    static uint8_t pink_stable = 0;        // 记录确认【稳定】的状态
-    static uint8_t pink_last_stable = 0;   // 记录上一次的【稳定】状态
-    static uint32_t state_change_timer = 0;// 状态跳变计时器
+///**
+// * @brief 红灯模式下按下pink键切换打印模式
+// */
+//uint8_t print_mode = 0;      // 0=打印M3508数据, 1=打印姿态数据
+//static void printmode_switch(void)
+//{
+//    static uint8_t pink_last_raw = 0;      // 记录上一次的【瞬时】状态
+//    static uint8_t pink_stable = 0;        // 记录确认【稳定】的状态
+//    static uint8_t pink_last_stable = 0;   // 记录上一次的【稳定】状态
+//    static uint32_t state_change_timer = 0;// 状态跳变计时器
 
-    uint8_t pink_now = ps2_get_key_state(PSB_PINK);
+//    uint8_t pink_now = ps2_get_key_state(PSB_PINK);
 
-    /* --------------- 消抖过滤层 --------------- */
-    // 如果当前的瞬时状态和上一次读到的不一样，说明状态发生跳变（可能是按下，也可能是抖动）
-    if (pink_now != pink_last_raw)
-    {
-        state_change_timer = tim3_mgr.tick_count; // 只要有跳变，就重置计时器 
-    }
-    // 如果状态没有跳变，并且持续时间超过了消抖阈值 20ms
-    else if (tim3_mgr.tick_count - state_change_timer > BUTTON_STABLE_DELAY_MS)
-    {
-        pink_stable = pink_now; // 状态已经稳定了 20ms，更新稳定状态 
-    }
-    pink_last_raw = pink_now; // 记录瞬时状态给下次比较
+//    /* --------------- 消抖过滤层 --------------- */
+//    // 如果当前的瞬时状态和上一次读到的不一样，说明状态发生跳变（可能是按下，也可能是抖动）
+//    if (pink_now != pink_last_raw)
+//    {
+//        state_change_timer = tim3_mgr.tick_count; // 只要有跳变，就重置计时器 
+//    }
+//    // 如果状态没有跳变，并且持续时间超过了消抖阈值 20ms
+//    else if (tim3_mgr.tick_count - state_change_timer > BUTTON_STABLE_DELAY_MS)
+//    {
+//        pink_stable = pink_now; // 状态已经稳定了 20ms，更新稳定状态 
+//    }
+//    pink_last_raw = pink_now; // 记录瞬时状态给下次比较
 
-    /* --------------- 逻辑执行层 --------------- */
-    // 用过滤后的“干净状态”做下降沿检测
-    if ((current_mode == PSB_REDLIGHT_MODE) && pink_stable && !pink_last_stable)
-    {
-        print_mode = !print_mode;
-    }
-    pink_last_stable = pink_stable;
-}
+//    /* --------------- 逻辑执行层 --------------- */
+//    // 用过滤后的“干净状态”做下降沿检测
+//    if ((current_mode == PSB_REDLIGHT_MODE) && pink_stable && !pink_last_stable)
+//    {
+//        print_mode = !print_mode;
+//    }
+//    pink_last_stable = pink_stable;
+//}
     

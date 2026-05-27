@@ -338,4 +338,36 @@ void PWM_AngleServo_SetDirectionSignAll(int8_t left_pitch_sign,
  */
 void PWM_AngleServo_SetLimit(PWM_AngleJoint_t joint, float min_deg, float max_deg);
 
+/************************************************
+ * 当前角度设为零点功能
+ ************************************************/
+
+/*
+ * @brief 将指定关节的当前角度设为临时零点
+ *
+ * @param joint
+ *        目标关节。
+ *
+ * 功能：
+ * 1. 读取该关节当前绝对式编码器角度；
+ * 2. 将该角度设置为 zero_offset；
+ * 3. 将该关节当前目标角度设置为 0°；
+ * 4. 停止对应电机，避免设零点后突然运动。
+ *
+ * 使用场景：
+ * 绝对式编码器上电读数一般不为 0。
+ * 测试时可以调用本函数，把当前姿态临时定义为 0°。
+ */
+void PWM_AngleServo_SetCurrentAsZero(PWM_AngleJoint_t joint);
+
+
+/*
+ * @brief 将 4 个 PWM 关节的当前角度全部设为临时零点
+ *
+ * 功能：
+ * 分别对左俯仰、左偏航、右俯仰、右偏航执行
+ * PWM_AngleServo_SetCurrentAsZero()。
+ */
+void PWM_AngleServo_SetAllCurrentAsZero(void);
+
 #endif

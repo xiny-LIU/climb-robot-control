@@ -88,6 +88,7 @@ void TIM3_Task_Execute(void)
     if (tim3_mgr.flag_imu == 0 && tim3_mgr.flag_encoder == 0) 
     {
         USART2_ProcessCommand();
+        PWM_AngleServo_Update_5ms();
     }
     
     /* ------------- 4. 攀爬运动学协同控制任务 (5ms) ------------- */

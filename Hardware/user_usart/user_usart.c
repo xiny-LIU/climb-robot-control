@@ -283,22 +283,23 @@ void USART2_ProcessCommand(void)
         return;  
     }
     
-    // 6. 成功解析，根据数值执行模式切换
-    if (value >= 1 && value <= 3)
-    {
-        print_mode = (uint8_t)value; // 改变全局打印模式
-        printf("\r\n>>> [SYS] 成功切换至打印模式 [%d] <<<\r\n\r\n", print_mode);
-    }
-    else
-    {
-        printf("\r\n[WARNING] 模式 %d 不存在！请输入 1, 2 或 3\r\n\r\n", value);
-    }
+//    // 6. 成功解析，根据数值执行模式切换
+//    if (value >= 1 && value <= 3)
+//    {
+//        print_mode = (uint8_t)value; // 改变全局打印模式
+//        printf("\r\n>>> [SYS] 成功切换至打印模式 [%d] <<<\r\n\r\n", print_mode);
+//    }
+//    else
+//    {
+//        printf("\r\n[WARNING] 模式 %d 不存在！请输入 1, 2 或 3\r\n\r\n", value);
+//    }
     
     // 7. 必须清空接收标志，准备下一次接收
     num_input = value;
+    printf("[%d]\r\n",num_input);
     g_usart_rx_sta = 0;  
 }
-
+uint8_t print_mode = 0;
 /**
  * @brief  多子任务打印管理，在串口输入数字进行切换
  */
@@ -360,7 +361,7 @@ void Print_Task(void)
         
         default:
             // 兜底防御，防止外界异常篡改变量
-            print_mode = 1;
+            print_mode = 3;
             break;
     }
 }
