@@ -91,26 +91,65 @@ static M3508_PositionDebug_t g_m3508_pos_debug;
 /* ============================================================
  * 工具函数
  * ============================================================ */
-
+/*
+ * @brief 将浮点数限制在指定范围内
+ *
+ * @param value      原始输入值。
+ *
+ * @param min_value   最小允许值。
+ *
+ * @param max_value   最大允许值。
+ *
+ * @return        限幅后的结果。
+ */
 static float M3508_Pos_ClampFloat(float value, float min_value, float max_value)
 {
     if (value < min_value) return min_value;
     if (value > max_value) return max_value;
     return value;
 }
-
+/*
+ * @brief 将 int32 类型数值限制到 int16 范围内
+ *
+ * @param value      原始输入值。
+ *
+ * @param min_value  最小允许值。
+ *
+ * @param max_value  最大允许值。
+ *
+ * @return       限幅后的 int16_t 结果。
+ *
+ * 使用场景：
+ * 用于将计算得到的目标转子转速限制在允许范围内。
+ */
 static int16_t M3508_Pos_ClampInt16(int32_t value, int32_t min_value, int32_t max_value)
 {
     if (value < min_value) return (int16_t)min_value;
     if (value > max_value) return (int16_t)max_value;
     return (int16_t)value;
 }
-
+/*
+ * @brief 将方向符号标准化为 +1 或 -1
+ *
+ * @param sign      输入方向符号。
+ *
+ * @return
+ *        如果 sign < 0，返回 -1；
+ *        否则返回 +1。
+ */
 static int8_t M3508_Pos_NormalizeSign(int8_t sign)
 {
     return (sign < 0) ? -1 : +1;
 }
-
+/*
+ * @brief 获取当前有效减速比
+ *
+ * @return 当前有效减速比
+ *
+ * 说明：
+ * 如果全局变量 g_m3508_pos_reduction_ratio 被错误设置为小于 1，
+ * 则返回默认官方减速比 M3508_POS_DEFAULT_REDUCTION_RATIO。
+ */
 static float M3508_Pos_GetValidReductionRatio(void)
 {
     if (g_m3508_pos_reduction_ratio < 1.0f) {
@@ -119,7 +158,13 @@ static float M3508_Pos_GetValidReductionRatio(void)
 
     return g_m3508_pos_reduction_ratio;
 }
-
+/*
+ * @brief 将侧别枚举转换为数组下标
+ *
+ * @param side      M3508_POS_LEFT 或 M3508_POS_RIGHT。
+ *
+ * @return        左侧返回 0，右侧返回 1。
+ */
 static uint8_t M3508_Pos_SideToIndex(M3508_PositionSide_t side)
 {
     return (side == M3508_POS_RIGHT) ? 1u : 0u;
@@ -131,10 +176,17 @@ static uint8_t M3508_Pos_SideToIndex(M3508_PositionSide_t side)
  * ============================================================ */
 
 /*
- * 根据 C620 反馈转子转速，更新 M3508 输出轴/摩擦轮转速。
+ * @brief 更新左右 M3508 输出轴/摩擦轮当前转速
  *
+ * 功能：
+ * 1. 读取 C620 反馈的转子转速 speed_rpm；
+ * 2. 除以 M3508 减速比；
+ * 3. 得到输出轴/摩擦轮转速；
+ * 4. 写入全局变量 g_m3508_pos_left_output_rpm 和
+ *    g_m3508_pos_right_output_rpm。
+ *
+ * 公式：
  * output_rpm = rotor_rpm / reduction_ratio
- *
  * 其中：
  * output_rpm：M3508 输出轴/摩擦轮转速，单位 rpm；
  * rotor_rpm：C620 反馈转子转速，单位 rpm；
@@ -195,7 +247,21 @@ float M3508_Position_GetCurrentLength(M3508_PositionSide_t side)
 /* ============================================================
  * 单侧位置闭环
  * ============================================================ */
-
+/*
+ * @brief 更新单侧 M3508 伸缩位置闭环
+ *
+ * @param index
+ *        0：左伸缩；
+ *        1：右伸缩。
+ *
+ * 功能：
+ * 1. 读取当前伸缩长度；
+ * 2. 计算长度误差；
+ * 3. 长度误差转换为目标伸缩线速度；
+ * 4. 线速度转换为输出轴目标转速；
+ * 5. 输出轴目标转速转换为转子目标转速；
+ * 6. 调用 PID_SetTargetSpeed()。
+ */
 static void M3508_Pos_UpdateOne(uint8_t index)
 {
     if (index > 1) return;

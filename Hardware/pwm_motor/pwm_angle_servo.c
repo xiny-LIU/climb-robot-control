@@ -79,28 +79,65 @@ static PWM_AngleDebug_t g_pwm_angle_debug;
 /* ============================================================
  * 工具函数
  * ============================================================ */
-
+/*
+ * @brief 将浮点数限制在指定范围内
+ *
+ * @param value       原始输入值。
+ *
+ * @param min_value      最小允许值。
+ *
+ * @param max_value      最大允许值。
+ *
+ * @return        限幅后的结果。
+ */
 static float PWM_Angle_ClampFloat(float value, float min_value, float max_value)
 {
     if (value < min_value) return min_value;
     if (value > max_value) return max_value;
     return value;
 }
-
+/*
+ * @brief 将 uint32 数值限制为 uint8 速度百分比
+ *
+ * @param value       原始输入值。
+ *
+ * @param min_value    最小允许值。
+ *
+ * @param max_value    最大允许值。
+ *
+ * @return        限幅后的 uint8_t 数值。
+ *
+ * 使用场景：
+ * 将角度误差计算得到的速度百分比限制在 0~100 范围内。
+ */
 static uint8_t PWM_Angle_ClampU8(uint32_t value, uint32_t min_value, uint32_t max_value)
 {
     if (value < min_value) return (uint8_t)min_value;
     if (value > max_value) return (uint8_t)max_value;
     return (uint8_t)value;
 }
-
+/*
+ * @brief 将方向符号标准化为 +1 或 -1
+ *
+ * @param sign      输入方向符号。
+ *
+ * @return
+ *        如果 sign < 0，返回 -1；
+ *        否则返回 +1。
+ */
 static int8_t PWM_Angle_NormalizeSign(int8_t sign)
 {
     return (sign < 0) ? -1 : +1;
 }
 
 /*
- * 将角度归一化到 [-180, 180)
+ * @brief 将角度归一化到 [-180, 180)
+ *
+ * @param angle_deg      原始角度，单位 deg。
+ *
+ * @return       归一化后的角度，单位 deg。
+ *
+ * 使用目的：避免 359° 和 1° 这种情况被误认为相差 358°。
  */
 static float PWM_Angle_Normalize180(float angle_deg)
 {
@@ -108,16 +145,28 @@ static float PWM_Angle_Normalize180(float angle_deg)
     while (angle_deg < -180.0f) angle_deg += 360.0f;
     return angle_deg;
 }
-
+/*
+ * @brief 判断 PWM 角度关节编号是否合法
+ *
+ * @param joint   关节编号。
+ *
+ * @return
+ *        1：合法；
+ *        0：非法。
+ */
 static uint8_t PWM_Angle_IsValidJoint(PWM_AngleJoint_t joint)
 {
     return (joint < PWM_ANGLE_JOINT_NUM) ? 1u : 0u;
 }
 
 /*
- * 计算角度误差：
+ * @brief 计算目标角度与当前角度之间的最短误差
  *
- * error = Normalize180(target - current)
+ * @param target_deg      目标角度，单位 deg。
+ *
+ * @param current_deg     当前角度，单位 deg。
+ *
+ * @return        角度误差，范围 [-180, 180)，单位 deg。
  */
 static float PWM_Angle_Error(float target_deg, float current_deg)
 {
@@ -148,7 +197,18 @@ float PWM_AngleServo_GetCurrentAngle(PWM_AngleJoint_t joint)
 /* ============================================================
  * 单关节角度闭环
  * ============================================================ */
-
+/*
+ * @brief 更新单个 PWM 关节角度闭环
+ *
+ * @param joint      需要更新的关节。
+ *
+ * 功能：
+ * 1. 读取当前编码器角度；
+ * 2. 计算目标角度与当前角度的误差；
+ * 3. 如果误差小于死区，则停止电机；
+ * 4. 如果误差大于死区，则根据误差方向设置电机方向；
+ * 5. 根据误差大小设置 PWM 速度百分比。
+ */
 static void PWM_Angle_UpdateOne(PWM_AngleJoint_t joint)
 {
     if (!PWM_Angle_IsValidJoint(joint)) return;

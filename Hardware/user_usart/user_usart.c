@@ -157,6 +157,9 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
                 }
             }
         }
+//        // 【防挂死优化】：在重新开启中断前，强制清除可能存在的溢出错误标志(ORE)
+//        __HAL_UART_CLEAR_OREFLAG(huart);
+        
         HAL_UART_Receive_IT(&huart2, (uint8_t *)g_rx_buffer, RXBUFFERSIZE);
     }
     else if (huart->Instance == USART6)
@@ -204,59 +207,212 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 //    }
 //}
 
-
-
 /**
- * @brief  打印任务 - 默认打印M3508数据，按下PSB_PINK后切换打印姿态数据
+ * @brief       串口命令解析器（基于高鲁棒性数值转换逻辑）
+ * @note        在 main循环 内部调用，自动处理来自串口助手的指令切换
  */
-void Print_Task(void)
+void USART2_ProcessCommand(void)
 {
+    uint8_t i;
+    uint8_t len;
+    uint32_t value = 0;
+    uint8_t valid_digits = 0;
     
-    // 获取IMU数据指针
-    protocol_info_t *imu = IMU_GetOutputInfo();
+    // 【防挂死机制】高频打印容易触发 ORE 错误导致中断关闭，在这里强制定期清除
+    __HAL_UART_CLEAR_OREFLAG(&huart2);
     
-    // 根据模式执行不同的打印
-    if (print_mode == 1)
+    // 1. 检查是否接收完成（最高位为1表示接收到了完整的 \r\n）
+    // 如果没有接收完，直接默默返回，绝对不要在这里打印任何东西，否则会冲刷屏幕
+    if ((g_usart_rx_sta & 0x8000) == 0)  
     {
-        /* --------------- 打印姿态数据 --------------- */ 
-        printf("=== IMU Data (0.5s) ===\r\n");
-        printf("Euler: Roll: %.2f, Pitch: %.2f, Yaw: %.2f\r\n", 
-               imu->roll, imu->pitch, imu->yaw);//姿态 
-        printf("Acc: %.3f, %.3f, %.3f\r\n", 
-               imu->accel_x, imu->accel_y, imu->accel_z);//加速度
-        printf("Angle: %.2f, %.2f, %.2f\r\n", 
-               imu->angle_x, imu->angle_y, imu->angle_z);//角速度
-        
-        printf("ENC: %.1f | %.1f | %.1f | %.1f\r\n", 
-                encoder_data[ENC_1].degree, 
-                encoder_data[ENC_2].degree, 
-                encoder_data[ENC_3].degree, 
-                encoder_data[ENC_4].degree);
+        return;  // 未接收到完整数据，直接返回
+    }
+    
+//    // ===== 能走到这里，说明串口【真正、完整】地收到了一包带回车的数据 =====
+//    printf("[DEBUG] 串口接收触发！当前接收寄存器状态码 sta: 0x%04X\r\n", g_usart_rx_sta);
+    
+    // 2. 获取接收到的有效数据长度
+    len = g_usart_rx_sta & 0x3FFF;  
+    
+    // 3. 检查数据长度是否合理
+    if (len == 0 || len >= USART_REC_LEN)
+    {
+        g_usart_rx_sta = 0;  // 状态错误，清空接收标志
+//        printf("[ERROR] 接收长度错误，len = %d\r\n", len);
+        return;  
+    }
+    
+    // 4. 遍历接收到的数据，转换为数字
+    for (i = 0; i < len; i++)
+    {
+        /* 只处理数字字符 */
+        if (g_usart_rx_buf[i] >= '0' && g_usart_rx_buf[i] <= '9')
+        {
+            value = value * 10 + (g_usart_rx_buf[i] - '0');
+            valid_digits++;
+            
+            /* 安全限制：防止数值溢出 */
+            if (value > 100) // 我们的模式只有1~3，限制到100以内足够了
+            {
+                g_usart_rx_sta = 0;
+//                printf("\r\n[ERROR] 模式数字过大！\r\n\r\n");
+                return;  
+            }
+        }
+        /* 如果遇到回车换行，提前结束解析 */
+        else if (g_usart_rx_buf[i] == 0x0D || g_usart_rx_buf[i] == 0x0A)
+        {
+            break;
+        }
+        /* 其他非法字符（如字母、空格等） */
+        else
+        {
+            g_usart_rx_sta = 0;
+//            printf("\r\n[ERROR] 包含非法字符 '%c'！\r\n\r\n", g_usart_rx_buf[i]);
+            return;  
+        }
+    }
+    
+    // 5. 检查是否至少有一个有效数字
+    if (valid_digits == 0)
+    {
+        g_usart_rx_sta = 0;
+//        printf("[WARNING] 未识别到任何有效数字\r\n");
+        return;  
+    }
+    
+    // 6. 成功解析，根据数值执行模式切换
+    if (value >= 1 && value <= 3)
+    {
+        print_mode = (uint8_t)value; // 改变全局打印模式
+        printf("\r\n>>> [SYS] 成功切换至打印模式 [%d] <<<\r\n\r\n", print_mode);
     }
     else
     {
-        int32_t turn0 = Encoder_Get_Turn_Count(0);
-        int32_t turn1 = - Encoder_Get_Turn_Count(1);
-        int32_t speed_rpm0 = motor_chassis[0].speed_rpm/36;
-        int32_t speed_rpm1 = motor_chassis[1].speed_rpm/36;
-        int32_t current0 = motor_chassis[0].given_current;
-        int32_t current1 = motor_chassis[1].given_current;
-        int32_t temp0 = motor_chassis[0].temperate;
-        int32_t temp1 = motor_chassis[1].temperate;
-        /* --------------- 默认：打印M3508实时数据 --------------- */
-        printf("=== M3508 Motor Data ===\r\n");
-        printf("M1  speed_rpm:%d current:%d turns:%d temp:%d\r\n",
-               speed_rpm0, 
-               current0,
-               turn0,
-               temp0);
-        printf("M2  speed_rpm:%d current:%d turns:%d temp:%d\r\n",
-               speed_rpm1, 
-               current1,
-               turn1,
-               temp1);//温度大于80度过热
+        printf("\r\n[WARNING] 模式 %d 不存在！请输入 1, 2 或 3\r\n\r\n", value);
+    }
+    
+    // 7. 必须清空接收标志，准备下一次接收
+    g_usart_rx_sta = 0;  
+}
+
+/**
+ * @brief  多子任务打印管理，在串口输入数字进行切换
+ */
+void Print_Task(void)
+{
+
+    // 1. main中循环调用USART2_ProcessCommand解析串口数据
+    
+    // 2. 获取IMU数据指针
+    protocol_info_t *imu = IMU_GetOutputInfo();
+    
+    // 3. 根据当前 print_mode 选择对应的打印子任务
+    switch (print_mode)
+    {
+        case 1:
+        {
+            /* --------------- 子任务 1：打印姿态与加速度数据 --------------- */ 
+            printf("=== IMU Data (0.5s) ===\r\n");
+            printf("Euler: Roll: %.2f, Pitch: %.2f, Yaw: %.2f\r\n", 
+                   imu->roll, imu->pitch, imu->yaw); // 姿态 
+            printf("Acc: %.3f, %.3f, %.3f\r\n", 
+                   imu->accel_x, imu->accel_y, imu->accel_z); // 加速度
+            printf("Angle: %.2f, %.2f, %.2f\r\n", 
+                   imu->angle_x, imu->angle_y, imu->angle_z); // 角速度
+            break;
+        }
+        
+        case 2:
+        {
+            /* --------------- 子任务 2：默认打印 M3508 实时数据 --------------- */
+            int32_t turn0 = Encoder_Get_Turn_Count(0);
+            int32_t turn1 = -Encoder_Get_Turn_Count(1);
+            int32_t speed_rpm0 = motor_chassis[0].speed_rpm / 36;
+            int32_t speed_rpm1 = motor_chassis[1].speed_rpm / 36;
+            int32_t current0 = motor_chassis[0].given_current;
+            int32_t current1 = motor_chassis[1].given_current;
+            int32_t temp0 = motor_chassis[0].temperate;
+            int32_t temp1 = motor_chassis[1].temperate;
+            
+            printf("=== M3508 Motor Data ===\r\n");
+            printf("M1  speed_rpm:%d current:%d turns:%d temp:%d\r\n",
+                   speed_rpm0, current0, turn0, temp0);
+            printf("M2  speed_rpm:%d current:%d turns:%d temp:%d\r\n",
+                   speed_rpm1, current1, turn1, temp1); // 温度大于80度过热
+            break;
+        }
+        
+        case 3:
+        {
+            /* --------------- 子任务 3：专门打印编码器角度数据 --------------- */
+            printf("=== Encoder Degree Data ===\r\n");
+            printf("ENC: %.1f | %.1f | %.1f | %.1f\r\n", 
+                    encoder_data[ENC_1].degree, 
+                    encoder_data[ENC_2].degree, 
+                    encoder_data[ENC_3].degree, 
+                    encoder_data[ENC_4].degree);
+            break;
+        }
+        
+        default:
+            // 兜底防御，防止外界异常篡改变量
+            print_mode = 1;
+            break;
     }
 }
+
+///**
+// * @brief  打印任务 - 默认打印M3508数据，按下PSB_PINK后切换打印姿态数据
+// */
+//void Print_Task(void)
+//{
+//    
+//    // 获取IMU数据指针
+//    protocol_info_t *imu = IMU_GetOutputInfo();
+//    
+//    // 根据模式执行不同的打印
+//    if (print_mode == 1)
+//    {
+//        /* --------------- 打印姿态数据 --------------- */ 
+//        printf("=== IMU Data (0.5s) ===\r\n");
+//        printf("Euler: Roll: %.2f, Pitch: %.2f, Yaw: %.2f\r\n", 
+//               imu->roll, imu->pitch, imu->yaw);//姿态 
+//        printf("Acc: %.3f, %.3f, %.3f\r\n", 
+//               imu->accel_x, imu->accel_y, imu->accel_z);//加速度
+//        printf("Angle: %.2f, %.2f, %.2f\r\n", 
+//               imu->angle_x, imu->angle_y, imu->angle_z);//角速度
+//        
+//        printf("ENC: %.1f | %.1f | %.1f | %.1f\r\n", 
+//                encoder_data[ENC_1].degree, 
+//                encoder_data[ENC_2].degree, 
+//                encoder_data[ENC_3].degree, 
+//                encoder_data[ENC_4].degree);
+//    }
+//    else
+//    {
+//        int32_t turn0 = Encoder_Get_Turn_Count(0);
+//        int32_t turn1 = - Encoder_Get_Turn_Count(1);
+//        int32_t speed_rpm0 = motor_chassis[0].speed_rpm/36;
+//        int32_t speed_rpm1 = motor_chassis[1].speed_rpm/36;
+//        int32_t current0 = motor_chassis[0].given_current;
+//        int32_t current1 = motor_chassis[1].given_current;
+//        int32_t temp0 = motor_chassis[0].temperate;
+//        int32_t temp1 = motor_chassis[1].temperate;
+//        /* --------------- 默认：打印M3508实时数据 --------------- */
+//        printf("=== M3508 Motor Data ===\r\n");
+//        printf("M1  speed_rpm:%d current:%d turns:%d temp:%d\r\n",
+//               speed_rpm0, 
+//               current0,
+//               turn0,
+//               temp0);
+//        printf("M2  speed_rpm:%d current:%d turns:%d temp:%d\r\n",
+//               speed_rpm1, 
+//               current1,
+//               turn1,
+//               temp1);//温度大于80度过热
+//    }
+//}
 #endif
 
 

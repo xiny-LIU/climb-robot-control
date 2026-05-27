@@ -12,11 +12,13 @@
 extern uint8_t  g_usart_rx_buf[USART_REC_LEN];  /* 接收缓冲,最大USART_REC_LEN个字节.末字节为换行符 */
 extern uint16_t g_usart_rx_sta;                 /* 接收状态标记 */
 extern uint8_t g_rx_buffer[RXBUFFERSIZE];       /* HAL库USART接收Buffer */
+extern uint8_t  print_mode;                     /* 打印模式：1-IMU, 2-Motor, 3-Encoder */
 
 
 void USART2_init(void);             /* 串口初始化函数 */
 void USART2_PrintMessage(void);
 void Print_Task(void);
+void USART2_ProcessCommand(void);
 #endif
 
 
