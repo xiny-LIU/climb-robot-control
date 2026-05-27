@@ -29,6 +29,21 @@
 #define PWM_ANGLE_DEFAULT_PITCH_MIN_DEG     -8.0f
 #define PWM_ANGLE_DEFAULT_PITCH_MAX_DEG     30.0f
 
+/* 标准单臂局部偏航限位，单位 deg */
+#define PWM_ANGLE_STD_YAW_MIN_DEG           -6.0f
+#define PWM_ANGLE_STD_YAW_MAX_DEG           22.0f
+
+/* 左臂真实 DH 偏航角限位 */
+#define PWM_ANGLE_LEFT_YAW_MIN_DEG          (PWM_ANGLE_STD_YAW_MIN_DEG)
+#define PWM_ANGLE_LEFT_YAW_MAX_DEG          (PWM_ANGLE_STD_YAW_MAX_DEG)
+
+/* 右臂真实 DH 偏航角限位：关于机身中面对称 */
+#define PWM_ANGLE_RIGHT_YAW_MIN_DEG         (-PWM_ANGLE_STD_YAW_MAX_DEG)
+#define PWM_ANGLE_RIGHT_YAW_MAX_DEG         (-PWM_ANGLE_STD_YAW_MIN_DEG)
+
+/* 俯仰角左右一致，单位 deg */
+#define PWM_ANGLE_DEFAULT_PITCH_MIN_DEG     -8.0f
+#define PWM_ANGLE_DEFAULT_PITCH_MAX_DEG     30.0f
 
 /*
  * @brief PWM 角度闭环关节枚举
@@ -215,9 +230,9 @@ uint8_t PWM_AngleServo_IsAllTargetReached(void);
 /*
  * @brief 获取 PWM 角度闭环调试信息
  *
- * @return     返回 4 个角度关节的当前角度、目标角度、误差、速度百分比等信息。
+ * @param out_debug  指向用于存储调试信息的结构体指针
  */
-PWM_AngleDebug_t PWM_AngleServo_GetDebugInfo(void);
+void PWM_AngleServo_GetDebugInfo(PWM_AngleDebug_t *out_debug);
 
 
 /************************************************
@@ -312,11 +327,11 @@ void PWM_AngleServo_SetDirectionSignAll(int8_t left_pitch_sign,
 /*
  * @brief 设置某个 PWM 关节角度软限位
  *
- * @param joint *        目标关节。
+ * @param joint        目标关节。
  *
- * @param min_deg *        最小允许角度，单位 deg。
+ * @param min_deg        最小允许角度，单位 deg。
  *
- * @param max_deg *        最大允许角度，单位 deg。
+ * @param max_deg       最大允许角度，单位 deg。
  *
  * 注意：
  * 如果 max_deg <= min_deg，函数会直接返回，不修改限位。

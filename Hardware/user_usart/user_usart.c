@@ -9,6 +9,7 @@
 
 #include "ps2_control.h"
 #include "ps2.h"
+
 /* 如果使用os,则包括下面的头文件即可 */
 #if SYS_SUPPORT_OS
 #include "os.h"                               /* os 使用 */
@@ -211,6 +212,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
  * @brief       串口命令解析器（基于高鲁棒性数值转换逻辑）
  * @note        在 main循环 内部调用，自动处理来自串口助手的指令切换
  */
+uint32_t num_input = 0;
 void USART2_ProcessCommand(void)
 {
     uint8_t i;
@@ -293,6 +295,7 @@ void USART2_ProcessCommand(void)
     }
     
     // 7. 必须清空接收标志，准备下一次接收
+    num_input = value;
     g_usart_rx_sta = 0;  
 }
 

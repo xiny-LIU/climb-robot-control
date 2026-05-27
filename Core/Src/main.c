@@ -163,7 +163,6 @@ int main(void)
     TIM3_Task_Execute();//tim
 //    USART2_PrintMessage();
 
-
   }
   /* USER CODE END 3 */
 }
