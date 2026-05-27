@@ -82,7 +82,15 @@ void TIM3_Task_Execute(void)
         tim3_mgr.encoder_busy = 0;      
     }
     
-    /* ------------- 3. 攀爬运动学协同控制任务 (5ms) ------------- */
+    /* ---------------- 3. 串口调试指令解析任务 (5ms) ---------------- */
+    // 借用 flag_imu 或者 flag_encoder 作为 5ms 的触发节拍即可（不需要单开变量）
+    // 每次 IMU 刷新时（每 5ms），就顺便去检查一下串口有没有按键输入
+    if (tim3_mgr.flag_imu == 0 && tim3_mgr.flag_encoder == 0) 
+    {
+        USART2_ProcessCommand();
+    }
+    
+    /* ------------- 4. 攀爬运动学协同控制任务 (5ms) ------------- */
 // 此时 IMU 和 编码器都刚刚刷新完，数据是最热乎的！
 // 借用 flag_imu 或 flag_encoder 作为 5ms 的触发条件即可
 //    if (tim3_mgr.flag_imu == 0 && tim3_mgr.flag_encoder == 0) // 确保前置传感器都读完了
@@ -90,7 +98,7 @@ void TIM3_Task_Execute(void)
 //        Climb_Control_Loop_5ms();
 //    }
 
-    /* ---------------- 3. PS2 遥控器控制任务 (25ms) ---------------- */
+    /* ---------------- 5. PS2 遥控器控制任务 (25ms) ---------------- */
     // 移出中断，防止串口/SPI按键解析阻塞中断
     if (tim3_mgr.flag_ps2 && !tim3_mgr.ps2_busy)
     {
@@ -100,7 +108,7 @@ void TIM3_Task_Execute(void)
         tim3_mgr.ps2_busy = 0;
     }
 
-    /* ---------------- 4. 终端状态打印任务 (500ms) ---------------- */
+    /* ---------------- 6. 终端状态打印任务 (500ms) ---------------- */
     // 极其耗时，必须放在主循环且优先级应视作最低
     if (tim3_mgr.flag_500ms && !tim3_mgr.print_busy)
     {

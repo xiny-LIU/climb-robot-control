@@ -162,7 +162,7 @@ int main(void)
     /* USER CODE BEGIN 3 */
     TIM3_Task_Execute();//tim
 //    USART2_PrintMessage();
-    USART2_ProcessCommand();
+
 
   }
   /* USER CODE END 3 */
