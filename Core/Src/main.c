@@ -48,8 +48,10 @@
 #include "usart6.h"
 #include "analysis_data.h" 
 #include "spi4.h"
+//双臂协同控制
 #include "climb_control.h"
 #include "pwm_angle_servo.h"
+#include "m3508_position.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -141,6 +143,9 @@ int main(void)
   BT_Init();
   PS2_Control_Init();
   PID_Init();
+  
+  PWM_AngleServo_Init();
+  
 
     // imu
     IMU_USART_Init(&huart6);
@@ -153,10 +158,10 @@ int main(void)
 //  HAL_CAN_ActivateNotification(&hcan1, CAN_IT_RX_FIFO0_MSG_PENDING);
 
 // 初始化角度控制模块
-    PWM_AngleServo_Init();
+    
     
     // 3. 确认安全后，开启总开关
-    PWM_AngleServo_Enable(1);
+    PWM_AngleServo_Enable(0);
     
   /* USER CODE END 2 */
 

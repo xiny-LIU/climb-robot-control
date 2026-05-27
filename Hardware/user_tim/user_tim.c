@@ -9,6 +9,7 @@
 #include "spi4.h"
 #include "climb_control.h"
 #include "pwm_angle_servo.h"
+#include "m3508_position.h"
 
 // 统一声明外部调用的任务函数
 extern void PS2_Control_TIM3_Callback(void);
@@ -90,6 +91,9 @@ void TIM3_Task_Execute(void)
         USART2_ProcessCommand();
     if (PWM_AngleServo_IsEnabled()) {
         PWM_AngleServo_Update_5ms();
+    }
+    if (M3508_Position_IsEnabled()) {
+    M3508_Position_Update_5ms();
     }
     }
     
