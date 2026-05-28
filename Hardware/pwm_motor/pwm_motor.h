@@ -44,7 +44,6 @@ void Motor_Init_All(void);
 // 基本控制函数
 void Motor_Start(Motor_ID_t motor_id);
 void Motor_Stop(Motor_ID_t motor_id);
-void Motor_SoftStop(Motor_ID_t motor_id);
 void Motor_SetSpeed(Motor_ID_t motor_id, uint8_t speed_percent);
 void Motor_SetDirection(Motor_ID_t motor_id, Motor_Direction_t direction);
 void Motor_Reverse(Motor_ID_t motor_id);
@@ -52,7 +51,6 @@ void Motor_Reverse(Motor_ID_t motor_id);
 // 批量控制函数
 void Motor_Start_All(void);
 void Motor_Stop_All(void);
-void Motor_SoftStop_All(void);
 void Motor_SetSpeed_All(uint8_t speed_percent);
 void Motor_Emergency_Stop(void);
 

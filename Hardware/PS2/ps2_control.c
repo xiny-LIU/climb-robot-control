@@ -462,7 +462,7 @@ static void process_motor_control(void)
     }
     else if (tim3_mgr.tick_count - motor_stop_timer > MOTOR_STOP_DELAY_MS)
     {
-        Motor_SoftStop_All();
+        Motor_Stop_All();
     }
 }
 
