@@ -44,7 +44,7 @@
 //#define PWM_ANGLE_DEFAULT_PITCH_MAX_DEG     30.0f
 //测试
 #define PWM_ANGLE_DEFAULT_PITCH_MIN_DEG     -8.0f
-#define PWM_ANGLE_DEFAULT_PITCH_MAX_DEG     15.0f
+#define PWM_ANGLE_DEFAULT_PITCH_MAX_DEG     60.0f
 
 /*
  * @brief PWM 角度闭环关节枚举

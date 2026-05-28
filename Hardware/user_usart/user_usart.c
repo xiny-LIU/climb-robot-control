@@ -302,6 +302,7 @@ void USART2_ProcessCommand(void)
     printf("[%d]\r\n",num_input);
     g_usart_rx_sta = 0;  
 }
+
 uint8_t print_mode = 0;
 /**
  * @brief  多子任务打印管理，在串口输入数字进行切换
@@ -361,6 +362,7 @@ void Print_Task(void)
 //                    encoder_data[ENC_2].degree, 
 //                    encoder_data[ENC_3].degree, 
 //                    encoder_data[ENC_4].degree);
+            
             printf("CurrentAngle: %.2f | %.2f | %.2f | %.2f\r\n", 
                 dbg.joint[PWM_ANGLE_LEFT_PITCH].current_deg, 
                 dbg.joint[PWM_ANGLE_LEFT_YAW].current_deg, 
@@ -371,11 +373,23 @@ void Print_Task(void)
                 dbg.joint[PWM_ANGLE_LEFT_YAW].target_deg, 
                 dbg.joint[PWM_ANGLE_RIGHT_PITCH].target_deg, 
                 dbg.joint[PWM_ANGLE_RIGHT_YAW].target_deg);
-            printf("COMMANDAngle: %.2f | %.2f | %.2f | %.2f\r\n", 
-                dbg.joint[PWM_ANGLE_LEFT_PITCH].command_deg, 
-                dbg.joint[PWM_ANGLE_LEFT_YAW].command_deg, 
-                dbg.joint[PWM_ANGLE_RIGHT_PITCH].command_deg, 
-                dbg.joint[PWM_ANGLE_RIGHT_YAW].command_deg);
+//            printf("COMMANDAngle: %.2f | %.2f | %.2f | %.2f\r\n", 
+//                dbg.joint[PWM_ANGLE_LEFT_PITCH].command_deg, 
+//                dbg.joint[PWM_ANGLE_LEFT_YAW].command_deg, 
+//                dbg.joint[PWM_ANGLE_RIGHT_PITCH].command_deg, 
+//                dbg.joint[PWM_ANGLE_RIGHT_YAW].command_deg);
+
+            printf("ERROR: %.2f | %.2f | %.2f | %.2f\r\n",
+               dbg.joint[PWM_ANGLE_LEFT_PITCH].error_deg,
+               dbg.joint[PWM_ANGLE_LEFT_YAW].error_deg,
+               dbg.joint[PWM_ANGLE_RIGHT_PITCH].error_deg,
+               dbg.joint[PWM_ANGLE_RIGHT_YAW].error_deg);
+
+            printf("SPEED: %d | %d | %d | %d\r\n",
+               dbg.joint[PWM_ANGLE_LEFT_PITCH].speed_percent,
+               dbg.joint[PWM_ANGLE_LEFT_YAW].speed_percent,
+               dbg.joint[PWM_ANGLE_RIGHT_PITCH].speed_percent,
+               dbg.joint[PWM_ANGLE_RIGHT_YAW].speed_percent);
             break;
         }
         

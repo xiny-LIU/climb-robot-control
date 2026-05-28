@@ -103,6 +103,9 @@ void TIM3_Task_Execute(void)
             pwm_angle_servo_started = 1;
         }
     }
+    if (PWM_AngleServo_IsEnabled()) {
+        PWM_AngleServo_Update_5ms();
+    }
 
         tim3_mgr.encoder_busy = 0;
     }
@@ -112,9 +115,7 @@ void TIM3_Task_Execute(void)
     if (tim3_mgr.flag_imu == 0 && tim3_mgr.flag_encoder == 0) 
     {
         USART2_ProcessCommand();
-    if (PWM_AngleServo_IsEnabled()) {
-        PWM_AngleServo_Update_5ms();
-    }
+
     if (M3508_Position_IsEnabled()) {
     M3508_Position_Update_5ms();
     }

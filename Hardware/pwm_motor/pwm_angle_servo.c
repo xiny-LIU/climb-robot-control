@@ -21,13 +21,13 @@
  * Kp   ：比例系数，决定了误差多大时电机该用多快的速度追赶；
  * error：角度误差，单位 deg（度）。
  */
-#define PWM_ANGLE_KP_PERCENT_PER_DEG     5.0f// 比例系数 Kp。意思是：每差 1 度，电机速度就增加 5%
+#define PWM_ANGLE_KP_PERCENT_PER_DEG     3.0f// 比例系数 Kp。意思是：每差 1 度，电机速度就增加 5%
 
 /* 角度到位死区，单位 deg */
-#define PWM_ANGLE_DEADBAND_DEG           0.8f// 死区。意思是：只要实际角度和目标角度相差小于 0.8 度，就认为到了，电机停转
+#define PWM_ANGLE_DEADBAND_DEG           1.0f// 死区。意思是：只要实际角度和目标角度相差小于 0.8 度，就认为到了，电机停转
 
 /* PWM 电机最小/最大速度百分比 */
-#define PWM_ANGLE_MIN_SPEED_PERCENT      18u// 最小速度 18%。低于这个速度，电机可能因为摩擦力根本带不动
+#define PWM_ANGLE_MIN_SPEED_PERCENT      8u// 最小速度 18%。低于这个速度，电机可能因为摩擦力根本带不动
 #define PWM_ANGLE_MAX_SPEED_PERCENT      70u// 最大速度 70%。超过这个速度，机械臂可能因为太快而失控或撞坏
 
 /* ============================================================
@@ -44,7 +44,7 @@
  * 内部目标角度 command_deg 的最大变化速度，单位 deg/s。
  * 这个值不是电机真实速度，而是“目标角度变化速度”。
  */
-#define PWM_ANGLE_TARGET_SLEW_RATE_DEG_S     2.0f
+#define PWM_ANGLE_TARGET_SLEW_RATE_DEG_S     10.0f
 
 /* ============================================================
  * 内部类型
@@ -297,6 +297,11 @@ static void PWM_Angle_UpdateOne(PWM_AngleJoint_t joint)
     // error_deg = Normalize180(target_deg - current_deg)
     // 这样可以避免 359° 和 1° 被误判为相差 358° 的问题
     float error_deg = PWM_Angle_Error(cfg->command_deg, current_deg);
+
+//取消步长的测试
+//    cfg->command_deg = target_deg;
+
+//    float error_deg = PWM_Angle_Error(target_deg, current_deg);
 
     // 7. 将实时数据登记到“调试看板”，方便串口打印或后续检查
     dbg->current_deg = current_deg;
@@ -766,9 +771,6 @@ void PWM_AngleServo_SetAllCurrentAsZero(void)
     PWM_AngleServo_SetCurrentAsZero(PWM_ANGLE_RIGHT_YAW);
 }
 
-/************************************************
- * 当前角度设为零点功能
- ************************************************/
 
 
 

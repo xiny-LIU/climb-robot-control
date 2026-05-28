@@ -1,5 +1,6 @@
 #include "pwm_motor.h"
 #include "tim.h"
+#include <stdio.h>
 
 // 电机PWM配置参数
 #define PWM_FREQUENCY_HZ        20000   // PWM频率20kHz
@@ -134,7 +135,7 @@ void Motor_Init(Motor_ID_t motor_id)
     HAL_TIM_PWM_Start(PWM_TIMER_HANDLE, motor_pwm_channels[motor_id]);
     
     // 初始占空比为0
-    __HAL_TIM_SET_COMPARE(PWM_TIMER_HANDLE, motor_pwm_channels[motor_id], 0);
+    __HAL_TIM_SET_COMPARE(PWM_TIMER_HANDLE, motor_pwm_channels[motor_id], calculate_ccr_value(0));
     
     // 更新GPIO状态（初始为停止状态）
     update_motor_gpio(motor_id);
@@ -171,10 +172,29 @@ void Motor_Stop(Motor_ID_t motor_id)
     motor->speed_percent = 0;
     
     // 设置PWM占空比为0
-    __HAL_TIM_SET_COMPARE(PWM_TIMER_HANDLE, motor_pwm_channels[motor_id], 0);
+    __HAL_TIM_SET_COMPARE(PWM_TIMER_HANDLE, motor_pwm_channels[motor_id], calculate_ccr_value(0));
     
     // 更新GPIO状态
     update_motor_gpio(motor_id);
+}
+
+void Motor_SoftStop(Motor_ID_t motor_id)
+{
+    if (motor_system_locked) return;
+
+    Motor_Control_t* motor = get_motor_instance(motor_id);
+
+    /*
+     * 软停止：
+     * 只把 PWM 调到 0 速度对应值。
+     * 不切 POWER，不拉 Brake，不调用 update_motor_gpio()。
+     */
+    motor->speed_percent = 0;
+    motor->state = MOTOR_STATE_STOPPED;
+
+    __HAL_TIM_SET_COMPARE(PWM_TIMER_HANDLE,
+                          motor_pwm_channels[motor_id],
+                          calculate_ccr_value(0));
 }
 
 void Motor_SetSpeed(Motor_ID_t motor_id, uint8_t speed_percent)
@@ -194,9 +214,28 @@ void Motor_SetSpeed(Motor_ID_t motor_id, uint8_t speed_percent)
     } else {
         motor->state = MOTOR_STATE_STOPPED;
     }
-    
-    update_motor_gpio(motor_id);
+    //打印测试
+//    update_motor_gpio(motor_id);
+//    
+//        if (motor_id == MOTOR_A) {
+//        printf("[MOTOR_A] speed=%d, ccr=%u, state=%d, dir=%d, locked=%d\r\n",
+//               speed_percent,
+//               ccr_value,
+//               motor->state,
+//               motor->direction,
+//               motor_system_locked);
+//    }
+    if (motor_id == MOTOR_A) {
+    GPIO_PinState pwr = HAL_GPIO_ReadPin(POWER1_GPIO_Port, POWER1_Pin);
+    GPIO_PinState brk = HAL_GPIO_ReadPin(A_Brake_GPIO_Port, A_Brake_Pin);
+    GPIO_PinState rev = HAL_GPIO_ReadPin(A_Reverse_GPIO_Port, A_Reverse_Pin);
+
+    printf("[GPIO_A] POWER=%d, BRAKE=%d, REV=%d\r\n",
+           pwr, brk, rev);
 }
+}
+
+
 
 void Motor_SetDirection(Motor_ID_t motor_id, Motor_Direction_t direction)
 {
@@ -240,6 +279,14 @@ void Motor_Stop_All(void)
     Motor_Stop(MOTOR_B);
     Motor_Stop(MOTOR_C);
     Motor_Stop(MOTOR_D);
+}
+
+void Motor_SoftStop_All(void)
+{
+    Motor_SoftStop(MOTOR_A);
+    Motor_SoftStop(MOTOR_B);
+    Motor_SoftStop(MOTOR_C);
+    Motor_SoftStop(MOTOR_D);
 }
 
 void Motor_SetSpeed_All(uint8_t speed_percent)
