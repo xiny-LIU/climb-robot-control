@@ -27,6 +27,21 @@
 #define PWM_ANGLE_MIN_SPEED_PERCENT      18u// 最小速度 18%。低于这个速度，电机可能因为摩擦力根本带不动
 #define PWM_ANGLE_MAX_SPEED_PERCENT      70u// 最大速度 70%。超过这个速度，机械臂可能因为太快而失控或撞坏
 
+/* ============================================================
+ * 目标角度平滑参数
+ * ============================================================ */
+
+/*
+ * PWM_AngleServo_Update_5ms() 每 5ms 调用一次，
+ * 所以控制周期为 0.005s。
+ */
+#define PWM_ANGLE_UPDATE_PERIOD_SEC          0.005f
+
+/*
+ * 内部目标角度 command_deg 的最大变化速度，单位 deg/s。
+ * 这个值不是电机真实速度，而是“目标角度变化速度”。
+ */
+#define PWM_ANGLE_TARGET_SLEW_RATE_DEG_S     30.0f
 
 /* ============================================================
  * 内部类型
@@ -53,6 +68,7 @@ typedef struct {
     int8_t direction_sign;
 
     float target_deg;          // 当前这个关节的目标角度（用户发出的指令）
+    float command_deg;         // 内部平滑目标角度，位置环实际追踪它
     float min_deg;             // 该关节允许的最小安全角度（软限位）
     float max_deg;             // 该关节允许的最大安全角度（软限位）
 } PWM_AngleJointConfig_t;
@@ -65,22 +81,22 @@ typedef struct {
 // 创建一个数组，里面包含 4 个关节的硬件绑定和默认安全角度限制
 static PWM_AngleJointConfig_t g_pwm_angle_joint[PWM_ANGLE_JOINT_NUM] = {
     /* 1. 左臂俯仰关节：绑定 MOTOR_A 和 ENC_1 */
-    {MOTOR_A, ENC_1, 0.0f, +1, +1, 0.0f,
+    {MOTOR_A, ENC_1, 0.0f, +1, +1, 0.0f, 0.0f,
      PWM_ANGLE_DEFAULT_PITCH_MIN_DEG,
      PWM_ANGLE_DEFAULT_PITCH_MAX_DEG},
 
     /* 2. 左臂偏航关节：绑定 MOTOR_B 和 ENC_2 */
-    {MOTOR_B, ENC_2, 0.0f, +1, +1, 0.0f,
+    {MOTOR_B, ENC_2, 0.0f, +1, +1, 0.0f, 0.0f,
      PWM_ANGLE_LEFT_YAW_MIN_DEG,
      PWM_ANGLE_LEFT_YAW_MAX_DEG},
 
     /* 3. 右臂俯仰关节：绑定 MOTOR_C 和 ENC_3 */
-    {MOTOR_C, ENC_3, 0.0f, +1, +1, 0.0f,
+    {MOTOR_C, ENC_3, 0.0f, +1, +1, 0.0f, 0.0f,
      PWM_ANGLE_DEFAULT_PITCH_MIN_DEG,
      PWM_ANGLE_DEFAULT_PITCH_MAX_DEG},
 
     /* 4. 右臂偏航关节：绑定 MOTOR_D 和 ENC_4 */
-    {MOTOR_D, ENC_4, 0.0f, +1, +1, 0.0f,
+    {MOTOR_D, ENC_4, 0.0f, +1, +1, 0.0f, 0.0f,
      PWM_ANGLE_RIGHT_YAW_MIN_DEG,
      PWM_ANGLE_RIGHT_YAW_MAX_DEG}
 };
@@ -152,6 +168,32 @@ static float PWM_Angle_Error(float target_deg, float current_deg)
     return PWM_Angle_Normalize180(target_deg - current_deg);
 }
 
+/*
+ * @brief 让当前内部目标角度 current_cmd_deg 以固定最大步长靠近 final_target_deg
+ *
+ * 作用：
+ * final_target_deg 可以突然变化，但 current_cmd_deg 不会突然跳变。
+ */
+static float PWM_Angle_ApproachAngle(float current_cmd_deg,
+                                     float final_target_deg,
+                                     float max_step_deg)
+{
+    float err_deg = PWM_Angle_Error(final_target_deg, current_cmd_deg);
+
+    if (max_step_deg <= 0.0f) {
+        return current_cmd_deg;
+    }
+
+    if (fabsf(err_deg) <= max_step_deg) {
+        return final_target_deg;
+    }
+
+    if (err_deg > 0.0f) {
+        return PWM_Angle_Normalize180(current_cmd_deg + max_step_deg);
+    } else {
+        return PWM_Angle_Normalize180(current_cmd_deg - max_step_deg);
+    }
+}
 
 /* ============================================================
  * 当前角度读取
@@ -218,15 +260,29 @@ static void PWM_Angle_UpdateOne(PWM_AngleJoint_t joint)
     // 5. 将限位后的目标角度写回配置结构体
     // 这样 cfg->target_deg 始终保存当前真正执行的安全目标角度
     cfg->target_deg = target_deg;
+    
+    /*
+     * 根据目标变化率计算每个 5ms 周期允许 command_deg 变化的最大角度。
+     */
+    float max_step_deg =
+        PWM_ANGLE_TARGET_SLEW_RATE_DEG_S * PWM_ANGLE_UPDATE_PERIOD_SEC;
 
+    /*
+     * command_deg 慢慢靠近 target_deg。
+     * 注意：位置环实际追踪 command_deg，而不是直接追踪 target_deg。
+     */
+    cfg->command_deg =
+        PWM_Angle_ApproachAngle(cfg->command_deg, target_deg, max_step_deg);
+    
     // 6. 计算当前角度与目标角度之间的误差
     // error_deg = Normalize180(target_deg - current_deg)
     // 这样可以避免 359° 和 1° 被误判为相差 358° 的问题
-    float error_deg = PWM_Angle_Error(target_deg, current_deg);
+    float error_deg = PWM_Angle_Error(cfg->command_deg, current_deg);
 
     // 7. 将实时数据登记到“调试看板”，方便串口打印或后续检查
     dbg->current_deg = current_deg;
     dbg->target_deg = target_deg;
+    dbg->command_deg = cfg->command_deg;
     dbg->error_deg = error_deg;
 
     // 8.【死区控制】如果误差绝对值小于设定死区，说明已经到位
@@ -313,6 +369,7 @@ void PWM_AngleServo_Init(void)
     g_pwm_angle_joint[PWM_ANGLE_LEFT_PITCH].encoder_sign = +1;
     g_pwm_angle_joint[PWM_ANGLE_LEFT_PITCH].direction_sign = -1;
     g_pwm_angle_joint[PWM_ANGLE_LEFT_PITCH].target_deg = 0.0f;
+    g_pwm_angle_joint[PWM_ANGLE_LEFT_PITCH].command_deg = 0.0f;
     g_pwm_angle_joint[PWM_ANGLE_LEFT_PITCH].min_deg = PWM_ANGLE_DEFAULT_PITCH_MIN_DEG;
     g_pwm_angle_joint[PWM_ANGLE_LEFT_PITCH].max_deg = PWM_ANGLE_DEFAULT_PITCH_MAX_DEG;
 
@@ -322,6 +379,7 @@ void PWM_AngleServo_Init(void)
     g_pwm_angle_joint[PWM_ANGLE_LEFT_YAW].encoder_sign = -1;
     g_pwm_angle_joint[PWM_ANGLE_LEFT_YAW].direction_sign = +1;
     g_pwm_angle_joint[PWM_ANGLE_LEFT_YAW].target_deg = 0.0f;
+    g_pwm_angle_joint[PWM_ANGLE_LEFT_YAW].command_deg = 0.0f;
     g_pwm_angle_joint[PWM_ANGLE_LEFT_YAW].min_deg = PWM_ANGLE_LEFT_YAW_MIN_DEG;
     g_pwm_angle_joint[PWM_ANGLE_LEFT_YAW].max_deg = PWM_ANGLE_LEFT_YAW_MAX_DEG;
 
@@ -331,6 +389,7 @@ void PWM_AngleServo_Init(void)
     g_pwm_angle_joint[PWM_ANGLE_RIGHT_PITCH].encoder_sign = +1;
     g_pwm_angle_joint[PWM_ANGLE_RIGHT_PITCH].direction_sign = +1;
     g_pwm_angle_joint[PWM_ANGLE_RIGHT_PITCH].target_deg = 0.0f;
+    g_pwm_angle_joint[PWM_ANGLE_RIGHT_PITCH].command_deg = 0.0f;
     g_pwm_angle_joint[PWM_ANGLE_RIGHT_PITCH].min_deg = PWM_ANGLE_DEFAULT_PITCH_MIN_DEG;
     g_pwm_angle_joint[PWM_ANGLE_RIGHT_PITCH].max_deg = PWM_ANGLE_DEFAULT_PITCH_MAX_DEG;
 
@@ -340,6 +399,7 @@ void PWM_AngleServo_Init(void)
     g_pwm_angle_joint[PWM_ANGLE_RIGHT_YAW].encoder_sign = +1;
     g_pwm_angle_joint[PWM_ANGLE_RIGHT_YAW].direction_sign = +1;
     g_pwm_angle_joint[PWM_ANGLE_RIGHT_YAW].target_deg = 0.0f;
+    g_pwm_angle_joint[PWM_ANGLE_RIGHT_YAW].command_deg = 0.0f;
     g_pwm_angle_joint[PWM_ANGLE_RIGHT_YAW].min_deg = PWM_ANGLE_RIGHT_YAW_MIN_DEG;
     g_pwm_angle_joint[PWM_ANGLE_RIGHT_YAW].max_deg = PWM_ANGLE_RIGHT_YAW_MAX_DEG;
 
@@ -347,6 +407,7 @@ void PWM_AngleServo_Init(void)
     for (uint8_t i = 0; i < PWM_ANGLE_JOINT_NUM; i++) {
         g_pwm_angle_debug.joint[i].current_deg = 0.0f;
         g_pwm_angle_debug.joint[i].target_deg = 0.0f;
+        g_pwm_angle_debug.joint[i].command_deg = 0.0f;
         g_pwm_angle_debug.joint[i].error_deg = 0.0f;
         g_pwm_angle_debug.joint[i].speed_percent = 0;
         g_pwm_angle_debug.joint[i].status = PWM_ANGLE_DISABLED;
@@ -354,7 +415,48 @@ void PWM_AngleServo_Init(void)
 // 安全起见，上电初始化最后一步：强制让 4 个电机全部停止
     PWM_AngleServo_StopAll();
 }
-//2. 总开关使能接口
+
+/**
+ * @brief 2.锁死：将当前所有机械臂关节的实际位置，直接设为目标角度（就地锁死）
+ * @note  调用前提：必须确保底层编码器数据已经至少通过 SPI 成功刷新过一次！
+ */
+void PWM_AngleServo_LockCurrentPosition(void)
+{
+    for (uint8_t i = 0; i < PWM_ANGLE_JOINT_NUM; i++) {
+        PWM_AngleJoint_t joint = (PWM_AngleJoint_t)i;
+        PWM_AngleJointConfig_t *cfg = &g_pwm_angle_joint[joint];
+        PWM_AngleJointDebug_t *dbg = &g_pwm_angle_debug.joint[joint];
+
+        float current_pos = PWM_AngleServo_GetCurrentAngle(joint);
+
+        float limited =
+            PWM_Angle_ClampFloat(current_pos, cfg->min_deg, cfg->max_deg);
+
+        /*
+         * target_deg 是最终目标。
+         * command_deg 是当前内部平滑目标。
+         * 上电锁死时，两者都设置为当前位置。
+         */
+        cfg->target_deg = limited;
+        cfg->command_deg = limited;
+
+        dbg->current_deg = current_pos;
+        dbg->target_deg = limited;
+        dbg->command_deg = limited;
+        dbg->error_deg = 0.0f;
+        dbg->speed_percent = 0;
+
+        if (limited != current_pos) {
+            dbg->status = PWM_ANGLE_TARGET_LIMITED;
+        } else {
+            dbg->status = g_pwm_angle_enabled ? PWM_ANGLE_OK : PWM_ANGLE_DISABLED;
+        }
+
+        Motor_Stop(cfg->motor_id);
+    }
+}
+
+//3. 总开关使能接口
 void PWM_AngleServo_Enable(uint8_t enable)
 {
     g_pwm_angle_enabled = enable ? 1u : 0u;// 更新全局开关状态
@@ -374,7 +476,7 @@ uint8_t PWM_AngleServo_IsEnabled(void)
     return g_pwm_angle_enabled;
 }
 
-//3. 输入目标角度（外界大脑指挥机械臂的窗口）
+//4. 输入目标角度（外界大脑指挥机械臂的窗口）
 void PWM_AngleServo_SetTarget(PWM_AngleJoint_t joint, float target_deg)
 {
     if (!PWM_Angle_IsValidJoint(joint)) return;
@@ -408,7 +510,7 @@ void PWM_AngleServo_SetTargetAll(float left_pitch_deg,
     PWM_AngleServo_SetTarget(PWM_ANGLE_RIGHT_PITCH, right_pitch_deg);
     PWM_AngleServo_SetTarget(PWM_ANGLE_RIGHT_YAW, right_yaw_deg);
 }
-//4. 5ms 核心定时更新（整个系统的“心脏跳动”）
+//5. 5ms 核心定时更新（整个系统的“心脏跳动”）
 void PWM_AngleServo_Update_5ms(void)
 {
     // 检查总开关，如果总开关是关闭的，什么都不做，直接停机退出
@@ -447,15 +549,20 @@ void PWM_AngleServo_StopAll(void)
     }
 }
 
+
 uint8_t PWM_AngleServo_IsTargetReached(PWM_AngleJoint_t joint)
 {
     if (!PWM_Angle_IsValidJoint(joint)) return 0;
 
     float current = PWM_AngleServo_GetCurrentAngle(joint);
     float target = g_pwm_angle_joint[joint].target_deg;
-    float error = fabsf(PWM_Angle_Error(target, current));
+    float command = g_pwm_angle_joint[joint].command_deg;
 
-    return (error <= PWM_ANGLE_DEADBAND_DEG) ? 1u : 0u;
+    float err_current = fabsf(PWM_Angle_Error(target, current));
+    float err_command = fabsf(PWM_Angle_Error(target, command));
+
+    return ((err_current <= PWM_ANGLE_DEADBAND_DEG) &&
+            (err_command <= PWM_ANGLE_DEADBAND_DEG)) ? 1u : 0u;
 }
 
 uint8_t PWM_AngleServo_IsAllTargetReached(void)
@@ -477,13 +584,15 @@ void PWM_AngleServo_GetDebugInfo(PWM_AngleDebug_t *out_debug)
     for (uint8_t i = 0; i < PWM_ANGLE_JOINT_NUM; i++) {
         PWM_AngleJoint_t joint = (PWM_AngleJoint_t)i;
 
-        float current = PWM_AngleServo_GetCurrentAngle(joint);
-        float target = g_pwm_angle_joint[i].target_deg;
-        float error = PWM_Angle_Error(target, current);
+    float current = PWM_AngleServo_GetCurrentAngle(joint);
+    float target = g_pwm_angle_joint[i].target_deg;
+    float command = g_pwm_angle_joint[i].command_deg;
+    float error = PWM_Angle_Error(command, current);
 
-        g_pwm_angle_debug.joint[i].current_deg = current;
-        g_pwm_angle_debug.joint[i].target_deg = target;
-        g_pwm_angle_debug.joint[i].error_deg = error;
+    g_pwm_angle_debug.joint[i].current_deg = current;
+    g_pwm_angle_debug.joint[i].target_deg = target;
+    g_pwm_angle_debug.joint[i].command_deg = command;
+    g_pwm_angle_debug.joint[i].error_deg = error;
     }
     /* * 核心操作：*out_debug = g_pwm_angle_debug;
      * 意思是：通过外面传进来的“地址盒子”，把写好的调试看板数据，直接递到外面的变量里。
@@ -555,20 +664,25 @@ void PWM_AngleServo_SetLimit(PWM_AngleJoint_t joint, float min_deg, float max_de
     g_pwm_angle_joint[joint].min_deg = min_deg;
     g_pwm_angle_joint[joint].max_deg = max_deg;
 
-    /*
-     * 修改限位后，立即重新限制当前目标角度。
-     * 避免旧目标超出新限位。
-     */
-    float limited =
+    float limited_target =
         PWM_Angle_ClampFloat(g_pwm_angle_joint[joint].target_deg,
                              min_deg,
                              max_deg);
 
-    if (limited != g_pwm_angle_joint[joint].target_deg) {
-        g_pwm_angle_joint[joint].target_deg = limited;
-        g_pwm_angle_debug.joint[joint].target_deg = limited;
+    float limited_command =
+        PWM_Angle_ClampFloat(g_pwm_angle_joint[joint].command_deg,
+                             min_deg,
+                             max_deg);
+
+    if (limited_target != g_pwm_angle_joint[joint].target_deg) {
         g_pwm_angle_debug.joint[joint].status = PWM_ANGLE_TARGET_LIMITED;
     }
+
+    g_pwm_angle_joint[joint].target_deg = limited_target;
+    g_pwm_angle_joint[joint].command_deg = limited_command;
+
+    g_pwm_angle_debug.joint[joint].target_deg = limited_target;
+    g_pwm_angle_debug.joint[joint].command_deg = limited_command;
 }
 
 /************************************************
@@ -597,10 +711,12 @@ void PWM_AngleServo_SetCurrentAsZero(PWM_AngleJoint_t joint)
     // 5. 将目标角度也设置为 0°
     // 这样可以防止设完零点后，电机因为旧目标角度突然运动。
     g_pwm_angle_joint[joint].target_deg = 0.0f;
+    g_pwm_angle_joint[joint].command_deg = 0.0f;
 
     // 6. 更新调试信息
     g_pwm_angle_debug.joint[joint].current_deg = 0.0f;
     g_pwm_angle_debug.joint[joint].target_deg = 0.0f;
+    g_pwm_angle_debug.joint[joint].command_deg = 0.0f;
     g_pwm_angle_debug.joint[joint].error_deg = 0.0f;
     g_pwm_angle_debug.joint[joint].speed_percent = 0;
 
@@ -630,3 +746,15 @@ void PWM_AngleServo_SetAllCurrentAsZero(void)
     // 将右偏航当前位置设为 0°
     PWM_AngleServo_SetCurrentAsZero(PWM_ANGLE_RIGHT_YAW);
 }
+
+/************************************************
+ * 当前角度设为零点功能
+ ************************************************/
+
+
+
+
+
+
+
+

@@ -151,7 +151,7 @@ static void M3508_Pos_UpdateOne(uint8_t index, float local_target_mm)
     dbg->current_length_mm = current_mm;
     dbg->target_length_mm = clamped_target_mm;
     dbg->error_mm = error_mm;
-
+    
     // 4. 死区连续性映射（消除突变，彻底解决边界高频振荡）
     float control_error = 0.0f;
     if (error_mm > M3508_POS_DEADBAND_MM) {

@@ -78,10 +78,33 @@ void TIM3_Task_Execute(void)
     /* ---------------- 2. 编码器 SPI 读取任务 (5ms) ---------------- */
     if (tim3_mgr.flag_encoder && !tim3_mgr.encoder_busy)
     {
-        tim3_mgr.flag_encoder = 0;      
-        tim3_mgr.encoder_busy = 1;      
-        Update_All_Encoders();          
-        tim3_mgr.encoder_busy = 0;      
+    static uint8_t encoder_update_count = 0;
+    static uint8_t pwm_angle_servo_started = 0;
+        tim3_mgr.flag_encoder = 0;
+        tim3_mgr.encoder_busy = 1;
+
+        Update_All_Encoders();
+
+    /*
+     * 上电后等待编码器刷新几次，再锁死当前位置并开启闭环。
+     * 这样可以避免 encoder_data[] 还是默认值时就锁死。
+     */
+    if (!pwm_angle_servo_started)
+    {
+        if (encoder_update_count < 3)
+        {
+            encoder_update_count++;
+        }
+        else
+        {
+            PWM_AngleServo_LockCurrentPosition();
+            PWM_AngleServo_Enable(1);
+
+            pwm_angle_servo_started = 1;
+        }
+    }
+
+        tim3_mgr.encoder_busy = 0;
     }
     
     /* ---------------- 3. 串口调试指令解析任务 (5ms) ---------------- */

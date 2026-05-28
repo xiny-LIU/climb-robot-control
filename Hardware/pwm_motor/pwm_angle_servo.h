@@ -26,8 +26,6 @@
 /* 默认角度限位，单位 deg */
 #define PWM_ANGLE_DEFAULT_YAW_MIN_DEG       -6.0f
 #define PWM_ANGLE_DEFAULT_YAW_MAX_DEG       22.0f
-#define PWM_ANGLE_DEFAULT_PITCH_MIN_DEG     -8.0f
-#define PWM_ANGLE_DEFAULT_PITCH_MAX_DEG     30.0f
 
 /* 标准单臂局部偏航限位，单位 deg */
 #define PWM_ANGLE_STD_YAW_MIN_DEG           -6.0f
@@ -84,10 +82,11 @@ typedef enum {
  * status        ：当前状态
  */
 typedef struct {
-    float current_deg;
-    float target_deg;
-    float error_deg;
-    uint8_t speed_percent;
+    float current_deg;       // 当前实际角度
+    float target_deg;        // 用户最终目标角度
+    float command_deg;       // 内部平滑目标角度
+    float error_deg;         // command_deg - current_deg 的误差
+    uint8_t speed_percent;   // 当前 PWM 速度百分比
     PWM_AngleStatus_t status;
 } PWM_AngleJointDebug_t;
 
@@ -283,7 +282,12 @@ void PWM_AngleServo_SetZeroOffsetAll(float left_pitch_offset,
                                      float left_yaw_offset,
                                      float right_pitch_offset,
                                      float right_yaw_offset);
-
+                                     
+/*
+ * @brief 将当前所有关节的实际位置直接设为目标角度（就地锁死）
+ */
+void PWM_AngleServo_LockCurrentPosition(void);
+                                     
 /*
  * @brief 设置某个 PWM 关节方向符号
  *
@@ -371,5 +375,30 @@ void PWM_AngleServo_SetCurrentAsZero(PWM_AngleJoint_t joint);
  * PWM_AngleServo_SetCurrentAsZero()。
  */
 void PWM_AngleServo_SetAllCurrentAsZero(void);
+
+float PWM_AngleServo_GetTargetAngle(PWM_AngleJoint_t joint);
+
+void PWM_AngleServo_SetEncoderSignAll(int8_t left_pitch_sign,
+                                      int8_t left_yaw_sign,
+                                      int8_t right_pitch_sign,
+                                      int8_t right_yaw_sign);
+
+/*
+ * @brief PWM 角度伺服安全启动任务
+ *
+ * 调用位置：
+ * 必须放在 Update_All_Encoders() 成功执行之后调用。
+ *
+ * 功能：
+ * 1. 等待编码器稳定刷新若干次；
+ * 2. 锁死当前位置；
+ * 3. 开启闭环；
+ * 4. 原地保持一段时间；
+ * 5. 自动平滑回到机械零点 0°。
+ *
+ * 注意：
+ * 该函数内部自带状态机，外部周期调用即可。
+ */
+void PWM_AngleServo_SafeStartupAfterEncoderUpdate(void);
 
 #endif
