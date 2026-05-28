@@ -214,6 +214,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
  * @note        在 main循环 内部调用，自动处理来自串口助手的指令切换
  */
 uint32_t num_input = 0;
+int cmd_update = 0;
 void USART2_ProcessCommand(void)
 {
     uint8_t i;
@@ -297,6 +298,7 @@ void USART2_ProcessCommand(void)
     
     // 7. 必须清空接收标志，准备下一次接收
     num_input = value;
+    cmd_update = 1;
     printf("[%d]\r\n",num_input);
     g_usart_rx_sta = 0;  
 }
@@ -359,11 +361,21 @@ void Print_Task(void)
 //                    encoder_data[ENC_2].degree, 
 //                    encoder_data[ENC_3].degree, 
 //                    encoder_data[ENC_4].degree);
-            printf("CurrentAngle: %.1f | %.1f | %.1f | %.1f\r\n", 
+            printf("CurrentAngle: %.2f | %.2f | %.2f | %.2f\r\n", 
                 dbg.joint[PWM_ANGLE_LEFT_PITCH].current_deg, 
                 dbg.joint[PWM_ANGLE_LEFT_YAW].current_deg, 
                 dbg.joint[PWM_ANGLE_RIGHT_PITCH].current_deg, 
                 dbg.joint[PWM_ANGLE_RIGHT_YAW].current_deg);
+            printf("TARGETAngle: %.2f | %.2f | %.2f | %.2f\r\n", 
+                dbg.joint[PWM_ANGLE_LEFT_PITCH].target_deg, 
+                dbg.joint[PWM_ANGLE_LEFT_YAW].target_deg, 
+                dbg.joint[PWM_ANGLE_RIGHT_PITCH].target_deg, 
+                dbg.joint[PWM_ANGLE_RIGHT_YAW].target_deg);
+            printf("COMMANDAngle: %.2f | %.2f | %.2f | %.2f\r\n", 
+                dbg.joint[PWM_ANGLE_LEFT_PITCH].command_deg, 
+                dbg.joint[PWM_ANGLE_LEFT_YAW].command_deg, 
+                dbg.joint[PWM_ANGLE_RIGHT_PITCH].command_deg, 
+                dbg.joint[PWM_ANGLE_RIGHT_YAW].command_deg);
             break;
         }
         

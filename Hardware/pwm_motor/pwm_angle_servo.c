@@ -2,6 +2,9 @@
 
 #include <math.h>
 #include <stddef.h>
+#include "string.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 #include "pwm_motor.h"
 #include "spi4.h"
@@ -41,7 +44,7 @@
  * 内部目标角度 command_deg 的最大变化速度，单位 deg/s。
  * 这个值不是电机真实速度，而是“目标角度变化速度”。
  */
-#define PWM_ANGLE_TARGET_SLEW_RATE_DEG_S     30.0f
+#define PWM_ANGLE_TARGET_SLEW_RATE_DEG_S     2.0f
 
 /* ============================================================
  * 内部类型
@@ -255,7 +258,7 @@ static void PWM_Angle_UpdateOne(PWM_AngleJoint_t joint)
     // 但如果后续调用 PWM_AngleServo_SetLimit() 修改了软限位，
     // 原来的目标角度可能已经不在新的限位范围内。
     // 所以这里再次 Clamp 一次，保证真正执行的目标角度一定安全。
-    float target_deg = PWM_Angle_ClampFloat(cfg->target_deg, cfg->min_deg, cfg->max_deg);
+    float target_deg = cfg->target_deg;
 
     // 5. 将限位后的目标角度写回配置结构体
     // 这样 cfg->target_deg 始终保存当前真正执行的安全目标角度
@@ -273,6 +276,22 @@ static void PWM_Angle_UpdateOne(PWM_AngleJoint_t joint)
      */
     cfg->command_deg =
         PWM_Angle_ApproachAngle(cfg->command_deg, target_deg, max_step_deg);
+    
+//打印步长    
+//        float old_command_deg = cfg->command_deg;
+
+//        cfg->command_deg =
+//            PWM_Angle_ApproachAngle(cfg->command_deg, target_deg, max_step_deg);
+
+//        if (joint == PWM_ANGLE_LEFT_PITCH)
+//        {
+//            printf("[UPD] target=%.3f, old_cmd=%.3f, new_cmd=%.3f, max_step=%.4f, cmd_err=%.3f\r\n",
+//                   target_deg,
+//                   old_command_deg,
+//                   cfg->command_deg,
+//                   max_step_deg,
+//                   PWM_Angle_Error(target_deg, old_command_deg));
+//        }
     
     // 6. 计算当前角度与目标角度之间的误差
     // error_deg = Normalize180(target_deg - current_deg)
@@ -429,33 +448,25 @@ void PWM_AngleServo_LockCurrentPosition(void)
 
         float current_pos = PWM_AngleServo_GetCurrentAngle(joint);
 
-        float limited =
-            PWM_Angle_ClampFloat(current_pos, cfg->min_deg, cfg->max_deg);
-
         /*
-         * target_deg 是最终目标。
-         * command_deg 是当前内部平滑目标。
-         * 上电锁死时，两者都设置为当前位置。
+         * 锁死函数的核心原则：
+         * 当前在哪里，就锁在哪里。
+         * 不在这里做软限位裁剪。
          */
-        cfg->target_deg = limited;
-        cfg->command_deg = limited;
+        cfg->target_deg = current_pos;
+        cfg->command_deg = current_pos;
 
         dbg->current_deg = current_pos;
-        dbg->target_deg = limited;
-        dbg->command_deg = limited;
+        dbg->target_deg = current_pos;
+        dbg->command_deg = current_pos;
         dbg->error_deg = 0.0f;
         dbg->speed_percent = 0;
 
-        if (limited != current_pos) {
-            dbg->status = PWM_ANGLE_TARGET_LIMITED;
-        } else {
-            dbg->status = g_pwm_angle_enabled ? PWM_ANGLE_OK : PWM_ANGLE_DISABLED;
-        }
+        dbg->status = g_pwm_angle_enabled ? PWM_ANGLE_OK : PWM_ANGLE_DISABLED;
 
         Motor_Stop(cfg->motor_id);
     }
 }
-
 //3. 总开关使能接口
 void PWM_AngleServo_Enable(uint8_t enable)
 {
@@ -498,6 +509,14 @@ void PWM_AngleServo_SetTarget(PWM_AngleJoint_t joint, float target_deg)
     } else {
         g_pwm_angle_debug.joint[joint].status = PWM_ANGLE_OK; // 正常
     }
+    
+    //打印当前command_deg
+//    printf("[SET] joint=%d, input=%.3f, limited=%.3f, target=%.3f, command=%.3f\r\n",
+//       joint,
+//       target_deg,
+//       limited,
+//       g_pwm_angle_joint[joint].target_deg,
+//       g_pwm_angle_joint[joint].command_deg);
 }
 
 void PWM_AngleServo_SetTargetAll(float left_pitch_deg,

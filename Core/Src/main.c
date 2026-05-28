@@ -157,6 +157,8 @@ int main(void)
 //  HAL_CAN_Start(&hcan1);
 //  HAL_CAN_ActivateNotification(&hcan1, CAN_IT_RX_FIFO0_MSG_PENDING);
     
+    
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -166,10 +168,15 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    TIM3_Task_Execute();//tim
+    
 //    USART2_PrintMessage();
-    // 4. 让右臂俯仰角抬高到  度
-    PWM_AngleServo_SetTarget(PWM_ANGLE_LEFT_PITCH, num_input);
+    if (cmd_update && PWM_AngleServo_IsEnabled())
+    {
+        PWM_AngleServo_SetTarget(PWM_ANGLE_LEFT_PITCH, num_input);
+        cmd_update = 0;
+    }
+
+    TIM3_Task_Execute();//tim
   }
   /* USER CODE END 3 */
 }

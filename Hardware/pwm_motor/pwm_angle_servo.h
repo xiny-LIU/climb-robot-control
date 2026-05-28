@@ -40,8 +40,11 @@
 #define PWM_ANGLE_RIGHT_YAW_MAX_DEG         (-PWM_ANGLE_STD_YAW_MIN_DEG)
 
 /* 俯仰角左右一致，单位 deg */
+//#define PWM_ANGLE_DEFAULT_PITCH_MIN_DEG     -8.0f
+//#define PWM_ANGLE_DEFAULT_PITCH_MAX_DEG     30.0f
+//测试
 #define PWM_ANGLE_DEFAULT_PITCH_MIN_DEG     -8.0f
-#define PWM_ANGLE_DEFAULT_PITCH_MAX_DEG     30.0f
+#define PWM_ANGLE_DEFAULT_PITCH_MAX_DEG     15.0f
 
 /*
  * @brief PWM 角度闭环关节枚举
@@ -382,23 +385,5 @@ void PWM_AngleServo_SetEncoderSignAll(int8_t left_pitch_sign,
                                       int8_t left_yaw_sign,
                                       int8_t right_pitch_sign,
                                       int8_t right_yaw_sign);
-
-/*
- * @brief PWM 角度伺服安全启动任务
- *
- * 调用位置：
- * 必须放在 Update_All_Encoders() 成功执行之后调用。
- *
- * 功能：
- * 1. 等待编码器稳定刷新若干次；
- * 2. 锁死当前位置；
- * 3. 开启闭环；
- * 4. 原地保持一段时间；
- * 5. 自动平滑回到机械零点 0°。
- *
- * 注意：
- * 该函数内部自带状态机，外部周期调用即可。
- */
-void PWM_AngleServo_SafeStartupAfterEncoderUpdate(void);
 
 #endif
