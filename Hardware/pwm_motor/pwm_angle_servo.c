@@ -28,7 +28,7 @@
 
 /* PWM 电机最小/最大速度百分比 */
 #define PWM_ANGLE_MIN_SPEED_PERCENT      8u// 最小速度 18%。低于这个速度，电机可能因为摩擦力根本带不动
-#define PWM_ANGLE_MAX_SPEED_PERCENT      70u// 最大速度 70%。超过这个速度，机械臂可能因为太快而失控或撞坏
+#define PWM_ANGLE_MAX_SPEED_PERCENT      50u// 最大速度 70%。超过这个速度，机械臂可能因为太快而失控或撞坏
 
 /* ============================================================
  * 目标角度平滑参数
@@ -44,7 +44,7 @@
  * 内部目标角度 command_deg 的最大变化速度，单位 deg/s。
  * 这个值不是电机真实速度，而是“目标角度变化速度”。
  */
-#define PWM_ANGLE_TARGET_SLEW_RATE_DEG_S     10.0f
+#define PWM_ANGLE_TARGET_SLEW_RATE_DEG_S     8.0f
 
 /* ============================================================
  * 内部类型
@@ -346,7 +346,7 @@ static void PWM_Angle_UpdateOne(PWM_AngleJoint_t joint)
 
     // 12.【判断方向】
     // error_deg 表示目标角度相对于当前角度的方向；
-    // cfg->direction_sign 表示实际电机安装方向与编码器角度增加方向之间的关系。
+    // cfg->direction_sign 表示实际电机安装方向与DH关节角增加方向之间的关系。
     //
     // 如果 direction_sign = +1：
     //     error_deg > 0 时，DIRECTION_FORWARD 应该让角度增大；
@@ -389,7 +389,7 @@ void PWM_AngleServo_Init(void)
 
     g_pwm_angle_joint[PWM_ANGLE_LEFT_PITCH].motor_id = MOTOR_A;
     g_pwm_angle_joint[PWM_ANGLE_LEFT_PITCH].encoder_id = ENC_1;
-    g_pwm_angle_joint[PWM_ANGLE_LEFT_PITCH].zero_offset_deg = 0.0f;
+    g_pwm_angle_joint[PWM_ANGLE_LEFT_PITCH].zero_offset_deg = 20.0f;
     g_pwm_angle_joint[PWM_ANGLE_LEFT_PITCH].encoder_sign = +1;
     g_pwm_angle_joint[PWM_ANGLE_LEFT_PITCH].direction_sign = -1;
     g_pwm_angle_joint[PWM_ANGLE_LEFT_PITCH].target_deg = 0.0f;
@@ -400,7 +400,7 @@ void PWM_AngleServo_Init(void)
     g_pwm_angle_joint[PWM_ANGLE_LEFT_YAW].motor_id = MOTOR_B;
     g_pwm_angle_joint[PWM_ANGLE_LEFT_YAW].encoder_id = ENC_2;
     g_pwm_angle_joint[PWM_ANGLE_LEFT_YAW].zero_offset_deg = 0.0f;
-    g_pwm_angle_joint[PWM_ANGLE_LEFT_YAW].encoder_sign = -1;
+    g_pwm_angle_joint[PWM_ANGLE_LEFT_YAW].encoder_sign = +1;
     g_pwm_angle_joint[PWM_ANGLE_LEFT_YAW].direction_sign = +1;
     g_pwm_angle_joint[PWM_ANGLE_LEFT_YAW].target_deg = 0.0f;
     g_pwm_angle_joint[PWM_ANGLE_LEFT_YAW].command_deg = 0.0f;
@@ -409,8 +409,8 @@ void PWM_AngleServo_Init(void)
 
     g_pwm_angle_joint[PWM_ANGLE_RIGHT_PITCH].motor_id = MOTOR_C;
     g_pwm_angle_joint[PWM_ANGLE_RIGHT_PITCH].encoder_id = ENC_3;
-    g_pwm_angle_joint[PWM_ANGLE_RIGHT_PITCH].zero_offset_deg = 0.0f;
-    g_pwm_angle_joint[PWM_ANGLE_RIGHT_PITCH].encoder_sign = +1;
+    g_pwm_angle_joint[PWM_ANGLE_RIGHT_PITCH].zero_offset_deg = 10.0f;
+    g_pwm_angle_joint[PWM_ANGLE_RIGHT_PITCH].encoder_sign = -1;
     g_pwm_angle_joint[PWM_ANGLE_RIGHT_PITCH].direction_sign = +1;
     g_pwm_angle_joint[PWM_ANGLE_RIGHT_PITCH].target_deg = 0.0f;
     g_pwm_angle_joint[PWM_ANGLE_RIGHT_PITCH].command_deg = 0.0f;
