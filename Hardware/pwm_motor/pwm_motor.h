@@ -3,7 +3,7 @@
 
 #include "main.h"
 
-// µç»ú±àºÅ¶¨Òå
+// ç”µæœºç¼–å·å®šä¹‰
 typedef enum {
     MOTOR_A = 0,
     MOTOR_B = 1,
@@ -11,19 +11,19 @@ typedef enum {
     MOTOR_D = 3
 } Motor_ID_t;
 
-// µç»ú·½Ïò¶¨Òå
+// ç”µæœºæ–¹å‘å®šä¹‰
 typedef enum {
-    DIRECTION_FORWARD = 0,  // Õı×ª (LowµçÆ½)
-    DIRECTION_REVERSE = 1   // ·´×ª (HighµçÆ½)
+    DIRECTION_FORWARD = 0,  // æ­£è½¬ (Lowç”µå¹³)
+    DIRECTION_REVERSE = 1   // åè½¬ (Highç”µå¹³)
 } Motor_Direction_t;
 
-// µç»ú×´Ì¬¶¨Òå
+// ç”µæœºçŠ¶æ€å®šä¹‰
 typedef enum {
     MOTOR_STATE_STOPPED = 0,
     MOTOR_STATE_RUNNING = 1
 } Motor_State_t;
 
-// µç»ú¿ØÖÆ½á¹¹Ìå
+// ç”µæœºæ§åˆ¶ç»“æ„ä½“
 typedef struct {
     Motor_ID_t id;
     Motor_State_t state;
@@ -31,37 +31,37 @@ typedef struct {
     uint8_t speed_percent;  // 0-100%
 } Motor_Control_t;
 
-// È«¾Öµç»ú¿ØÖÆÊµÀı
+// å…¨å±€ç”µæœºæ§åˆ¶å®ä¾‹
 extern Motor_Control_t motor_A;
 extern Motor_Control_t motor_B;
 extern Motor_Control_t motor_C;
 extern Motor_Control_t motor_D;
 
-// ³õÊ¼»¯º¯Êı
+// åˆå§‹åŒ–å‡½æ•°
 void Motor_Init(Motor_ID_t motor_id);
 void Motor_Init_All(void);
 
-// »ù±¾¿ØÖÆº¯Êı
+// åŸºæœ¬æ§åˆ¶å‡½æ•°
 void Motor_Start(Motor_ID_t motor_id);
 void Motor_Stop(Motor_ID_t motor_id);
 void Motor_SetSpeed(Motor_ID_t motor_id, uint8_t speed_percent);
 void Motor_SetDirection(Motor_ID_t motor_id, Motor_Direction_t direction);
 void Motor_Reverse(Motor_ID_t motor_id);
 
-// ÅúÁ¿¿ØÖÆº¯Êı
+// æ‰¹é‡æ§åˆ¶å‡½æ•°
 void Motor_Start_All(void);
 void Motor_Stop_All(void);
 void Motor_SetSpeed_All(uint8_t speed_percent);
 void Motor_Emergency_Stop(void);
 
-// ¸¨Öúº¯Êı
+// è¾…åŠ©å‡½æ•°
 const char* Motor_Get_ID_String(Motor_ID_t motor_id);
 const char* Motor_Get_Direction_String(Motor_Direction_t direction);
 
-// µç»úËø¶¨¿ØÖÆ£¨ÓÃÓÚPS2½ô¼±Í£Ö¹£©
-void Motor_Lock_All(void);      // Ëø¶¨ËùÓĞµç»ú£¨¶Ïµç+É²³µ£©
-void Motor_Unlock_All(void);    // ½âËøËùÓĞµç»ú
-uint8_t Motor_Is_Locked(void);  // ²éÑ¯Ëø¶¨×´Ì¬
+// ç”µæœºé”å®šæ§åˆ¶ï¼ˆç”¨äºPS2ç´§æ€¥åœæ­¢ï¼‰
+void Motor_Lock_All(void);      // é”å®šæ‰€æœ‰ç”µæœºï¼ˆæ–­ç”µ+åˆ¹è½¦ï¼‰
+void Motor_Unlock_All(void);    // è§£é”æ‰€æœ‰ç”µæœº
+uint8_t Motor_Is_Locked(void);  // æŸ¥è¯¢é”å®šçŠ¶æ€
 
 #endif
 

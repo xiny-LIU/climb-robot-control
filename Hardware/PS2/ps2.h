@@ -32,7 +32,7 @@
 //#define WHAMMY_BAR		8
 
 //These are stick values
-#define PSS_RX			5                //ÓÒÒ¡¸ËXÖáÊı¾İ
+#define PSS_RX			5                //å³æ‘‡æ†Xè½´æ•°æ®
 #define PSS_RY			6
 #define PSS_LX			7
 #define PSS_LY			8
@@ -50,31 +50,31 @@ extern "C" {
 	
     void PS2_Init(void);
 	
-    unsigned char ps2_mode_get(void);   //ÅĞ¶ÏÊÇ·ñÎªºìµÆÄ£Ê½
+    unsigned char ps2_mode_get(void);   //åˆ¤æ–­æ˜¯å¦ä¸ºçº¢ç¯æ¨¡å¼
     
-    void PS2_ReadData(void); //¶ÁÊÖ±úÊı¾İ
+    void PS2_ReadData(void); //è¯»æ‰‹æŸ„æ•°æ®
     
-    unsigned char PS2_Cmd(unsigned char CMD);		  //ÏòÊÖ±ú·¢ËÍÃüÁî
+    unsigned char PS2_Cmd(unsigned char CMD);		  //å‘æ‰‹æŸ„å‘é€å‘½ä»¤
     
-    unsigned char ps2_key_serch(void);		  //°´¼üÖµ¶ÁÈ¡
+    unsigned char ps2_key_serch(void);		  //æŒ‰é”®å€¼è¯»å–
     
 	unsigned char ps2_get_key_state(unsigned char key_id);
 	
-    unsigned char ps2_get_anolog_data(unsigned char button); //µÃµ½Ò»¸öÒ¡¸ËµÄÄ£ÄâÁ¿
+    unsigned char ps2_get_anolog_data(unsigned char button); //å¾—åˆ°ä¸€ä¸ªæ‘‡æ†çš„æ¨¡æ‹Ÿé‡
     
-    void PS2_ClearData(void);	  //Çå³ıÊı¾İ»º³åÇø
+    void PS2_ClearData(void);	  //æ¸…é™¤æ•°æ®ç¼“å†²åŒº
     
-    void PS2_Vibration(unsigned char motor1, unsigned char motor2);//Õñ¶¯ÉèÖÃmotor1  0xFF¿ª£¬ÆäËû¹Ø£¬motor2  0x40~0xFF
+    void PS2_Vibration(unsigned char motor1, unsigned char motor2);//æŒ¯åŠ¨è®¾ç½®motor1  0xFFå¼€ï¼Œå…¶ä»–å…³ï¼Œmotor2  0x40~0xFF
 
-    void PS2_EnterConfing(void);	 //½øÈëÅäÖÃ
+    void PS2_EnterConfing(void);	 //è¿›å…¥é…ç½®
     
-    void PS2_TurnOnAnalogMode(void); //·¢ËÍÄ£ÄâÁ¿
+    void PS2_TurnOnAnalogMode(void); //å‘é€æ¨¡æ‹Ÿé‡
     
-    void PS2_VibrationMode(void);    //Õñ¶¯ÉèÖÃ
+    void PS2_VibrationMode(void);    //æŒ¯åŠ¨è®¾ç½®
     
-    void PS2_ExitConfing(void);	     //Íê³ÉÅäÖÃ
+    void PS2_ExitConfing(void);	     //å®Œæˆé…ç½®
     
-    void PS2_SetInit(void);		     //ÅäÖÃ³õÊ¼»¯
+    void PS2_SetInit(void);		     //é…ç½®åˆå§‹åŒ–
 
     void PS2_ShortPoll(void);
 

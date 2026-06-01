@@ -3,21 +3,21 @@
 
 #include "stm32f4xx_hal.h"
 
-#define USART_REC_LEN   200                     /* ¶¨Òå×î´ó½ÓÊÕ×Ö½ÚÊı 200 */
-#define USART_EN_RX     1                       /* Ê¹ÄÜ£¨1£©/½ûÖ¹£¨0£©´®¿Ú1½ÓÊÕ */
-#define RXBUFFERSIZE    1                       /* »º´æ´óĞ¡ */
+#define USART_REC_LEN   200                     /* å®šä¹‰æœ€å¤§æ¥æ”¶å­—èŠ‚æ•° 200 */
+#define USART_EN_RX     1                       /* ä½¿èƒ½ï¼ˆ1ï¼‰/ç¦æ­¢ï¼ˆ0ï¼‰ä¸²å£1æ¥æ”¶ */
+#define RXBUFFERSIZE    1                       /* ç¼“å­˜å¤§å° */
 
-//extern UART_HandleTypeDef huart2;       /* UART¾ä±ú */
+//extern UART_HandleTypeDef huart2;       /* UARTå¥æŸ„ */
 extern uint32_t num_input;
 extern int cmd_update;
 
-extern uint8_t  g_usart_rx_buf[USART_REC_LEN];  /* ½ÓÊÕ»º³å,×î´óUSART_REC_LEN¸ö×Ö½Ú.Ä©×Ö½ÚÎª»»ĞĞ·û */
-extern uint16_t g_usart_rx_sta;                 /* ½ÓÊÕ×´Ì¬±ê¼Ç */
-extern uint8_t g_rx_buffer[RXBUFFERSIZE];       /* HAL¿âUSART½ÓÊÕBuffer */
-extern uint8_t  print_mode;                     /* ´òÓ¡Ä£Ê½£º1-IMU, 2-Motor, 3-Encoder */
+extern uint8_t  g_usart_rx_buf[USART_REC_LEN];  /* æ¥æ”¶ç¼“å†²,æœ€å¤§USART_REC_LENä¸ªå­—èŠ‚.æœ«å­—èŠ‚ä¸ºæ¢è¡Œç¬¦ */
+extern uint16_t g_usart_rx_sta;                 /* æ¥æ”¶çŠ¶æ€æ ‡è®° */
+extern uint8_t g_rx_buffer[RXBUFFERSIZE];       /* HALåº“USARTæ¥æ”¶Buffer */
+extern uint8_t  print_mode;                     /* æ‰“å°æ¨¡å¼ï¼š1-IMU, 2-Motor, 3-Encoder */
 
 
-void USART2_init(void);             /* ´®¿Ú³õÊ¼»¯º¯Êı */
+void USART2_init(void);             /* ä¸²å£åˆå§‹åŒ–å‡½æ•° */
 void USART2_PrintMessage(void);
 void Print_Task(void);
 void USART2_ProcessCommand(void);

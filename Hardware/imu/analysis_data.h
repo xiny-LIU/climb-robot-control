@@ -42,11 +42,11 @@ typedef struct
 	float accel_y;
 	float accel_z;
 
-	float angle_x;			/*unit: ¡ã (deg)/s*/
+	float angle_x;			/*unit: Â° (deg)/s*/
 	float angle_y;
 	float angle_z;
 
-	float mag_x;			/*unit: ¹éÒ»»¯Öµ*/
+	float mag_x;			/*unit: å½’ä¸€åŒ–å€¼*/
 	float mag_y;
 	float mag_z;
 
@@ -54,7 +54,7 @@ typedef struct
 	float raw_mag_y;
 	float raw_mag_z;
 	
-	float pitch;			/*unit: ¡ã (deg)*/
+	float pitch;			/*unit: Â° (deg)*/
 	float roll;
 	float yaw;
 	

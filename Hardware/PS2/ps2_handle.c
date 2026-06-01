@@ -3,24 +3,24 @@
 #include "user_usart.h"
 #include "CAN_receive.h"
 #include "bsp_can.h"
-#include "main.h"       // °üº¬HAL¿âºÍGPIO¶¨Òå
+#include "main.h"       // åŒ…å«HALåº“å’ŒGPIOå®šä¹‰
 #include "string.h"
 #include <stdio.h>
 #include "pwm_motor.h"
 
-// ¾²Ì¬±äÁ¿£¬ÓÃÓÚ±£´æÉÏ´ÎÄ£Ê½
-static unsigned char Last_PS2_Mode = 0xFF; // ³õÊ¼»¯ÎªÎŞĞ§Öµ
+// é™æ€å˜é‡ï¼Œç”¨äºä¿å­˜ä¸Šæ¬¡æ¨¡å¼
+static unsigned char Last_PS2_Mode = 0xFF; // åˆå§‹åŒ–ä¸ºæ— æ•ˆå€¼
 
 void PS2_Control_Handler(void)
 {
     unsigned char KeyNum;
     unsigned char PS2_Mode;
     
-    // »ñÈ¡PS2Êı¾İ
-    KeyNum = ps2_key_serch();  // ÄÚ²¿»áµ÷ÓÃPS2_ReadData()
+    // è·å–PS2æ•°æ®
+    KeyNum = ps2_key_serch();  // å†…éƒ¨ä¼šè°ƒç”¨PS2_ReadData()
     PS2_Mode = ps2_mode_get();    
     
-    // Ä£Ê½ÇĞ»»¼ì²â
+    // æ¨¡å¼åˆ‡æ¢æ£€æµ‹
     if (PS2_Mode != Last_PS2_Mode)
     {
 //        printf("PS2 mode changed, stopping all motors\r\n");
@@ -28,7 +28,7 @@ void PS2_Control_Handler(void)
         CAN_cmd_chassis(0, 0, 0, 0);
     }
     
-    // ´¦ÀíËø¶¨/½âËø°´¼ü£¨ÓÅÏÈ¼¶×î¸ß£©
+    // å¤„ç†é”å®š/è§£é”æŒ‰é”®ï¼ˆä¼˜å…ˆçº§æœ€é«˜ï¼‰
     if (ps2_get_key_state(PSB_BLUE))
     {
 //        printf("PSB_BLUE pressed - LOCKING!\r\n");
@@ -41,7 +41,7 @@ void PS2_Control_Handler(void)
         Motor_Unlock_All();
     }
     
-    // ¸ù¾İÄ£Ê½´¦Àí¿ØÖÆÂß¼­
+    // æ ¹æ®æ¨¡å¼å¤„ç†æ§åˆ¶é€»è¾‘
     if (PS2_Mode == PSB_REDLIGHT_MODE)
     {
         unsigned char ps2_lx, ps2_ly, ps2_rx, ps2_ry;
@@ -52,7 +52,7 @@ void PS2_Control_Handler(void)
         ps2_rx = ps2_get_anolog_data(PSS_RX);
         ps2_ry = ps2_get_anolog_data(PSS_RY);
         
-        // ´¦ÀíCANµ×ÅÌ¿ØÖÆ
+        // å¤„ç†CANåº•ç›˜æ§åˆ¶
         if (ps2_get_key_state(PSB_L1))
         {
 //            printf("PSB_L1\r\n");
@@ -74,7 +74,7 @@ void PS2_Control_Handler(void)
             CAN_cmd_chassis(0, -800, 0, 0);
         }
         
-        // ´¦Àíµç»ú¿ØÖÆ£¨ÊÜËø¶¨±£»¤£©
+        // å¤„ç†ç”µæœºæ§åˆ¶ï¼ˆå—é”å®šä¿æŠ¤ï¼‰
         if (Motor_Is_Locked())
         {
             printf("Motor system LOCKED - ignoring motor commands\r\n");
@@ -83,7 +83,7 @@ void PS2_Control_Handler(void)
         }
         else
         {
-            // ×óÒ¡¸ËYÖá¿ØÖÆµç»úA
+            // å·¦æ‘‡æ†Yè½´æ§åˆ¶ç”µæœºA
             if (ps2_ly == 0x00)
             {
 //                printf("Motor A forward\r\n");
@@ -96,7 +96,7 @@ void PS2_Control_Handler(void)
                 Motor_SetSpeed(MOTOR_A, 60);
                 Motor_SetDirection(MOTOR_A, DIRECTION_REVERSE);
             }
-            // ×óÒ¡¸ËXÖá¿ØÖÆµç»úB
+            // å·¦æ‘‡æ†Xè½´æ§åˆ¶ç”µæœºB
             else if (ps2_lx == 0x00)
             {
 //                printf("Motor B forward\r\n");
@@ -109,7 +109,7 @@ void PS2_Control_Handler(void)
                 Motor_SetSpeed(MOTOR_B, 60);
                 Motor_SetDirection(MOTOR_B, DIRECTION_REVERSE);
             }
-            // ÓÒÒ¡¸ËYÖá¿ØÖÆµç»úC
+            // å³æ‘‡æ†Yè½´æ§åˆ¶ç”µæœºC
             else if (ps2_ry == 0x00)
             {
 //                printf("Motor C forward\r\n");
@@ -122,7 +122,7 @@ void PS2_Control_Handler(void)
                 Motor_SetSpeed(MOTOR_C, 60);
                 Motor_SetDirection(MOTOR_C, DIRECTION_REVERSE);
             }
-            // ÓÒÒ¡¸ËXÖá¿ØÖÆµç»úD
+            // å³æ‘‡æ†Xè½´æ§åˆ¶ç”µæœºD
             else if (ps2_rx == 0x00)
             {
 //                printf("Motor D forward\r\n");
@@ -142,42 +142,42 @@ void PS2_Control_Handler(void)
             }
         }
     }
-    else if (PS2_Mode == PSB_GREENLIGHT_MODE)  // ÂÌµÆÊı×ÖÄ£Ê½
+    else if (PS2_Mode == PSB_GREENLIGHT_MODE)  // ç»¿ç¯æ•°å­—æ¨¡å¼
     {
 //        printf("GREENLIGHT_MODE\r\n");
         
         if (KeyNum)
         {
-            // ·½Ïò¼ü¿ØÖÆ£¨Ê¾Àı£©
+            // æ–¹å‘é”®æ§åˆ¶ï¼ˆç¤ºä¾‹ï¼‰
             if (ps2_get_key_state(PSB_PAD_UP))
             {
                 printf("PSB_PAD_UP\r\n");
-                // Ìí¼ÓÏòÉÏÂß¼­
+                // æ·»åŠ å‘ä¸Šé€»è¾‘
             }
             else if (ps2_get_key_state(PSB_PAD_DOWN))
             {
                 printf("PSB_PAD_DOWN\r\n");
-                // Ìí¼ÓÏòÏÂÂß¼­
+                // æ·»åŠ å‘ä¸‹é€»è¾‘
             }
             else if (ps2_get_key_state(PSB_PAD_LEFT))
             {
                 printf("PSB_PAD_LEFT\r\n");
-                // Ìí¼ÓÏò×óÂß¼­
+                // æ·»åŠ å‘å·¦é€»è¾‘
             }
             else if (ps2_get_key_state(PSB_PAD_RIGHT))
             {
                 printf("PSB_PAD_RIGHT\r\n");
-                // Ìí¼ÓÏòÓÒÂß¼­
+                // æ·»åŠ å‘å³é€»è¾‘
             }
             else if (ps2_get_key_state(PSB_L1))
             {
                 printf("PSB_L1\r\n");
-                // Ìí¼ÓL1Âß¼­
+                // æ·»åŠ L1é€»è¾‘
             }
             else if (ps2_get_key_state(PSB_L2))
             {
                 printf("PSB_L2\r\n");
-                // Ìí¼ÓL2Âß¼­
+                // æ·»åŠ L2é€»è¾‘
             }
             else
             {
@@ -191,17 +191,17 @@ void PS2_Control_Handler(void)
             Motor_Stop_All();
         }
     }
-    else  // Î´Ê¶±ğÄ£Ê½
+    else  // æœªè¯†åˆ«æ¨¡å¼
     {
 //        printf("stop\r\n");
         Motor_Stop_All();
         CAN_cmd_chassis(0, 0, 0, 0);
     }
     
-    // ¸üĞÂÉÏ´ÎÄ£Ê½
+    // æ›´æ–°ä¸Šæ¬¡æ¨¡å¼
     Last_PS2_Mode = PS2_Mode;
     
-    // ¿ØÖÆÑ­»·ÑÓÊ±
+    // æ§åˆ¶å¾ªç¯å»¶æ—¶
     HAL_Delay(100);
 //    PS2_Delay_US(100);
 }

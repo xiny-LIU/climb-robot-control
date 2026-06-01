@@ -1,73 +1,73 @@
 #include "led.h"
 
-//ÂÖÑ¯·½Ê½
+//è½®è¯¢æ–¹å¼
 void Led_Task(void)
 {
     if (HAL_GPIO_ReadPin(KEY_GPIO_Port, KEY_Pin) == GPIO_PIN_SET)
     {
-        HAL_GPIO_WritePin(LED_Red_GPIO_Port, LED_Red_Pin, GPIO_PIN_RESET);// µãÁÁ
-        HAL_Delay(1000);  // ? ×¢Òâ£ºÕâÀïÑÓÊ±2Ãë£¬»á×èÈûÖ÷Ñ­»·
-        HAL_GPIO_WritePin(LED_Red_GPIO_Port, LED_Red_Pin, GPIO_PIN_SET);// Ï¨Ãğ
+        HAL_GPIO_WritePin(LED_Red_GPIO_Port, LED_Red_Pin, GPIO_PIN_RESET);// ç‚¹äº®
+        HAL_Delay(1000);  // ? æ³¨æ„ï¼šè¿™é‡Œå»¶æ—¶2ç§’ï¼Œä¼šé˜»å¡ä¸»å¾ªç¯
+        HAL_GPIO_WritePin(LED_Red_GPIO_Port, LED_Red_Pin, GPIO_PIN_SET);// ç†„ç­
 //        printf("hello");
     }
-    HAL_Delay(10);  // Ïû¶¶ÑÓÊ±
+    HAL_Delay(10);  // æ¶ˆæŠ–å»¶æ—¶
 }
 
 
-////ÖĞ¶Ï»Øµ÷·½Ê½
-//// ********** ÄÚ²¿Ë½ÓĞ±äÁ¿£¨static¸ôÀë£¬²»ÎÛÈ¾È«¾Ö£©**********
-//uint8_t key_press_flag = 0;  // °´¼üÖĞ¶Ï´¥·¢±êÖ¾
-//static volatile uint32_t led_timer_counter = 0; // LED¼ÆÊ±Æ÷¼ÆÊıÆ÷
-//static volatile uint8_t led_on_flag = 0;      // LEDÁÁ±êÖ¾
+////ä¸­æ–­å›è°ƒæ–¹å¼
+//// ********** å†…éƒ¨ç§æœ‰å˜é‡ï¼ˆstaticéš”ç¦»ï¼Œä¸æ±¡æŸ“å…¨å±€ï¼‰**********
+//uint8_t key_press_flag = 0;  // æŒ‰é”®ä¸­æ–­è§¦å‘æ ‡å¿—
+//static volatile uint32_t led_timer_counter = 0; // LEDè®¡æ—¶å™¨è®¡æ•°å™¨
+//static volatile uint8_t led_on_flag = 0;      // LEDäº®æ ‡å¿—
 
-//// ********** Íâ²¿ÖĞ¶Ï»Øµ÷º¯Êı£¨ÖØĞ´HALÈõº¯Êı£¬¸´ÓÃCubeMXµÄÖĞ¶ÏÅäÖÃ£©**********
+//// ********** å¤–éƒ¨ä¸­æ–­å›è°ƒå‡½æ•°ï¼ˆé‡å†™HALå¼±å‡½æ•°ï¼Œå¤ç”¨CubeMXçš„ä¸­æ–­é…ç½®ï¼‰**********
 //void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 //{
-//  if(GPIO_Pin == KEY_Pin)  // ½ö´¦Àí°´¼üÖĞ¶Ï£¬²»Ó°ÏìÆäËûÍâÉè
+//  if(GPIO_Pin == KEY_Pin)  // ä»…å¤„ç†æŒ‰é”®ä¸­æ–­ï¼Œä¸å½±å“å…¶ä»–å¤–è®¾
 //  {
-//    key_press_flag = 1;  // Ö»±ê¼Ç£¬²»×öºÄÊ±²Ù×÷
+//    key_press_flag = 1;  // åªæ ‡è®°ï¼Œä¸åšè€—æ—¶æ“ä½œ
 
 //  }
 //}
 
-//// ********** ¶¨Ê±Æ÷ÖĞ¶Ï»Øµ÷£¨ÖØĞ´HALÈõº¯Êı£¬¸´ÓÃCubeMXµÄTIM3ÅäÖÃ£©**********
+//// ********** å®šæ—¶å™¨ä¸­æ–­å›è°ƒï¼ˆé‡å†™HALå¼±å‡½æ•°ï¼Œå¤ç”¨CubeMXçš„TIM3é…ç½®ï¼‰**********
 //void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 //{
-//  if(htim->Instance == TIM3)  // Æ¥ÅäÄãÅäÖÃµÄÏû¶¶¶¨Ê±Æ÷
+//  if(htim->Instance == TIM3)  // åŒ¹é…ä½ é…ç½®çš„æ¶ˆæŠ–å®šæ—¶å™¨
 //  {
-//    if(key_press_flag == 1)     // ÓĞ°´¼üÖĞ¶Ï´¥·¢Ê±²Å´¦Àí
+//    if(key_press_flag == 1)     // æœ‰æŒ‰é”®ä¸­æ–­è§¦å‘æ—¶æ‰å¤„ç†
 //    {
-//      // Á¬Ğø¶ÁÈ¡°´¼üµçÆ½£¬È·ÈÏÊÇ·ñÕæµÄ°´ÏÂ£¨Ïû¶¶ºËĞÄ£©
+//      // è¿ç»­è¯»å–æŒ‰é”®ç”µå¹³ï¼Œç¡®è®¤æ˜¯å¦çœŸçš„æŒ‰ä¸‹ï¼ˆæ¶ˆæŠ–æ ¸å¿ƒï¼‰
 //      if(HAL_GPIO_ReadPin(KEY_GPIO_Port, KEY_Pin) == GPIO_PIN_SET)
 //      {
 
-//        HAL_GPIO_WritePin(LED_Red_GPIO_Port, LED_Red_Pin, GPIO_PIN_RESET); // ºìµÆÁÁ
+//        HAL_GPIO_WritePin(LED_Red_GPIO_Port, LED_Red_Pin, GPIO_PIN_RESET); // çº¢ç¯äº®
 //        led_on_flag = 1;
-//        led_timer_counter = 200;  // ÉèÖÃÎª1Ãë£¨TIM3ÊÇ5msÖĞ¶ÏÒ»´Î£©
+//        led_timer_counter = 200;  // è®¾ç½®ä¸º1ç§’ï¼ˆTIM3æ˜¯5msä¸­æ–­ä¸€æ¬¡ï¼‰
 ////      printf("hello");
-//        key_press_flag = 0;  // Çå³ıÖĞ¶Ï±êÖ¾£¬µÈ´ıÏÂÒ»´Î´¥·¢
+//        key_press_flag = 0;  // æ¸…é™¤ä¸­æ–­æ ‡å¿—ï¼Œç­‰å¾…ä¸‹ä¸€æ¬¡è§¦å‘
 //      }
-////      //µÆËæ¶¯
+////      //ç¯éšåŠ¨
 ////      else
 ////      {
-////        HAL_GPIO_WritePin(LED_Red_GPIO_Port, LED_Red_Pin, GPIO_PIN_SET);   // ºìµÆÃğ£¨¿ÉÑ¡£©
+////        HAL_GPIO_WritePin(LED_Red_GPIO_Port, LED_Red_Pin, GPIO_PIN_SET);   // çº¢ç¯ç­ï¼ˆå¯é€‰ï¼‰
 ////        led_on_flag = 0;  
 ////      }
 
 //    }
 
-//    // 1ÃëºóÃğ
+//    // 1ç§’åç­
 //    if (led_timer_counter > 0)
 //    {
 //        led_timer_counter--;
 //    }
 //    else
 //    {
-//            // 1ÃëÊ±¼äµ½£¬Ï¨ÃğLED
-//        HAL_GPIO_WritePin(LED_Red_GPIO_Port, LED_Red_Pin, GPIO_PIN_SET);  // ºìµÆÃğ
+//            // 1ç§’æ—¶é—´åˆ°ï¼Œç†„ç­LED
+//        HAL_GPIO_WritePin(LED_Red_GPIO_Port, LED_Red_Pin, GPIO_PIN_SET);  // çº¢ç¯ç­
 //        led_on_flag = 0;
-////              HAL_TIM_Base_Stop_IT(htim);  // Í£Ö¹¼ÆÊ±Æ÷
-////            key_press_flag = 0;  // Çå³ıÖĞ¶Ï±êÖ¾£¬µÈ´ıÏÂÒ»´Î´¥·¢
+////              HAL_TIM_Base_Stop_IT(htim);  // åœæ­¢è®¡æ—¶å™¨
+////            key_press_flag = 0;  // æ¸…é™¤ä¸­æ–­æ ‡å¿—ï¼Œç­‰å¾…ä¸‹ä¸€æ¬¡è§¦å‘
 //        }
 //    }
 

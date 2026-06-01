@@ -2,69 +2,69 @@
 #include "CAN_receive.h"
 #include "string.h"
 
-// 4¸öµç»úµÄ¼ÆÊıÆ÷£¨¶ÔÓ¦M3508µÄ4¸öID£º0x201~0x204£©
+// 4ä¸ªç”µæœºçš„è®¡æ•°å™¨ï¼ˆå¯¹åº”M3508çš„4ä¸ªIDï¼š0x201~0x204ï¼‰
 static EncoderCounter_t encoder_cnt[4];
 
 /**
- * @brief ³õÊ¼»¯±àÂëÆ÷¼ÆÊıÆ÷
+ * @brief åˆå§‹åŒ–ç¼–ç å™¨è®¡æ•°å™¨
  */
 void Encoder_Counter_Init(void)
 {
     memset(encoder_cnt, 0, sizeof(encoder_cnt));
     
-    // µÈ´ıCANÊı¾İ¾ÍĞ÷£¨µçµ÷ÒÑÉÏµç²¢·¢ËÍÊı¾İ£©
+    // ç­‰å¾…CANæ•°æ®å°±ç»ªï¼ˆç”µè°ƒå·²ä¸Šç”µå¹¶å‘é€æ•°æ®ï¼‰
     HAL_Delay(50);
     
-    // ÓÃµ±Ç°Î»ÖÃ×÷Îª³õÊ¼Áãµã
+    // ç”¨å½“å‰ä½ç½®ä½œä¸ºåˆå§‹é›¶ç‚¹
     for (uint8_t i = 0; i < 4; i++) {
         const motor_measure_t *motor = get_chassis_motor_measure_point(i);
         encoder_cnt[i].last_ecd = motor->ecd;
-        encoder_cnt[i].total_angle = 0;      // µ±Ç°Î»ÖÃ×÷Îª0µã
+        encoder_cnt[i].total_angle = 0;      // å½“å‰ä½ç½®ä½œä¸º0ç‚¹
         encoder_cnt[i].turn_count = 0;
         encoder_cnt[i].initialized = 1;
     }
 }
 
 /**
- * @brief ¸üĞÂ±àÂëÆ÷¼ÆÊı£¨ºËĞÄº¯Êı£¬ÔÚCANÖĞ¶ÏÖĞµ÷ÓÃ£©
+ * @brief æ›´æ–°ç¼–ç å™¨è®¡æ•°ï¼ˆæ ¸å¿ƒå‡½æ•°ï¼Œåœ¨CANä¸­æ–­ä¸­è°ƒç”¨ï¼‰
  * 
- * ¡¾»ØÈÆ¼ì²âÔ­Àí¡¿
- * - Õı³£×ª¶¯£ºdelta ÔÚ -4096 ~ +4096 Ö®¼ä
- * - Õı×ª»ØÈÆ£ºecd´Ó8191¡ú0£¬delta ¡Ö -8192£¨<-4096£©
- * - ·´×ª»ØÈÆ£ºecd´Ó0¡ú8191£¬delta ¡Ö +8192£¨>+4096£©
+ * ã€å›ç»•æ£€æµ‹åŸç†ã€‘
+ * - æ­£å¸¸è½¬åŠ¨ï¼šdelta åœ¨ -4096 ~ +4096 ä¹‹é—´
+ * - æ­£è½¬å›ç»•ï¼šecdä»8191â†’0ï¼Œdelta â‰ˆ -8192ï¼ˆ<-4096ï¼‰
+ * - åè½¬å›ç»•ï¼šecdä»0â†’8191ï¼Œdelta â‰ˆ +8192ï¼ˆ>+4096ï¼‰
  */
 void Encoder_Counter_Update(uint8_t motor_id, uint16_t current_ecd)
 {
     if (motor_id > 3) return;
     if (!encoder_cnt[motor_id].initialized) return;
     
-    // ¼ÆËãÔ­Ê¼²îÖµ£¨ÓĞ·ûºÅ16Î»£¬×Ô¶¯´¦Àí»ØÈÆ£©
+    // è®¡ç®—åŸå§‹å·®å€¼ï¼ˆæœ‰ç¬¦å·16ä½ï¼Œè‡ªåŠ¨å¤„ç†å›ç»•ï¼‰
     int16_t delta = (int16_t)current_ecd - (int16_t)encoder_cnt[motor_id].last_ecd;
     
-    // ========== »ØÈÆ¼ì²âÓëĞŞÕı ==========
+    // ========== å›ç»•æ£€æµ‹ä¸ä¿®æ­£ ==========
     if (delta < -4096) {
-        // ¡¾Õı×ª»ØÈÆ¡¿ecd´Ó8191Ìøµ½0¸½½ü
-        // Àı£ºlast=8190, current=10, delta=-8180
-        // Êµ¼Ê±ä»¯£º+12£¨Õı×ª12¸öµ¥Î»£©
-        encoder_cnt[motor_id].turn_count++;        // È¦Êı+1
-        delta += 8192;                              // ĞŞÕı£º-8180 + 8192 = +12
+        // ã€æ­£è½¬å›ç»•ã€‘ecdä»8191è·³åˆ°0é™„è¿‘
+        // ä¾‹ï¼šlast=8190, current=10, delta=-8180
+        // å®é™…å˜åŒ–ï¼š+12ï¼ˆæ­£è½¬12ä¸ªå•ä½ï¼‰
+        encoder_cnt[motor_id].turn_count++;        // åœˆæ•°+1
+        delta += 8192;                              // ä¿®æ­£ï¼š-8180 + 8192 = +12
     }
     else if (delta > 4096) {
-        // ¡¾·´×ª»ØÈÆ¡¿ecd´Ó0Ìøµ½8191¸½½ü
-        // Àı£ºlast=10, current=8190, delta=+8180
-        // Êµ¼Ê±ä»¯£º-12£¨·´×ª12¸öµ¥Î»£©
-        encoder_cnt[motor_id].turn_count--;        // È¦Êı-1
-        delta -= 8192;                              // ĞŞÕı£º+8180 - 8192 = -12
+        // ã€åè½¬å›ç»•ã€‘ecdä»0è·³åˆ°8191é™„è¿‘
+        // ä¾‹ï¼šlast=10, current=8190, delta=+8180
+        // å®é™…å˜åŒ–ï¼š-12ï¼ˆåè½¬12ä¸ªå•ä½ï¼‰
+        encoder_cnt[motor_id].turn_count--;        // åœˆæ•°-1
+        delta -= 8192;                              // ä¿®æ­£ï¼š+8180 - 8192 = -12
     }
-    // Õı³£Çé¿ö£ºdelta²»±ä
+    // æ­£å¸¸æƒ…å†µï¼šdeltaä¸å˜
     
-    // ÀÛ¼Æ×Ü½Ç¶È
+    // ç´¯è®¡æ€»è§’åº¦
     encoder_cnt[motor_id].total_angle += delta;
     encoder_cnt[motor_id].last_ecd = current_ecd;
 }
 
 /**
- * @brief »ñÈ¡ÀÛ¼Æ½Ç¶È
+ * @brief è·å–ç´¯è®¡è§’åº¦
  */
 int32_t Encoder_Get_Total_Angle(uint8_t motor_id)
 {
@@ -73,7 +73,7 @@ int32_t Encoder_Get_Total_Angle(uint8_t motor_id)
 }
 
 /**
- * @brief »ñÈ¡È¦Êı
+ * @brief è·å–åœˆæ•°
  */
 int32_t Encoder_Get_Turn_Count(uint8_t motor_id)
 {
@@ -82,7 +82,7 @@ int32_t Encoder_Get_Turn_Count(uint8_t motor_id)
 }
 
 /**
- * @brief »ñÈ¡µ±Ç°ecd
+ * @brief è·å–å½“å‰ecd
  */
 uint16_t Encoder_Get_Current_ECD(uint8_t motor_id)
 {
@@ -91,7 +91,7 @@ uint16_t Encoder_Get_Current_ECD(uint8_t motor_id)
 }
 
 /**
- * @brief ÖØÖÃ¼ÆÊıÆ÷£¨ÉèÖÃµ±Ç°ÎªÁãµã£©
+ * @brief é‡ç½®è®¡æ•°å™¨ï¼ˆè®¾ç½®å½“å‰ä¸ºé›¶ç‚¹ï¼‰
  */
 void Encoder_Counter_Reset(uint8_t motor_id)
 {

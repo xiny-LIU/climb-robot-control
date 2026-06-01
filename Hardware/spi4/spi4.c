@@ -1,18 +1,18 @@
 #include "spi4.h"
 #include "spi.h"
-//¸ÃÎÄ¼þÎª±àÂëÆ÷Í¨¹ýÓ²¼þspiÊÕ·¢×ª¶¯½Ç¶ÈÊý¾Ý£¨¾ø¶ÔÊ½±àÂëÆ÷£©
-// ÊµÀý»¯º¬ÓÐ4¸ö±àÂëÆ÷Êý¾ÝµÄÊý×é
+//è¯¥æ–‡ä»¶ä¸ºç¼–ç å™¨é€šè¿‡ç¡¬ä»¶spiæ”¶å‘è½¬åŠ¨è§’åº¦æ•°æ®ï¼ˆç»å¯¹å¼ç¼–ç å™¨ï¼‰
+// å®žä¾‹åŒ–å«æœ‰4ä¸ªç¼–ç å™¨æ•°æ®çš„æ•°ç»„
 PQY13_Data_t encoder_data[4];
 
-// ¶ÁÈ¡PQY13±àÂëÆ÷º¯Êý£¬´«ÈëÄãÒª¶ÁÈ¡µÄ±àÂëÆ÷ID
+// è¯»å–PQY13ç¼–ç å™¨å‡½æ•°ï¼Œä¼ å…¥ä½ è¦è¯»å–çš„ç¼–ç å™¨ID
 void Read_PQY13_Encoder(Encoder_ID_t id)
 {
-    // ·¢ËÍ»º³å: 0x05 ÊÇÖ¸Áî£¬ºóÃæ4¸ö0x00ÓÃÓÚ²úÉúÊ±ÖÓÒÔ½ÓÊÕÊý¾Ý
+    // å‘é€ç¼“å†²: 0x05 æ˜¯æŒ‡ä»¤ï¼ŒåŽé¢4ä¸ª0x00ç”¨äºŽäº§ç”Ÿæ—¶é’Ÿä»¥æŽ¥æ”¶æ•°æ®
     uint8_t tx_buffer[5] = {0x05, 0x00, 0x00, 0x00, 0x00};
     uint8_t rx_buffer[5] = {0};
 
-    // 1. ¸ù¾Ý´«ÈëµÄID£¬À­µÍ¶ÔÓ¦µÄ CS Òý½Å (¿ªÊ¼Í¨Ñ¶)
-    // Ê¹ÓÃ CubeMX ×Ô¶¯Éú³ÉµÄºê¶¨Òå£¬ÍêÈ«½âñîÓ²¼þÒý½Å
+    // 1. æ ¹æ®ä¼ å…¥çš„IDï¼Œæ‹‰ä½Žå¯¹åº”çš„ CS å¼•è„š (å¼€å§‹é€šè®¯)
+    // ä½¿ç”¨ CubeMX è‡ªåŠ¨ç”Ÿæˆçš„å®å®šä¹‰ï¼Œå®Œå…¨è§£è€¦ç¡¬ä»¶å¼•è„š
     switch (id) {
         case ENC_1: 
             HAL_GPIO_WritePin(CS_ENC1_GPIO_Port, CS_ENC1_Pin, GPIO_PIN_RESET); 
@@ -27,13 +27,13 @@ void Read_PQY13_Encoder(Encoder_ID_t id)
             HAL_GPIO_WritePin(CS_ENC4_GPIO_Port, CS_ENC4_Pin, GPIO_PIN_RESET); 
             break;
         default: 
-            return; // ÎÞÐ§IDÖ±½ÓÍË³ö
+            return; // æ— æ•ˆIDç›´æŽ¥é€€å‡º
     }
     
-    // 2. SPI ÊÕ·¢Êý¾Ý (5¸ö×Ö½Ú)
+    // 2. SPI æ”¶å‘æ•°æ® (5ä¸ªå­—èŠ‚)
     HAL_SPI_TransmitReceive(&hspi4, tx_buffer, rx_buffer, 5, 10);
     
-    // 3. ¸ù¾Ý´«ÈëµÄID£¬À­¸ß¶ÔÓ¦µÄ CS Òý½Å (½áÊøÍ¨Ñ¶)
+    // 3. æ ¹æ®ä¼ å…¥çš„IDï¼Œæ‹‰é«˜å¯¹åº”çš„ CS å¼•è„š (ç»“æŸé€šè®¯)
     switch (id) {
         case ENC_1: 
             HAL_GPIO_WritePin(CS_ENC1_GPIO_Port, CS_ENC1_Pin, GPIO_PIN_SET); 
@@ -49,22 +49,22 @@ void Read_PQY13_Encoder(Encoder_ID_t id)
             break;
     }
 
-    // 4. ½âÎöÊý¾Ý²¢´æÈë¶ÔÓ¦IDµÄ½á¹¹ÌåÖÐ
-    // rx_buffer[0] ÊÇ·¢ËÍ0x05Ê±½ÓÊÕµÄÎÞÒâÒåÊý¾Ý£¬ºöÂÔ
+    // 4. è§£æžæ•°æ®å¹¶å­˜å…¥å¯¹åº”IDçš„ç»“æž„ä½“ä¸­
+    // rx_buffer[0] æ˜¯å‘é€0x05æ—¶æŽ¥æ”¶çš„æ— æ„ä¹‰æ•°æ®ï¼Œå¿½ç•¥
     encoder_data[id].raw_angle = (rx_buffer[1] << 8) | rx_buffer[2];
     encoder_data[id].status    = rx_buffer[3];
     encoder_data[id].crc       = rx_buffer[4];
     
-    // 5. ½«16Î»Ô­Ê¼Êý¾Ý×ª»»ÎªÊµ¼ÊµÄ360¶ÈÎïÀí½Ç¶È
+    // 5. å°†16ä½åŽŸå§‹æ•°æ®è½¬æ¢ä¸ºå®žé™…çš„360åº¦ç‰©ç†è§’åº¦
     encoder_data[id].degree = (float)encoder_data[id].raw_angle * 360.0f / 65536.0f;
 }
 
 /**
- * @brief ÅúÁ¿¸üÐÂËùÓÐ±àÂëÆ÷µÄÊý¾Ý
+ * @brief æ‰¹é‡æ›´æ–°æ‰€æœ‰ç¼–ç å™¨çš„æ•°æ®
  */ 
 void Update_All_Encoders(void)
 {
-    // ÂÖÑ¯¶ÁÈ¡4¸ö±àÂëÆ÷
+    // è½®è¯¢è¯»å–4ä¸ªç¼–ç å™¨
     for(int i = 0; i < 4; i++)
     {
         Read_PQY13_Encoder((Encoder_ID_t)i);

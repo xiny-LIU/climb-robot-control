@@ -1,5 +1,5 @@
 /*
-* ���ݲ�ͬ��ƽ̨�Ͳ�ͬ������������ͬ��ͷ�ļ�
+* 根据不同的平台和不同的驱动包含不同的头文件
 **************************************************/
 //#include "xxx.h"
 #include <stddef.h>
@@ -30,8 +30,8 @@ payload_data_t *payload;
 /*data id define*/
 #define ACCEL_ID				(unsigned char)0x10
 #define ANGLE_ID				(unsigned char)0x20
-#define MAGNETIC_ID				(unsigned char)0x30     /*��һ��ֵ*/
-#define RAW_MAGNETIC_ID			(unsigned char)0x31     /*ԭʼֵ*/
+#define MAGNETIC_ID				(unsigned char)0x30     /*归一化值*/
+#define RAW_MAGNETIC_ID			(unsigned char)0x31     /*原始值*/
 #define EULER_ID				(unsigned char)0x40
 #define QUATERNION_ID			(unsigned char)0x41
 #define UTC_ID					(unsigned char)0x50
@@ -241,8 +241,8 @@ unsigned char check_data_len_by_id(unsigned char id, unsigned char len, unsigned
 }
 
 /*--------------------------------------------------------------------------------------------------------------
-* ���Э��Ϊ��header1(0x59) + header2(0x53) + tid(2B) + payload_len(1B) + payload_data(Nbytes) + ck1(1B) + ck2(1B)
-* crcУ���TID��ʼ��payload data�����һ���ֽ�
+* 输出协议为：header1(0x59) + header2(0x53) + tid(2B) + payload_len(1B) + payload_data(Nbytes) + ck1(1B) + ck2(1B)
+* crc校验从TID开始到payload data的最后一个字节
 */
 int analysis_data(unsigned char *data, short len)
 {
@@ -355,18 +355,18 @@ uint8_t imu_callback1(uint8_t recv)
 	unsigned short pos = 0;
 	unsigned char ret = 0xff;
 	
-	//֡ͷ����
+	//帧头处理
 	static uint8_t Head_buf[5];
-	static uint8_t count=0; //��Ҫ��λ�ı���ֵ
+	static uint8_t count=0; //需要复位的变量值
 	
-	//crc16����
+	//crc16处理
 	static uint8_t CRC16_buf[2];
-	static uint8_t crc16_count=0; //��Ҫ��λ�ı���ֵ
+	static uint8_t crc16_count=0; //需要复位的变量值
 	
-	static uint8_t recv_counts=0;//���յ������ݼ���ֵ //��Ҫ��λ�ı���ֵ
+	static uint8_t recv_counts=0;//接收到的数据计数值 //需要复位的变量值
 	
 	
-	if( (recv==0x53 && last_recv==0x59)||count>0 ) //AHRS����֡
+	if( (recv==0x53 && last_recv==0x59)||count>0 ) //AHRS数据帧
 	{
 		count++;
 	}

@@ -1,9 +1,9 @@
 #ifndef __SPI4_H
 #define __SPI4_H
 
-#include "main.h"  // ±ØĞë°üº¬ main.h£¬ÒòÎª CS_ENCx µÄºê¶¨Òå¶¼ÔÚÀïÃæ
+#include "main.h"  // å¿…é¡»åŒ…å« main.hï¼Œå› ä¸º CS_ENCx çš„å®å®šä¹‰éƒ½åœ¨é‡Œé¢
 
-// ¶¨Òå±àÂëÆ÷±àºÅÃ¶¾Ù
+// å®šä¹‰ç¼–ç å™¨ç¼–å·æšä¸¾
 typedef enum {
     ENC_1 = 0,
     ENC_2,
@@ -11,18 +11,18 @@ typedef enum {
     ENC_4
 } Encoder_ID_t;
 
-// ¶¨Òå±àÂëÆ÷Êı¾İ½á¹¹Ìå
+// å®šä¹‰ç¼–ç å™¨æ•°æ®ç»“æ„ä½“
 typedef struct {
-    uint16_t raw_angle;     // 16Î»Ô­Ê¼½Ç¶È (0~65535)
-    float degree;           // ×ª»»ºóµÄÎïÀí½Ç¶È (0~360¶È)
-    uint8_t status;         // ×´Ì¬×Ö
-    uint8_t crc;            // CRCĞ£ÑéÂë
+    uint16_t raw_angle;     // 16ä½åŸå§‹è§’åº¦ (0~65535)
+    float degree;           // è½¬æ¢åçš„ç‰©ç†è§’åº¦ (0~360åº¦)
+    uint8_t status;         // çŠ¶æ€å­—
+    uint8_t crc;            // CRCæ ¡éªŒç 
 } PQY13_Data_t;
 
-// ÉùÃ÷Ò»¸ö°üº¬4¸öÔªËØµÄÊı×é£¬´æ·ÅËÄ¸ö±àÂëÆ÷µÄÊı¾İ
+// å£°æ˜ä¸€ä¸ªåŒ…å«4ä¸ªå…ƒç´ çš„æ•°ç»„ï¼Œå­˜æ”¾å››ä¸ªç¼–ç å™¨çš„æ•°æ®
 extern PQY13_Data_t encoder_data[4];
 
-// º¯ÊıÉùÃ÷
+// å‡½æ•°å£°æ˜
 void Read_PQY13_Encoder(Encoder_ID_t id);
 void Update_All_Encoders(void);
 

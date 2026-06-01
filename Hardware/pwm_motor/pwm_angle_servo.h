@@ -7,52 +7,52 @@
  * ============================================================
  * pwm_angle_servo.h
  *
- * Ä£¿é×÷ÓÃ£º
- * 1. ¶Ô 4 ¸ö PWM µç»ú×ö½Ç¶ÈÎ»ÖÃ±Õ»·£»
- * 2. ÉÏ²ãÖ»ĞèÒªÊäÈëÄ¿±ê½Ç¶È£¬µ¥Î» deg£»
- * 3. ±¾Ä£¿éÄÚ²¿¶ÁÈ¡ PQY13 ±àÂëÆ÷½Ç¶È£»
- * 4. ¸ù¾İ½Ç¶ÈÎó²îÉèÖÃ PWM µç»ú·½ÏòºÍËÙ¶È£»
- * 5. µ½´ïÄ¿±ê¸½½üºó×Ô¶¯Í£Ö¹¶ÔÓ¦µç»ú¡£
+ * æ¨¡å—ä½œç”¨ï¼š
+ * 1. å¯¹ 4 ä¸ª PWM ç”µæœºåšè§’åº¦ä½ç½®é—­ç¯ï¼›
+ * 2. ä¸Šå±‚åªéœ€è¦è¾“å…¥ç›®æ ‡è§’åº¦ï¼Œå•ä½ degï¼›
+ * 3. æœ¬æ¨¡å—å†…éƒ¨è¯»å– PQY13 ç¼–ç å™¨è§’åº¦ï¼›
+ * 4. æ ¹æ®è§’åº¦è¯¯å·®è®¾ç½® PWM ç”µæœºæ–¹å‘å’Œé€Ÿåº¦ï¼›
+ * 5. åˆ°è¾¾ç›®æ ‡é™„è¿‘åè‡ªåŠ¨åœæ­¢å¯¹åº”ç”µæœºã€‚
  *
- * ¹Ø½ÚÓ³Éä£º
- * ×ó±Û¸©Ñö£ºMOTOR_A£¬ENC_1
- * ×ó±ÛÆ«º½£ºMOTOR_B£¬ENC_2
- * ÓÒ±Û¸©Ñö£ºMOTOR_C£¬ENC_3
- * ÓÒ±ÛÆ«º½£ºMOTOR_D£¬ENC_4
+ * å…³èŠ‚æ˜ å°„ï¼š
+ * å·¦è‡‚ä¿¯ä»°ï¼šMOTOR_Aï¼ŒENC_1
+ * å·¦è‡‚åèˆªï¼šMOTOR_Bï¼ŒENC_2
+ * å³è‡‚ä¿¯ä»°ï¼šMOTOR_Cï¼ŒENC_3
+ * å³è‡‚åèˆªï¼šMOTOR_Dï¼ŒENC_4
  * ============================================================
  */
 
 
-/* Ä¬ÈÏ½Ç¶ÈÏŞÎ»£¬µ¥Î» deg */
+/* é»˜è®¤è§’åº¦é™ä½ï¼Œå•ä½ deg */
 #define PWM_ANGLE_DEFAULT_YAW_MIN_DEG       -6.0f
 #define PWM_ANGLE_DEFAULT_YAW_MAX_DEG       22.0f
 
-/* ±ê×¼µ¥±Û¾Ö²¿Æ«º½ÏŞÎ»£¬µ¥Î» deg */
+/* æ ‡å‡†å•è‡‚å±€éƒ¨åèˆªé™ä½ï¼Œå•ä½ deg */
 #define PWM_ANGLE_STD_YAW_MIN_DEG           -6.0f
 #define PWM_ANGLE_STD_YAW_MAX_DEG           22.0f
 
-/* ×ó±ÛÕæÊµ DH Æ«º½½ÇÏŞÎ» */
+/* å·¦è‡‚çœŸå® DH åèˆªè§’é™ä½ */
 #define PWM_ANGLE_LEFT_YAW_MIN_DEG          (PWM_ANGLE_STD_YAW_MIN_DEG)
 #define PWM_ANGLE_LEFT_YAW_MAX_DEG          (PWM_ANGLE_STD_YAW_MAX_DEG)
 
-/* ÓÒ±ÛÕæÊµ DH Æ«º½½ÇÏŞÎ»£º¹ØÓÚ»úÉíÖĞÃæ¶Ô³Æ */
+/* å³è‡‚çœŸå® DH åèˆªè§’é™ä½ï¼šå…³äºæœºèº«ä¸­é¢å¯¹ç§° */
 #define PWM_ANGLE_RIGHT_YAW_MIN_DEG         (-PWM_ANGLE_STD_YAW_MAX_DEG)
 #define PWM_ANGLE_RIGHT_YAW_MAX_DEG         (-PWM_ANGLE_STD_YAW_MIN_DEG)
 
-/* ¸©Ñö½Ç×óÓÒÒ»ÖÂ£¬µ¥Î» deg */
+/* ä¿¯ä»°è§’å·¦å³ä¸€è‡´ï¼Œå•ä½ deg */
 //#define PWM_ANGLE_DEFAULT_PITCH_MIN_DEG     -8.0f
 //#define PWM_ANGLE_DEFAULT_PITCH_MAX_DEG     30.0f
-//²âÊÔ
+//æµ‹è¯•
 #define PWM_ANGLE_DEFAULT_PITCH_MIN_DEG     -2.0f
 #define PWM_ANGLE_DEFAULT_PITCH_MAX_DEG     60.0f
 
 /*
- * @brief PWM ½Ç¶È±Õ»·¹Ø½ÚÃ¶¾Ù
+ * @brief PWM è§’åº¦é—­ç¯å…³èŠ‚æšä¸¾
  *
- * PWM_ANGLE_LEFT_PITCH  £º×ó±Û¸©Ñö
- * PWM_ANGLE_LEFT_YAW    £º×ó±ÛÆ«º½
- * PWM_ANGLE_RIGHT_PITCH £ºÓÒ±Û¸©Ñö
- * PWM_ANGLE_RIGHT_YAW   £ºÓÒ±ÛÆ«º½
+ * PWM_ANGLE_LEFT_PITCH  ï¼šå·¦è‡‚ä¿¯ä»°
+ * PWM_ANGLE_LEFT_YAW    ï¼šå·¦è‡‚åèˆª
+ * PWM_ANGLE_RIGHT_PITCH ï¼šå³è‡‚ä¿¯ä»°
+ * PWM_ANGLE_RIGHT_YAW   ï¼šå³è‡‚åèˆª
  */
 typedef enum {
     PWM_ANGLE_LEFT_PITCH = 0,
@@ -63,11 +63,11 @@ typedef enum {
 } PWM_AngleJoint_t;
 
 /*
- * @brief PWM ½Ç¶È±Õ»·×´Ì¬Ã¶¾Ù
+ * @brief PWM è§’åº¦é—­ç¯çŠ¶æ€æšä¸¾
  *
- * PWM_ANGLE_OK             £ºÔËĞĞÕı³£
- * PWM_ANGLE_DISABLED       £ºÄ£¿éÎ´Ê¹ÄÜ
- * PWM_ANGLE_TARGET_LIMITED £ºÄ¿±ê½Ç¶È±»ÈíÏŞÎ»½Ø¶Ï
+ * PWM_ANGLE_OK             ï¼šè¿è¡Œæ­£å¸¸
+ * PWM_ANGLE_DISABLED       ï¼šæ¨¡å—æœªä½¿èƒ½
+ * PWM_ANGLE_TARGET_LIMITED ï¼šç›®æ ‡è§’åº¦è¢«è½¯é™ä½æˆªæ–­
  */
 typedef enum {
     PWM_ANGLE_OK = 0,
@@ -76,25 +76,25 @@ typedef enum {
 } PWM_AngleStatus_t;
 
 /*
- * @brief µ¥¸ö PWM ½Ç¶È¹Ø½Úµ÷ÊÔĞÅÏ¢
+ * @brief å•ä¸ª PWM è§’åº¦å…³èŠ‚è°ƒè¯•ä¿¡æ¯
  *
- * current_deg   £ºµ±Ç°½Ç¶È£¬µ¥Î» deg
- * target_deg    £ºÄ¿±ê½Ç¶È£¬µ¥Î» deg
- * error_deg     £º½Ç¶ÈÎó²î£¬µ¥Î» deg
- * speed_percent £ºµ±Ç° PWM ËÙ¶È°Ù·Ö±È
- * status        £ºµ±Ç°×´Ì¬
+ * current_deg   ï¼šå½“å‰è§’åº¦ï¼Œå•ä½ deg
+ * target_deg    ï¼šç›®æ ‡è§’åº¦ï¼Œå•ä½ deg
+ * error_deg     ï¼šè§’åº¦è¯¯å·®ï¼Œå•ä½ deg
+ * speed_percent ï¼šå½“å‰ PWM é€Ÿåº¦ç™¾åˆ†æ¯”
+ * status        ï¼šå½“å‰çŠ¶æ€
  */
 typedef struct {
-    float current_deg;       // µ±Ç°Êµ¼Ê½Ç¶È
-    float target_deg;        // ÓÃ»§×îÖÕÄ¿±ê½Ç¶È
-    float command_deg;       // ÄÚ²¿Æ½»¬Ä¿±ê½Ç¶È
-    float error_deg;         // command_deg - current_deg µÄÎó²î
-    uint8_t speed_percent;   // µ±Ç° PWM ËÙ¶È°Ù·Ö±È
+    float current_deg;       // å½“å‰å®é™…è§’åº¦
+    float target_deg;        // ç”¨æˆ·æœ€ç»ˆç›®æ ‡è§’åº¦
+    float command_deg;       // å†…éƒ¨å¹³æ»‘ç›®æ ‡è§’åº¦
+    float error_deg;         // command_deg - current_deg çš„è¯¯å·®
+    uint8_t speed_percent;   // å½“å‰ PWM é€Ÿåº¦ç™¾åˆ†æ¯”
     PWM_AngleStatus_t status;
 } PWM_AngleJointDebug_t;
 
 /*
- * @brief 4 ¸ö PWM ½Ç¶È¹Ø½ÚµÄµ÷ÊÔĞÅÏ¢
+ * @brief 4 ä¸ª PWM è§’åº¦å…³èŠ‚çš„è°ƒè¯•ä¿¡æ¯
  */
 typedef struct {
     PWM_AngleJointDebug_t joint[PWM_ANGLE_JOINT_NUM];
@@ -102,69 +102,69 @@ typedef struct {
 
 
 /************************************************
- * ³õÊ¼»¯ÓëÊ¹ÄÜ
+ * åˆå§‹åŒ–ä¸ä½¿èƒ½
  ************************************************/
 
 /*
- * @brief ³õÊ¼»¯ PWM ½Ç¶È±Õ»·Ä£¿é
+ * @brief åˆå§‹åŒ– PWM è§’åº¦é—­ç¯æ¨¡å—
  *
- * ¹¦ÄÜ£º
- * 1. ÉèÖÃ 4 ¸ö PWM µç»úÓë 4 ¸ö±àÂëÆ÷µÄÄ¬ÈÏÓ³Éä£»
- * 2. ÉèÖÃÄ¬ÈÏ½Ç¶ÈÏŞÎ»£»
- * 3. Çå¿Õµ÷ÊÔĞÅÏ¢£»
- * 4. Í£Ö¹ËùÓĞ PWM µç»ú¡£
+ * åŠŸèƒ½ï¼š
+ * 1. è®¾ç½® 4 ä¸ª PWM ç”µæœºä¸ 4 ä¸ªç¼–ç å™¨çš„é»˜è®¤æ˜ å°„ï¼›
+ * 2. è®¾ç½®é»˜è®¤è§’åº¦é™ä½ï¼›
+ * 3. æ¸…ç©ºè°ƒè¯•ä¿¡æ¯ï¼›
+ * 4. åœæ­¢æ‰€æœ‰ PWM ç”µæœºã€‚
  *
- * ×¢Òâ£º
- * ³õÊ¼»¯ºóÄ£¿éÄ¬ÈÏ´¦ÓÚ disabled ×´Ì¬¡£
+ * æ³¨æ„ï¼š
+ * åˆå§‹åŒ–åæ¨¡å—é»˜è®¤å¤„äº disabled çŠ¶æ€ã€‚
  */
 void PWM_AngleServo_Init(void);
 
 /*
- * @brief Ê¹ÄÜ»òÊ§ÄÜ PWM ½Ç¶È±Õ»·Ä£¿é
+ * @brief ä½¿èƒ½æˆ–å¤±èƒ½ PWM è§’åº¦é—­ç¯æ¨¡å—
  *
  * @param enable
- *        1£ºÊ¹ÄÜ£»
- *        0£ºÊ§ÄÜ£¬²¢Í£Ö¹ËùÓĞ PWM µç»ú¡£
+ *        1ï¼šä½¿èƒ½ï¼›
+ *        0ï¼šå¤±èƒ½ï¼Œå¹¶åœæ­¢æ‰€æœ‰ PWM ç”µæœºã€‚
  */
 void PWM_AngleServo_Enable(uint8_t enable);
 
 /*
- * @brief ²éÑ¯ PWM ½Ç¶È±Õ»·Ä£¿éÊÇ·ñÊ¹ÄÜ
+ * @brief æŸ¥è¯¢ PWM è§’åº¦é—­ç¯æ¨¡å—æ˜¯å¦ä½¿èƒ½
  *
  * @return
- *        1£ºÒÑÊ¹ÄÜ£»
- *        0£ºÎ´Ê¹ÄÜ¡£
+ *        1ï¼šå·²ä½¿èƒ½ï¼›
+ *        0ï¼šæœªä½¿èƒ½ã€‚
  */
 uint8_t PWM_AngleServo_IsEnabled(void);
 
 
 /************************************************
- * Ä¿±êÉèÖÃÓëÖÜÆÚ¸üĞÂ
+ * ç›®æ ‡è®¾ç½®ä¸å‘¨æœŸæ›´æ–°
  ************************************************/
 
 /*
- * @brief ÉèÖÃµ¥¸ö PWM ¹Ø½ÚÄ¿±ê½Ç¶È
+ * @brief è®¾ç½®å•ä¸ª PWM å…³èŠ‚ç›®æ ‡è§’åº¦
  *
- * @param joint        ĞèÒª¿ØÖÆµÄ¹Ø½Ú¡£
+ * @param joint        éœ€è¦æ§åˆ¶çš„å…³èŠ‚ã€‚
  *
- * @param target_deg       Ä¿±ê½Ç¶È£¬µ¥Î» deg¡£
+ * @param target_deg       ç›®æ ‡è§’åº¦ï¼Œå•ä½ degã€‚
  *
- * ËµÃ÷£º
- * ¸Ãº¯ÊıÖ»±£´æÄ¿±ê½Ç¶È£¬²»Á¢¼´Ö´ĞĞ¿ØÖÆ¡£
- * ÕæÕıµÄ±Õ»·¿ØÖÆÔÚ PWM_AngleServo_Update_5ms() ÖĞÖ´ĞĞ¡£
+ * è¯´æ˜ï¼š
+ * è¯¥å‡½æ•°åªä¿å­˜ç›®æ ‡è§’åº¦ï¼Œä¸ç«‹å³æ‰§è¡Œæ§åˆ¶ã€‚
+ * çœŸæ­£çš„é—­ç¯æ§åˆ¶åœ¨ PWM_AngleServo_Update_5ms() ä¸­æ‰§è¡Œã€‚
  */
 void PWM_AngleServo_SetTarget(PWM_AngleJoint_t joint, float target_deg);
 
 /*
- * @brief Í¬Ê±ÉèÖÃ 4 ¸ö PWM ¹Ø½ÚÄ¿±ê½Ç¶È
+ * @brief åŒæ—¶è®¾ç½® 4 ä¸ª PWM å…³èŠ‚ç›®æ ‡è§’åº¦
  *
- * @param left_pitch_deg      ×ó¸©ÑöÄ¿±ê½Ç¶È£¬µ¥Î» deg¡£
+ * @param left_pitch_deg      å·¦ä¿¯ä»°ç›®æ ‡è§’åº¦ï¼Œå•ä½ degã€‚
  *
- * @param left_yaw_deg        ×óÆ«º½Ä¿±ê½Ç¶È£¬µ¥Î» deg¡£
+ * @param left_yaw_deg        å·¦åèˆªç›®æ ‡è§’åº¦ï¼Œå•ä½ degã€‚
  *
- * @param right_pitch_deg     ÓÒ¸©ÑöÄ¿±ê½Ç¶È£¬µ¥Î» deg¡£
+ * @param right_pitch_deg     å³ä¿¯ä»°ç›®æ ‡è§’åº¦ï¼Œå•ä½ degã€‚
  *
- * @param right_yaw_deg       ÓÒÆ«º½Ä¿±ê½Ç¶È£¬µ¥Î» deg¡£
+ * @param right_yaw_deg       å³åèˆªç›®æ ‡è§’åº¦ï¼Œå•ä½ degã€‚
  */
 void PWM_AngleServo_SetTargetAll(float left_pitch_deg,
                                  float left_yaw_deg,
@@ -172,114 +172,114 @@ void PWM_AngleServo_SetTargetAll(float left_pitch_deg,
                                  float right_yaw_deg);
 
 /*
- * @brief PWM ½Ç¶È±Õ»·ÖÜÆÚ¸üĞÂº¯Êı
+ * @brief PWM è§’åº¦é—­ç¯å‘¨æœŸæ›´æ–°å‡½æ•°
  *
- * µ÷ÓÃÖÜÆÚ£º
- * ½¨Òé 5ms µ÷ÓÃÒ»´Î¡£
+ * è°ƒç”¨å‘¨æœŸï¼š
+ * å»ºè®® 5ms è°ƒç”¨ä¸€æ¬¡ã€‚
  *
- * µ÷ÓÃÇ°Ìá£º
- * Ó¦±£Ö¤ Update_All_Encoders() ÒÑ¾­Ë¢ĞÂ¹ı PQY13 ±àÂëÆ÷Êı¾İ¡£
+ * è°ƒç”¨å‰æï¼š
+ * åº”ä¿è¯ Update_All_Encoders() å·²ç»åˆ·æ–°è¿‡ PQY13 ç¼–ç å™¨æ•°æ®ã€‚
  *
- * ¹¦ÄÜ£º
- * 1. ¶ÁÈ¡µ±Ç°½Ç¶È£»
- * 2. ¼ÆËã½Ç¶ÈÎó²î£»
- * 3. ¸ù¾İÎó²îÉèÖÃµç»ú·½Ïò£»
- * 4. ¸ù¾İÎó²î´óĞ¡ÉèÖÃËÙ¶È°Ù·Ö±È£»
- * 5. µ½´ïËÀÇøºóÍ£Ö¹¶ÔÓ¦µç»ú¡£
+ * åŠŸèƒ½ï¼š
+ * 1. è¯»å–å½“å‰è§’åº¦ï¼›
+ * 2. è®¡ç®—è§’åº¦è¯¯å·®ï¼›
+ * 3. æ ¹æ®è¯¯å·®è®¾ç½®ç”µæœºæ–¹å‘ï¼›
+ * 4. æ ¹æ®è¯¯å·®å¤§å°è®¾ç½®é€Ÿåº¦ç™¾åˆ†æ¯”ï¼›
+ * 5. åˆ°è¾¾æ­»åŒºååœæ­¢å¯¹åº”ç”µæœºã€‚
  */
 void PWM_AngleServo_Update_5ms(void);
 
 
 /************************************************
- * Í£Ö¹Óë×´Ì¬
+ * åœæ­¢ä¸çŠ¶æ€
  ************************************************/
 
 /*
- * @brief Í£Ö¹µ¥¸ö PWM ¹Ø½Úµç»ú
+ * @brief åœæ­¢å•ä¸ª PWM å…³èŠ‚ç”µæœº
  *
- * @param joint   ĞèÒªÍ£Ö¹µÄ¹Ø½Ú¡£
+ * @param joint   éœ€è¦åœæ­¢çš„å…³èŠ‚ã€‚
  */
 void PWM_AngleServo_Stop(PWM_AngleJoint_t joint);
 
 /*
- * @brief Í£Ö¹ËùÓĞ PWM ¹Ø½Úµç»ú
+ * @brief åœæ­¢æ‰€æœ‰ PWM å…³èŠ‚ç”µæœº
  *
- * ¹¦ÄÜ£º
- * Í£Ö¹ MOTOR_A¡¢MOTOR_B¡¢MOTOR_C¡¢MOTOR_D¡£
+ * åŠŸèƒ½ï¼š
+ * åœæ­¢ MOTOR_Aã€MOTOR_Bã€MOTOR_Cã€MOTOR_Dã€‚
  */
 void PWM_AngleServo_StopAll(void);
 
 /*
- * @brief ÅĞ¶Ïµ¥¸ö PWM ¹Ø½ÚÊÇ·ñµ½´ïÄ¿±ê½Ç¶È
+ * @brief åˆ¤æ–­å•ä¸ª PWM å…³èŠ‚æ˜¯å¦åˆ°è¾¾ç›®æ ‡è§’åº¦
  *
- * @param joint  ĞèÒªÅĞ¶ÏµÄ¹Ø½Ú¡£
+ * @param joint  éœ€è¦åˆ¤æ–­çš„å…³èŠ‚ã€‚
  *
  * @return
- *        1£º½Ç¶ÈÎó²îĞ¡ÓÚËÀÇø£»
- *        0£ºÉĞÎ´µ½´ï¡£
+ *        1ï¼šè§’åº¦è¯¯å·®å°äºæ­»åŒºï¼›
+ *        0ï¼šå°šæœªåˆ°è¾¾ã€‚
  */
 uint8_t PWM_AngleServo_IsTargetReached(PWM_AngleJoint_t joint);
 
 /*
- * @brief ÅĞ¶ÏËùÓĞ PWM ¹Ø½ÚÊÇ·ñ¶¼µ½´ïÄ¿±ê½Ç¶È
+ * @brief åˆ¤æ–­æ‰€æœ‰ PWM å…³èŠ‚æ˜¯å¦éƒ½åˆ°è¾¾ç›®æ ‡è§’åº¦
  *
  * @return
- *        1£ºÈ«²¿µ½´ï£»
- *        0£ºÖÁÉÙÓĞÒ»¸öÎ´µ½´ï¡£
+ *        1ï¼šå…¨éƒ¨åˆ°è¾¾ï¼›
+ *        0ï¼šè‡³å°‘æœ‰ä¸€ä¸ªæœªåˆ°è¾¾ã€‚
  */
 uint8_t PWM_AngleServo_IsAllTargetReached(void);
 
 /*
- * @brief »ñÈ¡ PWM ½Ç¶È±Õ»·µ÷ÊÔĞÅÏ¢
+ * @brief è·å– PWM è§’åº¦é—­ç¯è°ƒè¯•ä¿¡æ¯
  *
- * @param out_debug  Ö¸ÏòÓÃÓÚ´æ´¢µ÷ÊÔĞÅÏ¢µÄ½á¹¹ÌåÖ¸Õë
+ * @param out_debug  æŒ‡å‘ç”¨äºå­˜å‚¨è°ƒè¯•ä¿¡æ¯çš„ç»“æ„ä½“æŒ‡é’ˆ
  */
 void PWM_AngleServo_GetDebugInfo(PWM_AngleDebug_t *out_debug);
 
 
 /************************************************
- * µ±Ç°Öµ»ñÈ¡
+ * å½“å‰å€¼è·å–
  ************************************************/
 
 /*
- * @brief »ñÈ¡Ä³¸ö PWM ¹Ø½Úµ±Ç°½Ç¶È
+ * @brief è·å–æŸä¸ª PWM å…³èŠ‚å½“å‰è§’åº¦
  *
- * @param joint        Ä¿±ê¹Ø½Ú¡£
+ * @param joint        ç›®æ ‡å…³èŠ‚ã€‚
  *
- * @return        µ±Ç°½Ç¶È£¬µ¥Î» deg¡£
+ * @return        å½“å‰è§’åº¦ï¼Œå•ä½ degã€‚
  *
- * ¼ÆËã¹ØÏµ£º
+ * è®¡ç®—å…³ç³»ï¼š
  * joint_angle = Normalize180(encoder_degree - zero_offset)
  */
 float PWM_AngleServo_GetCurrentAngle(PWM_AngleJoint_t joint);
 
 
 /************************************************
- * ²ÎÊıÅäÖÃ
+ * å‚æ•°é…ç½®
  ************************************************/
 
 /*
- * @brief ÉèÖÃÄ³¸ö PWM ¹Ø½Ú±àÂëÆ÷ÁãµãÆ«ÖÃ
+ * @brief è®¾ç½®æŸä¸ª PWM å…³èŠ‚ç¼–ç å™¨é›¶ç‚¹åç½®
  *
- * @param joint        Ä¿±ê¹Ø½Ú¡£
+ * @param joint        ç›®æ ‡å…³èŠ‚ã€‚
  *
- * @param zero_offset_deg      »úĞµÁãÎ»Ê±±àÂëÆ÷¶ÁÊı£¬µ¥Î» deg¡£
+ * @param zero_offset_deg      æœºæ¢°é›¶ä½æ—¶ç¼–ç å™¨è¯»æ•°ï¼Œå•ä½ degã€‚
  *
- * ¼ÆËã¹ØÏµ£º
+ * è®¡ç®—å…³ç³»ï¼š
  * joint_angle = Normalize180(encoder_degree - zero_offset_deg)
  */
 void PWM_AngleServo_SetZeroOffset(PWM_AngleJoint_t joint, float zero_offset_deg);
 
 /*
- * @brief Í¬Ê±ÉèÖÃ 4 ¸ö PWM ¹Ø½Ú±àÂëÆ÷ÁãµãÆ«ÖÃ
+ * @brief åŒæ—¶è®¾ç½® 4 ä¸ª PWM å…³èŠ‚ç¼–ç å™¨é›¶ç‚¹åç½®
  *
- * @param left_pitch_offset    ×ó¸©Ñö»úĞµÁãÎ»±àÂëÆ÷¶ÁÊı¡£
+ * @param left_pitch_offset    å·¦ä¿¯ä»°æœºæ¢°é›¶ä½ç¼–ç å™¨è¯»æ•°ã€‚
  *
- * @param left_yaw_offset      ×óÆ«º½»úĞµÁãÎ»±àÂëÆ÷¶ÁÊı¡£
+ * @param left_yaw_offset      å·¦åèˆªæœºæ¢°é›¶ä½ç¼–ç å™¨è¯»æ•°ã€‚
  *
- * @param right_pitch_offset   ÓÒ¸©Ñö»úĞµÁãÎ»±àÂëÆ÷¶ÁÊı¡£
+ * @param right_pitch_offset   å³ä¿¯ä»°æœºæ¢°é›¶ä½ç¼–ç å™¨è¯»æ•°ã€‚
  *
- * @param right_yaw_offset     ÓÒÆ«º½»úĞµÁãÎ»±àÂëÆ÷¶ÁÊı¡£
+ * @param right_yaw_offset     å³åèˆªæœºæ¢°é›¶ä½ç¼–ç å™¨è¯»æ•°ã€‚
  */
 void PWM_AngleServo_SetZeroOffsetAll(float left_pitch_offset,
                                      float left_yaw_offset,
@@ -287,95 +287,95 @@ void PWM_AngleServo_SetZeroOffsetAll(float left_pitch_offset,
                                      float right_yaw_offset);
                                      
 /*
- * @brief ½«µ±Ç°ËùÓĞ¹Ø½ÚµÄÊµ¼ÊÎ»ÖÃÖ±½ÓÉèÎªÄ¿±ê½Ç¶È£¨¾ÍµØËøËÀ£©
+ * @brief å°†å½“å‰æ‰€æœ‰å…³èŠ‚çš„å®é™…ä½ç½®ç›´æ¥è®¾ä¸ºç›®æ ‡è§’åº¦ï¼ˆå°±åœ°é”æ­»ï¼‰
  */
 void PWM_AngleServo_LockCurrentPosition(void);
                                      
 /*
- * @brief ÉèÖÃÄ³¸ö PWM ¹Ø½Ú·½Ïò·ûºÅ
+ * @brief è®¾ç½®æŸä¸ª PWM å…³èŠ‚æ–¹å‘ç¬¦å·
  *
  * @param joint
- *        Ä¿±ê¹Ø½Ú¡£
+ *        ç›®æ ‡å…³èŠ‚ã€‚
  *
  * @param sign
- *        +1£ºerror > 0 Ê±£¬DIRECTION_FORWARD Ê¹½Ç¶ÈÔö´ó£»
- *        -1£ºerror > 0 Ê±£¬DIRECTION_REVERSE Ê¹½Ç¶ÈÔö´ó¡£
+ *        +1ï¼šerror > 0 æ—¶ï¼ŒDIRECTION_FORWARD ä½¿è§’åº¦å¢å¤§ï¼›
+ *        -1ï¼šerror > 0 æ—¶ï¼ŒDIRECTION_REVERSE ä½¿è§’åº¦å¢å¤§ã€‚
  *
- * Ê¹ÓÃ³¡¾°£º
- * Èç¹û·¢ÏÖÄ¿±ê½Ç¶ÈÔö´óÊ±£¬Êµ¼Ê½Ç¶È·´¶ø¼õĞ¡£¬Ôò½« sign ¸ÄÎª -1¡£
+ * ä½¿ç”¨åœºæ™¯ï¼š
+ * å¦‚æœå‘ç°ç›®æ ‡è§’åº¦å¢å¤§æ—¶ï¼Œå®é™…è§’åº¦åè€Œå‡å°ï¼Œåˆ™å°† sign æ”¹ä¸º -1ã€‚
  */
 void PWM_AngleServo_SetDirectionSign(PWM_AngleJoint_t joint, int8_t sign);
 
 /*
- * @brief Í¬Ê±ÉèÖÃ 4 ¸ö PWM ¹Ø½Ú·½Ïò·ûºÅ
+ * @brief åŒæ—¶è®¾ç½® 4 ä¸ª PWM å…³èŠ‚æ–¹å‘ç¬¦å·
  *
- * @param left_pitch_sign   ×ó¸©Ñö·½Ïò·ûºÅ¡£
+ * @param left_pitch_sign   å·¦ä¿¯ä»°æ–¹å‘ç¬¦å·ã€‚
  *
- * @param left_yaw_sign     ×óÆ«º½·½Ïò·ûºÅ¡£
+ * @param left_yaw_sign     å·¦åèˆªæ–¹å‘ç¬¦å·ã€‚
  *
- * @param right_pitch_sign  ÓÒ¸©Ñö·½Ïò·ûºÅ¡£
+ * @param right_pitch_sign  å³ä¿¯ä»°æ–¹å‘ç¬¦å·ã€‚
  *
- * @param right_yaw_sign    ÓÒÆ«º½·½Ïò·ûºÅ¡£
+ * @param right_yaw_sign    å³åèˆªæ–¹å‘ç¬¦å·ã€‚
  */
 void PWM_AngleServo_SetDirectionSignAll(int8_t left_pitch_sign,
                                         int8_t left_yaw_sign,
                                         int8_t right_pitch_sign,
                                         int8_t right_yaw_sign);
 /*
- * @brief ÉèÖÃÄ³¸ö PWM ¹Ø½ÚµÄ±àÂëÆ÷·½Ïò·ûºÅ
+ * @brief è®¾ç½®æŸä¸ª PWM å…³èŠ‚çš„ç¼–ç å™¨æ–¹å‘ç¬¦å·
  *
  * @param joint
- *        Ä¿±ê¹Ø½Ú¡£
+ *        ç›®æ ‡å…³èŠ‚ã€‚
  *
  * @param sign
- *        +1£º±àÂëÆ÷½Ç¶ÈÔö¼Ó·½ÏòÓë DH ¹Ø½Ú½ÇÕı·½ÏòÒ»ÖÂ£»
- *        -1£º±àÂëÆ÷½Ç¶ÈÔö¼Ó·½ÏòÓë DH ¹Ø½Ú½ÇÕı·½ÏòÏà·´¡£
+ *        +1ï¼šç¼–ç å™¨è§’åº¦å¢åŠ æ–¹å‘ä¸ DH å…³èŠ‚è§’æ­£æ–¹å‘ä¸€è‡´ï¼›
+ *        -1ï¼šç¼–ç å™¨è§’åº¦å¢åŠ æ–¹å‘ä¸ DH å…³èŠ‚è§’æ­£æ–¹å‘ç›¸åã€‚
  */
 void PWM_AngleServo_SetEncoderSign(PWM_AngleJoint_t joint, int8_t sign);
 
 /*
- * @brief ÉèÖÃÄ³¸ö PWM ¹Ø½Ú½Ç¶ÈÈíÏŞÎ»
+ * @brief è®¾ç½®æŸä¸ª PWM å…³èŠ‚è§’åº¦è½¯é™ä½
  *
- * @param joint        Ä¿±ê¹Ø½Ú¡£
+ * @param joint        ç›®æ ‡å…³èŠ‚ã€‚
  *
- * @param min_deg        ×îĞ¡ÔÊĞí½Ç¶È£¬µ¥Î» deg¡£
+ * @param min_deg        æœ€å°å…è®¸è§’åº¦ï¼Œå•ä½ degã€‚
  *
- * @param max_deg       ×î´óÔÊĞí½Ç¶È£¬µ¥Î» deg¡£
+ * @param max_deg       æœ€å¤§å…è®¸è§’åº¦ï¼Œå•ä½ degã€‚
  *
- * ×¢Òâ£º
- * Èç¹û max_deg <= min_deg£¬º¯Êı»áÖ±½Ó·µ»Ø£¬²»ĞŞ¸ÄÏŞÎ»¡£
+ * æ³¨æ„ï¼š
+ * å¦‚æœ max_deg <= min_degï¼Œå‡½æ•°ä¼šç›´æ¥è¿”å›ï¼Œä¸ä¿®æ”¹é™ä½ã€‚
  */
 void PWM_AngleServo_SetLimit(PWM_AngleJoint_t joint, float min_deg, float max_deg);
 
 /************************************************
- * µ±Ç°½Ç¶ÈÉèÎªÁãµã¹¦ÄÜ
+ * å½“å‰è§’åº¦è®¾ä¸ºé›¶ç‚¹åŠŸèƒ½
  ************************************************/
 
 /*
- * @brief ½«Ö¸¶¨¹Ø½ÚµÄµ±Ç°½Ç¶ÈÉèÎªÁÙÊ±Áãµã
+ * @brief å°†æŒ‡å®šå…³èŠ‚çš„å½“å‰è§’åº¦è®¾ä¸ºä¸´æ—¶é›¶ç‚¹
  *
  * @param joint
- *        Ä¿±ê¹Ø½Ú¡£
+ *        ç›®æ ‡å…³èŠ‚ã€‚
  *
- * ¹¦ÄÜ£º
- * 1. ¶ÁÈ¡¸Ã¹Ø½Úµ±Ç°¾ø¶ÔÊ½±àÂëÆ÷½Ç¶È£»
- * 2. ½«¸Ã½Ç¶ÈÉèÖÃÎª zero_offset£»
- * 3. ½«¸Ã¹Ø½Úµ±Ç°Ä¿±ê½Ç¶ÈÉèÖÃÎª 0¡ã£»
- * 4. Í£Ö¹¶ÔÓ¦µç»ú£¬±ÜÃâÉèÁãµãºóÍ»È»ÔË¶¯¡£
+ * åŠŸèƒ½ï¼š
+ * 1. è¯»å–è¯¥å…³èŠ‚å½“å‰ç»å¯¹å¼ç¼–ç å™¨è§’åº¦ï¼›
+ * 2. å°†è¯¥è§’åº¦è®¾ç½®ä¸º zero_offsetï¼›
+ * 3. å°†è¯¥å…³èŠ‚å½“å‰ç›®æ ‡è§’åº¦è®¾ç½®ä¸º 0Â°ï¼›
+ * 4. åœæ­¢å¯¹åº”ç”µæœºï¼Œé¿å…è®¾é›¶ç‚¹åçªç„¶è¿åŠ¨ã€‚
  *
- * Ê¹ÓÃ³¡¾°£º
- * ¾ø¶ÔÊ½±àÂëÆ÷ÉÏµç¶ÁÊıÒ»°ã²»Îª 0¡£
- * ²âÊÔÊ±¿ÉÒÔµ÷ÓÃ±¾º¯Êı£¬°Ñµ±Ç°×ËÌ¬ÁÙÊ±¶¨ÒåÎª 0¡ã¡£
+ * ä½¿ç”¨åœºæ™¯ï¼š
+ * ç»å¯¹å¼ç¼–ç å™¨ä¸Šç”µè¯»æ•°ä¸€èˆ¬ä¸ä¸º 0ã€‚
+ * æµ‹è¯•æ—¶å¯ä»¥è°ƒç”¨æœ¬å‡½æ•°ï¼ŒæŠŠå½“å‰å§¿æ€ä¸´æ—¶å®šä¹‰ä¸º 0Â°ã€‚
  */
 void PWM_AngleServo_SetCurrentAsZero(PWM_AngleJoint_t joint);
 
 
 /*
- * @brief ½« 4 ¸ö PWM ¹Ø½ÚµÄµ±Ç°½Ç¶ÈÈ«²¿ÉèÎªÁÙÊ±Áãµã
+ * @brief å°† 4 ä¸ª PWM å…³èŠ‚çš„å½“å‰è§’åº¦å…¨éƒ¨è®¾ä¸ºä¸´æ—¶é›¶ç‚¹
  *
- * ¹¦ÄÜ£º
- * ·Ö±ğ¶Ô×ó¸©Ñö¡¢×óÆ«º½¡¢ÓÒ¸©Ñö¡¢ÓÒÆ«º½Ö´ĞĞ
- * PWM_AngleServo_SetCurrentAsZero()¡£
+ * åŠŸèƒ½ï¼š
+ * åˆ†åˆ«å¯¹å·¦ä¿¯ä»°ã€å·¦åèˆªã€å³ä¿¯ä»°ã€å³åèˆªæ‰§è¡Œ
+ * PWM_AngleServo_SetCurrentAsZero()ã€‚
  */
 void PWM_AngleServo_SetAllCurrentAsZero(void);
 

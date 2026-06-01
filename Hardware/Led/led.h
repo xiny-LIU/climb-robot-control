@@ -5,11 +5,11 @@
 #include "stdio.h"  
 extern uint8_t key_press_flag;
 void Led_Task(void);
-// ********** ½öÉùÃ÷ĞèÒªÓÃµ½µÄÒı½Åºê£¨ÓëCubeMXÅäÖÃÒ»ÖÂ£¡£©**********
-//#define LED_RED_PIN        GPIO_PIN_11    // ±ØĞëºÍCubeMXÖĞLEDÅäÖÃµÄÒı½ÅÒ»ÖÂ
-//#define LED_RED_GPIO_PORT  GPIOE         // ±ØĞëºÍCubeMXÅäÖÃÒ»ÖÂ
-//#define KEY_PIN            GPIO_PIN_2    // ±ØĞëºÍCubeMXÖĞ°´¼üÅäÖÃµÄÒı½ÅÒ»ÖÂ
-//#define KEY_GPIO_PORT      GPIOB         // ±ØĞëºÍCubeMXÅäÖÃÒ»ÖÂ
-//#define LED1_PIN           GPIO_PIN_1    // ±ØĞëºÍCubeMXÖĞ°´¼üÅäÖÃµÄÒı½ÅÒ»ÖÂ
-//#define LED1_GPIO_PORT      GPIOG         // ±ØĞëºÍCubeMXÅäÖÃÒ»ÖÂ
+// ********** ä»…å£°æ˜éœ€è¦ç”¨åˆ°çš„å¼•è„šå®ï¼ˆä¸CubeMXé…ç½®ä¸€è‡´ï¼ï¼‰**********
+//#define LED_RED_PIN        GPIO_PIN_11    // å¿…é¡»å’ŒCubeMXä¸­LEDé…ç½®çš„å¼•è„šä¸€è‡´
+//#define LED_RED_GPIO_PORT  GPIOE         // å¿…é¡»å’ŒCubeMXé…ç½®ä¸€è‡´
+//#define KEY_PIN            GPIO_PIN_2    // å¿…é¡»å’ŒCubeMXä¸­æŒ‰é”®é…ç½®çš„å¼•è„šä¸€è‡´
+//#define KEY_GPIO_PORT      GPIOB         // å¿…é¡»å’ŒCubeMXé…ç½®ä¸€è‡´
+//#define LED1_PIN           GPIO_PIN_1    // å¿…é¡»å’ŒCubeMXä¸­æŒ‰é”®é…ç½®çš„å¼•è„šä¸€è‡´
+//#define LED1_GPIO_PORT      GPIOG         // å¿…é¡»å’ŒCubeMXé…ç½®ä¸€è‡´
 #endif

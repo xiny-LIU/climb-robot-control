@@ -9,22 +9,22 @@
 
 #define PI 3.14159265f
 
-/* DH ²ÎÊı */
+/* DH å‚æ•° */
 static const float L1 = 25.21f;
 static const float L2 = 8.65f;
 static const float L3 = 5.66f;
 static const float L4_LEFT = 6.21f;
 static const float L4_RIGHT = 0.59f;
 
-/* È«¾Ö»úÆ÷ÈË×´Ì¬½á¹¹ÌåÊµÀı */
+/* å…¨å±€æœºå™¨äººçŠ¶æ€ç»“æ„ä½“å®ä¾‹ */
 Climb_Robot_t robot;
 
-/* ÄÚ²¿ÊıÑ§¸¨Öúº¯Êı */
+/* å†…éƒ¨æ•°å­¦è¾…åŠ©å‡½æ•° */
 static float Deg2Rad(float deg) { return deg * PI / 180.0f; }
 static float Rad2Deg(float rad) { return rad * 180.0f / PI; }
 
 /**
- * @brief [ÏêÏ¸½âÊÍ] ÕâÊÇÒ»¸öÏŞÎ»¹¤¾ßº¯Êı£¬·ÀÖ¹Ëã³öÀ´µÄÖµ³¬³öÎïÀí¼«ÏŞ
+ * @brief [è¯¦ç»†è§£é‡Š] è¿™æ˜¯ä¸€ä¸ªé™ä½å·¥å…·å‡½æ•°ï¼Œé˜²æ­¢ç®—å‡ºæ¥çš„å€¼è¶…å‡ºç‰©ç†æé™
  */
 static float Clamp_Float(float value, float min, float max) {
     if (value < min) return min;
@@ -33,7 +33,7 @@ static float Clamp_Float(float value, float min, float max) {
 }
 
 /**
- * @brief µ¥±Û¾Ö²¿ÕıÔË¶¯Ñ§ (FK)
+ * @brief å•è‡‚å±€éƒ¨æ­£è¿åŠ¨å­¦ (FK)
  */
 Point3D_t Kinematics_FK(JointAngle_t joint, float l4) {
     Point3D_t p;
@@ -48,16 +48,16 @@ Point3D_t Kinematics_FK(JointAngle_t joint, float l4) {
 }
 
 /**
- * @brief ¸üĞÂÔË¶¯Àï³Ì¼Æ (ÊÓ½Ç·´×ª)
+ * @brief æ›´æ–°è¿åŠ¨é‡Œç¨‹è®¡ (è§†è§’åè½¬)
  */
 void Update_Odometry(void) {
     protocol_info_t* imu = IMU_GetOutputInfo();
-    float gamma = Deg2Rad(imu->pitch); // »úÉíµ±Ç°Êµ¼Ê¸©Ñö½Ç
+    float gamma = Deg2Rad(imu->pitch); // æœºèº«å½“å‰å®é™…ä¿¯ä»°è§’
     
-    // »ñÈ¡µ±Ç°×¥Ç½ÊÖ±ÛµÄ¹Ø½ÚÊı¾İ (¼ÙÉè×ó±Û×¥Ç½)
+    // è·å–å½“å‰æŠ“å¢™æ‰‹è‡‚çš„å…³èŠ‚æ•°æ® (å‡è®¾å·¦è‡‚æŠ“å¢™)
     JointAngle_t left_joint;
-    left_joint.theta1 = encoder_data[ENC_2].degree; // ×óÆ«º½
-    left_joint.theta2 = encoder_data[ENC_1].degree; // ×ó¸©Ñö
+    left_joint.theta1 = encoder_data[ENC_2].degree; // å·¦åèˆª
+    left_joint.theta2 = encoder_data[ENC_1].degree; // å·¦ä¿¯ä»°
     left_joint.d3 = (float)Encoder_Get_Total_Angle(0) / 8192.0f * PI * 38.0f; 
 
     Point3D_t p_local = Kinematics_FK(left_joint, L4_LEFT);
@@ -67,11 +67,11 @@ void Update_Odometry(void) {
 }
 
 /**
- * @brief [ÏêÏ¸½âÊÍ] µç»úÖ¸Áî·¢ËÍ°ü×°¡£²»¹ÜÉÏÃæÔõÃ´Ëã£¬ÔÚÕâÀï±ØĞë¾­¹ıÏŞÎ»¼ì²é²ÅÄÜ·¢¸øµç»ú¡£
+ * @brief [è¯¦ç»†è§£é‡Š] ç”µæœºæŒ‡ä»¤å‘é€åŒ…è£…ã€‚ä¸ç®¡ä¸Šé¢æ€ä¹ˆç®—ï¼Œåœ¨è¿™é‡Œå¿…é¡»ç»è¿‡é™ä½æ£€æŸ¥æ‰èƒ½å‘ç»™ç”µæœºã€‚
  */
 void Execute_Joint_Commands(JointAngle_t left, JointAngle_t right) {
     
-    // 1. ÑÏ¸ñµÄ°²È«ÈíÏŞÎ» (ClampÀ¹½Ø)
+    // 1. ä¸¥æ ¼çš„å®‰å…¨è½¯é™ä½ (Clampæ‹¦æˆª)
     left.theta1 = Clamp_Float(left.theta1, YAW_MIN, YAW_MAX);
     left.theta2 = Clamp_Float(left.theta2, PITCH_MIN, PITCH_MAX);
     left.d3     = Clamp_Float(left.d3, D3_MIN_LENGTH, D3_MAX_LENGTH);
@@ -80,11 +80,11 @@ void Execute_Joint_Commands(JointAngle_t left, JointAngle_t right) {
     right.theta2 = Clamp_Float(right.theta2, PITCH_MIN, PITCH_MAX);
     right.d3     = Clamp_Float(right.d3, D3_MIN_LENGTH, D3_MAX_LENGTH);
 
-    // 2. ·¢ËÍÉìËõµç»úÖ¸Áî (ÕâÀïĞèÒªÄãºóĞø²¹³äÎ»ÖÃ»·Âß¼­£¬ÔİÓÃËÙ¶È»·´úÖ¸)
+    // 2. å‘é€ä¼¸ç¼©ç”µæœºæŒ‡ä»¤ (è¿™é‡Œéœ€è¦ä½ åç»­è¡¥å……ä½ç½®ç¯é€»è¾‘ï¼Œæš‚ç”¨é€Ÿåº¦ç¯ä»£æŒ‡)
     PID_SetTargetSpeed(0, (int16_t)left.d3);  
     PID_SetTargetSpeed(1, (int16_t)right.d3);
 
-    // 3. ·¢ËÍ¸©Ñö/Æ«º½µç»ú(PWM)Ö¸Áî
+    // 3. å‘é€ä¿¯ä»°/åèˆªç”µæœº(PWM)æŒ‡ä»¤
     float err_l_p = left.theta2 - encoder_data[ENC_1].degree;
     Motor_SetSpeed(MOTOR_A, (uint8_t)Clamp_Float(fabsf(err_l_p * 5.0f), 0, 100)); 
     Motor_SetDirection(MOTOR_A, err_l_p > 0 ? DIRECTION_FORWARD : DIRECTION_REVERSE);
@@ -103,7 +103,7 @@ void Execute_Joint_Commands(JointAngle_t left, JointAngle_t right) {
 }
 
 /**
- * @brief ÖØĞÄÔ¤Æ«ÖÃ×Ó³ÌĞò
+ * @brief é‡å¿ƒé¢„åç½®å­ç¨‹åº
  */
 void Subroutine_CoG_PreBias(uint8_t to_right) {
     if (to_right) {
@@ -114,7 +114,7 @@ void Subroutine_CoG_PreBias(uint8_t to_right) {
 }
 
 /**
- * @brief ³õÊ¼»¯
+ * @brief åˆå§‹åŒ–
  */
 void Climb_Control_Init(void) {
     robot.state = CLIMB_IDLE;
@@ -123,8 +123,8 @@ void Climb_Control_Init(void) {
 }
 
 /**
- * @brief [ÏêÏ¸½âÊÍ] Õâ¾ÍÊÇËùÎ½µÄ¡°Ö÷×´Ì¬»ú¡±£¡
- * Ëü±»ÍâÃæµÄ¶¨Ê±Æ÷Ã¿5msµ÷ÓÃÒ»´Î£¬ÀïÃæµÄ switch(robot.state) ¸ù¾İµ±Ç°µÄ×´Ì¬È¥Ö´ĞĞ¶ÔÓ¦µÄ´úÂë¿é¡£
+ * @brief [è¯¦ç»†è§£é‡Š] è¿™å°±æ˜¯æ‰€è°“çš„â€œä¸»çŠ¶æ€æœºâ€ï¼
+ * å®ƒè¢«å¤–é¢çš„å®šæ—¶å™¨æ¯5msè°ƒç”¨ä¸€æ¬¡ï¼Œé‡Œé¢çš„ switch(robot.state) æ ¹æ®å½“å‰çš„çŠ¶æ€å»æ‰§è¡Œå¯¹åº”çš„ä»£ç å—ã€‚
  */
 void Climb_Control_Loop_5ms(void) {
     Update_Odometry();
@@ -136,19 +136,19 @@ void Climb_Control_Loop_5ms(void) {
             break;
 
         case CLIMB_PULL_UP: {
-            // [ÏêÏ¸½âÊÍ] É¾³ıÁË¸´ÔÓµÄ Calculate_Target_Gamma º¯Êı£¡
-            // ÒòÎª³µÂÖºÜ´ó£¬ÀëÇ½ºÜÔ¶£¬ÕâÀïÖ±½Ó¡°´« 0¡±£¬Ç¿ĞĞÈÃ»úÉíÔÚÊıÑ§½âËãÖĞ±£³Ö´¹Ö±£¡
+            // [è¯¦ç»†è§£é‡Š] åˆ é™¤äº†å¤æ‚çš„ Calculate_Target_Gamma å‡½æ•°ï¼
+            // å› ä¸ºè½¦è½®å¾ˆå¤§ï¼Œç¦»å¢™å¾ˆè¿œï¼Œè¿™é‡Œç›´æ¥â€œä¼  0â€ï¼Œå¼ºè¡Œè®©æœºèº«åœ¨æ•°å­¦è§£ç®—ä¸­ä¿æŒå‚ç›´ï¼
             float target_gamma = 0.0f; 
             
-            // ºóĞøÎÒÃÇ»á¸ù¾İÕâ¸ö target_gamma = 0 È¥ÄæÏòËã³ö theta1, theta2, d3
-            // È»ºóµ÷ÓÃ Execute_Joint_Commands(Ëã³ö×ó±Û½Ç¶È, Ëã³öÓÒ±Û½Ç¶È);
+            // åç»­æˆ‘ä»¬ä¼šæ ¹æ®è¿™ä¸ª target_gamma = 0 å»é€†å‘ç®—å‡º theta1, theta2, d3
+            // ç„¶åè°ƒç”¨ Execute_Joint_Commands(ç®—å‡ºå·¦è‡‚è§’åº¦, ç®—å‡ºå³è‡‚è§’åº¦);
             break;
         }
 
         case CLIMB_PRE_BIAS_TO_RIGHT:
             Subroutine_CoG_PreBias(1);
             if (fabsf(robot.body_pos_w.y - robot.anchor_right_w.y) < 5.0f) {
-                // Èç¹ûÖØĞÄÒÆµ½ÁËÓÒ±ß£¬¾Í°Ñ×´Ì¬¸ÄÎª¡°ÊÍ·Å×ó±Û¡±£¬ÏÂÒ»´ÎÑ­»·¾Í»áÈ¥Ö´ĞĞÊÍ·Å¶¯×÷
+                // å¦‚æœé‡å¿ƒç§»åˆ°äº†å³è¾¹ï¼Œå°±æŠŠçŠ¶æ€æ”¹ä¸ºâ€œé‡Šæ”¾å·¦è‡‚â€ï¼Œä¸‹ä¸€æ¬¡å¾ªç¯å°±ä¼šå»æ‰§è¡Œé‡Šæ”¾åŠ¨ä½œ
                 robot.state = CLIMB_RELEASE_LEFT;
             }
             break;
@@ -163,7 +163,7 @@ void Climb_Control_Loop_5ms(void) {
 }
 
 /**
- * @brief Æô¶¯Ö¸Áî
+ * @brief å¯åŠ¨æŒ‡ä»¤
  */
 void Climb_Start(float distance) {
     robot.target_dist = distance;

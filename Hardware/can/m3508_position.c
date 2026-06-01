@@ -5,38 +5,38 @@
 #include "CAN_receive.h"
 #include "stm32f4xx.h"
 
-/* * ÌáÊ¾£º__disable_irq() ºÍ __get_PRIMASK() ÊÇ ARM CMSIS µÄ±ê×¼ÄÚºËÖ¸Áî¡£
- * ÔÚ STM32 ±êÅä»·¾³ÏÂ£¨HAL¿â»ò±ê×¼¿â£©£¬ËüÃÇÍ¨³£ÒÑ¾­ÔÚºËĞÄÍ·ÎÄ¼şÖĞÉùÃ÷¡£
- * Èç¹û±àÒëÆ÷±¨´íÕÒ²»µ½¶ÔÓ¦µÄÄÚÁªº¯Êı£¬ÇëÈ¡Ïû×¢ÊÍÏÂ·½ÕâĞĞ£º
+/* * æç¤ºï¼š__disable_irq() å’Œ __get_PRIMASK() æ˜¯ ARM CMSIS çš„æ ‡å‡†å†…æ ¸æŒ‡ä»¤ã€‚
+ * åœ¨ STM32 æ ‡é…ç¯å¢ƒä¸‹ï¼ˆHALåº“æˆ–æ ‡å‡†åº“ï¼‰ï¼Œå®ƒä»¬é€šå¸¸å·²ç»åœ¨æ ¸å¿ƒå¤´æ–‡ä»¶ä¸­å£°æ˜ã€‚
+ * å¦‚æœç¼–è¯‘å™¨æŠ¥é”™æ‰¾ä¸åˆ°å¯¹åº”çš„å†…è”å‡½æ•°ï¼Œè¯·å–æ¶ˆæ³¨é‡Šä¸‹æ–¹è¿™è¡Œï¼š
  * #include "cmsis_compiler.h" 
  */
 
 /* ============================================================
- * »ù±¾³£Á¿
+ * åŸºæœ¬å¸¸é‡
  * ============================================================ */
 #ifndef M3508_POS_PI
 #define M3508_POS_PI 3.14159265358979323846f
 #endif
 
 /* ============================================================
- * Î»ÖÃ»·²ÎÊı
+ * ä½ç½®ç¯å‚æ•°
  * ============================================================ */
 /*
- * ³¤¶ÈÎ»ÖÃ»·£ºv = Kp * e
- * v  £ºÄ¿±êÉìËõÏßËÙ¶È£¬µ¥Î» mm/s£»
- * Kp £º³¤¶ÈÎ»ÖÃ»·±ÈÀıÏµÊı£¬µ¥Î» 1/s£»
- * e  £ºÉìËõ³¤¶ÈÎó²î£¬µ¥Î» mm¡£
+ * é•¿åº¦ä½ç½®ç¯ï¼šv = Kp * e
+ * v  ï¼šç›®æ ‡ä¼¸ç¼©çº¿é€Ÿåº¦ï¼Œå•ä½ mm/sï¼›
+ * Kp ï¼šé•¿åº¦ä½ç½®ç¯æ¯”ä¾‹ç³»æ•°ï¼Œå•ä½ 1/sï¼›
+ * e  ï¼šä¼¸ç¼©é•¿åº¦è¯¯å·®ï¼Œå•ä½ mmã€‚
  */
 #define M3508_POS_KP_MM_S_PER_MM        1.2f
 
-/* ÉìËõ³¤¶Èµ½Î»ËÀÇø£¬µ¥Î» mm */
+/* ä¼¸ç¼©é•¿åº¦åˆ°ä½æ­»åŒºï¼Œå•ä½ mm */
 #define M3508_POS_DEADBAND_MM           2.0f
 
-/* ËÙ¶È»·Ä¿±ê×ª×Ó×ªËÙÏŞ·ù£¬µ¥Î» rpm */
+/* é€Ÿåº¦ç¯ç›®æ ‡è½¬å­è½¬é€Ÿé™å¹…ï¼Œå•ä½ rpm */
 #define M3508_POS_MAX_ROTOR_RPM         2800
 
 /* ============================================================
- * È«¾Ö±äÁ¿
+ * å…¨å±€å˜é‡
  * ============================================================ */
 float g_m3508_pos_reduction_ratio = M3508_POS_DEFAULT_REDUCTION_RATIO;
 
@@ -47,13 +47,13 @@ volatile float g_m3508_pos_left_target_output_rpm = 0.0f;
 volatile float g_m3508_pos_right_target_output_rpm = 0.0f;
 
 /* ============================================================
- * ÄÚ²¿ÀàĞÍÓë±äÁ¿
+ * å†…éƒ¨ç±»å‹ä¸å˜é‡
  * ============================================================ */
 typedef struct {
-    uint8_t pid_motor_id;       /* 0=×óÉìËõ£¬1=ÓÒÉìËõ */
-    float base_length_mm;       /* ±àÂëÆ÷ÇåÁãÊ±¶ÔÓ¦µÄÉìËõ¸Ë³¤¶È */
-    float target_length_mm;     /* Ô­Ê¼Ä¿±êÉìËõ³¤¶È£¨¿çÏß³Ì¹²Ïí£© */
-    int8_t direction_sign;      /* ÉìËõ·½Ïò·ûºÅ£¬+1 »ò -1 */
+    uint8_t pid_motor_id;       /* 0=å·¦ä¼¸ç¼©ï¼Œ1=å³ä¼¸ç¼© */
+    float base_length_mm;       /* ç¼–ç å™¨æ¸…é›¶æ—¶å¯¹åº”çš„ä¼¸ç¼©æ†é•¿åº¦ */
+    float target_length_mm;     /* åŸå§‹ç›®æ ‡ä¼¸ç¼©é•¿åº¦ï¼ˆè·¨çº¿ç¨‹å…±äº«ï¼‰ */
+    int8_t direction_sign;      /* ä¼¸ç¼©æ–¹å‘ç¬¦å·ï¼Œ+1 æˆ– -1 */
 } M3508_PositionMotor_t;
 
 static M3508_PositionMotor_t g_m3508_pos_motor[2] = {
@@ -67,7 +67,7 @@ static uint8_t g_m3508_pos_enabled = 0;
 static M3508_PositionDebug_t g_m3508_pos_debug;
 
 /* ============================================================
- * ¹¤¾ßº¯Êı
+ * å·¥å…·å‡½æ•°
  * ============================================================ */
 static float M3508_Pos_ClampFloat(float value, float min_value, float max_value)
 {
@@ -95,7 +95,7 @@ static uint8_t M3508_Pos_SideToIndex(M3508_PositionSide_t side)
  }
 
 /* ============================================================
- * ËÙ¶ÈÓë³¤¶È»»Ëã
+ * é€Ÿåº¦ä¸é•¿åº¦æ¢ç®—
  * ============================================================ */
 static void M3508_Pos_UpdateOutputRPM(void)
 {
@@ -125,7 +125,7 @@ float M3508_Position_GetCurrentLength(M3508_PositionSide_t side)
 }
 
 /* ============================================================
- * µ¥²àÎ»ÖÃ±Õ»·ºËĞÄ¿ØÖÆ£¨´«Èë±¾µØ¿ìÕÕÖµ£©
+ * å•ä¾§ä½ç½®é—­ç¯æ ¸å¿ƒæ§åˆ¶ï¼ˆä¼ å…¥æœ¬åœ°å¿«ç…§å€¼ï¼‰
  * ============================================================ */
 static void M3508_Pos_UpdateOne(uint8_t index, float local_target_mm)
 {
@@ -134,10 +134,10 @@ static void M3508_Pos_UpdateOne(uint8_t index, float local_target_mm)
     uint8_t pid_id = g_m3508_pos_motor[index].pid_motor_id;
     M3508_PositionMotorDebug_t *dbg = (index == 0) ? &g_m3508_pos_debug.left : &g_m3508_pos_debug.right;
 
-    // 1. »ñÈ¡µ±Ç°Êµ¼Ê»úĞµ³¤¶È
+    // 1. è·å–å½“å‰å®é™…æœºæ¢°é•¿åº¦
     float current_mm = M3508_Position_GetCurrentLength((index == 0) ? M3508_POS_LEFT : M3508_POS_RIGHT);
     
-    // 2. Èí¼ş°²È«ÏŞÎ»½Ø¶Ï£¬²¢ºÏÀíÅĞ¶¨Óë¼ÇÂ¼ÏŞÎ»×´Ì¬£¨½â¾ö×´Ì¬¸²¸ÇÎÊÌâ£©
+    // 2. è½¯ä»¶å®‰å…¨é™ä½æˆªæ–­ï¼Œå¹¶åˆç†åˆ¤å®šä¸è®°å½•é™ä½çŠ¶æ€ï¼ˆè§£å†³çŠ¶æ€è¦†ç›–é—®é¢˜ï¼‰
     float clamped_target_mm = M3508_Pos_ClampFloat(local_target_mm, g_length_min_mm, g_length_max_mm);
     if (clamped_target_mm != local_target_mm) {
         dbg->status = M3508_POS_TARGET_LIMITED;
@@ -145,21 +145,21 @@ static void M3508_Pos_UpdateOne(uint8_t index, float local_target_mm)
         dbg->status = M3508_POS_OK;
     }
 
-    // 3. ¼ÆËãÊµ¼Ê¿ØÖÆÎó²î
+    // 3. è®¡ç®—å®é™…æ§åˆ¶è¯¯å·®
     float error_mm = clamped_target_mm - current_mm;
 
     dbg->current_length_mm = current_mm;
     dbg->target_length_mm = clamped_target_mm;
     dbg->error_mm = error_mm;
     
-    // 4. ËÀÇøÁ¬ĞøĞÔÓ³Éä£¨Ïû³ıÍ»±ä£¬³¹µ×½â¾ö±ß½ç¸ßÆµÕñµ´£©
+    // 4. æ­»åŒºè¿ç»­æ€§æ˜ å°„ï¼ˆæ¶ˆé™¤çªå˜ï¼Œå½»åº•è§£å†³è¾¹ç•Œé«˜é¢‘æŒ¯è¡ï¼‰
     float control_error = 0.0f;
     if (error_mm > M3508_POS_DEADBAND_MM) {
         control_error = error_mm - M3508_POS_DEADBAND_MM;
     } else if (error_mm < -M3508_POS_DEADBAND_MM) {
         control_error = error_mm + M3508_POS_DEADBAND_MM;
     } else {
-        control_error = 0.0f; // ³¹µ×½øÈëËÀÇø£¬ÍêÈ«¾²Ö¹
+        control_error = 0.0f; // å½»åº•è¿›å…¥æ­»åŒºï¼Œå®Œå…¨é™æ­¢
     }
 
     if (control_error == 0.0f) {
@@ -172,10 +172,10 @@ static void M3508_Pos_UpdateOne(uint8_t index, float local_target_mm)
         return;
     }
 
-    // 5. Íâ²ãÎ»ÖÃ»· P ¿ØÖÆ (¼ÆËãÄ¿±êÏßËÙ¶È mm/s)
+    // 5. å¤–å±‚ä½ç½®ç¯ P æ§åˆ¶ (è®¡ç®—ç›®æ ‡çº¿é€Ÿåº¦ mm/s)
     float v_mm_s = M3508_POS_KP_MM_S_PER_MM * control_error;
 
-    // 6. ÏßËÙ¶È -> Êä³öÖáÄ¿±ê×ªËÙ RPM
+    // 6. çº¿é€Ÿåº¦ -> è¾“å‡ºè½´ç›®æ ‡è½¬é€Ÿ RPM
     float output_rpm = v_mm_s / (M3508_POS_PI * M3508_POS_PULLEY_DIAMETER_MM) * 60.0f;
     float target_output_rpm = output_rpm * (float)g_m3508_pos_motor[index].direction_sign;
 
@@ -191,8 +191,8 @@ static void M3508_Pos_UpdateOne(uint8_t index, float local_target_mm)
     int16_t rotor_rpm_set = (int16_t)rotor_rpm_set_f;
 
     /*
-     * ·´Ëã¡°Êµ¼ÊÖ´ĞĞµÄÄ¿±êÊä³öÖá×ªËÙ¡±¡£
-     * ÕâÑù debug ºÍÊµ¼Ê¿ØÖÆÁ¿Ò»ÖÂ¡£
+     * åç®—â€œå®é™…æ‰§è¡Œçš„ç›®æ ‡è¾“å‡ºè½´è½¬é€Ÿâ€ã€‚
+     * è¿™æ · debug å’Œå®é™…æ§åˆ¶é‡ä¸€è‡´ã€‚
      */
     float actual_target_output_rpm =
         (float)rotor_rpm_set / ratio;
@@ -210,7 +210,7 @@ static void M3508_Pos_UpdateOne(uint8_t index, float local_target_mm)
 }
 
 /* ============================================================
- * ¶ÔÍâ¿ØÖÆ½Ó¿Ú
+ * å¯¹å¤–æ§åˆ¶æ¥å£
  * ============================================================ */
 void M3508_Position_Init(void)
 {
@@ -229,8 +229,8 @@ void M3508_Position_Init(void)
     g_length_max_mm = M3508_POS_DEFAULT_D3_MAX_MM;
 
     /*
-     * ÔÚ pid_id¡¢base_length¡¢direction_sign ¶¼ÉèÖÃºÃÖ®ºó£¬
-     * ÔÙÍ¬²½µ±Ç°³¤¶ÈÎªÄ¿±ê³¤¶È¡£
+     * åœ¨ pid_idã€base_lengthã€direction_sign éƒ½è®¾ç½®å¥½ä¹‹åï¼Œ
+     * å†åŒæ­¥å½“å‰é•¿åº¦ä¸ºç›®æ ‡é•¿åº¦ã€‚
      */
     g_m3508_pos_motor[0].target_length_mm =
         M3508_Position_GetCurrentLength(M3508_POS_LEFT);
@@ -279,8 +279,8 @@ void M3508_Position_SetTargetLength(M3508_PositionSide_t side, float target_leng
     uint8_t index = M3508_Pos_SideToIndex(side);
 
     /*
-     * ½¨ÒéÔÚÊäÈë¶ËÒ²×öÏŞÎ»¡£
-     * ÕâÑù g_m3508_pos_motor[index].target_length_mm ÓÀÔ¶±£´æ°²È«Ä¿±ê¡£
+     * å»ºè®®åœ¨è¾“å…¥ç«¯ä¹Ÿåšé™ä½ã€‚
+     * è¿™æ · g_m3508_pos_motor[index].target_length_mm æ°¸è¿œä¿å­˜å®‰å…¨ç›®æ ‡ã€‚
      */
     float limited_target =
         M3508_Pos_ClampFloat(target_length_mm, g_length_min_mm, g_length_max_mm);
@@ -312,7 +312,7 @@ void M3508_Position_SetTargetLengthBoth(float left_target_mm, float right_target
 }
 
 /* ============================================================
- * 5ms ÖÜÆÚ±Õ»·¸üĞÂÏß³Ì£¨ºËĞÄÒì²½Ïß³Ì°²È«¸ÄÔì£©
+ * 5ms å‘¨æœŸé—­ç¯æ›´æ–°çº¿ç¨‹ï¼ˆæ ¸å¿ƒå¼‚æ­¥çº¿ç¨‹å®‰å…¨æ”¹é€ ï¼‰
  * ============================================================ */
 void M3508_Position_Update_5ms(void)
 {
@@ -329,7 +329,7 @@ void M3508_Position_Update_5ms(void)
     float local_right_target = 0.0f;
 
     /* --------------------------------------------------------
-     * ¡¾ÁÙ½çÇø±£»¤¡¿Îª¸ß²ã¿çÏß³ÌÊäÈëµÄ target_length_mm ÅÄÕÕ´æ±¾µØ¿ìÕÕ
+     * ã€ä¸´ç•ŒåŒºä¿æŠ¤ã€‘ä¸ºé«˜å±‚è·¨çº¿ç¨‹è¾“å…¥çš„ target_length_mm æ‹ç…§å­˜æœ¬åœ°å¿«ç…§
      * -------------------------------------------------------- */
     uint32_t primask_bit = __get_PRIMASK(); 
     __disable_irq();                        
@@ -343,7 +343,7 @@ void M3508_Position_Update_5ms(void)
     uint8_t left_pid_id  = g_m3508_pos_motor[0].pid_motor_id;
     uint8_t right_pid_id = g_m3508_pos_motor[1].pid_motor_id;
 
-    // ×óµç»ú¿ØÖÆ·ÖÅä
+    // å·¦ç”µæœºæ§åˆ¶åˆ†é…
     if (PID_GetMotorStatus(left_pid_id) == MOTOR_STATUS_ERROR) {
         M3508_Position_Stop(M3508_POS_LEFT);
         g_m3508_pos_debug.left.status = M3508_POS_MOTOR_ERROR;
@@ -351,7 +351,7 @@ void M3508_Position_Update_5ms(void)
         M3508_Pos_UpdateOne(0, local_left_target); 
     }
 
-    // ÓÒµç»ú¿ØÖÆ·ÖÅä
+    // å³ç”µæœºæ§åˆ¶åˆ†é…
     if (PID_GetMotorStatus(right_pid_id) == MOTOR_STATUS_ERROR) {
         M3508_Position_Stop(M3508_POS_RIGHT);
         g_m3508_pos_debug.right.status = M3508_POS_MOTOR_ERROR;
@@ -359,7 +359,7 @@ void M3508_Position_Update_5ms(void)
         M3508_Pos_UpdateOne(1, local_right_target); 
     }
 
-    // Í³Ò»Í¬²½Ò»ÂÖÈ«¾Ö·´À¡×´Ì¬
+    // ç»Ÿä¸€åŒæ­¥ä¸€è½®å…¨å±€åé¦ˆçŠ¶æ€
     g_m3508_pos_debug.left.output_rpm = g_m3508_pos_left_output_rpm;
     g_m3508_pos_debug.right.output_rpm = g_m3508_pos_right_output_rpm;
     g_m3508_pos_debug.left.target_output_rpm = g_m3508_pos_left_target_output_rpm;
@@ -415,7 +415,7 @@ uint8_t M3508_Position_IsAllTargetReached(void)
 }
 
 /* ============================================================
- * Ïß³Ì°²È«µÄÊı¾İµ¼³ö½Ó¿Ú£¨³¹µ×Ïû³ı Torn Read Òş»¼£©
+ * çº¿ç¨‹å®‰å…¨çš„æ•°æ®å¯¼å‡ºæ¥å£ï¼ˆå½»åº•æ¶ˆé™¤ Torn Read éšæ‚£ï¼‰
  * ============================================================ */
 void M3508_Position_GetDebugInfo(M3508_PositionDebug_t *out_debug)
 {

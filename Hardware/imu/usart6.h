@@ -6,7 +6,7 @@
 #include <stdbool.h>
 #include "analysis_data.h" 
 /*======================================================
- *  ÓÃ»§ÅäÖÃÇøÓò - ¸ù¾İCubeMXÉú³ÉµÄºêĞŞ¸Ä
+ *  ç”¨æˆ·é…ç½®åŒºåŸŸ - æ ¹æ®CubeMXç”Ÿæˆçš„å®ä¿®æ”¹
  *======================================================*/
 #ifndef IMU_USART
   #define IMU_USART           USART6
@@ -17,108 +17,108 @@
 #endif
 
 #ifndef IMU_USART_RX_DMA_STREAM
-  #define IMU_USART_RX_DMA_STREAM  DMA2_Stream1  // USART6_RX Í¨³£ÊÇ DMA2_Stream1
+  #define IMU_USART_RX_DMA_STREAM  DMA2_Stream1  // USART6_RX é€šå¸¸æ˜¯ DMA2_Stream1
 #endif
 
 #ifndef IMU_USART_RX_DMA_CHANNEL
-  #define IMU_USART_RX_DMA_CHANNEL DMA_CHANNEL_5   // USART6_RX ¶ÔÓ¦ Channel 5
+  #define IMU_USART_RX_DMA_CHANNEL DMA_CHANNEL_5   // USART6_RX å¯¹åº” Channel 5
 #endif
 
-/* Ö¡¶¨Òå */
+/* å¸§å®šä¹‰ */
 #define IMU_FRAME_HEADER_1      0x59
 #define IMU_FRAME_HEADER_2      0x53
-#define IMU_FRAME_LENGTH        67          // ¹Ì¶¨Ö¡³¤
-#define IMU_PAYLOAD_POS         5           // PayloadÆğÊ¼Î»ÖÃ
+#define IMU_FRAME_LENGTH        67          // å›ºå®šå¸§é•¿
+#define IMU_PAYLOAD_POS         5           // Payloadèµ·å§‹ä½ç½®
 
-/* ×´Ì¬»ú×´Ì¬ */
+/* çŠ¶æ€æœºçŠ¶æ€ */
 typedef enum {
-    IMU_STATE_IDLE = 0,     // µÈ´ıÖ¡Í·1
-    IMU_STATE_HEAD_1,       // ÊÕµ½Ö¡Í·1£¬µÈ´ıÖ¡Í·2
-    IMU_STATE_RECEIVING,    // ÕıÔÚ½ÓÊÕÊı¾İ
-    IMU_STATE_PROCESS       // Êı¾İ¾ÍĞ÷´ı´¦Àí
+    IMU_STATE_IDLE = 0,     // ç­‰å¾…å¸§å¤´1
+    IMU_STATE_HEAD_1,       // æ”¶åˆ°å¸§å¤´1ï¼Œç­‰å¾…å¸§å¤´2
+    IMU_STATE_RECEIVING,    // æ­£åœ¨æ¥æ”¶æ•°æ®
+    IMU_STATE_PROCESS       // æ•°æ®å°±ç»ªå¾…å¤„ç†
 } imu_recv_state_t;
 
-/* ½ÓÊÕ»º³åÇø½á¹¹ */
+/* æ¥æ”¶ç¼“å†²åŒºç»“æ„ */
 typedef struct {
-    uint8_t  rx_buf[IMU_FRAME_LENGTH];      // DMA»º³åÇø
-    uint8_t  frame_buf[IMU_FRAME_LENGTH];   // ´¦Àí»º³åÇø£¨Ë«»º³å£©
-    uint16_t rx_len;                        // µ±Ç°½ÓÊÕ³¤¶È
-    uint8_t  data_ready;                    // Êı¾İ¾ÍĞ÷±êÖ¾
+    uint8_t  rx_buf[IMU_FRAME_LENGTH];      // DMAç¼“å†²åŒº
+    uint8_t  frame_buf[IMU_FRAME_LENGTH];   // å¤„ç†ç¼“å†²åŒºï¼ˆåŒç¼“å†²ï¼‰
+    uint16_t rx_len;                        // å½“å‰æ¥æ”¶é•¿åº¦
+    uint8_t  data_ready;                    // æ•°æ®å°±ç»ªæ ‡å¿—
 } imu_rx_buffer_t;
 
 /*======================================================
- *  ¶ÔÍâ½Ó¿Úº¯Êı
+ *  å¯¹å¤–æ¥å£å‡½æ•°
  *======================================================*/
 
 /**
- * @brief  IMU´®¿Ú³õÊ¼»¯£¨ÔÚMX_USART6_UART_Initºóµ÷ÓÃ£©
- * @param  huart: CubeMXÉú³ÉµÄUSART6¾ä±úÖ¸Õë
+ * @brief  IMUä¸²å£åˆå§‹åŒ–ï¼ˆåœ¨MX_USART6_UART_Initåè°ƒç”¨ï¼‰
+ * @param  huart: CubeMXç”Ÿæˆçš„USART6å¥æŸ„æŒ‡é’ˆ
  * @retval None
  */
 void IMU_USART_Init(UART_HandleTypeDef *huart);
 
 /**
- * @brief  Æô¶¯IMUÊı¾İ½ÓÊÕ£¨DMAÑ­»·Ä£Ê½»òÖĞ¶ÏÄ£Ê½£©
+ * @brief  å¯åŠ¨IMUæ•°æ®æ¥æ”¶ï¼ˆDMAå¾ªç¯æ¨¡å¼æˆ–ä¸­æ–­æ¨¡å¼ï¼‰
  * @param  None
  * @retval None
  */
 void IMU_USART_StartReceive(void);
 
 /**
- * @brief  ´¦Àí½ÓÊÕµ½µÄIMUÊı¾İ£¨·ÅÔÚÖ÷Ñ­»·»ò¶¨Ê±Æ÷ÖĞµ÷ÓÃ£©
+ * @brief  å¤„ç†æ¥æ”¶åˆ°çš„IMUæ•°æ®ï¼ˆæ”¾åœ¨ä¸»å¾ªç¯æˆ–å®šæ—¶å™¨ä¸­è°ƒç”¨ï¼‰
  * @param  None
- * @retval 0:ÎŞĞÂÊı¾İ  1:´¦Àí³É¹¦  -1:Ğ£ÑéÊ§°Ü
+ * @retval 0:æ— æ–°æ•°æ®  1:å¤„ç†æˆåŠŸ  -1:æ ¡éªŒå¤±è´¥
  */
 int IMU_USART_ProcessData(void);
 
 /**
- * @brief  »ñÈ¡×îĞÂ½âÎöºóµÄIMUÊı¾İ½á¹¹ÌåÖ¸Õë
+ * @brief  è·å–æœ€æ–°è§£æåçš„IMUæ•°æ®ç»“æ„ä½“æŒ‡é’ˆ
  * @param  None
- * @retval protocol_info_tÖ¸Õë£¨À´×Ôanalysis_data.h£©
+ * @retval protocol_info_tæŒ‡é’ˆï¼ˆæ¥è‡ªanalysis_data.hï¼‰
  */
 protocol_info_t* IMU_GetOutputInfo(void);
 
 /**
- * @brief  ¼ì²éÊÇ·ñÓĞĞÂÊı¾İ¾ÍĞ÷£¨·Ç×èÈû²éÑ¯£©
+ * @brief  æ£€æŸ¥æ˜¯å¦æœ‰æ–°æ•°æ®å°±ç»ªï¼ˆéé˜»å¡æŸ¥è¯¢ï¼‰
  * @param  None
- * @retval 0:ÎŞĞÂÊı¾İ  1:ÓĞĞÂÊı¾İ
+ * @retval 0:æ— æ–°æ•°æ®  1:æœ‰æ–°æ•°æ®
  */
 uint8_t IMU_IsDataReady(void);
 
 /**
- * @brief  Çå³ıÊı¾İ¾ÍĞ÷±êÖ¾
+ * @brief  æ¸…é™¤æ•°æ®å°±ç»ªæ ‡å¿—
  * @param  None
  * @retval None
  */
 void IMU_ClearDataReady(void);
 
 /**
- * @brief  ×Ö½Ú½ÓÊÕ´¦Àíº¯Êı£¨ÓÃÓÚ·ÇDMAÄ£Ê½»ò±¸ÓÃ£©
- * @param  byte: ½ÓÊÕµ½µÄ×Ö½Ú
+ * @brief  å­—èŠ‚æ¥æ”¶å¤„ç†å‡½æ•°ï¼ˆç”¨äºéDMAæ¨¡å¼æˆ–å¤‡ç”¨ï¼‰
+ * @param  byte: æ¥æ”¶åˆ°çš„å­—èŠ‚
  * @retval None
  */
 void IMU_ByteReceived(uint8_t byte);
 
 /**
- * @brief  DMA½ÓÊÕÍê³É´¦Àí£¨ÆÕÍ¨º¯ÊıĞÎÊ½£¬·Ç»Øµ÷£©
- * @param  huart: ´®¿Ú¾ä±ú
+ * @brief  DMAæ¥æ”¶å®Œæˆå¤„ç†ï¼ˆæ™®é€šå‡½æ•°å½¢å¼ï¼Œéå›è°ƒï¼‰
+ * @param  huart: ä¸²å£å¥æŸ„
  * @retval None
  */
 void IMU_DMA_RxCpltHandler(UART_HandleTypeDef *huart);
 
 /**
- * @brief  ´®¿Ú´íÎó´¦Àí£¨ÆÕÍ¨º¯ÊıĞÎÊ½£¬·Ç»Øµ÷£©
- * @param  huart: ´®¿Ú¾ä±ú
+ * @brief  ä¸²å£é”™è¯¯å¤„ç†ï¼ˆæ™®é€šå‡½æ•°å½¢å¼ï¼Œéå›è°ƒï¼‰
+ * @param  huart: ä¸²å£å¥æŸ„
  * @retval None
  */
 void IMU_UART_ErrorHandler(UART_HandleTypeDef *huart);
 
 /**
- * @brief  IMU´¦ÀíÈÎÎñ - ¹©¶¨Ê±Æ÷µ÷ÓÃ
+ * @brief  IMUå¤„ç†ä»»åŠ¡ - ä¾›å®šæ—¶å™¨è°ƒç”¨
  */
 void IMU_Process_Task(void);
 /*======================================================
- *  È«¾Ö±äÁ¿ÉùÃ÷
+ *  å…¨å±€å˜é‡å£°æ˜
  *======================================================*/
 extern imu_rx_buffer_t g_imu_rx;
 extern volatile uint8_t g_imu_frame_ready;

@@ -1,15 +1,15 @@
-// ps2_filter.c - ÓÅ»¯°æ±¾
+// ps2_filter.c - ä¼˜åŒ–ç‰ˆæœ¬
 #include "ps2_filter.h"
 #include <string.h>
 #include <stdlib.h>
 
 #define ANOMALY_LY_CENTER       90
-#define ANOMALY_LY_RANGE        12      // À©´ó·¶Î§ 78-102
-#define ANOMALY_RX_MAX          12      // 0-12¶¼ÈÏÎªÊÇÒì³£
-#define MAX_JUMP                30      // ½µµÍÌø±äãĞÖµ
+#define ANOMALY_LY_RANGE        12      // æ‰©å¤§èŒƒå›´ 78-102
+#define ANOMALY_RX_MAX          12      // 0-12éƒ½è®¤ä¸ºæ˜¯å¼‚å¸¸
+#define MAX_JUMP                30      // é™ä½è·³å˜é˜ˆå€¼
 
 typedef struct {
-    uint8_t history[4];     // Ôö¼Óµ½4¸ö£¬¸üºÃÂË²¨
+    uint8_t history[4];     // å¢åŠ åˆ°4ä¸ªï¼Œæ›´å¥½æ»¤æ³¢
     uint8_t idx;
     uint8_t last_output;
     uint8_t initialized;
@@ -21,53 +21,53 @@ static Filter_t f_rx = {0};
 static Filter_t f_lx = {0};
 static Filter_t f_ry = {0};
 
-// ========== ºËĞÄĞŞ¸Ä£ºLYÒì³£¼ì²â ==========
+// ========== æ ¸å¿ƒä¿®æ”¹ï¼šLYå¼‚å¸¸æ£€æµ‹ ==========
 
 static uint8_t is_ly_anomaly(uint8_t val, uint8_t last_out)
 {
-    // Ìõ¼ş1£ºÖµÊÇ·ñÔÚ90Î£ÏÕÇøÓò£¨78-102£©
+    // æ¡ä»¶1ï¼šå€¼æ˜¯å¦åœ¨90å±é™©åŒºåŸŸï¼ˆ78-102ï¼‰
     uint8_t in_danger_zone = (val >= (ANOMALY_LY_CENTER - ANOMALY_LY_RANGE) && 
                               val <= (ANOMALY_LY_CENTER + ANOMALY_LY_RANGE));
     
     if (!in_danger_zone) {
-        return 0;  // ²»ÔÚÎ£ÏÕÇøÓò£¬¿Ï¶¨Õı³£
+        return 0;  // ä¸åœ¨å±é™©åŒºåŸŸï¼Œè‚¯å®šæ­£å¸¸
     }
     
-    // Ìõ¼ş2£ºÍ»È»Ìøµ½90¸½½ü£¨ÓëÉÏ´ÎÊä³ö²îÒì´ó£©
-    // ÈËÊÖ»¬¶¯ÊÇÁ¬ĞøµÄ£¬²»»áË²ÒÆ
+    // æ¡ä»¶2ï¼šçªç„¶è·³åˆ°90é™„è¿‘ï¼ˆä¸ä¸Šæ¬¡è¾“å‡ºå·®å¼‚å¤§ï¼‰
+    // äººæ‰‹æ»‘åŠ¨æ˜¯è¿ç»­çš„ï¼Œä¸ä¼šç¬ç§»
     int16_t jump = abs((int16_t)val - (int16_t)last_out);
     if (jump > MAX_JUMP) {
-        return 1;  // Ìø±äÌ«´ó£¬ÊÇ¸ÉÈÅ£¡
+        return 1;  // è·³å˜å¤ªå¤§ï¼Œæ˜¯å¹²æ‰°ï¼
     }
     
-    // Ìõ¼ş3£º´Ó·Ç90ÇøÓòÍ»È»½øÈë90ÇøÓò
-    // ÉÏ´Î²»ÔÚ78-102£¬Õâ´ÎÍ»È»ÔÚ ¡ú ¿ÉÒÉ
+    // æ¡ä»¶3ï¼šä»é90åŒºåŸŸçªç„¶è¿›å…¥90åŒºåŸŸ
+    // ä¸Šæ¬¡ä¸åœ¨78-102ï¼Œè¿™æ¬¡çªç„¶åœ¨ â†’ å¯ç–‘
     uint8_t last_in_danger = (last_out >= (ANOMALY_LY_CENTER - ANOMALY_LY_RANGE) && 
                               last_out <= (ANOMALY_LY_CENTER + ANOMALY_LY_RANGE));
     if (!last_in_danger && in_danger_zone) {
-        // ½øÒ»²½È·ÈÏ£ºÈç¹ûÀúÊ·Öµ¶¼²»ÔÚ90¸½½ü£¬Õâ´ÎÍ»È»ÔÚ ¡ú ¸ÉÈÅ
+        // è¿›ä¸€æ­¥ç¡®è®¤ï¼šå¦‚æœå†å²å€¼éƒ½ä¸åœ¨90é™„è¿‘ï¼Œè¿™æ¬¡çªç„¶åœ¨ â†’ å¹²æ‰°
         return 1;
     }
     
-    return 0;  // ¿ÉÄÜÊÇÕı³£²Ù×÷
+    return 0;  // å¯èƒ½æ˜¯æ­£å¸¸æ“ä½œ
 }
 
-// ========== RXÒì³£¼ì²â£¨Í¬Àí£© ==========
+// ========== RXå¼‚å¸¸æ£€æµ‹ï¼ˆåŒç†ï¼‰ ==========
 
 static uint8_t is_rx_anomaly(uint8_t val, uint8_t last_out)
 {
-    // rxÔÚ0-12Ö®¼ä
+    // rxåœ¨0-12ä¹‹é—´
     if (val > ANOMALY_RX_MAX) {
         return 0;
     }
     
-    // Ìø±äÌ«´ó£¨´ÓÕı³£ÖµÍ»È»Ìøµ½0¸½½ü£©
+    // è·³å˜å¤ªå¤§ï¼ˆä»æ­£å¸¸å€¼çªç„¶è·³åˆ°0é™„è¿‘ï¼‰
     int16_t jump = abs((int16_t)val - (int16_t)last_out);
     if (jump > MAX_JUMP) {
         return 1;
     }
     
-    // ÉÏ´ÎÔÚÓÒ±ß£¨Öµ´ó£©£¬Õâ´ÎÍ»È»µ½0
+    // ä¸Šæ¬¡åœ¨å³è¾¹ï¼ˆå€¼å¤§ï¼‰ï¼Œè¿™æ¬¡çªç„¶åˆ°0
     if (last_out > 20 && val <= ANOMALY_RX_MAX) {
         return 1;
     }
@@ -75,30 +75,30 @@ static uint8_t is_rx_anomaly(uint8_t val, uint8_t last_out)
     return 0;
 }
 
-// ========== ¹¤¾ßº¯Êı ==========
+// ========== å·¥å…·å‡½æ•° ==========
 
 static void swap(uint8_t *a, uint8_t *b)
 {
     uint8_t t = *a; *a = *b; *b = t;
 }
 
-// 4ÖµÈ¡ÖĞÖµ£¨È¥µô×î´ó×îĞ¡£¬ÖĞ¼äÁ½¸öÆ½¾ù£©
+// 4å€¼å–ä¸­å€¼ï¼ˆå»æ‰æœ€å¤§æœ€å°ï¼Œä¸­é—´ä¸¤ä¸ªå¹³å‡ï¼‰
 static uint8_t median4(uint8_t *arr)
 {
     uint8_t temp[4] = {arr[0], arr[1], arr[2], arr[3]};
     
-    // Ã°ÅİÅÅĞò
+    // å†’æ³¡æ’åº
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3-i; j++) {
             if (temp[j] > temp[j+1]) swap(&temp[j], &temp[j+1]);
         }
     }
     
-    // È¥µô×îĞ¡ºÍ×î´ó£¬ÖĞ¼äÁ½¸öÈ¡Æ½¾ù
+    // å»æ‰æœ€å°å’Œæœ€å¤§ï¼Œä¸­é—´ä¸¤ä¸ªå–å¹³å‡
     return (temp[1] + temp[2]) / 2;
 }
 
-// ÀúÊ·Æ½¾ùÖµ
+// å†å²å¹³å‡å€¼
 static uint8_t history_avg(Filter_t *f)
 {
     uint16_t sum = 0;
@@ -106,12 +106,12 @@ static uint8_t history_avg(Filter_t *f)
     return (uint8_t)(sum / 4);
 }
 
-// ========== ÂË²¨¸üĞÂ ==========
+// ========== æ»¤æ³¢æ›´æ–° ==========
 
 static uint8_t filter_update(Filter_t *f, uint8_t raw, 
                               uint8_t (*is_anomaly)(uint8_t, uint8_t))
 {
-    // ³õÊ¼»¯½×¶Î
+    // åˆå§‹åŒ–é˜¶æ®µ
     if (f->fill_count < 4) {
         f->history[f->fill_count] = raw;
         f->fill_count++;
@@ -121,23 +121,23 @@ static uint8_t filter_update(Filter_t *f, uint8_t raw,
     
     f->initialized = 1;
     
-    // Òì³£¼ì²âºÍ´¦Àí
+    // å¼‚å¸¸æ£€æµ‹å’Œå¤„ç†
     uint8_t use_val = raw;
     if (is_anomaly && is_anomaly(raw, f->last_output)) {
-        // ÓÃÀúÊ·Æ½¾ùÖµ´úÌæ£¨¸üÆ½»¬£©
+        // ç”¨å†å²å¹³å‡å€¼ä»£æ›¿ï¼ˆæ›´å¹³æ»‘ï¼‰
         use_val = history_avg(f);
     }
     
-    // ¸üĞÂ»·ĞÎ»º³åÇø
+    // æ›´æ–°ç¯å½¢ç¼“å†²åŒº
     f->history[f->idx] = use_val;
     f->idx = (f->idx + 1) % 4;
     
-    // Êä³öÖĞÖµ
+    // è¾“å‡ºä¸­å€¼
     f->last_output = median4(f->history);
     return f->last_output;
 }
 
-// ========== ¹«¹²½Ó¿Ú ==========
+// ========== å…¬å…±æ¥å£ ==========
 
 void PS2_Filter_Init(void)
 {
@@ -155,7 +155,7 @@ void PS2_Filter_Init(void)
     
     f_ly.last_output = 128;
     f_rx.last_output = 128;
-    f_ly.fill_count = 4;  // Ô¤Ìî³ä£¬Á¢¼´ÉúĞ§
+    f_ly.fill_count = 4;  // é¢„å¡«å……ï¼Œç«‹å³ç”Ÿæ•ˆ
     f_rx.fill_count = 4;
     f_lx.fill_count = 4;
     f_ry.fill_count = 4;

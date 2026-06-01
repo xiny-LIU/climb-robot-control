@@ -3,7 +3,7 @@
   * @file       can_receive.c/h
   * @brief      there is CAN interrupt function  to receive motor data,
   *             and CAN send function to send motor current to control motor.
-  *             ÕâÀïÊÇCANÖĞ¶Ï½ÓÊÕº¯Êı£¬½ÓÊÕµç»úÊı¾İ,CAN·¢ËÍº¯Êı·¢ËÍµç»úµçÁ÷¿ØÖÆµç»ú.
+  *             è¿™é‡Œæ˜¯CANä¸­æ–­æ¥æ”¶å‡½æ•°ï¼Œæ¥æ”¶ç”µæœºæ•°æ®,CANå‘é€å‡½æ•°å‘é€ç”µæœºç”µæµæ§åˆ¶ç”µæœº.
   * @note       
   * @history
   *  Version    Date            Author          Modification
@@ -33,7 +33,7 @@ extern CAN_HandleTypeDef hcan1;
 //        (ptr)->given_current = (uint16_t)((data)[4] << 8 | (data)[5]);  \
 //        (ptr)->temperate = (data)[6];                                   \
 //    }
-//gpt½¨Òé
+//gptå»ºè®®
 #define get_motor_measure(ptr, data)                                            \
     do {                                                                        \
         (ptr)->last_ecd = (ptr)->ecd;                                           \
@@ -45,7 +45,7 @@ extern CAN_HandleTypeDef hcan1;
 /*
 motor data,  0:chassis motor1 3508;1:chassis motor3 3508;2:chassis motor3 3508;3:chassis motor4 3508;
 4:yaw gimbal motor 6020;5:pitch gimbal motor 6020;6:trigger motor 2006;
-µç»úÊı¾İ, 0:µ×ÅÌµç»ú1 3508µç»ú,  1:µ×ÅÌµç»ú2 3508µç»ú,2:µ×ÅÌµç»ú3 3508µç»ú,3:µ×ÅÌµç»ú4 3508µç»ú;
+ç”µæœºæ•°æ®, 0:åº•ç›˜ç”µæœº1 3508ç”µæœº,  1:åº•ç›˜ç”µæœº2 3508ç”µæœº,2:åº•ç›˜ç”µæœº3 3508ç”µæœº,3:åº•ç›˜ç”µæœº4 3508ç”µæœº;
 */
 motor_measure_t motor_chassis[4];
 
@@ -58,8 +58,8 @@ static uint8_t              chassis_can_send_data[8];
   * @retval         none
   */
 /**
-  * @brief          hal¿âCAN»Øµ÷º¯Êı,½ÓÊÕµç»úÊı¾İ
-  * @param[in]      hcan:CAN¾ä±úÖ¸Õë
+  * @brief          halåº“CANå›è°ƒå‡½æ•°,æ¥æ”¶ç”µæœºæ•°æ®
+  * @param[in]      hcan:CANå¥æŸ„æŒ‡é’ˆ
   * @retval         none
   */
 void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
@@ -81,7 +81,7 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
             //get motor id
             i = rx_header.StdId - CAN_3508_M1_ID;
             get_motor_measure(&motor_chassis[i], rx_data);
-            //ĞÂÔö£ºÊµÊ±¸üĞÂÈ¦Êı¼ÆÊı£¨ÖĞ¶ÏÖĞÖ´ĞĞ£¬²»¶ªÖ¡£©
+            //æ–°å¢ï¼šå®æ—¶æ›´æ–°åœˆæ•°è®¡æ•°ï¼ˆä¸­æ–­ä¸­æ‰§è¡Œï¼Œä¸ä¸¢å¸§ï¼‰
             Encoder_Counter_Update(i, motor_chassis[i].ecd);
             break;
         }
@@ -101,7 +101,7 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
   * @retval         none
   */
 /**
-  * @brief          ·¢ËÍIDÎª0x700µÄCAN°ü,Ëü»áÉèÖÃ3508µç»ú½øÈë¿ìËÙÉèÖÃID
+  * @brief          å‘é€IDä¸º0x700çš„CANåŒ…,å®ƒä¼šè®¾ç½®3508ç”µæœºè¿›å…¥å¿«é€Ÿè®¾ç½®ID
   * @param[in]      none
   * @retval         none
   */
@@ -134,11 +134,11 @@ void CAN_cmd_chassis_reset_ID(void)
   * @retval         none
   */
 /**
-  * @brief          ·¢ËÍµç»ú¿ØÖÆµçÁ÷(0x201,0x202,0x203,0x204)
-  * @param[in]      motor1: (0x201) 3508µç»ú¿ØÖÆµçÁ÷, ·¶Î§ [-16384,16384]
-  * @param[in]      motor2: (0x202) 3508µç»ú¿ØÖÆµçÁ÷, ·¶Î§ [-16384,16384]
-  * @param[in]      motor3: (0x203) 3508µç»ú¿ØÖÆµçÁ÷, ·¶Î§ [-16384,16384]
-  * @param[in]      motor4: (0x204) 3508µç»ú¿ØÖÆµçÁ÷, ·¶Î§ [-16384,16384]
+  * @brief          å‘é€ç”µæœºæ§åˆ¶ç”µæµ(0x201,0x202,0x203,0x204)
+  * @param[in]      motor1: (0x201) 3508ç”µæœºæ§åˆ¶ç”µæµ, èŒƒå›´ [-16384,16384]
+  * @param[in]      motor2: (0x202) 3508ç”µæœºæ§åˆ¶ç”µæµ, èŒƒå›´ [-16384,16384]
+  * @param[in]      motor3: (0x203) 3508ç”µæœºæ§åˆ¶ç”µæµ, èŒƒå›´ [-16384,16384]
+  * @param[in]      motor4: (0x204) 3508ç”µæœºæ§åˆ¶ç”µæµ, èŒƒå›´ [-16384,16384]
   * @retval         none
   */
 void CAN_cmd_chassis(int16_t motor1, int16_t motor2, int16_t motor3, int16_t motor4)
@@ -167,9 +167,9 @@ void CAN_cmd_chassis(int16_t motor1, int16_t motor2, int16_t motor3, int16_t mot
   * @retval         motor data point
   */
 /**
-  * @brief          ·µ»Øµ×ÅÌµç»ú 3508µç»úÊı¾İÖ¸Õë
-  * @param[in]      i: µç»ú±àºÅ,·¶Î§[0,3]
-  * @retval         µç»úÊı¾İÖ¸Õë
+  * @brief          è¿”å›åº•ç›˜ç”µæœº 3508ç”µæœºæ•°æ®æŒ‡é’ˆ
+  * @param[in]      i: ç”µæœºç¼–å·,èŒƒå›´[0,3]
+  * @retval         ç”µæœºæ•°æ®æŒ‡é’ˆ
   */
 const motor_measure_t *get_chassis_motor_measure_point(uint8_t i)
 {

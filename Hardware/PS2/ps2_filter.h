@@ -4,10 +4,10 @@
 
 #include <stdint.h>
 
-// ¿ìËÙ³õÊ¼»¯
+// å¿«é€Ÿåˆå§‹åŒ–
 void PS2_Filter_Init(void);
 
-// »ñÈ¡ÂË²¨ºóµÄÒ¡¸ËÖµ - ±£Ö¤ÊµÊ±ĞÔ
+// è·å–æ»¤æ³¢åçš„æ‘‡æ†å€¼ - ä¿è¯å®æ—¶æ€§
 uint8_t PS2_Filter_Get_LY(uint8_t raw_value);
 uint8_t PS2_Filter_Get_RX(uint8_t raw_value);
 uint8_t PS2_Filter_Get_LX(uint8_t raw_value);

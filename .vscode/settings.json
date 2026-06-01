@@ -1,0 +1,11 @@
+{
+  "files.encoding": "utf8",
+  "files.autoGuessEncoding": false,
+  "files.eol": "\r\n",
+  "files.associations": {
+    "*.c": "c",
+    "*.h": "c",
+    "*.ioc": "ini"
+  },
+  "C_Cpp.default.cStandard": "c99"
+}

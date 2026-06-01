@@ -1,34 +1,34 @@
 #include "ps2_control.h"
 #include "ps2.h"
 #include "pwm_motor.h"
-#include "main.h"  // ÓÃÓÚLEDÒı½Å¶¨Òå
+#include "main.h"  // ç”¨äºLEDå¼•è„šå®šä¹‰
 #include "CAN_receive.h"
 #include "bsp_can.h"
 #include "encoder_counter.h"
 #include "string.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "user_tim.h"  // ÒıÈëTIM3¹ÜÀíÆ÷
+#include "user_tim.h"  // å¼•å…¥TIM3ç®¡ç†å™¨
 #include "PID.h"
 #include "ps2_filter.h"
 #include "pwm_angle_servo.h"
 
-// ÄÚ²¿¾²Ì¬±äÁ¿£¨ÎÄ¼ş×÷ÓÃÓò£¬Íâ²¿²»¿É·ÃÎÊ£©
-static uint8_t last_mode = 0xFF;  // ¼ÇÂ¼ÉÏÒ»´ÎµÄPS2Ä£Ê½
+// å†…éƒ¨é™æ€å˜é‡ï¼ˆæ–‡ä»¶ä½œç”¨åŸŸï¼Œå¤–éƒ¨ä¸å¯è®¿é—®ï¼‰
+static uint8_t last_mode = 0xFF;  // è®°å½•ä¸Šä¸€æ¬¡çš„PS2æ¨¡å¼
 static uint8_t current_mode = 0xFF;
 
-static uint32_t led_flash_timer = 0;  // LEDÉÁË¸¼ÆÊ±Æ÷
-static uint32_t motor_stop_timer = 0;  // ¸ÄÓÃTIM3Ê±¼ä´Á µç»úÍ£Ö¹¼ÆÊ±Æ÷£¨Ïû¶¶ÓÃ£©
+static uint32_t led_flash_timer = 0;  // LEDé—ªçƒè®¡æ—¶å™¨
+static uint32_t motor_stop_timer = 0;  // æ”¹ç”¨TIM3æ—¶é—´æˆ³ ç”µæœºåœæ­¢è®¡æ—¶å™¨ï¼ˆæ¶ˆæŠ–ç”¨ï¼‰
 static uint8_t KeyNum = 0;
 
-// Ò¡¸ËËÀÇø¶¨Òå
-#define STICK_DEAD_ZONE         15      // Ò¡¸ËËÀÇø·¶Î§
-#define MOTOR_STOP_DELAY_MS     200    // ÎŞÊäÈëºóÑÓ³ÙÍ£Ö¹Ê±¼ä
-#define BUTTON_STABLE_DELAY_MS 50  // Ïû¶¶Ê±¼ä 20ms
-// µç»ú×ªËÙ¶¨Òå
+// æ‘‡æ†æ­»åŒºå®šä¹‰
+#define STICK_DEAD_ZONE         15      // æ‘‡æ†æ­»åŒºèŒƒå›´
+#define MOTOR_STOP_DELAY_MS     200    // æ— è¾“å…¥åå»¶è¿Ÿåœæ­¢æ—¶é—´
+#define BUTTON_STABLE_DELAY_MS 50  // æ¶ˆæŠ–æ—¶é—´ 20ms
+// ç”µæœºè½¬é€Ÿå®šä¹‰
 int CAN_MOTOR_SPEED = 1000;    // M3508
-int PWM_MOTOR_SPEED = 10;    // ÎÏÂÖÎÏ¸Ëµç»ú
-// ÄÚ²¿º¯ÊıÉùÃ÷£¨¾²Ì¬º¯Êı£¬½ö±¾ÎÄ¼şÄÚÊ¹ÓÃ£©
+int PWM_MOTOR_SPEED = 10;    // èœ—è½®èœ—æ†ç”µæœº
+// å†…éƒ¨å‡½æ•°å£°æ˜ï¼ˆé™æ€å‡½æ•°ï¼Œä»…æœ¬æ–‡ä»¶å†…ä½¿ç”¨ï¼‰
 static void handle_mode_switch(void);
 static void handle_lock_unlock(void);
 static void process_can_control(void);
@@ -36,11 +36,11 @@ static void process_motor_control(void);
 static void handle_led_feedback(void);
 //static void printmode_switch(void);
 static void ps2_redlight_reset_handle(void);
-// ÔÚtim3.cÖĞµ÷ÓÃµÄ»Øµ÷º¯Êı
+// åœ¨tim3.cä¸­è°ƒç”¨çš„å›è°ƒå‡½æ•°
 void PS2_Control_TIM3_Callback(void);
 
 // --------------------------------------------------------------
-// ½Ó¿Úº¯ÊıÊµÏÖ
+// æ¥å£å‡½æ•°å®ç°
 // --------------------------------------------------------------
 
 void PS2_Control_Init(void)
@@ -49,7 +49,7 @@ void PS2_Control_Init(void)
     current_mode = 0xFF;
 
     motor_stop_timer = 0;
-    // ³õÊ¼»¯ËùÓĞµç»ú£¨ÈßÓàµ÷ÓÃ£¬È·±£Ö÷³ÌĞòÒÑ³õÊ¼»¯£©
+    // åˆå§‹åŒ–æ‰€æœ‰ç”µæœºï¼ˆå†—ä½™è°ƒç”¨ï¼Œç¡®ä¿ä¸»ç¨‹åºå·²åˆå§‹åŒ–ï¼‰
     Motor_Init_All();
     PS2_Filter_Init();
     CAN_cmd_chassis(0,0,0,0);
@@ -60,49 +60,49 @@ void PS2_Control_TIM3_Callback(void)
 {
 
     
-    // 1. ¶ÁÈ¡PS2Êı¾İ
+    // 1. è¯»å–PS2æ•°æ®
     current_mode = ps2_mode_get();
-    KeyNum = ps2_key_serch();  // ÄÚ²¿»áµ÷ÓÃPS2_ReadData()
+    KeyNum = ps2_key_serch();  // å†…éƒ¨ä¼šè°ƒç”¨PS2_ReadData()
     
-    // 2. ´¦ÀíÄ£Ê½ÇĞ»»
+    // 2. å¤„ç†æ¨¡å¼åˆ‡æ¢
     handle_mode_switch();
     
-    // 3. ´¦ÀíËø¶¨/½âËø
+    // 3. å¤„ç†é”å®š/è§£é”
     handle_lock_unlock();
     
-    // 4. ´¦ÀíCAN¿ØÖÆ£¨¶ÀÁ¢ÓÚµç»úËø¶¨£©
+    // 4. å¤„ç†CANæ§åˆ¶ï¼ˆç‹¬ç«‹äºç”µæœºé”å®šï¼‰
     process_can_control();
     
-    // 5. ´¦Àíµç»ú¿ØÖÆ£¨Ê¹ÓÃÂË²¨ºóµÄÒ¡¸ËÖµ£©
-    process_motor_control();  // ¸ÄÎªĞÂµÄ´¦Àíº¯Êı
+    // 5. å¤„ç†ç”µæœºæ§åˆ¶ï¼ˆä½¿ç”¨æ»¤æ³¢åçš„æ‘‡æ†å€¼ï¼‰
+    process_motor_control();  // æ”¹ä¸ºæ–°çš„å¤„ç†å‡½æ•°
     
-    // 6. LED·´À¡´¦Àí
+    // 6. LEDåé¦ˆå¤„ç†
     handle_led_feedback();
     
-//    //7. ÇĞ»»´òÓ¡Ä£Ê½
+//    //7. åˆ‡æ¢æ‰“å°æ¨¡å¼
 //    printmode_switch();
 
-    // 8. ÖÃÁã´¦Àí
+    // 8. ç½®é›¶å¤„ç†
     ps2_redlight_reset_handle();
     
 }
-uint8_t PS2_GetCurrentMode(void) {      // Íâ²¿Í¨¹ıº¯Êı·ÃÎÊcurrent_mode
+uint8_t PS2_GetCurrentMode(void) {      // å¤–éƒ¨é€šè¿‡å‡½æ•°è®¿é—®current_mode
     return current_mode;
 }
 
 // --------------------------------------------------------------
-// ÄÚ²¿¾²Ì¬º¯ÊıÊµÏÖ
+// å†…éƒ¨é™æ€å‡½æ•°å®ç°
 // --------------------------------------------------------------
 
 /**
- * @brief ´¦ÀíPS2Ä£Ê½ÇĞ»»
+ * @brief å¤„ç†PS2æ¨¡å¼åˆ‡æ¢
  */
 static void handle_mode_switch(void)
 {
     static uint8_t stable_mode = 0xFF;
     static uint32_t mode_timestamp = 0;
     
-    // Ä£Ê½ÎÈ¶¨»¯£º³ÖĞø200ms²»±ä²ÅÈ·ÈÏ
+    // æ¨¡å¼ç¨³å®šåŒ–ï¼šæŒç»­200msä¸å˜æ‰ç¡®è®¤
     if (current_mode != stable_mode)
     {
         mode_timestamp = tim3_mgr.tick_count;
@@ -110,9 +110,9 @@ static void handle_mode_switch(void)
         return;
     }
     
-    if (tim3_mgr.tick_count - mode_timestamp < 200) return;  // µÈ´ıÎÈ¶¨
+    if (tim3_mgr.tick_count - mode_timestamp < 200) return;  // ç­‰å¾…ç¨³å®š
     
-    // Ä£Ê½ÒÑÎÈ¶¨
+    // æ¨¡å¼å·²ç¨³å®š
     if (stable_mode != last_mode)
     {
         Motor_Stop_All();
@@ -120,11 +120,11 @@ static void handle_mode_switch(void)
         
         if (stable_mode == PSB_REDLIGHT_MODE)
         {
-            HAL_GPIO_WritePin(LED2_GPIO_Port, LED2_Pin, GPIO_PIN_SET); //led2Ãğ
+            HAL_GPIO_WritePin(LED2_GPIO_Port, LED2_Pin, GPIO_PIN_SET); //led2ç­
         }
         else if (stable_mode == PSB_GREENLIGHT_MODE)
         {
-            HAL_GPIO_WritePin(LED2_GPIO_Port, LED2_Pin, GPIO_PIN_RESET); //led2ÁÁ
+            HAL_GPIO_WritePin(LED2_GPIO_Port, LED2_Pin, GPIO_PIN_RESET); //led2äº®
         }
         
         last_mode = stable_mode;
@@ -132,13 +132,13 @@ static void handle_mode_switch(void)
 }
 
 /**
- * @brief ´¦ÀíËø¶¨/½âËø°´¼ü
+ * @brief å¤„ç†é”å®š/è§£é”æŒ‰é”®
  */
 static void handle_lock_unlock(void)
 {
     if (current_mode != PSB_REDLIGHT_MODE) return;
     
-    // °´¼üÏû¶¶£ºÖ»ÔÚ°´ÏÂË²¼ä´¥·¢
+    // æŒ‰é”®æ¶ˆæŠ–ï¼šåªåœ¨æŒ‰ä¸‹ç¬é—´è§¦å‘
     static uint8_t blue_last = 0, red_last = 0;
     uint8_t blue_now = ps2_get_key_state(PSB_BLUE);
     uint8_t red_now = ps2_get_key_state(PSB_RED);
@@ -158,14 +158,14 @@ static void handle_lock_unlock(void)
     red_last = red_now;
 }
 /**
- * @brief ´¦ÀíCANµ×ÅÌ¿ØÖÆ£¨²»ÊÜµç»úËø¶¨Ó°Ïì£©
+ * @brief å¤„ç†CANåº•ç›˜æ§åˆ¶ï¼ˆä¸å—ç”µæœºé”å®šå½±å“ï¼‰
  */
 static void process_can_control(void)
 {
     uint8_t can_active = 0;
     if (ps2_get_key_state(PSB_L1))
     {
-//µç»ú1Õı×ª
+//ç”µæœº1æ­£è½¬
 //        CAN_cmd_chassis(CAN_MOTOR_SPEED, 0, 0, 0);
         PID_SetTargetSpeed(0, CAN_MOTOR_SPEED);
         can_active = 1;
@@ -173,7 +173,7 @@ static void process_can_control(void)
     }
     else if (ps2_get_key_state(PSB_L2))
     {
-//µç»ú1·´×ª
+//ç”µæœº1åè½¬
 //        CAN_cmd_chassis(-CAN_MOTOR_SPEED, 0, 0, 0);
         PID_SetTargetSpeed(0, -CAN_MOTOR_SPEED);
         can_active = 1;
@@ -181,7 +181,7 @@ static void process_can_control(void)
     }
     else if (ps2_get_key_state(PSB_R1))
     {
-//µç»ú2Õı×ª
+//ç”µæœº2æ­£è½¬
 //        CAN_cmd_chassis(0, CAN_MOTOR_SPEED, 0, 0);
         PID_SetTargetSpeed(1, -CAN_MOTOR_SPEED);
         can_active = 1;
@@ -189,29 +189,29 @@ static void process_can_control(void)
     }
     else if (ps2_get_key_state(PSB_R2))
     {
-//µç»ú2·´×ª
+//ç”µæœº2åè½¬
 //        CAN_cmd_chassis(0, -CAN_MOTOR_SPEED, 0, 0);
         PID_SetTargetSpeed(1, CAN_MOTOR_SPEED);
         can_active = 1;
 //        printf("PSB_R2\r\n");
     }
-//    // Ö»ÔÚºìµÆÄ£Ê½ÏÂ´¦ÀíCAN¿ØÖÆ
+//    // åªåœ¨çº¢ç¯æ¨¡å¼ä¸‹å¤„ç†CANæ§åˆ¶
 //    if (ps2_mode_get() == PSB_REDLIGHT_MODE)
 //  { 
-//    //ÖØÖÃµç»úÈ¦Êı¼ÆÊıÆ÷
+//    //é‡ç½®ç”µæœºåœˆæ•°è®¡æ•°å™¨
 //    if (ps2_get_key_state(PSB_GREEN))
 //    {
 //        Encoder_Counter_Reset(0);
 //        Encoder_Counter_Reset(1);
 //    }
-//    //ÖØÖÃµç»ú±àÂëÆ÷Áãµã
+//    //é‡ç½®ç”µæœºç¼–ç å™¨é›¶ç‚¹
 //    else if (ps2_get_key_state(PSB_PINK))
 //    {
 //    PWM_AngleServo_SetAllCurrentAsZero();
 //    }
 //    else if (ps2_get_key_state(PSB_PAD_UP))
 //    {
-////µç»ú12Í¬Ê±Õı×ª
+////ç”µæœº12åŒæ—¶æ­£è½¬
 ////        CAN_cmd_chassis(0, -CAN_MOTOR_SPEED, 0, 0);
 //        PID_SetTargetSpeed(0, CAN_MOTOR_SPEED);
 //        PID_SetTargetSpeed(1, -CAN_MOTOR_SPEED);
@@ -220,7 +220,7 @@ static void process_can_control(void)
 //    }
 //    else if (ps2_get_key_state(PSB_PAD_DOWN))
 //    {
-////µç»ú12Í¬Ê±·´×ª
+////ç”µæœº12åŒæ—¶åè½¬
 ////        CAN_cmd_chassis(0, -CAN_MOTOR_SPEED, 0, 0);
 //        PID_SetTargetSpeed(0, -CAN_MOTOR_SPEED);
 //        PID_SetTargetSpeed(1, CAN_MOTOR_SPEED);
@@ -228,7 +228,7 @@ static void process_can_control(void)
 ////        printf("PSB_PAD_RIGHT\r\n");
 //    }
 
-//    //×ªËÙ¼Ó¼õ
+//    //è½¬é€ŸåŠ å‡
 //    if (KeyNum)
 //    {
 //        if (ps2_get_key_state(PSB_PAD_RIGHT))
@@ -241,17 +241,17 @@ static void process_can_control(void)
 //            CAN_MOTOR_SPEED -= 100;
 //            can_active = 1;
 //        } 
-//        // ËÙ¶ÈÏŞ·ù£¨500RPM~5000RPM£©
+//        // é€Ÿåº¦é™å¹…ï¼ˆ500RPM~5000RPMï¼‰
 //        if (CAN_MOTOR_SPEED > 5000) CAN_MOTOR_SPEED = 5000;
 //        if (CAN_MOTOR_SPEED < 500) CAN_MOTOR_SPEED = 500;
 //    }
 //  }
-//    // ÎŞCANÊäÈëÊ±·¢ËÍÍ£Ö¹ÃüÁî£¨¿ÉÑ¡£©
+//    // æ— CANè¾“å…¥æ—¶å‘é€åœæ­¢å‘½ä»¤ï¼ˆå¯é€‰ï¼‰
 //    if (!can_active)
 //    {
-//        CAN_cmd_chassis(0, 0, 0, 0);  // ¸ù¾İĞèÇó¾ö¶¨ÊÇ·ñÆôÓÃ
+//        CAN_cmd_chassis(0, 0, 0, 0);  // æ ¹æ®éœ€æ±‚å†³å®šæ˜¯å¦å¯ç”¨
 //    }
-    // Ïû¶¶´¦Àí£ºÖ»ÓĞ³ÖĞøÎŞÊäÈë³¬¹ıãĞÖµ²ÅÍ£Ö¹
+    // æ¶ˆæŠ–å¤„ç†ï¼šåªæœ‰æŒç»­æ— è¾“å…¥è¶…è¿‡é˜ˆå€¼æ‰åœæ­¢
     if (can_active)
     {
         motor_stop_timer = tim3_mgr.tick_count;
@@ -266,130 +266,130 @@ static void process_can_control(void)
 }
 
 /**
- * @brief ½«Ò¡¸ËÄ£ÄâÖµ(0x00-0xFF)Ó³ÉäÎªµç»úËÙ¶È°Ù·Ö±È
- * @param stick_value: Ò¡¸ËÔ­Ê¼Öµ 0-255
- * @return speed_percent: µç»úËÙ¶È°Ù·Ö±È 0-100
- * @note Ò¡¸ËÖĞ¼äÖµ128ÎªÍ£Ö¹Çø£¬Æ«ÀëÔ½´óËÙ¶ÈÔ½¿ì
- *       Ò¡¸Ë¼«ÏŞÎ»ÖÃ(0»ò255)¶ÔÓ¦µç»ú×î´ó×ªËÙ12rpm
+ * @brief å°†æ‘‡æ†æ¨¡æ‹Ÿå€¼(0x00-0xFF)æ˜ å°„ä¸ºç”µæœºé€Ÿåº¦ç™¾åˆ†æ¯”
+ * @param stick_value: æ‘‡æ†åŸå§‹å€¼ 0-255
+ * @return speed_percent: ç”µæœºé€Ÿåº¦ç™¾åˆ†æ¯” 0-100
+ * @note æ‘‡æ†ä¸­é—´å€¼128ä¸ºåœæ­¢åŒºï¼Œåç¦»è¶Šå¤§é€Ÿåº¦è¶Šå¿«
+ *       æ‘‡æ†æé™ä½ç½®(0æˆ–255)å¯¹åº”ç”µæœºæœ€å¤§è½¬é€Ÿ12rpm
  */
 static uint8_t stick_to_speed(unsigned char stick_value)
 {
     const int CENTER_VALUE = 128;
-    const int MAX_DEVIATION = 128 - STICK_DEAD_ZONE; // ×î´óÓĞĞ§Æ«ÀëÖµ
+    const int MAX_DEVIATION = 128 - STICK_DEAD_ZONE; // æœ€å¤§æœ‰æ•ˆåç¦»å€¼
     
-    // ¼ÆËãÓëÖĞĞÄµÄ¾ø¶ÔÆ«ÀëÖµ
+    // è®¡ç®—ä¸ä¸­å¿ƒçš„ç»å¯¹åç¦»å€¼
     int deviation = abs(stick_value - CENTER_VALUE);
     
-    // ¿Û³ıËÀÇø
+    // æ‰£é™¤æ­»åŒº
     int effective_deviation = deviation - STICK_DEAD_ZONE;
     
-    // ÔÚËÀÇøÄÚ·µ»Ø0ËÙ¶È
+    // åœ¨æ­»åŒºå†…è¿”å›0é€Ÿåº¦
     if (effective_deviation <= 0)
     {
         return 0;
     }
     
-    // ÏßĞÔÓ³Éäµ½ËÙ¶È°Ù·Ö±È (0-100%)
-    // ÓĞĞ§Æ«ÀëÔ½´ó£¬ËÙ¶È°Ù·Ö±ÈÔ½¸ß
+    // çº¿æ€§æ˜ å°„åˆ°é€Ÿåº¦ç™¾åˆ†æ¯” (0-100%)
+    // æœ‰æ•ˆåç¦»è¶Šå¤§ï¼Œé€Ÿåº¦ç™¾åˆ†æ¯”è¶Šé«˜
     uint8_t speed = (effective_deviation * 100) / MAX_DEVIATION;
     
-//    // ÏŞÖÆ×î´óÖµ²»³¬¹ı100
+//    // é™åˆ¶æœ€å¤§å€¼ä¸è¶…è¿‡100
 //    if (speed > 100) 
 //        speed = 100;
-     // ÏŞ·ù±£»¤
+     // é™å¹…ä¿æŠ¤
     return (speed > 100) ? 100 : speed;
-//    return 100 - speed; // ·´±È¹ØÏµ
+//    return 100 - speed; // åæ¯”å…³ç³»
 }
 
 /**
- * @brief ´¦Àíµç»ú¿ØÖÆ£¨ÊÜËø¶¨±£»¤£©
+ * @brief å¤„ç†ç”µæœºæ§åˆ¶ï¼ˆå—é”å®šä¿æŠ¤ï¼‰
  */
 static void process_motor_control(void)
 {
     uint8_t motor_control_active = 0;
 
-    // ÏµÍ³Ëø¶¨Ê±Ìø¹ıËùÓĞµç»ú¿ØÖÆ
+    // ç³»ç»Ÿé”å®šæ—¶è·³è¿‡æ‰€æœ‰ç”µæœºæ§åˆ¶
     if (Motor_Is_Locked())
     {
-        return;  // ²»Ö´ĞĞÈÎºÎµç»ú²Ù×÷
+        return;  // ä¸æ‰§è¡Œä»»ä½•ç”µæœºæ“ä½œ
     }
     
-    // ºìµÆÄ£Ê½ÏÂ´¦Àíµç»ú¿ØÖÆ
+    // çº¢ç¯æ¨¡å¼ä¸‹å¤„ç†ç”µæœºæ§åˆ¶
     if (ps2_mode_get() == PSB_REDLIGHT_MODE)
     {
-        // »ñÈ¡Ô­Ê¼Öµ
+        // è·å–åŸå§‹å€¼
         uint8_t raw_lx = ps2_get_anolog_data(PSS_LX);
         uint8_t raw_ly = ps2_get_anolog_data(PSS_LY);
         uint8_t raw_rx = ps2_get_anolog_data(PSS_RX);
         uint8_t raw_ry = ps2_get_anolog_data(PSS_RY);
         
-        // Ó¦ÓÃÂË²¨£¨¹Ø¼üĞŞ¸Äµã£©
+        // åº”ç”¨æ»¤æ³¢ï¼ˆå…³é”®ä¿®æ”¹ç‚¹ï¼‰
         uint8_t ps2_lx = PS2_Filter_Get_LX(raw_lx);
         uint8_t ps2_ly = PS2_Filter_Get_LY(raw_ly);
         uint8_t ps2_rx = PS2_Filter_Get_RX(raw_rx);
         uint8_t ps2_ry = PS2_Filter_Get_RY(raw_ry);
         
-        // µ÷ÊÔÊä³ö£¨È·ÈÏÖµÕıÈ·£©
+        // è°ƒè¯•è¾“å‡ºï¼ˆç¡®è®¤å€¼æ­£ç¡®ï¼‰
 //        printf("RAW LY:%d RX:%d | FLT LY:%d RX:%d\r\n", raw_ly, raw_rx, ps2_ly, ps2_rx);
-//        printf("LY:%d LX:%d RY:%d RX:%d Active:%d\r\n", ps2_ly, ps2_lx, ps2_ry, ps2_rx, motor_control_active);   //rx×Ô¶¯Æ¯ÒÆÎª0
-//        printf("LY:%d LX:%d RY:%d RX:%d Active:%d\r\n", raw_ly, raw_lx, raw_ry, raw_rx, motor_control_active);   //rx×Ô¶¯Æ¯ÒÆÎª0
+//        printf("LY:%d LX:%d RY:%d RX:%d Active:%d\r\n", ps2_ly, ps2_lx, ps2_ry, ps2_rx, motor_control_active);   //rxè‡ªåŠ¨æ¼‚ç§»ä¸º0
+//        printf("LY:%d LX:%d RY:%d RX:%d Active:%d\r\n", raw_ly, raw_lx, raw_ry, raw_rx, motor_control_active);   //rxè‡ªåŠ¨æ¼‚ç§»ä¸º0
 
-        // ¼ÆËãÆ«ÒÆÁ¿£¨ºóĞøÂß¼­ÍêÈ«²»±ä£©
+        // è®¡ç®—åç§»é‡ï¼ˆåç»­é€»è¾‘å®Œå…¨ä¸å˜ï¼‰
         int ly_offset = (int)ps2_ly - 128;
         int lx_offset = (int)ps2_lx - 128;
         int ry_offset = (int)ps2_ry - 128;
         int rx_offset = (int)ps2_rx - 128;
      
-     // MOTOR_A¿ØÖÆ£º×óÒ¡¸ËYÖá£¨Ç°ºóÍÆ£©
-    if (ly_offset < -STICK_DEAD_ZONE)  // ÏòÇ°ÍÆ
+     // MOTOR_Aæ§åˆ¶ï¼šå·¦æ‘‡æ†Yè½´ï¼ˆå‰åæ¨ï¼‰
+    if (ly_offset < -STICK_DEAD_ZONE)  // å‘å‰æ¨
     {
         Motor_SetSpeed(MOTOR_A, stick_to_speed(ps2_ly));
         Motor_SetDirection(MOTOR_A, DIRECTION_FORWARD);
         motor_control_active = 1;
     }
-    else if (ly_offset > STICK_DEAD_ZONE)  // ÏòºóÀ­
+    else if (ly_offset > STICK_DEAD_ZONE)  // å‘åæ‹‰
     {
         Motor_SetSpeed(MOTOR_A, stick_to_speed(ps2_ly));
         Motor_SetDirection(MOTOR_A, DIRECTION_REVERSE);
         motor_control_active = 1;
     }
     
-    // MOTOR_B¿ØÖÆ£º×óÒ¡¸ËXÖá£¨×óÓÒÍÆ£©
-    if (lx_offset < -STICK_DEAD_ZONE)  // Ïò×óÍÆ
+    // MOTOR_Bæ§åˆ¶ï¼šå·¦æ‘‡æ†Xè½´ï¼ˆå·¦å³æ¨ï¼‰
+    if (lx_offset < -STICK_DEAD_ZONE)  // å‘å·¦æ¨
     {
         Motor_SetSpeed(MOTOR_B, stick_to_speed(ps2_lx));
         Motor_SetDirection(MOTOR_B, DIRECTION_REVERSE);
         motor_control_active = 1;
     }
-    else if (lx_offset > STICK_DEAD_ZONE)  // ÏòÓÒÍÆ
+    else if (lx_offset > STICK_DEAD_ZONE)  // å‘å³æ¨
     {
         Motor_SetSpeed(MOTOR_B, stick_to_speed(ps2_lx));
         Motor_SetDirection(MOTOR_B, DIRECTION_FORWARD);
         motor_control_active = 1;
     }
     
-    // MOTOR_C¿ØÖÆ£ºÓÒÒ¡¸ËYÖá
-    if (ry_offset < -STICK_DEAD_ZONE)  // ÏòÇ°ÍÆ
+    // MOTOR_Cæ§åˆ¶ï¼šå³æ‘‡æ†Yè½´
+    if (ry_offset < -STICK_DEAD_ZONE)  // å‘å‰æ¨
     {
         Motor_SetSpeed(MOTOR_C, stick_to_speed(ps2_ry));
         Motor_SetDirection(MOTOR_C, DIRECTION_REVERSE);
         motor_control_active = 1;
     }
-    else if (ry_offset > STICK_DEAD_ZONE)  // ÏòºóÀ­
+    else if (ry_offset > STICK_DEAD_ZONE)  // å‘åæ‹‰
     {
         Motor_SetSpeed(MOTOR_C, stick_to_speed(ps2_ry));
         Motor_SetDirection(MOTOR_C, DIRECTION_FORWARD);
         motor_control_active = 1;
     }
     
-    // MOTOR_D¿ØÖÆ£ºÓÒÒ¡¸ËXÖá
-    if (rx_offset < -STICK_DEAD_ZONE)  // Ïò×óÍÆ
+    // MOTOR_Dæ§åˆ¶ï¼šå³æ‘‡æ†Xè½´
+    if (rx_offset < -STICK_DEAD_ZONE)  // å‘å·¦æ¨
     {
         Motor_SetSpeed(MOTOR_D, stick_to_speed(ps2_rx));
         Motor_SetDirection(MOTOR_D, DIRECTION_REVERSE);
         motor_control_active = 1;
     }
-    else if (rx_offset > STICK_DEAD_ZONE)  // ÏòÓÒÍÆ
+    else if (rx_offset > STICK_DEAD_ZONE)  // å‘å³æ¨
     {
         Motor_SetSpeed(MOTOR_D, stick_to_speed(ps2_rx));
         Motor_SetDirection(MOTOR_D, DIRECTION_FORWARD);
@@ -398,7 +398,7 @@ static void process_motor_control(void)
     
 
   }
-     // ÂÌµÆÄ£Ê½ÏÂ´¦Àíµç»ú¿ØÖÆ
+     // ç»¿ç¯æ¨¡å¼ä¸‹å¤„ç†ç”µæœºæ§åˆ¶
     if (ps2_mode_get() == PSB_GREENLIGHT_MODE)
     {         
       if (KeyNum)
@@ -455,7 +455,7 @@ static void process_motor_control(void)
     }
 }
 //    printf("%d\r\n",motor_control_active);        
-// Ïû¶¶´¦Àí£ºÖ»ÓĞ³ÖĞøÎŞÊäÈë³¬¹ıãĞÖµ²ÅÍ£Ö¹
+// æ¶ˆæŠ–å¤„ç†ï¼šåªæœ‰æŒç»­æ— è¾“å…¥è¶…è¿‡é˜ˆå€¼æ‰åœæ­¢
     if (motor_control_active)
     {
         motor_stop_timer = tim3_mgr.tick_count;
@@ -467,13 +467,13 @@ static void process_motor_control(void)
 }
 
 /**
- * @brief LED·´À¡´¦Àí£¨ÏµÍ³Ëø¶¨×´Ì¬Ö¸Ê¾£©
+ * @brief LEDåé¦ˆå¤„ç†ï¼ˆç³»ç»Ÿé”å®šçŠ¶æ€æŒ‡ç¤ºï¼‰
  */
 static void handle_led_feedback(void)
 {
     if (Motor_Is_Locked())
     {
-        if (tim3_mgr.tick_count - led_flash_timer > 100)  // 100msÉÁË¸
+        if (tim3_mgr.tick_count - led_flash_timer > 100)  // 100msé—ªçƒ
         {
             HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
             led_flash_timer = tim3_mgr.tick_count;
@@ -494,33 +494,33 @@ static void handle_led_feedback(void)
 }
 
 ///**
-// * @brief ºìµÆÄ£Ê½ÏÂ°´ÏÂpink¼üÇĞ»»´òÓ¡Ä£Ê½
+// * @brief çº¢ç¯æ¨¡å¼ä¸‹æŒ‰ä¸‹pinké”®åˆ‡æ¢æ‰“å°æ¨¡å¼
 // */
-//uint8_t print_mode = 0;      // 0=´òÓ¡M3508Êı¾İ, 1=´òÓ¡×ËÌ¬Êı¾İ
+//uint8_t print_mode = 0;      // 0=æ‰“å°M3508æ•°æ®, 1=æ‰“å°å§¿æ€æ•°æ®
 //static void printmode_switch(void)
 //{
-//    static uint8_t pink_last_raw = 0;      // ¼ÇÂ¼ÉÏÒ»´ÎµÄ¡¾Ë²Ê±¡¿×´Ì¬
-//    static uint8_t pink_stable = 0;        // ¼ÇÂ¼È·ÈÏ¡¾ÎÈ¶¨¡¿µÄ×´Ì¬
-//    static uint8_t pink_last_stable = 0;   // ¼ÇÂ¼ÉÏÒ»´ÎµÄ¡¾ÎÈ¶¨¡¿×´Ì¬
-//    static uint32_t state_change_timer = 0;// ×´Ì¬Ìø±ä¼ÆÊ±Æ÷
+//    static uint8_t pink_last_raw = 0;      // è®°å½•ä¸Šä¸€æ¬¡çš„ã€ç¬æ—¶ã€‘çŠ¶æ€
+//    static uint8_t pink_stable = 0;        // è®°å½•ç¡®è®¤ã€ç¨³å®šã€‘çš„çŠ¶æ€
+//    static uint8_t pink_last_stable = 0;   // è®°å½•ä¸Šä¸€æ¬¡çš„ã€ç¨³å®šã€‘çŠ¶æ€
+//    static uint32_t state_change_timer = 0;// çŠ¶æ€è·³å˜è®¡æ—¶å™¨
 
 //    uint8_t pink_now = ps2_get_key_state(PSB_PINK);
 
-//    /* --------------- Ïû¶¶¹ıÂË²ã --------------- */
-//    // Èç¹ûµ±Ç°µÄË²Ê±×´Ì¬ºÍÉÏÒ»´Î¶Áµ½µÄ²»Ò»Ñù£¬ËµÃ÷×´Ì¬·¢ÉúÌø±ä£¨¿ÉÄÜÊÇ°´ÏÂ£¬Ò²¿ÉÄÜÊÇ¶¶¶¯£©
+//    /* --------------- æ¶ˆæŠ–è¿‡æ»¤å±‚ --------------- */
+//    // å¦‚æœå½“å‰çš„ç¬æ—¶çŠ¶æ€å’Œä¸Šä¸€æ¬¡è¯»åˆ°çš„ä¸ä¸€æ ·ï¼Œè¯´æ˜çŠ¶æ€å‘ç”Ÿè·³å˜ï¼ˆå¯èƒ½æ˜¯æŒ‰ä¸‹ï¼Œä¹Ÿå¯èƒ½æ˜¯æŠ–åŠ¨ï¼‰
 //    if (pink_now != pink_last_raw)
 //    {
-//        state_change_timer = tim3_mgr.tick_count; // Ö»ÒªÓĞÌø±ä£¬¾ÍÖØÖÃ¼ÆÊ±Æ÷ 
+//        state_change_timer = tim3_mgr.tick_count; // åªè¦æœ‰è·³å˜ï¼Œå°±é‡ç½®è®¡æ—¶å™¨ 
 //    }
-//    // Èç¹û×´Ì¬Ã»ÓĞÌø±ä£¬²¢ÇÒ³ÖĞøÊ±¼ä³¬¹ıÁËÏû¶¶ãĞÖµ 20ms
+//    // å¦‚æœçŠ¶æ€æ²¡æœ‰è·³å˜ï¼Œå¹¶ä¸”æŒç»­æ—¶é—´è¶…è¿‡äº†æ¶ˆæŠ–é˜ˆå€¼ 20ms
 //    else if (tim3_mgr.tick_count - state_change_timer > BUTTON_STABLE_DELAY_MS)
 //    {
-//        pink_stable = pink_now; // ×´Ì¬ÒÑ¾­ÎÈ¶¨ÁË 20ms£¬¸üĞÂÎÈ¶¨×´Ì¬ 
+//        pink_stable = pink_now; // çŠ¶æ€å·²ç»ç¨³å®šäº† 20msï¼Œæ›´æ–°ç¨³å®šçŠ¶æ€ 
 //    }
-//    pink_last_raw = pink_now; // ¼ÇÂ¼Ë²Ê±×´Ì¬¸øÏÂ´Î±È½Ï
+//    pink_last_raw = pink_now; // è®°å½•ç¬æ—¶çŠ¶æ€ç»™ä¸‹æ¬¡æ¯”è¾ƒ
 
-//    /* --------------- Âß¼­Ö´ĞĞ²ã --------------- */
-//    // ÓÃ¹ıÂËºóµÄ¡°¸É¾»×´Ì¬¡±×öÏÂ½µÑØ¼ì²â
+//    /* --------------- é€»è¾‘æ‰§è¡Œå±‚ --------------- */
+//    // ç”¨è¿‡æ»¤åçš„â€œå¹²å‡€çŠ¶æ€â€åšä¸‹é™æ²¿æ£€æµ‹
 //    if ((current_mode == PSB_REDLIGHT_MODE) && pink_stable && !pink_last_stable)
 //    {
 //        print_mode = !print_mode;
@@ -529,42 +529,42 @@ static void handle_led_feedback(void)
 //}
     
 /**
- * @brief PS2 °´¼üÏû¶¶½á¹¹Ìå
+ * @brief PS2 æŒ‰é”®æ¶ˆæŠ–ç»“æ„ä½“
  */
 typedef struct
 {
-    uint8_t last_raw;              // ÉÏÒ»´Î¶ÁÈ¡µ½µÄË²Ê±×´Ì¬
-    uint8_t stable;                // µ±Ç°È·ÈÏÎÈ¶¨ºóµÄ×´Ì¬
-    uint8_t last_stable;           // ÉÏÒ»´ÎÎÈ¶¨×´Ì¬£¬ÓÃÓÚ¼ì²â°´ÏÂÑØ
-    uint32_t state_change_timer;   // ×´Ì¬·¢ÉúÌø±äÊ±µÄÊ±¼ä´Á
+    uint8_t last_raw;              // ä¸Šä¸€æ¬¡è¯»å–åˆ°çš„ç¬æ—¶çŠ¶æ€
+    uint8_t stable;                // å½“å‰ç¡®è®¤ç¨³å®šåçš„çŠ¶æ€
+    uint8_t last_stable;           // ä¸Šä¸€æ¬¡ç¨³å®šçŠ¶æ€ï¼Œç”¨äºæ£€æµ‹æŒ‰ä¸‹æ²¿
+    uint32_t state_change_timer;   // çŠ¶æ€å‘ç”Ÿè·³å˜æ—¶çš„æ—¶é—´æˆ³
 } PS2_KeyDebounce_t;
 
 
 /**
- * @brief PS2 °´¼üÏû¶¶ + °´ÏÂÑØ¼ì²â
- * @param key PS2 °´¼üºê£¬ÀıÈç PSB_GREEN¡¢PSB_PINK
- * @param db  ¶ÔÓ¦¸Ã°´¼üµÄÏû¶¶×´Ì¬½á¹¹Ìå
- * @return 1 = °´¼üÍê³ÉÒ»´ÎÎÈ¶¨°´ÏÂ£»0 = Ã»ÓĞĞÂµÄÎÈ¶¨°´ÏÂ
+ * @brief PS2 æŒ‰é”®æ¶ˆæŠ– + æŒ‰ä¸‹æ²¿æ£€æµ‹
+ * @param key PS2 æŒ‰é”®å®ï¼Œä¾‹å¦‚ PSB_GREENã€PSB_PINK
+ * @param db  å¯¹åº”è¯¥æŒ‰é”®çš„æ¶ˆæŠ–çŠ¶æ€ç»“æ„ä½“
+ * @return 1 = æŒ‰é”®å®Œæˆä¸€æ¬¡ç¨³å®šæŒ‰ä¸‹ï¼›0 = æ²¡æœ‰æ–°çš„ç¨³å®šæŒ‰ä¸‹
  */
 static uint8_t ps2_key_pressed_debounce(uint16_t key, PS2_KeyDebounce_t *db)
 {
     uint8_t key_now = ps2_get_key_state(key);
 
-    /* --------------- Ïû¶¶¹ıÂË²ã --------------- */
+    /* --------------- æ¶ˆæŠ–è¿‡æ»¤å±‚ --------------- */
     if (key_now != db->last_raw)
     {
-        // Ö»ÒªË²Ê±×´Ì¬·¢Éú±ä»¯£¬¾ÍÖØĞÂ¼ÆÊ±
+        // åªè¦ç¬æ—¶çŠ¶æ€å‘ç”Ÿå˜åŒ–ï¼Œå°±é‡æ–°è®¡æ—¶
         db->state_change_timer = tim3_mgr.tick_count;
     }
     else if ((uint32_t)(tim3_mgr.tick_count - db->state_change_timer) > BUTTON_STABLE_DELAY_MS)
     {
-        // ×´Ì¬³ÖĞøÎÈ¶¨³¬¹ıÏû¶¶Ê±¼ä£¬È·ÈÏµ±Ç°×´Ì¬
+        // çŠ¶æ€æŒç»­ç¨³å®šè¶…è¿‡æ¶ˆæŠ–æ—¶é—´ï¼Œç¡®è®¤å½“å‰çŠ¶æ€
         db->stable = key_now;
     }
 
     db->last_raw = key_now;
 
-    /* --------------- °´ÏÂÑØ¼ì²â²ã --------------- */
+    /* --------------- æŒ‰ä¸‹æ²¿æ£€æµ‹å±‚ --------------- */
     if (db->stable && !db->last_stable)
     {
         db->last_stable = db->stable;
@@ -577,12 +577,12 @@ static uint8_t ps2_key_pressed_debounce(uint16_t key, PS2_KeyDebounce_t *db)
 
 
 /**
- * @brief ºìµÆÄ£Ê½ÏÂµÄÖØÖÃ¹¦ÄÜ
+ * @brief çº¢ç¯æ¨¡å¼ä¸‹çš„é‡ç½®åŠŸèƒ½
  * 
- * GREEN£ºÖØÖÃµç»úÈ¦Êı¼ÆÊıÆ÷
- * PINK £º½«µ±Ç° PWM µç»ú½Ç¶ÈÎ»ÖÃÉèÎªÁãµã
+ * GREENï¼šé‡ç½®ç”µæœºåœˆæ•°è®¡æ•°å™¨
+ * PINK ï¼šå°†å½“å‰ PWM ç”µæœºè§’åº¦ä½ç½®è®¾ä¸ºé›¶ç‚¹
  * 
- * ×¢Òâ£º±¾º¯ÊıĞèÒªÔÚÖ÷Ñ­»·ÖĞÖÜÆÚĞÔµ÷ÓÃ¡£
+ * æ³¨æ„ï¼šæœ¬å‡½æ•°éœ€è¦åœ¨ä¸»å¾ªç¯ä¸­å‘¨æœŸæ€§è°ƒç”¨ã€‚
  */
 static void ps2_redlight_reset_handle(void)
 {
@@ -594,13 +594,13 @@ static void ps2_redlight_reset_handle(void)
 
     if (ps2_mode_get() == PSB_REDLIGHT_MODE)
     {
-        // GREEN ¼ü£ºÖØÖÃµç»úÈ¦Êı¼ÆÊıÆ÷
+        // GREEN é”®ï¼šé‡ç½®ç”µæœºåœˆæ•°è®¡æ•°å™¨
         if (green_pressed)
         {
             Encoder_Counter_Reset(0);
             Encoder_Counter_Reset(1);
         }
-        // PINK ¼ü£ºÖØÖÃµç»ú±àÂëÆ÷Áãµã
+        // PINK é”®ï¼šé‡ç½®ç”µæœºç¼–ç å™¨é›¶ç‚¹
         else if (pink_pressed)
         {
             PWM_AngleServo_SetAllCurrentAsZero();

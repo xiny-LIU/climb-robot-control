@@ -3,20 +3,20 @@
 
 #include "main.h"
 
-/* ·äÃùÆ÷Ó²¼ş¶¨Òå */
+/* èœ‚é¸£å™¨ç¡¬ä»¶å®šä¹‰ */
 #define BUZZER_TIM          TIM12
 #define BUZZER_TIM_CHANNEL  TIM_CHANNEL_1
-#define BUZZER_ARR          33332   // 2700Hz×Ô¶¯ÖØ×°ÔØÖµ
-#define BUZZER_PSC          0       // ²»·ÖÆµ
+#define BUZZER_ARR          33332   // 2700Hzè‡ªåŠ¨é‡è£…è½½å€¼
+#define BUZZER_PSC          0       // ä¸åˆ†é¢‘
 
-/* ÒôÁ¿µÈ¼¶£¨Õ¼¿Õ±È°Ù·Ö±È£© */
-#define BUZZER_VOL_0        0       // ¾²Òô
-#define BUZZER_VOL_25       (BUZZER_ARR / 4)      // 25%ÒôÁ¿
-#define BUZZER_VOL_50       (BUZZER_ARR / 2)      // 50%ÒôÁ¿
-#define BUZZER_VOL_75       (BUZZER_ARR * 3 / 4)  // 75%ÒôÁ¿
-#define BUZZER_VOL_100      BUZZER_ARR            // 100%ÒôÁ¿£¨Êµ¼Ê¾²Òô£¬·´ÏàÇı¶¯£©
+/* éŸ³é‡ç­‰çº§ï¼ˆå ç©ºæ¯”ç™¾åˆ†æ¯”ï¼‰ */
+#define BUZZER_VOL_0        0       // é™éŸ³
+#define BUZZER_VOL_25       (BUZZER_ARR / 4)      // 25%éŸ³é‡
+#define BUZZER_VOL_50       (BUZZER_ARR / 2)      // 50%éŸ³é‡
+#define BUZZER_VOL_75       (BUZZER_ARR * 3 / 4)  // 75%éŸ³é‡
+#define BUZZER_VOL_100      BUZZER_ARR            // 100%éŸ³é‡ï¼ˆå®é™…é™éŸ³ï¼Œåç›¸é©±åŠ¨ï¼‰
 
-/* Òô·ûÆµÂÊ¶¨Òå£¨¼ò»¯°æ£¬ÓÃÓÚÌáÊ¾ÒôĞıÂÉ£© */
+/* éŸ³ç¬¦é¢‘ç‡å®šä¹‰ï¼ˆç®€åŒ–ç‰ˆï¼Œç”¨äºæç¤ºéŸ³æ—‹å¾‹ï¼‰ */
 #define NOTE_C5             523
 #define NOTE_D5             587
 #define NOTE_E5             659
@@ -25,14 +25,14 @@
 #define NOTE_A5             880
 #define NOTE_B5             988
 
-/* º¯ÊıÉùÃ÷ */
+/* å‡½æ•°å£°æ˜ */
 void Buzzer_Init(void);
 void Buzzer_On(uint16_t volume);
 void Buzzer_Off(void);
 void Buzzer_SetVolume(uint16_t volume);
 void Buzzer_SetFreq(uint16_t freq_hz);
 void Buzzer_Beep(uint16_t time_ms, uint16_t volume);
-void Buzzer_StartUp_Sound(void);    // ¿ª»úÌáÊ¾Òô
-void Buzzer_Error_Sound(void);      // ´íÎóÌáÊ¾Òô
+void Buzzer_StartUp_Sound(void);    // å¼€æœºæç¤ºéŸ³
+void Buzzer_Error_Sound(void);      // é”™è¯¯æç¤ºéŸ³
 
 #endif /* __BUZZER_H */
