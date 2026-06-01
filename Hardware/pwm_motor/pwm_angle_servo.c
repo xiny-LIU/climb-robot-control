@@ -38,6 +38,12 @@
  * PWM_AngleServo_Update_5ms() 每 5ms 调用一次，
  * 所以控制周期为 0.005s。
  */
+#undef PWM_ANGLE_KP_PERCENT_PER_DEG
+#define PWM_ANGLE_KP_PERCENT_PER_DEG         2.0f
+#undef PWM_ANGLE_MIN_SPEED_PERCENT
+#define PWM_ANGLE_MIN_SPEED_PERCENT          5u
+#undef PWM_ANGLE_MAX_SPEED_PERCENT
+#define PWM_ANGLE_MAX_SPEED_PERCENT          35u
 #define PWM_ANGLE_UPDATE_PERIOD_SEC          0.005f
 
 /*
@@ -308,10 +314,11 @@ static void PWM_Angle_UpdateOne(PWM_AngleJoint_t joint)
     dbg->target_deg = target_deg;
     dbg->command_deg = cfg->command_deg;
     dbg->error_deg = error_deg;
+    float abs_error_deg = fabsf(error_deg);
 
     // 8.【死区控制】如果误差绝对值小于设定死区，说明已经到位
     // 此时停止对应电机，并把速度百分比记录为 0
-    if (fabsf(error_deg) <= PWM_ANGLE_DEADBAND_DEG) {
+    if (abs_error_deg <= PWM_ANGLE_DEADBAND_DEG) {
         Motor_Stop(cfg->motor_id);// 让对应电机停止输出
         dbg->speed_percent = 0;
 
@@ -334,7 +341,7 @@ static void PWM_Angle_UpdateOne(PWM_AngleJoint_t joint)
     // speed_f 是未限幅前的 PWM 速度百分比；
     // error_deg 是角度误差，单位 deg；
     // PWM_ANGLE_KP_PERCENT_PER_DEG 是比例系数，表示每 1° 误差对应多少速度百分比。
-    float speed_f = fabsf(error_deg) * PWM_ANGLE_KP_PERCENT_PER_DEG;
+    float speed_f = abs_error_deg * PWM_ANGLE_KP_PERCENT_PER_DEG;
 
     // 11.【限速保护】把算出来的速度限制在最小速度和最大速度之间
     // 最小速度用于克服静摩擦，防止误差存在但电机转不动；

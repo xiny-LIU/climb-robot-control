@@ -195,6 +195,7 @@ void Motor_SetSpeed(Motor_ID_t motor_id, uint8_t speed_percent)
     } else {
         motor->state = MOTOR_STATE_STOPPED;
     }
+    update_motor_gpio(motor_id);
     //打印测试
 //    update_motor_gpio(motor_id);
 //    

@@ -308,6 +308,11 @@ static void process_motor_control(void)
 {
     uint8_t motor_control_active = 0;
 
+    if (PWM_AngleServo_IsEnabled())
+    {
+        return;
+    }
+
     // 系统锁定时跳过所有电机控制
     if (Motor_Is_Locked())
     {
