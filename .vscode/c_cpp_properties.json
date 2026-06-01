@@ -1,0 +1,31 @@
+{
+  "configurations": [
+    {
+      "name": "a_climb",
+      "includePath": [
+        "${workspaceFolder}/Core/Inc",
+        "${workspaceFolder}/Drivers/STM32F4xx_HAL_Driver/Inc",
+        "${workspaceFolder}/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy",
+        "${workspaceFolder}/Drivers/CMSIS/Device/ST/STM32F4xx/Include",
+        "${workspaceFolder}/Drivers/CMSIS/Include",
+        "${workspaceFolder}/Hardware",
+        "${workspaceFolder}/Hardware/can",
+        "${workspaceFolder}/Hardware/PS2",
+        "${workspaceFolder}/Hardware/pwm_motor",
+        "${workspaceFolder}/Hardware/user_tim",
+        "D:/keil5/Keil_v5/ARM/ARM_Compiler_5.06u7/include",
+        "D:/keil5/Keil_v5/ARM/ARMCLANG/include",
+        "${workspaceFolder}/Hardware/pwm_motor",
+        "${workspaceFolder}/Hardware/spi4",
+        "${workspaceFolder}/Hardware/user_tim"
+      ],
+      "defines": [
+        "USE_HAL_DRIVER",
+        "STM32F427xx"
+      ],
+      "cStandard": "c99",
+      "intelliSenseMode": "windows-msvc-x64"
+    }
+  ],
+  "version": 4
+}
