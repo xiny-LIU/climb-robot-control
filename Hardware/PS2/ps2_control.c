@@ -12,6 +12,7 @@
 #include "PID.h"
 #include "ps2_filter.h"
 #include "pwm_angle_servo.h"
+#include "m3508_position.h"
 
 // 内部静态变量（文件作用域，外部不可访问）
 static uint8_t last_mode = 0xFF;  // 记录上一次的PS2模式
@@ -163,6 +164,12 @@ static void handle_lock_unlock(void)
 static void process_can_control(void)
 {
     uint8_t can_active = 0;
+
+    if (M3508_Position_IsEnabled())
+    {
+        return;
+    }
+
     if (ps2_get_key_state(PSB_L1))
     {
 //电机1正转

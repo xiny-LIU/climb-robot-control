@@ -55,6 +55,8 @@ typedef enum {
 typedef enum {
     M3508_POS_OK = 0,
     M3508_POS_DISABLED,
+    M3508_POS_MOTOR_LOADED,
+    M3508_POS_MOTOR_OBSTACLE,
     M3508_POS_TARGET_LIMITED, // 目标值超出软件安全限位，已被自动截断
     M3508_POS_MOTOR_ERROR     // PID 底层报错，电机故障关断
 } M3508_PositionStatus_t;

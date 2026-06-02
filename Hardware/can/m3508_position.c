@@ -94,6 +94,22 @@ static uint8_t M3508_Pos_SideToIndex(M3508_PositionSide_t side)
     return (side == M3508_POS_RIGHT) ? 1u : 0u;
  }
 
+static M3508_PositionMotorDebug_t *M3508_Pos_GetDebugByIndex(uint8_t index)
+{
+    return (index == 0) ? &g_m3508_pos_debug.left : &g_m3508_pos_debug.right;
+}
+
+static void M3508_Pos_SyncDebugLength(uint8_t index)
+{
+    M3508_PositionSide_t side = (index == 0) ? M3508_POS_LEFT : M3508_POS_RIGHT;
+    M3508_PositionMotorDebug_t *dbg = M3508_Pos_GetDebugByIndex(index);
+    float current = M3508_Position_GetCurrentLength(side);
+
+    dbg->current_length_mm = current;
+    dbg->target_length_mm = g_m3508_pos_motor[index].target_length_mm;
+    dbg->error_mm = dbg->target_length_mm - current;
+}
+
 /* ============================================================
  * 速度与长度换算
  * ============================================================ */
@@ -132,7 +148,7 @@ static void M3508_Pos_UpdateOne(uint8_t index, float local_target_mm)
     if (index > 1) return;
 
     uint8_t pid_id = g_m3508_pos_motor[index].pid_motor_id;
-    M3508_PositionMotorDebug_t *dbg = (index == 0) ? &g_m3508_pos_debug.left : &g_m3508_pos_debug.right;
+    M3508_PositionMotorDebug_t *dbg = M3508_Pos_GetDebugByIndex(index);
 
     // 1. 获取当前实际机械长度
     float current_mm = M3508_Position_GetCurrentLength((index == 0) ? M3508_POS_LEFT : M3508_POS_RIGHT);
@@ -342,28 +358,51 @@ void M3508_Position_Update_5ms(void)
 
     uint8_t left_pid_id  = g_m3508_pos_motor[0].pid_motor_id;
     uint8_t right_pid_id = g_m3508_pos_motor[1].pid_motor_id;
+    MotorStatus_t left_status = PID_GetMotorStatus(left_pid_id);
+    MotorStatus_t right_status = PID_GetMotorStatus(right_pid_id);
 
     // 左电机控制分配
-    if (PID_GetMotorStatus(left_pid_id) == MOTOR_STATUS_ERROR) {
+    if (left_status == MOTOR_STATUS_ERROR ||
+        left_status == MOTOR_STATUS_OBSTACLE) {
         M3508_Position_Stop(M3508_POS_LEFT);
-        g_m3508_pos_debug.left.status = M3508_POS_MOTOR_ERROR;
+        g_m3508_pos_debug.left.status =
+            (left_status == MOTOR_STATUS_OBSTACLE) ?
+            M3508_POS_MOTOR_OBSTACLE :
+            M3508_POS_MOTOR_ERROR;
     } else {
         M3508_Pos_UpdateOne(0, local_left_target); 
+        if (left_status == MOTOR_STATUS_LOADED &&
+            g_m3508_pos_debug.left.status == M3508_POS_OK) {
+            g_m3508_pos_debug.left.status = M3508_POS_MOTOR_LOADED;
+        }
     }
 
     // 右电机控制分配
-    if (PID_GetMotorStatus(right_pid_id) == MOTOR_STATUS_ERROR) {
+    if (right_status == MOTOR_STATUS_ERROR ||
+        right_status == MOTOR_STATUS_OBSTACLE) {
         M3508_Position_Stop(M3508_POS_RIGHT);
-        g_m3508_pos_debug.right.status = M3508_POS_MOTOR_ERROR;
+        g_m3508_pos_debug.right.status =
+            (right_status == MOTOR_STATUS_OBSTACLE) ?
+            M3508_POS_MOTOR_OBSTACLE :
+            M3508_POS_MOTOR_ERROR;
     } else {
         M3508_Pos_UpdateOne(1, local_right_target); 
+        if (right_status == MOTOR_STATUS_LOADED &&
+            g_m3508_pos_debug.right.status == M3508_POS_OK) {
+            g_m3508_pos_debug.right.status = M3508_POS_MOTOR_LOADED;
+        }
     }
 
     // 统一同步一轮全局反馈状态
+    primask_bit = __get_PRIMASK();
+    __disable_irq();
+
     g_m3508_pos_debug.left.output_rpm = g_m3508_pos_left_output_rpm;
     g_m3508_pos_debug.right.output_rpm = g_m3508_pos_right_output_rpm;
     g_m3508_pos_debug.left.target_output_rpm = g_m3508_pos_left_target_output_rpm;
     g_m3508_pos_debug.right.target_output_rpm = g_m3508_pos_right_target_output_rpm;
+
+    __set_PRIMASK(primask_bit);
 }
 
 void M3508_Position_Stop(M3508_PositionSide_t side)
@@ -469,7 +508,20 @@ float M3508_Position_GetReductionRatio(void)
 void M3508_Position_SetBaseLength(M3508_PositionSide_t side, float base_length_mm)
 {
     uint8_t index = M3508_Pos_SideToIndex(side);
-    g_m3508_pos_motor[index].base_length_mm = M3508_Pos_ClampFloat(base_length_mm, g_length_min_mm, g_length_max_mm);
+    uint32_t primask_bit = __get_PRIMASK();
+    __disable_irq();
+
+    g_m3508_pos_motor[index].base_length_mm =
+        M3508_Pos_ClampFloat(base_length_mm, g_length_min_mm, g_length_max_mm);
+    g_m3508_pos_motor[index].target_length_mm =
+        M3508_Pos_ClampFloat(M3508_Position_GetCurrentLength(side),
+                             g_length_min_mm,
+                             g_length_max_mm);
+
+    __set_PRIMASK(primask_bit);
+
+    M3508_Position_Stop(side);
+    M3508_Pos_SyncDebugLength(index);
 }
 
 void M3508_Position_SetBaseLengthBoth(float left_base_mm, float right_base_mm)
@@ -481,7 +533,19 @@ void M3508_Position_SetBaseLengthBoth(float left_base_mm, float right_base_mm)
 void M3508_Position_SetDirectionSign(M3508_PositionSide_t side, int8_t sign)
 {
     uint8_t index = M3508_Pos_SideToIndex(side);
+    uint32_t primask_bit = __get_PRIMASK();
+    __disable_irq();
+
     g_m3508_pos_motor[index].direction_sign = M3508_Pos_NormalizeSign(sign);
+    g_m3508_pos_motor[index].target_length_mm =
+        M3508_Pos_ClampFloat(M3508_Position_GetCurrentLength(side),
+                             g_length_min_mm,
+                             g_length_max_mm);
+
+    __set_PRIMASK(primask_bit);
+
+    M3508_Position_Stop(side);
+    M3508_Pos_SyncDebugLength(index);
 }
 
 void M3508_Position_SetDirectionSignBoth(int8_t left_sign, int8_t right_sign)
@@ -493,7 +557,26 @@ void M3508_Position_SetDirectionSignBoth(int8_t left_sign, int8_t right_sign)
 void M3508_Position_SetLengthLimit(float min_mm, float max_mm)
 {
     if (max_mm <= min_mm) return;
+    uint32_t primask_bit = __get_PRIMASK();
+    __disable_irq();
+
     g_length_min_mm = min_mm;
     g_length_max_mm = max_mm;
+
+    for (uint8_t i = 0; i < 2; i++) {
+        g_m3508_pos_motor[i].base_length_mm =
+            M3508_Pos_ClampFloat(g_m3508_pos_motor[i].base_length_mm,
+                                 g_length_min_mm,
+                                 g_length_max_mm);
+        g_m3508_pos_motor[i].target_length_mm =
+            M3508_Pos_ClampFloat(g_m3508_pos_motor[i].target_length_mm,
+                                 g_length_min_mm,
+                                 g_length_max_mm);
+    }
+
+    __set_PRIMASK(primask_bit);
+
+    M3508_Pos_SyncDebugLength(0);
+    M3508_Pos_SyncDebugLength(1);
 }
 
