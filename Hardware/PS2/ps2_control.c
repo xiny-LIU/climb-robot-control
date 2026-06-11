@@ -609,8 +609,7 @@ static void ps2_redlight_reset_handle(void)
         // GREEN 键：重置电机圈数计数器
         if (green_pressed)
         {
-            Encoder_Counter_Reset(0);
-            Encoder_Counter_Reset(1);
+            M3508_Position_ResetEncoderAndSyncTargetBoth();
         }
         // PINK 键：重置电机编码器零点
         else if (pink_pressed)

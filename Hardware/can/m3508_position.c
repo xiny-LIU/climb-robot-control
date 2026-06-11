@@ -35,6 +35,13 @@
 /* 速度环目标转子转速限幅，单位 rpm */
 #define M3508_POS_MAX_ROTOR_RPM         2800
 
+/* Minimum rotor target speed outside the position deadband, unit: rpm */
+#define M3508_POS_MIN_ROTOR_RPM         300
+
+/* Ramp distance for minimum speed assist, unit: mm.
+ * This avoids a hard 0 -> MIN_RPM jump just outside the deadband. */
+#define M3508_POS_MIN_RPM_RAMP_MM       5.0f
+
 /* ============================================================
  * 全局变量
  * ============================================================ */
@@ -54,11 +61,12 @@ typedef struct {
     float base_length_mm;       /* 编码器清零时对应的伸缩杆长度 */
     float target_length_mm;     /* 原始目标伸缩长度（跨线程共享） */
     int8_t direction_sign;      /* 伸缩方向符号，+1 或 -1 */
+    uint8_t target_limited;     /* Target was clipped by software length limit. */
 } M3508_PositionMotor_t;
 
 static M3508_PositionMotor_t g_m3508_pos_motor[2] = {
-    {0, M3508_POS_DEFAULT_D3_MIN_MM, M3508_POS_DEFAULT_D3_MIN_MM, +1},
-    {1, M3508_POS_DEFAULT_D3_MIN_MM, M3508_POS_DEFAULT_D3_MIN_MM, +1}
+    {0, M3508_POS_DEFAULT_D3_MIN_MM, M3508_POS_DEFAULT_D3_MIN_MM, +1, 0},
+    {1, M3508_POS_DEFAULT_D3_MIN_MM, M3508_POS_DEFAULT_D3_MIN_MM, +1, 0}
 };
 
 static float g_length_min_mm = M3508_POS_DEFAULT_D3_MIN_MM;
@@ -108,6 +116,19 @@ static void M3508_Pos_SyncDebugLength(uint8_t index)
     dbg->current_length_mm = current;
     dbg->target_length_mm = g_m3508_pos_motor[index].target_length_mm;
     dbg->error_mm = dbg->target_length_mm - current;
+    dbg->status = g_m3508_pos_motor[index].target_limited ?
+        M3508_POS_TARGET_LIMITED :
+        (g_m3508_pos_enabled ? M3508_POS_OK : M3508_POS_DISABLED);
+}
+
+static float M3508_Pos_GetDeltaLengthByIndex(uint8_t index)
+{
+    int32_t total_angle_count =
+        Encoder_Get_Total_Angle(g_m3508_pos_motor[index].pid_motor_id);
+    float rotor_turns = (float)total_angle_count / 8192.0f;
+    float output_turns = rotor_turns / M3508_Pos_GetValidReductionRatio();
+
+    return output_turns * M3508_POS_PI * M3508_POS_PULLEY_DIAMETER_MM;
 }
 
 /* ============================================================
@@ -120,7 +141,7 @@ static void M3508_Pos_UpdateOutputRPM(void)
     const motor_measure_t *left_motor = get_chassis_motor_measure_point(g_m3508_pos_motor[0].pid_motor_id);
     const motor_measure_t *right_motor = get_chassis_motor_measure_point(g_m3508_pos_motor[1].pid_motor_id);
 
-    g_m3508_pos_left_output_rpm = (float)left_motor->speed_rpm / ratio;
+    g_m3508_pos_left_output_rpm = (float)left_motor->speed_rpm / ratio; //输出轴转速
     g_m3508_pos_right_output_rpm = (float)right_motor->speed_rpm / ratio;
 }
 
@@ -130,9 +151,9 @@ float M3508_Position_GetCurrentLength(M3508_PositionSide_t side)
 
     int32_t total_angle_count = Encoder_Get_Total_Angle(g_m3508_pos_motor[index].pid_motor_id);
 
-    float rotor_turns = (float)total_angle_count / 8192.0f;
+    float rotor_turns = (float)total_angle_count / 8192.0f; // 8192是编码器每转的计数单位，获取转子完整转数
     float ratio = M3508_Pos_GetValidReductionRatio();
-    float output_turns = rotor_turns / ratio;
+    float output_turns = rotor_turns / ratio; // 输出轴转数
 
     float delta_mm = output_turns * M3508_POS_PI * M3508_POS_PULLEY_DIAMETER_MM;
     float d3 = g_m3508_pos_motor[index].base_length_mm + (float)g_m3508_pos_motor[index].direction_sign * delta_mm;
@@ -155,7 +176,8 @@ static void M3508_Pos_UpdateOne(uint8_t index, float local_target_mm)
     
     // 2. 软件安全限位截断，并合理判定与记录限位状态（解决状态覆盖问题）
     float clamped_target_mm = M3508_Pos_ClampFloat(local_target_mm, g_length_min_mm, g_length_max_mm);
-    if (clamped_target_mm != local_target_mm) {
+    if (clamped_target_mm != local_target_mm ||
+        g_m3508_pos_motor[index].target_limited) {
         dbg->status = M3508_POS_TARGET_LIMITED;
     } else {
         dbg->status = M3508_POS_OK;
@@ -199,6 +221,24 @@ static void M3508_Pos_UpdateOne(uint8_t index, float local_target_mm)
 
     float rotor_rpm_set_f = target_output_rpm * ratio;
 
+    /*
+     * Minimum speed assist is ramped in by position error.
+     * Near the deadband it stays gentle; farther away it reaches full assist.
+     */
+    float min_rpm_scale =
+        M3508_Pos_ClampFloat(fabsf(control_error) / M3508_POS_MIN_RPM_RAMP_MM,
+                             0.0f,
+                             1.0f);
+    float min_rotor_rpm = M3508_POS_MIN_ROTOR_RPM * min_rpm_scale;
+
+    if (rotor_rpm_set_f > 0.0f &&
+        rotor_rpm_set_f < min_rotor_rpm) {
+        rotor_rpm_set_f = min_rotor_rpm;
+    } else if (rotor_rpm_set_f < 0.0f &&
+               rotor_rpm_set_f > -min_rotor_rpm) {
+        rotor_rpm_set_f = -min_rotor_rpm;
+    }
+
     rotor_rpm_set_f =
         M3508_Pos_ClampFloat(rotor_rpm_set_f,
                              -M3508_POS_MAX_ROTOR_RPM,
@@ -236,10 +276,12 @@ void M3508_Position_Init(void)
     g_m3508_pos_motor[0].pid_motor_id = 0;
     g_m3508_pos_motor[0].base_length_mm = M3508_POS_DEFAULT_D3_MIN_MM;
     g_m3508_pos_motor[0].direction_sign = +1;
+    g_m3508_pos_motor[0].target_limited = 0;
 
     g_m3508_pos_motor[1].pid_motor_id = 1;
     g_m3508_pos_motor[1].base_length_mm = M3508_POS_DEFAULT_D3_MIN_MM;
     g_m3508_pos_motor[1].direction_sign = +1;
+    g_m3508_pos_motor[1].target_limited = 0;
 
     g_length_min_mm = M3508_POS_DEFAULT_D3_MIN_MM;
     g_length_max_mm = M3508_POS_DEFAULT_D3_MAX_MM;
@@ -305,6 +347,8 @@ void M3508_Position_SetTargetLength(M3508_PositionSide_t side, float target_leng
     __disable_irq();
 
     g_m3508_pos_motor[index].target_length_mm = limited_target;
+    g_m3508_pos_motor[index].target_limited =
+        (limited_target != target_length_mm) ? 1u : 0u;
 
     if (index == 0) {
         g_m3508_pos_debug.left.target_length_mm = limited_target;
@@ -325,6 +369,47 @@ void M3508_Position_SetTargetLengthBoth(float left_target_mm, float right_target
 {
     M3508_Position_SetTargetLength(M3508_POS_LEFT, left_target_mm);
     M3508_Position_SetTargetLength(M3508_POS_RIGHT, right_target_mm);
+}
+
+void M3508_Position_ResetEncoderAndSyncTarget(M3508_PositionSide_t side) // 这个函数需要在红灯模式下 PS2 GREEN 键按下时调用
+{
+    uint8_t index = M3508_Pos_SideToIndex(side);
+    uint8_t pid_id = g_m3508_pos_motor[index].pid_motor_id;
+
+    /*
+     * Resetting the encoder changes the measured length immediately.
+     * Stop first, then make the new measured length the target, so the
+     * position loop will not chase an old target after zeroing.
+     */
+    M3508_Position_Stop(side);
+    Encoder_Counter_Reset(pid_id);
+
+    float current = M3508_Position_GetCurrentLength(side);
+    float target = M3508_Pos_ClampFloat(current, g_length_min_mm, g_length_max_mm);
+    uint8_t limited = (target != current) ? 1u : 0u;
+
+    uint32_t primask_bit = __get_PRIMASK();
+    __disable_irq();
+
+    g_m3508_pos_motor[index].target_length_mm = target;
+    g_m3508_pos_motor[index].target_limited = limited;
+
+    M3508_PositionMotorDebug_t *dbg = M3508_Pos_GetDebugByIndex(index);
+    dbg->current_length_mm = current;
+    dbg->target_length_mm = target;
+    dbg->error_mm = target - current;
+    dbg->target_output_rpm = 0.0f;
+    dbg->rotor_rpm_set = 0.0f;
+    dbg->status = limited ? M3508_POS_TARGET_LIMITED :
+        (g_m3508_pos_enabled ? M3508_POS_OK : M3508_POS_DISABLED);
+
+    __set_PRIMASK(primask_bit);
+}
+
+void M3508_Position_ResetEncoderAndSyncTargetBoth(void)
+{
+    M3508_Position_ResetEncoderAndSyncTarget(M3508_POS_LEFT);
+    M3508_Position_ResetEncoderAndSyncTarget(M3508_POS_RIGHT);
 }
 
 /* ============================================================
@@ -513,10 +598,11 @@ void M3508_Position_SetBaseLength(M3508_PositionSide_t side, float base_length_m
 
     g_m3508_pos_motor[index].base_length_mm =
         M3508_Pos_ClampFloat(base_length_mm, g_length_min_mm, g_length_max_mm);
+    float current = M3508_Position_GetCurrentLength(side);
     g_m3508_pos_motor[index].target_length_mm =
-        M3508_Pos_ClampFloat(M3508_Position_GetCurrentLength(side),
-                             g_length_min_mm,
-                             g_length_max_mm);
+        M3508_Pos_ClampFloat(current, g_length_min_mm, g_length_max_mm);
+    g_m3508_pos_motor[index].target_limited =
+        (g_m3508_pos_motor[index].target_length_mm != current) ? 1u : 0u;
 
     __set_PRIMASK(primask_bit);
 
@@ -533,14 +619,25 @@ void M3508_Position_SetBaseLengthBoth(float left_base_mm, float right_base_mm)
 void M3508_Position_SetDirectionSign(M3508_PositionSide_t side, int8_t sign)
 {
     uint8_t index = M3508_Pos_SideToIndex(side);
+    int8_t new_sign = M3508_Pos_NormalizeSign(sign);
+    float current = M3508_Position_GetCurrentLength(side);
+    float delta_mm = M3508_Pos_GetDeltaLengthByIndex(index);
     uint32_t primask_bit = __get_PRIMASK();
     __disable_irq();
 
-    g_m3508_pos_motor[index].direction_sign = M3508_Pos_NormalizeSign(sign);
+    /*
+     * Keep the absolute length continuous when changing direction.
+     * New base is back-calculated from the current measured length.
+     */
+    g_m3508_pos_motor[index].direction_sign = new_sign;
+    g_m3508_pos_motor[index].base_length_mm =
+        current - (float)new_sign * delta_mm;
     g_m3508_pos_motor[index].target_length_mm =
-        M3508_Pos_ClampFloat(M3508_Position_GetCurrentLength(side),
+        M3508_Pos_ClampFloat(current,
                              g_length_min_mm,
                              g_length_max_mm);
+    g_m3508_pos_motor[index].target_limited =
+        (g_m3508_pos_motor[index].target_length_mm != current) ? 1u : 0u;
 
     __set_PRIMASK(primask_bit);
 
@@ -564,14 +661,17 @@ void M3508_Position_SetLengthLimit(float min_mm, float max_mm)
     g_length_max_mm = max_mm;
 
     for (uint8_t i = 0; i < 2; i++) {
+        float old_target = g_m3508_pos_motor[i].target_length_mm;
         g_m3508_pos_motor[i].base_length_mm =
             M3508_Pos_ClampFloat(g_m3508_pos_motor[i].base_length_mm,
                                  g_length_min_mm,
                                  g_length_max_mm);
         g_m3508_pos_motor[i].target_length_mm =
-            M3508_Pos_ClampFloat(g_m3508_pos_motor[i].target_length_mm,
+            M3508_Pos_ClampFloat(old_target,
                                  g_length_min_mm,
                                  g_length_max_mm);
+        g_m3508_pos_motor[i].target_limited =
+            (g_m3508_pos_motor[i].target_length_mm != old_target) ? 1u : 0u;
     }
 
     __set_PRIMASK(primask_bit);

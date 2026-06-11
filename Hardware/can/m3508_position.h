@@ -101,6 +101,10 @@ void M3508_Position_SetTargetLength(M3508_PositionSide_t side, float target_leng
 /* @brief 同时设置左右伸缩目标长度 */
 void M3508_Position_SetTargetLengthBoth(float left_target_mm, float right_target_mm);
 
+/* Reset encoder zero and lock the position loop target to the new current length. */
+void M3508_Position_ResetEncoderAndSyncTarget(M3508_PositionSide_t side);
+void M3508_Position_ResetEncoderAndSyncTargetBoth(void);
+
 /* @brief M3508 伸缩位置环周期更新函数 (建议在 5ms 或 10ms 定时中断中调用) */
 void M3508_Position_Update_5ms(void);
 
