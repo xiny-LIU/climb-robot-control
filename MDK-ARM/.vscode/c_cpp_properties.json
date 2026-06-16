@@ -21,7 +21,7 @@
                 "f:\\control_progaram\\a_climb\\Hardware",
                 "f:\\control_progaram\\a_climb\\Hardware\\spi4",
                 "f:\\control_progaram\\a_climb\\Hardware\\climb",
-                "D:\\keil5\\Keil_v5\\ARM\\ARM_Compiler_5.06u7\\include",
+                "D:\\keil5\\Keil_v5\\ARM\\ARMCC\\include",
                 "f:\\control_progaram\\a_climb\\MDK-ARM",
                 "f:\\control_progaram\\a_climb\\Drivers\\STM32F4xx_HAL_Driver\\Src",
                 "f:\\control_progaram\\a_climb\\Core\\Src"

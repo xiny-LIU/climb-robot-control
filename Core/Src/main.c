@@ -172,7 +172,7 @@ int main(void)
 //    USART2_PrintMessage();
     if (cmd_update && PWM_AngleServo_IsEnabled())
     {
-        PWM_AngleServo_SetTarget(PWM_ANGLE_LEFT_PITCH, num_input);
+        PWM_AngleServo_SetTarget(PWM_ANGLE_LEFT_YAW, num_input);
         cmd_update = 0;
     }
 

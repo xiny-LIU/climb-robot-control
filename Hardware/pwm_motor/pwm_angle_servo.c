@@ -61,9 +61,10 @@ typedef struct {
     Encoder_ID_t encoder_id;   // 编码器ID（告诉系统这个关节的数据由哪个传感器读取，如 ENC_1）
 
     float zero_offset_deg;     // 机械零点偏置（组装时有误差，用来校准的机械零位角度）
+    //偏置采用encoder_sign=+1的编码器读数作为基准，正值表示顺时针偏移，负值表示逆时针偏移
     
      /*
-     * 编码器方向符号：
+     * 编码器方向符号：  电机朝DH 关节角增大的方向
      * +1：编码器角度增加方向 = DH 关节角正方向
      * -1：编码器角度增加方向与 DH 关节角正方向相反
      */
@@ -394,6 +395,7 @@ void PWM_AngleServo_Init(void)
 {
     g_pwm_angle_enabled = 0;
 
+    //motorA已调定所有初始值
     g_pwm_angle_joint[PWM_ANGLE_LEFT_PITCH].motor_id = MOTOR_A;
     g_pwm_angle_joint[PWM_ANGLE_LEFT_PITCH].encoder_id = ENC_1;
     g_pwm_angle_joint[PWM_ANGLE_LEFT_PITCH].zero_offset_deg = 20.0f;
@@ -404,16 +406,18 @@ void PWM_AngleServo_Init(void)
     g_pwm_angle_joint[PWM_ANGLE_LEFT_PITCH].min_deg = PWM_ANGLE_DEFAULT_PITCH_MIN_DEG;
     g_pwm_angle_joint[PWM_ANGLE_LEFT_PITCH].max_deg = PWM_ANGLE_DEFAULT_PITCH_MAX_DEG;
 
+    //motorB已调定所有初始值
     g_pwm_angle_joint[PWM_ANGLE_LEFT_YAW].motor_id = MOTOR_B;
     g_pwm_angle_joint[PWM_ANGLE_LEFT_YAW].encoder_id = ENC_2;
-    g_pwm_angle_joint[PWM_ANGLE_LEFT_YAW].zero_offset_deg = 0.0f;
+    g_pwm_angle_joint[PWM_ANGLE_LEFT_YAW].zero_offset_deg = -173.0f;
     g_pwm_angle_joint[PWM_ANGLE_LEFT_YAW].encoder_sign = +1;
-    g_pwm_angle_joint[PWM_ANGLE_LEFT_YAW].direction_sign = +1;
+    g_pwm_angle_joint[PWM_ANGLE_LEFT_YAW].direction_sign = -1;
     g_pwm_angle_joint[PWM_ANGLE_LEFT_YAW].target_deg = 0.0f;
     g_pwm_angle_joint[PWM_ANGLE_LEFT_YAW].command_deg = 0.0f;
     g_pwm_angle_joint[PWM_ANGLE_LEFT_YAW].min_deg = PWM_ANGLE_LEFT_YAW_MIN_DEG;
     g_pwm_angle_joint[PWM_ANGLE_LEFT_YAW].max_deg = PWM_ANGLE_LEFT_YAW_MAX_DEG;
 
+    //motorC已调定所有初始值
     g_pwm_angle_joint[PWM_ANGLE_RIGHT_PITCH].motor_id = MOTOR_C;
     g_pwm_angle_joint[PWM_ANGLE_RIGHT_PITCH].encoder_id = ENC_3;
     g_pwm_angle_joint[PWM_ANGLE_RIGHT_PITCH].zero_offset_deg = 10.0f;
@@ -424,11 +428,12 @@ void PWM_AngleServo_Init(void)
     g_pwm_angle_joint[PWM_ANGLE_RIGHT_PITCH].min_deg = PWM_ANGLE_DEFAULT_PITCH_MIN_DEG;
     g_pwm_angle_joint[PWM_ANGLE_RIGHT_PITCH].max_deg = PWM_ANGLE_DEFAULT_PITCH_MAX_DEG;
 
+    //motorD已调定所有初始值
     g_pwm_angle_joint[PWM_ANGLE_RIGHT_YAW].motor_id = MOTOR_D;
     g_pwm_angle_joint[PWM_ANGLE_RIGHT_YAW].encoder_id = ENC_4;
-    g_pwm_angle_joint[PWM_ANGLE_RIGHT_YAW].zero_offset_deg = 0.0f;
+    g_pwm_angle_joint[PWM_ANGLE_RIGHT_YAW].zero_offset_deg = -76.0f;
     g_pwm_angle_joint[PWM_ANGLE_RIGHT_YAW].encoder_sign = +1;
-    g_pwm_angle_joint[PWM_ANGLE_RIGHT_YAW].direction_sign = +1;
+    g_pwm_angle_joint[PWM_ANGLE_RIGHT_YAW].direction_sign = -1;
     g_pwm_angle_joint[PWM_ANGLE_RIGHT_YAW].target_deg = 0.0f;
     g_pwm_angle_joint[PWM_ANGLE_RIGHT_YAW].command_deg = 0.0f;
     g_pwm_angle_joint[PWM_ANGLE_RIGHT_YAW].min_deg = PWM_ANGLE_RIGHT_YAW_MIN_DEG;
