@@ -304,7 +304,7 @@ void USART2_ProcessCommand(void)
     g_usart_rx_sta = 0;  
 }
 
-uint8_t print_mode = 2;
+uint8_t print_mode = 4;
 /**
  * @brief  多子任务打印管理，在串口输入数字进行切换
  */
