@@ -373,12 +373,7 @@ void Print_Task(void)
                 dbg.joint[PWM_ANGLE_LEFT_YAW].target_deg, 
                 dbg.joint[PWM_ANGLE_RIGHT_PITCH].target_deg, 
                 dbg.joint[PWM_ANGLE_RIGHT_YAW].target_deg);
-//            printf("COMMANDAngle: %.2f | %.2f | %.2f | %.2f\r\n", 
-//                dbg.joint[PWM_ANGLE_LEFT_PITCH].command_deg, 
-//                dbg.joint[PWM_ANGLE_LEFT_YAW].command_deg, 
-//                dbg.joint[PWM_ANGLE_RIGHT_PITCH].command_deg, 
-//                dbg.joint[PWM_ANGLE_RIGHT_YAW].command_deg);
-
+                
             printf("ERROR: %.2f | %.2f | %.2f | %.2f\r\n",
                dbg.joint[PWM_ANGLE_LEFT_PITCH].error_deg,
                dbg.joint[PWM_ANGLE_LEFT_YAW].error_deg,

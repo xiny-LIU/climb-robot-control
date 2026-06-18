@@ -143,7 +143,7 @@ int main(void)
   BT_Init();
   PS2_Control_Init();
   PID_Init();
-  
+  M3508_Position_Init();
   PWM_AngleServo_Init();
   
 

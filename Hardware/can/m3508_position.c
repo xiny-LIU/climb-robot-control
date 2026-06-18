@@ -280,7 +280,7 @@ void M3508_Position_Init(void)
 
     g_m3508_pos_motor[1].pid_motor_id = 1;
     g_m3508_pos_motor[1].base_length_mm = M3508_POS_DEFAULT_D3_MIN_MM;
-    g_m3508_pos_motor[1].direction_sign = +1;
+    g_m3508_pos_motor[1].direction_sign = -1;
     g_m3508_pos_motor[1].target_limited = 0;
 
     g_length_min_mm = M3508_POS_DEFAULT_D3_MIN_MM;
