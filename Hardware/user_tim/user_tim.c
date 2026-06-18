@@ -98,7 +98,7 @@ void TIM3_Task_Execute(void)
         else
         {
             PWM_AngleServo_LockCurrentPosition();
-            PWM_AngleServo_Enable(1);
+            PWM_AngleServo_Enable(0);
 
             pwm_angle_servo_started = 1;
         }

@@ -7,6 +7,7 @@
 #include "usart6.h"
 #include "spi4.h"
 #include "pwm_angle_servo.h"
+#include "m3508_position.h"
 
 #include "ps2_control.h"
 #include "ps2.h"
@@ -303,7 +304,7 @@ void USART2_ProcessCommand(void)
     g_usart_rx_sta = 0;  
 }
 
-uint8_t print_mode = 0;
+uint8_t print_mode = 2;
 /**
  * @brief  多子任务打印管理，在串口输入数字进行切换
  */
@@ -334,8 +335,12 @@ void Print_Task(void)
         case 2:
         {
             /* --------------- 子任务 2：默认打印 M3508 实时数据 --------------- */
-            int32_t turn0 = Encoder_Get_Turn_Count(0);
-            int32_t turn1 = -Encoder_Get_Turn_Count(1);
+            float ratio = M3508_Position_GetReductionRatio();
+            float output_turn0 =
+                (float)Encoder_Get_Total_Angle(0) / 8192.0f / ratio;
+            float output_turn1 =
+                -(float)Encoder_Get_Total_Angle(1) / 8192.0f / ratio;
+            float turn1 = output_turn1;
             int32_t speed_rpm0 = motor_chassis[0].speed_rpm / 36;
             int32_t speed_rpm1 = motor_chassis[1].speed_rpm / 36;
             int32_t current0 = motor_chassis[0].given_current;
@@ -344,9 +349,9 @@ void Print_Task(void)
             int32_t temp1 = motor_chassis[1].temperate;
             
             printf("=== M3508 Motor Data ===\r\n");
-            printf("M1  speed_rpm:%d current:%d turns:%d temp:%d\r\n",
-                   speed_rpm0, current0, turn0, temp0);
-            printf("M2  speed_rpm:%d current:%d turns:%d temp:%d\r\n",
+            printf("M1  speed_rpm:%d current:%d output_turns:%.2f temp:%d\r\n",
+                   speed_rpm0, current0, output_turn0, temp0);
+            printf("M2  speed_rpm:%d current:%d output_turns:%.2f temp:%d\r\n",
                    speed_rpm1, current1, turn1, temp1); // 温度大于80度过热
             break;
         }
@@ -387,10 +392,42 @@ void Print_Task(void)
                dbg.joint[PWM_ANGLE_RIGHT_YAW].speed_percent);
             break;
         }
+
+        case 4:
+        {
+            M3508_PositionDebug_t dbg;
+            M3508_Position_GetDebugInfo(&dbg);
+            float left_cur = M3508_Position_GetCurrentLength(M3508_POS_LEFT);
+            float right_cur = M3508_Position_GetCurrentLength(M3508_POS_RIGHT);
+            /* --------------- 子任务 4：打印输出轴数据 --------------- */
+            printf("=== M3508 Position Data ===\r\n");
+            printf("ENABLE: %d\r\n", M3508_Position_IsEnabled());
+            printf("LEFT  LEN: cur %.2f target %.2f err %.2f\r\n",
+                   left_cur,
+                   dbg.left.target_length_mm,
+                   dbg.left.target_length_mm - left_cur);
+            printf("RIGHT LEN: cur %.2f target %.2f err %.2f\r\n",
+                   right_cur,
+                   dbg.right.target_length_mm,
+                   dbg.right.target_length_mm - right_cur);
+            printf("OUT_RPM: %.2f | %.2f\r\n",
+                   dbg.left.output_rpm,
+                   dbg.right.output_rpm);
+            printf("TGT_OUT_RPM: %.2f | %.2f\r\n",
+                   dbg.left.target_output_rpm,
+                   dbg.right.target_output_rpm);
+            printf("ROTOR_SET: %.2f | %.2f\r\n",
+                   dbg.left.rotor_rpm_set,
+                   dbg.right.rotor_rpm_set);
+            printf("STATUS: %d | %d\r\n",
+                   dbg.left.status,
+                   dbg.right.status);
+            break;
+        }
         
         default:
             // 兜底防御，防止外界异常篡改变量
-            print_mode = 3;
+            print_mode = 4;
             break;
     }
 }

@@ -144,6 +144,8 @@ int main(void)
   PS2_Control_Init();
   PID_Init();
   M3508_Position_Init();
+  M3508_Position_Enable(1);
+
   PWM_AngleServo_Init();
   
 
@@ -175,6 +177,7 @@ int main(void)
         PWM_AngleServo_SetTarget(PWM_ANGLE_LEFT_YAW, num_input);
         cmd_update = 0;
     }
+    M3508_Position_SetBaseLengthBoth(1200, 0);
 
     TIM3_Task_Execute();//tim
   }
