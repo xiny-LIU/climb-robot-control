@@ -412,6 +412,40 @@ void M3508_Position_ResetEncoderAndSyncTargetBoth(void)
     M3508_Position_ResetEncoderAndSyncTarget(M3508_POS_RIGHT);
 }
 
+//不清零编码器，只把当前长度锁为目标。
+void M3508_Position_SyncTargetToCurrent(M3508_PositionSide_t side)
+{
+    uint8_t index = M3508_Pos_SideToIndex(side);
+    float current = M3508_Position_GetCurrentLength(side);
+    float target = M3508_Pos_ClampFloat(current, g_length_min_mm, g_length_max_mm);
+    uint8_t limited = (target != current) ? 1u : 0u;
+
+    M3508_Position_Stop(side);
+
+    uint32_t primask_bit = __get_PRIMASK();
+    __disable_irq();
+
+    g_m3508_pos_motor[index].target_length_mm = target;
+    g_m3508_pos_motor[index].target_limited = limited;
+
+    M3508_PositionMotorDebug_t *dbg = M3508_Pos_GetDebugByIndex(index);
+    dbg->current_length_mm = current;
+    dbg->target_length_mm = target;
+    dbg->error_mm = target - current;
+    dbg->target_output_rpm = 0.0f;
+    dbg->rotor_rpm_set = 0.0f;
+    dbg->status = limited ? M3508_POS_TARGET_LIMITED :
+        (g_m3508_pos_enabled ? M3508_POS_OK : M3508_POS_DISABLED);
+
+    __set_PRIMASK(primask_bit);
+}
+
+void M3508_Position_SyncTargetToCurrentBoth(void)
+{
+    M3508_Position_SyncTargetToCurrent(M3508_POS_LEFT);
+    M3508_Position_SyncTargetToCurrent(M3508_POS_RIGHT);
+}
+
 /* ============================================================
  * 5ms 周期闭环更新线程（核心异步线程安全改造）
  * ============================================================ */

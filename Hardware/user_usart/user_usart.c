@@ -214,14 +214,17 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
  * @brief       串口命令解析器（基于高鲁棒性数值转换逻辑）
  * @note        在 main循环 内部调用，自动处理来自串口助手的指令切换
  */
-uint32_t num_input = 0;
+int32_t num_input = 0;
 int cmd_update = 0;
 void USART2_ProcessCommand(void)
 {
     uint8_t i;
     uint8_t len;
-    uint32_t value = 0;
+    int32_t value = 0;
     uint8_t valid_digits = 0;
+    uint8_t parse_index = 0;
+    uint8_t is_print_cmd = 0;
+    int8_t sign = 1;
     
     // 【防挂死机制】高频打印容易触发 ORE 错误导致中断关闭，在这里强制定期清除
     __HAL_UART_CLEAR_OREFLAG(&huart2);
@@ -246,9 +249,20 @@ void USART2_ProcessCommand(void)
 //        printf("[ERROR] 接收长度错误，len = %d\r\n", len);
         return;  
     }
+
+    if (g_usart_rx_buf[0] == 'c' || g_usart_rx_buf[0] == 'C')
+    {
+        is_print_cmd = 1;
+        parse_index = 1;
+    }
+    else if (g_usart_rx_buf[0] == '-' || g_usart_rx_buf[0] == '+')
+    {
+        sign = (g_usart_rx_buf[0] == '-') ? -1 : 1;
+        parse_index = 1;
+    }
     
     // 4. 遍历接收到的数据，转换为数字
-    for (i = 0; i < len; i++)
+    for (i = parse_index; i < len; i++)
     {
         /* 只处理数字字符 */
         if (g_usart_rx_buf[i] >= '0' && g_usart_rx_buf[i] <= '9')
@@ -257,7 +271,8 @@ void USART2_ProcessCommand(void)
             valid_digits++;
             
             /* 安全限制：防止数值溢出 */
-            if (value > 100) // 我们的模式只有1~3，限制到100以内足够了
+            if ((!is_print_cmd && value > 2500) ||
+                (is_print_cmd && value > 4))
             {
                 g_usart_rx_sta = 0;
 //                printf("\r\n[ERROR] 模式数字过大！\r\n\r\n");
@@ -285,6 +300,19 @@ void USART2_ProcessCommand(void)
 //        printf("[WARNING] 未识别到任何有效数字\r\n");
         return;  
     }
+
+    if (is_print_cmd)
+    {
+        if (value >= 1 && value <= 4)
+        {
+            print_mode = (uint8_t)value;
+            printf("[PRINT_MODE:%d]\r\n", print_mode);
+        }
+        g_usart_rx_sta = 0;
+        return;
+    }
+    
+    value *= sign;
     
 //    // 6. 成功解析，根据数值执行模式切换
 //    if (value >= 1 && value <= 3)
@@ -300,7 +328,7 @@ void USART2_ProcessCommand(void)
     // 7. 必须清空接收标志，准备下一次接收
     num_input = value;
     cmd_update = 1;
-    printf("[%d]\r\n",num_input);
+    printf("[%d]\r\n", (int)num_input);
     g_usart_rx_sta = 0;  
 }
 
@@ -362,6 +390,7 @@ void Print_Task(void)
             PWM_AngleServo_GetDebugInfo(&dbg);
             /* --------------- 子任务 3：专门打印编码器角度数据 --------------- */
             printf("=== Encoder Degree Data ===\r\n");
+            printf("ENABLE: %d\r\n", PWM_AngleServo_IsEnabled());
 //            printf("ENC: %.1f | %.1f | %.1f | %.1f\r\n", 
 //                    encoder_data[ENC_1].degree, 
 //                    encoder_data[ENC_2].degree, 

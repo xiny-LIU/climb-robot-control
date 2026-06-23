@@ -1,4 +1,4 @@
-﻿{
+{
     "files.encoding":  "utf8",
     "files.autoGuessEncoding":  false,
     "files.eol":  "\r\n",
@@ -31,5 +31,6 @@
     "C_Cpp.default.defines":  [
                                   "USE_HAL_DRIVER",
                                   "STM32F427xx"
-                              ]
+                            ],
+                            "cmake.sourceDirectory": "F:/control_progaram/a_climb/Drivers/CMSIS/NN"
 }

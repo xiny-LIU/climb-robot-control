@@ -8,7 +8,7 @@
 #define RXBUFFERSIZE    1                       /* 缓存大小 */
 
 //extern UART_HandleTypeDef huart2;       /* UART句柄 */
-extern uint32_t num_input;
+extern int32_t num_input;
 extern int cmd_update;
 
 extern uint8_t  g_usart_rx_buf[USART_REC_LEN];  /* 接收缓冲,最大USART_REC_LEN个字节.末字节为换行符 */

@@ -118,13 +118,21 @@ static void handle_mode_switch(void)
     {
         Motor_Stop_All();
         CAN_cmd_chassis(0,0,0,0);
+        PID_SetTargetSpeed(0, 0);
+        PID_SetTargetSpeed(1, 0);
         
         if (stable_mode == PSB_REDLIGHT_MODE)
         {
+            M3508_Position_Enable(0);
+            PWM_AngleServo_Enable(0);
             HAL_GPIO_WritePin(LED2_GPIO_Port, LED2_Pin, GPIO_PIN_SET); //led2灭
         }
         else if (stable_mode == PSB_GREENLIGHT_MODE)
         {
+            M3508_Position_SyncTargetToCurrentBoth();
+            PWM_AngleServo_LockCurrentPosition();
+            M3508_Position_Enable(1);
+            PWM_AngleServo_Enable(1);
             HAL_GPIO_WritePin(LED2_GPIO_Port, LED2_Pin, GPIO_PIN_RESET); //led2亮
         }
         
@@ -202,57 +210,57 @@ static void process_can_control(void)
         can_active = 1;
 //        printf("PSB_R2\r\n");
     }
-//    // 只在红灯模式下处理CAN控制
-//    if (ps2_mode_get() == PSB_REDLIGHT_MODE)
-//  { 
-//    //重置电机圈数计数器
-//    if (ps2_get_key_state(PSB_GREEN))
-//    {
-//        Encoder_Counter_Reset(0);
-//        Encoder_Counter_Reset(1);
-//    }
-//    //重置电机编码器零点
-//    else if (ps2_get_key_state(PSB_PINK))
-//    {
-//    PWM_AngleServo_SetAllCurrentAsZero();
-//    }
-//    else if (ps2_get_key_state(PSB_PAD_UP))
-//    {
-////电机12同时正转
-////        CAN_cmd_chassis(0, -CAN_MOTOR_SPEED, 0, 0);
-//        PID_SetTargetSpeed(0, CAN_MOTOR_SPEED);
-//        PID_SetTargetSpeed(1, -CAN_MOTOR_SPEED);
-//        can_active = 1;
-////        printf("PSB_PAD_LEFT\r\n");
-//    }
-//    else if (ps2_get_key_state(PSB_PAD_DOWN))
-//    {
-////电机12同时反转
-////        CAN_cmd_chassis(0, -CAN_MOTOR_SPEED, 0, 0);
-//        PID_SetTargetSpeed(0, -CAN_MOTOR_SPEED);
-//        PID_SetTargetSpeed(1, CAN_MOTOR_SPEED);
-//        can_active = 1;
-////        printf("PSB_PAD_RIGHT\r\n");
-//    }
+   // 只在红灯模式下处理CAN控制
+   if (ps2_mode_get() == PSB_REDLIGHT_MODE)
+ { 
+   //重置电机圈数计数器
+   if (ps2_get_key_state(PSB_GREEN))
+   {
+       Encoder_Counter_Reset(0);
+       Encoder_Counter_Reset(1);
+   }
+   //重置电机编码器零点
+   else if (ps2_get_key_state(PSB_PINK))
+   {
+   PWM_AngleServo_SetAllCurrentAsZero();
+   }
+   else if (ps2_get_key_state(PSB_PAD_UP))
+   {
+//电机12同时正转
+//        CAN_cmd_chassis(0, -CAN_MOTOR_SPEED, 0, 0);
+       PID_SetTargetSpeed(0, CAN_MOTOR_SPEED);
+       PID_SetTargetSpeed(1, -CAN_MOTOR_SPEED);
+       can_active = 1;
+//        printf("PSB_PAD_LEFT\r\n");
+   }
+   else if (ps2_get_key_state(PSB_PAD_DOWN))
+   {
+//电机12同时反转
+//        CAN_cmd_chassis(0, -CAN_MOTOR_SPEED, 0, 0);
+       PID_SetTargetSpeed(0, -CAN_MOTOR_SPEED);
+       PID_SetTargetSpeed(1, CAN_MOTOR_SPEED);
+       can_active = 1;
+//        printf("PSB_PAD_RIGHT\r\n");
+   }
 
-//    //转速加减
-//    if (KeyNum)
-//    {
-//        if (ps2_get_key_state(PSB_PAD_RIGHT))
-//        {
-//            CAN_MOTOR_SPEED += 100;
-//            can_active = 1;
-//        }
-//        else if (ps2_get_key_state(PSB_PAD_LEFT))
-//        {
-//            CAN_MOTOR_SPEED -= 100;
-//            can_active = 1;
-//        } 
-//        // 速度限幅（500RPM~5000RPM）
-//        if (CAN_MOTOR_SPEED > 5000) CAN_MOTOR_SPEED = 5000;
-//        if (CAN_MOTOR_SPEED < 500) CAN_MOTOR_SPEED = 500;
-//    }
-//  }
+   //转速加减
+   if (KeyNum)
+   {
+       if (ps2_get_key_state(PSB_PAD_RIGHT))
+       {
+           CAN_MOTOR_SPEED += 100;
+           can_active = 1;
+       }
+       else if (ps2_get_key_state(PSB_PAD_LEFT))
+       {
+           CAN_MOTOR_SPEED -= 100;
+           can_active = 1;
+       } 
+       // 速度限幅（500RPM~5000RPM）
+       if (CAN_MOTOR_SPEED > 5000) CAN_MOTOR_SPEED = 5000;
+       if (CAN_MOTOR_SPEED < 500) CAN_MOTOR_SPEED = 500;
+   }
+ }
 //    // 无CAN输入时发送停止命令（可选）
 //    if (!can_active)
 //    {

@@ -143,12 +143,12 @@ int main(void)
   BT_Init();
   PS2_Control_Init();
   PID_Init();
+  num_input = 0;
+  cmd_update = 0;
   M3508_Position_Init();
-  M3508_Position_Enable(1);
-M3508_Position_SetTargetLengthBoth(1200.0f, 1200.0f);
+  M3508_Position_Enable(0);
 
   PWM_AngleServo_Init();
-  
 
     // imu
     IMU_USART_Init(&huart6);
@@ -173,12 +173,23 @@ M3508_Position_SetTargetLengthBoth(1200.0f, 1200.0f);
     /* USER CODE BEGIN 3 */
     
 //    USART2_PrintMessage();
-    if (cmd_update && PWM_AngleServo_IsEnabled())
+//设置pwm电机角度
+    // if (cmd_update && PWM_AngleServo_IsEnabled())
+    // {
+    //     PWM_AngleServo_SetTarget(PWM_ANGLE_LEFT_YAW, num_input);
+    //     cmd_update = 0;
+    // }
+
+  //设置m3508电机目标长度
+    if (cmd_update)
     {
-        PWM_AngleServo_SetTarget(PWM_ANGLE_LEFT_YAW, num_input);
+        if (M3508_Position_IsEnabled())
+        {
+            M3508_Position_SetTargetLengthBoth((float)num_input, (float)num_input);
+            // M3508_Position_SetTargetLength(M3508_POS_LEFT, (float)num_input);
+        }
         cmd_update = 0;
     }
-
     TIM3_Task_Execute();//tim
   }
   /* USER CODE END 3 */
