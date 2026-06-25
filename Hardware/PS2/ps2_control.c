@@ -166,6 +166,7 @@ static void handle_lock_unlock(void)
     }
     red_last = red_now;
 }
+
 /**
  * @brief 处理CAN底盘控制（不受电机锁定影响）
  */
@@ -418,62 +419,62 @@ static void process_motor_control(void)
     
 
   }
-     // 绿灯模式下处理电机控制
-    if (ps2_mode_get() == PSB_GREENLIGHT_MODE)
-    {         
-      if (KeyNum)
-     {
-        if (ps2_get_key_state(PSB_PAD_UP))
-        {
-        Motor_SetSpeed(MOTOR_A, PWM_MOTOR_SPEED);
-        Motor_SetDirection(MOTOR_A, DIRECTION_FORWARD);
-        motor_control_active = 1;
-        }
-        else if (ps2_get_key_state(PSB_PAD_DOWN))
-        {
-        Motor_SetSpeed(MOTOR_A, PWM_MOTOR_SPEED);
-        Motor_SetDirection(MOTOR_A, DIRECTION_REVERSE);
-        motor_control_active = 1;
-        } 
-        else if (ps2_get_key_state(PSB_PAD_LEFT))
-        {
-        Motor_SetSpeed(MOTOR_B, PWM_MOTOR_SPEED);
-        Motor_SetDirection(MOTOR_B, DIRECTION_REVERSE);
-        motor_control_active = 1;
-        }
-        else if (ps2_get_key_state(PSB_PAD_RIGHT))
-        {
-        Motor_SetSpeed(MOTOR_B, PWM_MOTOR_SPEED);
-        Motor_SetDirection(MOTOR_B, DIRECTION_FORWARD);
-        motor_control_active = 1;
-        }
-        else if (ps2_get_key_state(PSB_GREEN))
-        {
-        Motor_SetSpeed(MOTOR_C, PWM_MOTOR_SPEED);
-        Motor_SetDirection(MOTOR_C, DIRECTION_REVERSE);
-        motor_control_active = 1;
-        }
-        else if (ps2_get_key_state(PSB_BLUE))
-        {
-        Motor_SetSpeed(MOTOR_C, PWM_MOTOR_SPEED);
-        Motor_SetDirection(MOTOR_C, DIRECTION_FORWARD);
-        motor_control_active = 1;
-        }
-        else if (ps2_get_key_state(PSB_PINK))
-        {
-        Motor_SetSpeed(MOTOR_D, PWM_MOTOR_SPEED);
-        Motor_SetDirection(MOTOR_D, DIRECTION_REVERSE);
-        motor_control_active = 1;
-        }
-        else if (ps2_get_key_state(PSB_RED))
-        {
-        Motor_SetSpeed(MOTOR_D, PWM_MOTOR_SPEED);
-        Motor_SetDirection(MOTOR_D, DIRECTION_FORWARD);
-        motor_control_active = 1;
-        }
+//      // 绿灯模式下处理电机控制。目前绿灯模式已变成闭环系统
+//     if (ps2_mode_get() == PSB_GREENLIGHT_MODE)
+//     {         
+//       if (KeyNum)
+//      {
+//         if (ps2_get_key_state(PSB_PAD_UP))
+//         {
+//         Motor_SetSpeed(MOTOR_A, PWM_MOTOR_SPEED);
+//         Motor_SetDirection(MOTOR_A, DIRECTION_FORWARD);
+//         motor_control_active = 1;
+//         }
+//         else if (ps2_get_key_state(PSB_PAD_DOWN))
+//         {
+//         Motor_SetSpeed(MOTOR_A, PWM_MOTOR_SPEED);
+//         Motor_SetDirection(MOTOR_A, DIRECTION_REVERSE);
+//         motor_control_active = 1;
+//         } 
+//         else if (ps2_get_key_state(PSB_PAD_LEFT))
+//         {
+//         Motor_SetSpeed(MOTOR_B, PWM_MOTOR_SPEED);
+//         Motor_SetDirection(MOTOR_B, DIRECTION_REVERSE);
+//         motor_control_active = 1;
+//         }
+//         else if (ps2_get_key_state(PSB_PAD_RIGHT))
+//         {
+//         Motor_SetSpeed(MOTOR_B, PWM_MOTOR_SPEED);
+//         Motor_SetDirection(MOTOR_B, DIRECTION_FORWARD);
+//         motor_control_active = 1;
+//         }
+//         else if (ps2_get_key_state(PSB_GREEN))
+//         {
+//         Motor_SetSpeed(MOTOR_C, PWM_MOTOR_SPEED);
+//         Motor_SetDirection(MOTOR_C, DIRECTION_REVERSE);
+//         motor_control_active = 1;
+//         }
+//         else if (ps2_get_key_state(PSB_BLUE))
+//         {
+//         Motor_SetSpeed(MOTOR_C, PWM_MOTOR_SPEED);
+//         Motor_SetDirection(MOTOR_C, DIRECTION_FORWARD);
+//         motor_control_active = 1;
+//         }
+//         else if (ps2_get_key_state(PSB_PINK))
+//         {
+//         Motor_SetSpeed(MOTOR_D, PWM_MOTOR_SPEED);
+//         Motor_SetDirection(MOTOR_D, DIRECTION_REVERSE);
+//         motor_control_active = 1;
+//         }
+//         else if (ps2_get_key_state(PSB_RED))
+//         {
+//         Motor_SetSpeed(MOTOR_D, PWM_MOTOR_SPEED);
+//         Motor_SetDirection(MOTOR_D, DIRECTION_FORWARD);
+//         motor_control_active = 1;
+//         }
         
-    }
-}
+//     }
+// }
 //    printf("%d\r\n",motor_control_active);        
 // 消抖处理：只有持续无输入超过阈值才停止
     if (motor_control_active)

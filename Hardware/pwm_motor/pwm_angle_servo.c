@@ -431,7 +431,7 @@ void PWM_AngleServo_Init(void)
     //motorD已调定所有初始值
     g_pwm_angle_joint[PWM_ANGLE_RIGHT_YAW].motor_id = MOTOR_D;
     g_pwm_angle_joint[PWM_ANGLE_RIGHT_YAW].encoder_id = ENC_4;
-    g_pwm_angle_joint[PWM_ANGLE_RIGHT_YAW].zero_offset_deg = -76.0f;
+    g_pwm_angle_joint[PWM_ANGLE_RIGHT_YAW].zero_offset_deg = -78.0f;
     g_pwm_angle_joint[PWM_ANGLE_RIGHT_YAW].encoder_sign = +1;
     g_pwm_angle_joint[PWM_ANGLE_RIGHT_YAW].direction_sign = -1;
     g_pwm_angle_joint[PWM_ANGLE_RIGHT_YAW].target_deg = 0.0f;
