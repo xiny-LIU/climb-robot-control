@@ -132,7 +132,7 @@ static float M3508_Pos_GetDeltaLengthByIndex(uint8_t index)
 }
 
 /* ============================================================
- * 速度与长度换算
+ * 速度和长度换算
  * ============================================================ */
 static void M3508_Pos_UpdateOutputRPM(void)
 {
