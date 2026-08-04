@@ -28,8 +28,8 @@
 #define M3508_POS_PULLEY_DIAMETER_MM            38.0f
 
 /* 默认伸缩长度范围，单位 mm */
-#define M3508_POS_DEFAULT_D3_MIN_MM             550.0f
-#define M3508_POS_DEFAULT_D3_MAX_MM             2000.0f
+#define M3508_POS_DEFAULT_D3_MIN_MM             560.0f
+#define M3508_POS_DEFAULT_D3_MAX_MM             2560.0f
 
 /************************************************
  * 全局变量
