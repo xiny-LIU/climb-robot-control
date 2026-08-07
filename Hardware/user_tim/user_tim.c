@@ -10,6 +10,7 @@
 #include "climb_control.h"
 #include "pwm_angle_servo.h"
 #include "m3508_position.h"
+#include "MotorSample.h"
 
 // 统一声明外部调用的任务函数
 extern void PS2_Control_TIM3_Callback(void);
@@ -65,6 +66,9 @@ void TIM3_PeriodElapsed_Handler(void)
 // 主循环任务执行调度器（放在 main 的 while(1) 中执行）
 void TIM3_Task_Execute(void)
 {
+    /* 记录实验任务已经处理过的TIM3节拍，避免主循环空转时重复调用。 */
+    static uint32_t motor_sample_last_tick = 0U;
+
     /* ---------------- 1. IMU 数据处理任务 (5ms) ---------------- */
     // IMU由DMA接收，此处仅需处理已在内存中的数据，耗时极短
     if (tim3_mgr.flag_imu && !tim3_mgr.imu_busy)
@@ -118,6 +122,15 @@ void TIM3_Task_Execute(void)
 
     if (M3508_Position_IsEnabled()) {
     M3508_Position_Update_5ms();
+    /*
+     * 位置环先更新，再推进实验状态机。状态机内部使用HAL_GetTick计时，
+     * 不使用HAL_Delay，因此3 s/6 s停留不会阻塞其他控制任务。
+     */
+    if (motor_sample_last_tick != tim3_mgr.tick_count)
+    {
+        motor_sample_last_tick = tim3_mgr.tick_count;
+        MotorSample_ExperimentTask5ms();
+    }
     }
     }
     

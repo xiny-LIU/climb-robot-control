@@ -52,6 +52,7 @@
 #include "climb_control.h"
 #include "pwm_angle_servo.h"
 #include "m3508_position.h"
+#include "MotorSample.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -147,6 +148,8 @@ int main(void)
   cmd_update = 0;
   M3508_Position_Init();
   M3508_Position_Enable(0);
+  /* 初始化实验状态机；收到A1/A2/A3之前不会驱动电机。 */
+  MotorSample_ExperimentInit();
 
   PWM_AngleServo_Init();
 
@@ -185,8 +188,8 @@ int main(void)
     {
         if (M3508_Position_IsEnabled())
         {
-            M3508_Position_SetTargetLengthBoth((float)num_input, (float)num_input);
-            // M3508_Position_SetTargetLength(M3508_POS_LEFT, (float)num_input);
+            // M3508_Position_SetTargetLengthBoth((float)num_input, (float)num_input);
+            M3508_Position_SetTargetLength(M3508_POS_LEFT, (float)num_input);
         }
         cmd_update = 0;
     }

@@ -13,6 +13,7 @@
 #include "ps2_filter.h"
 #include "pwm_angle_servo.h"
 #include "m3508_position.h"
+#include "MotorSample.h"
 
 // 内部静态变量（文件作用域，外部不可访问）
 static uint8_t last_mode = 0xFF;  // 记录上一次的PS2模式
@@ -59,6 +60,11 @@ void PS2_Control_Init(void)
 
 void PS2_Control_TIM3_Callback(void)
 {
+    /* The experiment state machine exclusively owns the M3508 motors. */
+    if (MotorSample_ExperimentIsRunning() != 0U)
+    {
+        return;
+    }
 
     
     // 1. 读取PS2数据

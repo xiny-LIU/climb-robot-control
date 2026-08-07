@@ -8,6 +8,7 @@
 #include "spi4.h"
 #include "pwm_angle_servo.h"
 #include "m3508_position.h"
+#include "MotorSample.h"
 
 #include "ps2_control.h"
 #include "ps2.h"
@@ -248,6 +249,19 @@ void USART2_ProcessCommand(void)
         g_usart_rx_sta = 0;  // 状态错误，清空接收标志
 //        printf("[ERROR] 接收长度错误，len = %d\r\n", len);
         return;  
+    }
+
+    /*
+     * 实验专用命令优先解析，避免后面的纯数字解析器把字母A判为非法字符。
+     * A1：左臂；A2：右臂；A3：双臂同步执行0→2000→0 mm实验。
+     */
+    if (MotorSample_ExperimentHandleCommand(g_usart_rx_buf, len) != 0U)
+    {
+        printf("[MOTOR_SAMPLE_CMD:%c%c]\r\n",
+               g_usart_rx_buf[0],
+               g_usart_rx_buf[1]);
+        g_usart_rx_sta = 0;
+        return;
     }
 
     if (g_usart_rx_buf[0] == 'c' || g_usart_rx_buf[0] == 'C')
