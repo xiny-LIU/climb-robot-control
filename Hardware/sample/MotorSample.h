@@ -47,11 +47,40 @@ typedef struct
     uint8_t running;
 } MotorSampleExperimentStatus_t;
 
+/* B1/B2/B3 前馈验证状态。 */
+typedef enum
+{
+    MOTOR_SAMPLE_VALIDATION_IDLE = 0,
+    MOTOR_SAMPLE_VALIDATION_EXTENDING,
+    MOTOR_SAMPLE_VALIDATION_HOLDING_EXTEND,
+    MOTOR_SAMPLE_VALIDATION_MOVING_TURNAROUND,
+    MOTOR_SAMPLE_VALIDATION_HOLDING_TURNAROUND,
+    MOTOR_SAMPLE_VALIDATION_RETRACTING,
+    MOTOR_SAMPLE_VALIDATION_HOLDING_RETRACT,
+    MOTOR_SAMPLE_VALIDATION_HOLDING_ZERO,
+    MOTOR_SAMPLE_VALIDATION_COMPLETE,
+    MOTOR_SAMPLE_VALIDATION_ABORTED,
+    MOTOR_SAMPLE_VALIDATION_ERROR
+} MotorSampleValidationState_t;
+
+typedef struct
+{
+    MotorSampleValidationState_t state;
+    MotorSampleExperimentMode_t mode;
+    uint32_t point_index;
+    uint32_t state_elapsed_ms;
+    float desired_displacement_mm;
+    float left_command_mm;
+    float right_command_mm;
+    uint8_t running;
+} MotorSampleValidationStatus_t;
+
 void MotorSample_ExperimentInit(void);
 
 /*
  * 将一条完整串口命令及其长度传入本函数：
- * A1/a1：左臂，A2/a2：右臂，A3/a3：双臂同步。
+ * A1/a1：左臂标定，A2/a2：右臂标定，A3/a3：双臂同步标定。
+ * B1/b1：左臂前馈验证，B2/b2：右臂前馈验证，B3/b3：双臂前馈验证。
  * 识别到实验命令时返回1，否则返回0。
  */
 uint8_t MotorSample_ExperimentHandleCommand(const uint8_t *command,
@@ -68,6 +97,11 @@ void MotorSample_ExperimentAbort(void);
 
 uint8_t MotorSample_ExperimentIsRunning(void);
 void MotorSample_ExperimentGetStatus(MotorSampleExperimentStatus_t *status);
+
+uint8_t MotorSample_ValidationStart(MotorSampleExperimentMode_t mode);
+void MotorSample_ValidationAbort(void);
+uint8_t MotorSample_ValidationIsRunning(void);
+void MotorSample_ValidationGetStatus(MotorSampleValidationStatus_t *status);
 
 #ifdef __cplusplus
 }

@@ -124,7 +124,7 @@ void TIM3_Task_Execute(void)
     M3508_Position_Update_5ms();
     /*
      * 位置环先更新，再推进实验状态机。状态机内部使用HAL_GetTick计时，
-     * 不使用HAL_Delay，因此3 s/6 s停留不会阻塞其他控制任务。
+     * 不使用HAL_Delay，因此3 s/10 s停留不会阻塞其他控制任务。
      */
     if (motor_sample_last_tick != tim3_mgr.tick_count)
     {

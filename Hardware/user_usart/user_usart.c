@@ -252,8 +252,9 @@ void USART2_ProcessCommand(void)
     }
 
     /*
-     * 实验专用命令优先解析，避免后面的纯数字解析器把字母A判为非法字符。
+     * 实验专用命令优先解析，避免后面的纯数字解析器把字母判为非法字符。
      * A1：左臂；A2：右臂；A3：双臂同步执行0→2000→0 mm实验。
+     * B1/B2/B3：分别执行左臂、右臂或双臂前馈验证序列。
      */
     if (MotorSample_ExperimentHandleCommand(g_usart_rx_buf, len) != 0U)
     {

@@ -186,7 +186,8 @@ int main(void)
   //设置m3508电机目标长度
     if (cmd_update)
     {
-        if (M3508_Position_IsEnabled())
+        if (M3508_Position_IsEnabled() &&
+            (MotorSample_ExperimentIsRunning() == 0U))
         {
             // M3508_Position_SetTargetLengthBoth((float)num_input, (float)num_input);
             M3508_Position_SetTargetLength(M3508_POS_LEFT, (float)num_input);
