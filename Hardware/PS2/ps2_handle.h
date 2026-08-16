@@ -3,7 +3,7 @@
 
 #include "stdint.h"
 
-// PS2 控制处理函数
+// PS2 鎺у埗澶勭悊鍑芥暟
 void PS2_Control_Handler(void);
 
 #endif // PS2_CONTROL_H

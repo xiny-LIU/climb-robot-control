@@ -1,5 +1,5 @@
 #include "user_tim.h"
-#include "main.h"  // ÓÃÓÚLEDÒı½Å¶¨Òå
+#include "main.h"  // ç”¨äºLEDå¼•è„šå®šä¹‰
 #include "string.h"
 #include <stdio.h>
 #include "tim.h"
@@ -8,32 +8,34 @@
 #include "user_usart.h"
 #include "spi4.h"
 #include "climb_control.h"
+#include "pwm_angle_servo.h"
+#include "m3508_position.h"
 
-// Í³Ò»ÉùÃ÷Íâ²¿µ÷ÓÃµÄÈÎÎñº¯Êı
+// ç»Ÿä¸€å£°æ˜å¤–éƒ¨è°ƒç”¨çš„ä»»åŠ¡å‡½æ•°
 extern void PS2_Control_TIM3_Callback(void);
 extern void Print_Task(void);
 
 TIM3_Manager_t tim3_mgr = {0};
 
-// ÖĞ¶ÏÄÚÖ´ĞĞµÄ¡°´ò¿¨¡±º¯Êı£¨¼«ËÙÍË³ö£©
+// ä¸­æ–­å†…æ‰§è¡Œçš„â€œæ‰“å¡â€å‡½æ•°ï¼ˆæé€Ÿé€€å‡ºï¼‰
 void TIM3_PeriodElapsed_Handler(void)
 {
     tim3_mgr.flag_5ms = 1;
-    tim3_mgr.tick_count += 5;  // Ã¿5ms+5
+    tim3_mgr.tick_count += 5;  // æ¯5ms+5
     
-    // 5ms Í¬ÆµÈÎÎñ´¥·¢
+    // 5ms åŒé¢‘ä»»åŠ¡è§¦å‘
     tim3_mgr.flag_imu = 1;
     tim3_mgr.flag_encoder = 1;
     
-    // 25ms ·ÖÆµÈÎÎñ´¥·¢ (PS2¿ØÖÆ)
+    // 25ms åˆ†é¢‘ä»»åŠ¡è§¦å‘ (PS2æ§åˆ¶)
     tim3_mgr.counter_25ms++;
     if (tim3_mgr.counter_25ms >= 5)  
     {
         tim3_mgr.counter_25ms = 0;
-        tim3_mgr.flag_ps2 = 1;       // ½öÖÃÎ»±êÖ¾£¬²»Ö´ĞĞºÄÊ±º¯Êı
+        tim3_mgr.flag_ps2 = 1;       // ä»…ç½®ä½æ ‡å¿—ï¼Œä¸æ‰§è¡Œè€—æ—¶å‡½æ•°
     }
     
-    // 500ms ·ÖÆµÈÎÎñ´¥·¢ (´®¿Ú´òÓ¡)
+    // 500ms åˆ†é¢‘ä»»åŠ¡è§¦å‘ (ä¸²å£æ‰“å°)
     tim3_mgr.counter_500ms++;
     if (tim3_mgr.counter_500ms >= 100)  
     {
@@ -42,8 +44,8 @@ void TIM3_PeriodElapsed_Handler(void)
     }
 }
 
-//ÔÚmainÎÄ¼şµ÷ÓÃ
-//// ¶¨Ê±Æ÷ÖĞ¶Ï»Øµ÷µ×²ã½Ó¿Ú
+//åœ¨mainæ–‡ä»¶è°ƒç”¨
+//// å®šæ—¶å™¨ä¸­æ–­å›è°ƒåº•å±‚æ¥å£
 //void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)  
 //{
 //    if (htim->Instance == TIM3)  // 5ms
@@ -56,15 +58,15 @@ void TIM3_PeriodElapsed_Handler(void)
 //    }
 //    else if (htim->Instance == TIM5)  // 1ms
 //    {
-//        PID_Loop_1ms();  // PID¼ÆËãÍ¨³£ÒªÇó¼«¸ßÊµÊ±ĞÔ£¬·ÅÔÚÖĞ¶ÏÄÚÖ´ĞĞÊÇºÏÀíµÄ
+//        PID_Loop_1ms();  // PIDè®¡ç®—é€šå¸¸è¦æ±‚æé«˜å®æ—¶æ€§ï¼Œæ”¾åœ¨ä¸­æ–­å†…æ‰§è¡Œæ˜¯åˆç†çš„
 //    }
 //}
 
-// Ö÷Ñ­»·ÈÎÎñÖ´ĞĞµ÷¶ÈÆ÷£¨·ÅÔÚ main µÄ while(1) ÖĞÖ´ĞĞ£©
+// ä¸»å¾ªç¯ä»»åŠ¡æ‰§è¡Œè°ƒåº¦å™¨ï¼ˆæ”¾åœ¨ main çš„ while(1) ä¸­æ‰§è¡Œï¼‰
 void TIM3_Task_Execute(void)
 {
-    /* ---------------- 1. IMU Êı¾İ´¦ÀíÈÎÎñ (5ms) ---------------- */
-    // IMUÓÉDMA½ÓÊÕ£¬´Ë´¦½öĞè´¦ÀíÒÑÔÚÄÚ´æÖĞµÄÊı¾İ£¬ºÄÊ±¼«¶Ì
+    /* ---------------- 1. IMU æ•°æ®å¤„ç†ä»»åŠ¡ (5ms) ---------------- */
+    // IMUç”±DMAæ¥æ”¶ï¼Œæ­¤å¤„ä»…éœ€å¤„ç†å·²åœ¨å†…å­˜ä¸­çš„æ•°æ®ï¼Œè€—æ—¶æçŸ­
     if (tim3_mgr.flag_imu && !tim3_mgr.imu_busy)
     {
         tim3_mgr.flag_imu = 0;      
@@ -73,25 +75,62 @@ void TIM3_Task_Execute(void)
         tim3_mgr.imu_busy = 0;      
     }
     
-    /* ---------------- 2. ±àÂëÆ÷ SPI ¶ÁÈ¡ÈÎÎñ (5ms) ---------------- */
+    /* ---------------- 2. ç¼–ç å™¨ SPI è¯»å–ä»»åŠ¡ (5ms) ---------------- */
     if (tim3_mgr.flag_encoder && !tim3_mgr.encoder_busy)
     {
-        tim3_mgr.flag_encoder = 0;      
-        tim3_mgr.encoder_busy = 1;      
-        Update_All_Encoders();          
-        tim3_mgr.encoder_busy = 0;      
+    static uint8_t encoder_update_count = 0;
+    static uint8_t pwm_angle_servo_started = 0;
+        tim3_mgr.flag_encoder = 0;
+        tim3_mgr.encoder_busy = 1;
+
+        Update_All_Encoders();
+
+    /*
+     * ä¸Šç”µåç­‰å¾…ç¼–ç å™¨åˆ·æ–°å‡ æ¬¡ï¼Œå†é”æ­»å½“å‰ä½ç½®å¹¶å¼€å¯é—­ç¯ã€‚
+     * è¿™æ ·å¯ä»¥é¿å… encoder_data[] è¿˜æ˜¯é»˜è®¤å€¼æ—¶å°±é”æ­»ã€‚
+     */
+    if (!pwm_angle_servo_started)
+    {
+        if (encoder_update_count < 3)
+        {
+            encoder_update_count++;
+        }
+        else
+        {
+            PWM_AngleServo_LockCurrentPosition();
+            PWM_AngleServo_Enable(0);
+
+            pwm_angle_servo_started = 1;
+        }
+    }
+    if (PWM_AngleServo_IsEnabled()) {
+        PWM_AngleServo_Update_5ms();
+    }
+
+        tim3_mgr.encoder_busy = 0;
     }
     
-    /* ------------- 3. ÅÊÅÀÔË¶¯Ñ§Ğ­Í¬¿ØÖÆÈÎÎñ (5ms) ------------- */
-// ´ËÊ± IMU ºÍ ±àÂëÆ÷¶¼¸Õ¸ÕË¢ĞÂÍê£¬Êı¾İÊÇ×îÈÈºõµÄ£¡
-// ½èÓÃ flag_imu »ò flag_encoder ×÷Îª 5ms µÄ´¥·¢Ìõ¼ş¼´¿É
-//    if (tim3_mgr.flag_imu == 0 && tim3_mgr.flag_encoder == 0) // È·±£Ç°ÖÃ´«¸ĞÆ÷¶¼¶ÁÍêÁË
+    /* ---------------- 3. ä¸²å£è°ƒè¯•æŒ‡ä»¤è§£æä»»åŠ¡ (5ms) ---------------- */
+    // å€Ÿç”¨ flag_imu æˆ–è€… flag_encoder ä½œä¸º 5ms çš„è§¦å‘èŠ‚æ‹å³å¯ï¼ˆä¸éœ€è¦å•å¼€å˜é‡ï¼‰
+    if (tim3_mgr.flag_imu == 0 && tim3_mgr.flag_encoder == 0) 
+    {
+        USART2_ProcessCommand();
+
+    if (M3508_Position_IsEnabled()) {
+    M3508_Position_Update_5ms();
+    }
+    }
+    
+    /* ------------- 4. æ”€çˆ¬è¿åŠ¨å­¦ååŒæ§åˆ¶ä»»åŠ¡ (5ms) ------------- */
+// æ­¤æ—¶ IMU å’Œ ç¼–ç å™¨éƒ½åˆšåˆšåˆ·æ–°å®Œï¼Œæ•°æ®æ˜¯æœ€çƒ­ä¹çš„ï¼
+// å€Ÿç”¨ flag_imu æˆ– flag_encoder ä½œä¸º 5ms çš„è§¦å‘æ¡ä»¶å³å¯
+//    if (tim3_mgr.flag_imu == 0 && tim3_mgr.flag_encoder == 0) // ç¡®ä¿å‰ç½®ä¼ æ„Ÿå™¨éƒ½è¯»å®Œäº†
 //    {
 //        Climb_Control_Loop_5ms();
 //    }
 
-    /* ---------------- 3. PS2 Ò£¿ØÆ÷¿ØÖÆÈÎÎñ (25ms) ---------------- */
-    // ÒÆ³öÖĞ¶Ï£¬·ÀÖ¹´®¿Ú/SPI°´¼ü½âÎö×èÈûÖĞ¶Ï
+    /* ---------------- 5. PS2 é¥æ§å™¨æ§åˆ¶ä»»åŠ¡ (25ms) ---------------- */
+    // ç§»å‡ºä¸­æ–­ï¼Œé˜²æ­¢ä¸²å£/SPIæŒ‰é”®è§£æé˜»å¡ä¸­æ–­
     if (tim3_mgr.flag_ps2 && !tim3_mgr.ps2_busy)
     {
         tim3_mgr.flag_ps2 = 0;
@@ -100,8 +139,8 @@ void TIM3_Task_Execute(void)
         tim3_mgr.ps2_busy = 0;
     }
 
-    /* ---------------- 4. ÖÕ¶Ë×´Ì¬´òÓ¡ÈÎÎñ (500ms) ---------------- */
-    // ¼«ÆäºÄÊ±£¬±ØĞë·ÅÔÚÖ÷Ñ­»·ÇÒÓÅÏÈ¼¶Ó¦ÊÓ×÷×îµÍ
+    /* ---------------- 6. ç»ˆç«¯çŠ¶æ€æ‰“å°ä»»åŠ¡ (500ms) ---------------- */
+    // æå…¶è€—æ—¶ï¼Œå¿…é¡»æ”¾åœ¨ä¸»å¾ªç¯ä¸”ä¼˜å…ˆçº§åº”è§†ä½œæœ€ä½
     if (tim3_mgr.flag_500ms && !tim3_mgr.print_busy)
     {
         tim3_mgr.flag_500ms = 0;       

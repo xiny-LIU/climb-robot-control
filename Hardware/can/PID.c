@@ -4,37 +4,37 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/* ========== PID²ÎÊıÅäÖÃ£¨¸ù¾İÄãµÄµç»úµ÷Õû£© ========== */
-#define SPEED_PID_KP        2.0f        // ËÙ¶È»·±ÈÀıÔöÒæ£¨ÏìÓ¦Ç¿¶È£©2 0.1 0.2
-#define SPEED_PID_KI        0.1f        // ËÙ¶È»·»ı·ÖÔöÒæ£¨Ïû³ı¾²²î£©
-#define SPEED_PID_KD        0.2f        // ËÙ¶È»·Î¢·ÖÔöÒæ£¨ÒÖÖÆ³¬µ÷£©
-#define SPEED_INTEGRAL_LIMIT 3000.0f    // ËÙ¶È»·»ı·ÖÏŞ·ù£¨µ¥Î»£ºmA£©
-#define OUTPUT_CURRENT_LIMIT 10000      // Êä³öµçÁ÷ÏŞ·ù£¨¡À10A£©
+/* ========== PIDå‚æ•°é…ç½®ï¼ˆæ ¹æ®ä½ çš„ç”µæœºè°ƒæ•´ï¼‰ ========== */
+#define SPEED_PID_KP        2.0f        // é€Ÿåº¦ç¯æ¯”ä¾‹å¢ç›Šï¼ˆå“åº”å¼ºåº¦ï¼‰2 0.1 0.2
+#define SPEED_PID_KI        0.1f        // é€Ÿåº¦ç¯ç§¯åˆ†å¢ç›Šï¼ˆæ¶ˆé™¤é™å·®ï¼‰
+#define SPEED_PID_KD        0.2f        // é€Ÿåº¦ç¯å¾®åˆ†å¢ç›Šï¼ˆæŠ‘åˆ¶è¶…è°ƒï¼‰
+#define SPEED_INTEGRAL_LIMIT 3000.0f    // é€Ÿåº¦ç¯ç§¯åˆ†é™å¹…ï¼ˆå•ä½ï¼šmAï¼‰
+#define OUTPUT_CURRENT_LIMIT 10000      // è¾“å‡ºç”µæµé™å¹…ï¼ˆÂ±10Aï¼‰
 
-/* µçÁ÷¼à²âãĞÖµ£¨µ¥Î»£ºmA£© */
-#define CURRENT_THRESHOLD_LOADED    3000    // >3AÅĞ¶¨Îª´øÔØ
-#define CURRENT_THRESHOLD_OBSTACLE  8000    // >8AÅĞ¶¨ÎªÓöÕÏ
-#define CURRENT_THRESHOLD_MAX       12000   // >12AÅĞ¶¨Îª¹ıÁ÷¹ÊÕÏ
+/* ç”µæµç›‘æµ‹é˜ˆå€¼ï¼ˆå•ä½ï¼šmAï¼‰ */
+#define CURRENT_THRESHOLD_LOADED    3000    // >3Aåˆ¤å®šä¸ºå¸¦è½½
+#define CURRENT_THRESHOLD_OBSTACLE  8000    // >8Aåˆ¤å®šä¸ºé‡éšœ
+#define CURRENT_THRESHOLD_MAX       12000   // >12Aåˆ¤å®šä¸ºè¿‡æµæ•…éšœ
 
-/* ========== Ë½ÓĞ½á¹¹Ìå ========== */
+/* ========== ç§æœ‰ç»“æ„ä½“ ========== */
 typedef struct {
-    int16_t target_speed;       // Ä¿±ê×ªËÙ£¨RPM£©
-    int16_t last_speed;         // ÉÏÒ»´ÎµÄ×ªËÙ£¨ÓÃÓÚÎ¢·Ö¼ÆËã£©
-    float   integral;           // ËÙ¶È»·»ı·ÖÏî
-    float   last_error;         // ÉÏÒ»´ÎµÄÎó²î
-    int16_t output_current;     // PIDÊä³öµÄµçÁ÷Öµ
-    MotorStatus_t status;       // µç»ú×´Ì¬
-    int16_t actual_current;     // µçµ÷·´À¡µÄÊµ¼ÊµçÁ÷
+    int16_t target_speed;       // ç›®æ ‡è½¬é€Ÿï¼ˆRPMï¼‰
+    int16_t last_speed;         // ä¸Šä¸€æ¬¡çš„è½¬é€Ÿï¼ˆç”¨äºå¾®åˆ†è®¡ç®—ï¼‰
+    float   integral;           // é€Ÿåº¦ç¯ç§¯åˆ†é¡¹
+    float   last_error;         // ä¸Šä¸€æ¬¡çš„è¯¯å·®
+    int16_t output_current;     // PIDè¾“å‡ºçš„ç”µæµå€¼
+    MotorStatus_t status;       // ç”µæœºçŠ¶æ€
+    int16_t actual_current;     // ç”µè°ƒåé¦ˆçš„å®é™…ç”µæµ
 } MotorController_t;
 
 static MotorController_t motor_ctrl[2];
 
-/* ========== ¹«¹²º¯Êı ========== */
+/* ========== å…¬å…±å‡½æ•° ========== */
 
 void PID_Init(void)
 {
     memset(motor_ctrl, 0, sizeof(motor_ctrl));
-    // ³õÊ¼»¯×´Ì¬ÎªNORMAL
+    // åˆå§‹åŒ–çŠ¶æ€ä¸ºNORMAL
     motor_ctrl[0].status = MOTOR_STATUS_NORMAL;
     motor_ctrl[1].status = MOTOR_STATUS_NORMAL;
 }
@@ -50,47 +50,47 @@ void PID_Loop_1ms(void)
     static uint16_t startup_timer = 0;
     int16_t output[2] = {0, 0};
 
-    // ========== ÉÏµçºó50msÈíÆô¶¯ÆÚ£¨µÈ´ıCANÊı¾İÎÈ¶¨£©==========
+    // ========== ä¸Šç”µå50msè½¯å¯åŠ¨æœŸï¼ˆç­‰å¾…CANæ•°æ®ç¨³å®šï¼‰==========
     if (startup_timer < 50) {
         startup_timer++;
-        CAN_cmd_chassis(0, 0, 0, 0);  // ³ÖĞø·¢ËÍÁãµçÁ÷
+        CAN_cmd_chassis(0, 0, 0, 0);  // æŒç»­å‘é€é›¶ç”µæµ
         return;
     }
 
-    // ========== Õı³£PIDÑ­»· ==========
+    // ========== æ­£å¸¸PIDå¾ªç¯ ==========
     for (uint8_t i = 0; i < 2; i++) {
-        // 1. ¶ÁÈ¡µ±Ç°×ªËÙºÍÊµ¼ÊµçÁ÷
+        // 1. è¯»å–å½“å‰è½¬é€Ÿå’Œå®é™…ç”µæµ
         const motor_measure_t *motor = get_chassis_motor_measure_point(i);
-        int16_t current_speed = motor->speed_rpm;          // µ±Ç°Êµ¼Ê×ªËÙ
-        motor_ctrl[i].actual_current = motor->given_current; // µçµ÷·´À¡µÄÊµ¼ÊµçÁ÷
+        int16_t current_speed = motor->speed_rpm;          // å½“å‰å®é™…è½¬é€Ÿ
+        motor_ctrl[i].actual_current = motor->given_current; // ç”µè°ƒåé¦ˆçš„å®é™…ç”µæµ
 
-        // 2. ¼ÆËãËÙ¶ÈÎó²î£ºÄ¿±ê - Êµ¼Ê
+        // 2. è®¡ç®—é€Ÿåº¦è¯¯å·®ï¼šç›®æ ‡ - å®é™…
         float error = (float)motor_ctrl[i].target_speed - (float)current_speed;
 
-        // 3. »ı·ÖÏîÎó²îÀÛ»ı
+        // 3. ç§¯åˆ†é¡¹è¯¯å·®ç´¯ç§¯
         motor_ctrl[i].integral += error * SPEED_PID_KI;
         
-        // »ı·ÖÏŞ·ù
+        // ç§¯åˆ†é™å¹…
         if (motor_ctrl[i].integral > SPEED_INTEGRAL_LIMIT) 
             motor_ctrl[i].integral = SPEED_INTEGRAL_LIMIT;
         if (motor_ctrl[i].integral < -SPEED_INTEGRAL_LIMIT) 
             motor_ctrl[i].integral = -SPEED_INTEGRAL_LIMIT;
 
-        // Î¢·ÖÏî£¨ËÙ¶È±ä»¯ÂÊ£©
+        // å¾®åˆ†é¡¹ï¼ˆé€Ÿåº¦å˜åŒ–ç‡ï¼‰
         float derivative = (error - motor_ctrl[i].last_error) * SPEED_PID_KD;
         motor_ctrl[i].last_error = error;
 
-        // PIDÊä³ö£¨µçÁ÷Öµ£©
+        // PIDè¾“å‡ºï¼ˆç”µæµå€¼ï¼‰
         float pid_output = error * SPEED_PID_KP + motor_ctrl[i].integral + derivative;
         
-        // Êä³öÏŞ·ù
+        // è¾“å‡ºé™å¹…
         if (pid_output > OUTPUT_CURRENT_LIMIT) pid_output = OUTPUT_CURRENT_LIMIT;
         if (pid_output < -OUTPUT_CURRENT_LIMIT) pid_output = -OUTPUT_CURRENT_LIMIT;
         
         output[i] = (int16_t)pid_output;
-        motor_ctrl[i].output_current = output[i];  // ¼ÇÂ¼Êä³öÖµ
+        motor_ctrl[i].output_current = output[i];  // è®°å½•è¾“å‡ºå€¼
 
-        // 4. ¸üĞÂµç»ú×´Ì¬£¨»ùÓÚÊµ¼ÊµçÁ÷£©
+        // 4. æ›´æ–°ç”µæœºçŠ¶æ€ï¼ˆåŸºäºå®é™…ç”µæµï¼‰
         int16_t abs_current = abs(motor_ctrl[i].actual_current);
         if (abs_current > CURRENT_THRESHOLD_MAX) {
             motor_ctrl[i].status = MOTOR_STATUS_ERROR;
@@ -103,7 +103,7 @@ void PID_Loop_1ms(void)
         }
     }
 
-    // 5. ·¢ËÍCANÖ¸Áî
+    // 5. å‘é€CANæŒ‡ä»¤
     CAN_cmd_chassis(output[0], output[1], 0, 0);
 }
 

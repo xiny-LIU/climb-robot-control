@@ -1,39 +1,39 @@
 #include "usart6.h"
 #include <stdint.h>
 #include "usart.h"
-#include "analysis_data.h"  // °üº¬Ð­Òé½âÎöÍ·ÎÄ¼þ
+#include "analysis_data.h"  // åŒ…å«åè®®è§£æžå¤´æ–‡ä»¶
 #include <string.h>
 
 /*======================================================
- *  È«¾Ö±äÁ¿¶¨Òå
+ *  å…¨å±€å˜é‡å®šä¹‰
  *======================================================*/
 
-// ½ÓÊÕ»º³åÇø
+// æŽ¥æ”¶ç¼“å†²åŒº
 imu_rx_buffer_t g_imu_rx = {0};
 
-// Ö¡¾ÍÐ÷±êÖ¾£¨DMAÍê³ÉÊ±ÖÃÎ»£©
+// å¸§å°±ç»ªæ ‡å¿—ï¼ˆDMAå®Œæˆæ—¶ç½®ä½ï¼‰
 volatile uint8_t g_imu_frame_ready = 0;
 
-// ´®¿Ú¾ä±úÖ¸Õë£¨±£´æCubeMXÉú³ÉµÄ¾ä±ú£©
+// ä¸²å£å¥æŸ„æŒ‡é’ˆï¼ˆä¿å­˜CubeMXç”Ÿæˆçš„å¥æŸ„ï¼‰
 static UART_HandleTypeDef *g_imu_huart = NULL;
 
-// ×´Ì¬»ú±äÁ¿£¨ÓÃÓÚ×Ö½ÚÄ£Ê½±¸ÓÃ£©
+// çŠ¶æ€æœºå˜é‡ï¼ˆç”¨äºŽå­—èŠ‚æ¨¡å¼å¤‡ç”¨ï¼‰
 static imu_recv_state_t g_recv_state = IMU_STATE_IDLE;
 static uint8_t g_temp_buf[IMU_FRAME_LENGTH];
 static uint8_t g_recv_index = 0;
 
-// Íâ²¿ÉùÃ÷Ð­Òé½âÎöÓÃµÄÈ«¾Ö±äÁ¿
+// å¤–éƒ¨å£°æ˜Žåè®®è§£æžç”¨çš„å…¨å±€å˜é‡
 extern protocol_info_t g_output_info;
 
 /*======================================================
- *  ÄÚ²¿¸¨Öúº¯Êý
+ *  å†…éƒ¨è¾…åŠ©å‡½æ•°
  *======================================================*/
 
 /**
- * @brief  ²éÕÒÖ¡Í·Î»ÖÃ
- * @param  buf: »º³åÇø
- * @param  len: ³¤¶È
- * @retval Ö¡Í·Î»ÖÃ£¬-1±íÊ¾Î´ÕÒµ½
+ * @brief  æŸ¥æ‰¾å¸§å¤´ä½ç½®
+ * @param  buf: ç¼“å†²åŒº
+ * @param  len: é•¿åº¦
+ * @retval å¸§å¤´ä½ç½®ï¼Œ-1è¡¨ç¤ºæœªæ‰¾åˆ°
  */
 static int find_frame_header(uint8_t *buf, uint16_t len)
 {
@@ -46,10 +46,10 @@ static int find_frame_header(uint8_t *buf, uint16_t len)
 }
 
 /**
- * @brief  ¸´ÖÆÖ¡µ½´¦Àí»º³åÇø
- * @param  src: Ô´µØÖ·
- * @param  dst: Ä¿±êµØÖ·
- * @param  len: ³¤¶È
+ * @brief  å¤åˆ¶å¸§åˆ°å¤„ç†ç¼“å†²åŒº
+ * @param  src: æºåœ°å€
+ * @param  dst: ç›®æ ‡åœ°å€
+ * @param  len: é•¿åº¦
  * @retval None
  */
 static void copy_frame(uint8_t *src, uint8_t *dst, uint16_t len)
@@ -58,102 +58,102 @@ static void copy_frame(uint8_t *src, uint8_t *dst, uint16_t len)
 }
 
 /*======================================================
- *  ¶ÔÍâ½Ó¿ÚÊµÏÖ
+ *  å¯¹å¤–æŽ¥å£å®žçŽ°
  *======================================================*/
 
 /**
- * @brief  IMU´®¿Ú³õÊ¼»¯
+ * @brief  IMUä¸²å£åˆå§‹åŒ–
  */
 void IMU_USART_Init(UART_HandleTypeDef *huart)
 {
     g_imu_huart = huart;
     
-    // Çå¿Õ»º³åÇø
+    // æ¸…ç©ºç¼“å†²åŒº
     memset(&g_imu_rx, 0, sizeof(g_imu_rx));
     g_imu_frame_ready = 0;
     g_recv_state = IMU_STATE_IDLE;
     g_recv_index = 0;
     
-    // Çå¿ÕÐ­ÒéÊý¾Ý
+    // æ¸…ç©ºåè®®æ•°æ®
     memset(&g_output_info, 0, sizeof(protocol_info_t));
 }
 
 /**
- * @brief  Æô¶¯DMA½ÓÊÕ£¨Ñ­»·Ä£Ê½£©
+ * @brief  å¯åŠ¨DMAæŽ¥æ”¶ï¼ˆå¾ªçŽ¯æ¨¡å¼ï¼‰
  * 
- * ·½°¸A: Ñ­»·DMAÄ£Ê½ - ³ÖÐø½ÓÊÕ£¬×Ô¶¯¸²¸Ç
- * ·½°¸B: ÆÕÍ¨DMAÄ£Ê½ - ½ÓÊÕ¹Ì¶¨³¤¶ÈºóÍ£Ö¹
+ * æ–¹æ¡ˆA: å¾ªçŽ¯DMAæ¨¡å¼ - æŒç»­æŽ¥æ”¶ï¼Œè‡ªåŠ¨è¦†ç›–
+ * æ–¹æ¡ˆB: æ™®é€šDMAæ¨¡å¼ - æŽ¥æ”¶å›ºå®šé•¿åº¦åŽåœæ­¢
  * 
- * ÕâÀïÊ¹ÓÃ·½°¸B£¨ÆÕÍ¨Ä£Ê½£©£¬½ÓÊÕ67×Ö½Úºó´¥·¢ÖÐ¶Ï
+ * è¿™é‡Œä½¿ç”¨æ–¹æ¡ˆBï¼ˆæ™®é€šæ¨¡å¼ï¼‰ï¼ŒæŽ¥æ”¶67å­—èŠ‚åŽè§¦å‘ä¸­æ–­
  */
 void IMU_USART_StartReceive(void)
 {
     if (g_imu_huart == NULL) return;
     
-    // ·½°¸B: ÆÕÍ¨DMAÄ£Ê½£¬½ÓÊÕIMU_FRAME_LENGTH×Ö½Ú
+    // æ–¹æ¡ˆB: æ™®é€šDMAæ¨¡å¼ï¼ŒæŽ¥æ”¶IMU_FRAME_LENGTHå­—èŠ‚
     HAL_UART_Receive_DMA(g_imu_huart, g_imu_rx.rx_buf, IMU_FRAME_LENGTH);
     
-    // Èç¹ûÏëÓÃ·½°¸A£¨Ñ­»·Ä£Ê½£©£¬È¡ÏûÏÂÃæ×¢ÊÍ£º
+    // å¦‚æžœæƒ³ç”¨æ–¹æ¡ˆAï¼ˆå¾ªçŽ¯æ¨¡å¼ï¼‰ï¼Œå–æ¶ˆä¸‹é¢æ³¨é‡Šï¼š
     // HAL_UART_Receive_DMA(g_imu_huart, g_imu_rx.rx_buf, IMU_FRAME_LENGTH);
-    // ÐèÒªÅäÖÃDMAÎªÑ­»·Ä£Ê½£ºg_imu_huart->hdmarx->Instance->CR |= DMA_SxCR_CIRC;
+    // éœ€è¦é…ç½®DMAä¸ºå¾ªçŽ¯æ¨¡å¼ï¼šg_imu_huart->hdmarx->Instance->CR |= DMA_SxCR_CIRC;
 }
 
 /**
- * @brief  ´¦Àí½ÓÊÕµ½µÄÊý¾Ý£¨Ö÷Ñ­»·µ÷ÓÃ£©
+ * @brief  å¤„ç†æŽ¥æ”¶åˆ°çš„æ•°æ®ï¼ˆä¸»å¾ªçŽ¯è°ƒç”¨ï¼‰
  * 
- * µ÷ÓÃÁ÷³Ì£º
- * 1. ¼ì²ég_imu_frame_ready±êÖ¾
- * 2. ¸´ÖÆÊý¾Ýµ½´¦Àí»º³åÇø
- * 3. µ÷ÓÃanalysis_data½âÎö
- * 4. ÖØÆôDMA½ÓÊÕ
+ * è°ƒç”¨æµç¨‹ï¼š
+ * 1. æ£€æŸ¥g_imu_frame_readyæ ‡å¿—
+ * 2. å¤åˆ¶æ•°æ®åˆ°å¤„ç†ç¼“å†²åŒº
+ * 3. è°ƒç”¨analysis_dataè§£æž
+ * 4. é‡å¯DMAæŽ¥æ”¶
  */
 int IMU_USART_ProcessData(void)
 {
     int result = 0;
     
-    // ¼ì²éÊÇ·ñÓÐÐÂÊý¾Ý£¨ÓÉDMAÍê³ÉÖÐ¶ÏÖÃÎ»£©
+    // æ£€æŸ¥æ˜¯å¦æœ‰æ–°æ•°æ®ï¼ˆç”±DMAå®Œæˆä¸­æ–­ç½®ä½ï¼‰
     if (!g_imu_frame_ready) {
-        return 0;  // ÎÞÐÂÊý¾Ý
+        return 0;  // æ— æ–°æ•°æ®
     }
     
-    // ¸´ÖÆµ½´¦Àí»º³åÇø£¨Ë«»º³å£¬·ÀÖ¹DMA¸²¸Ç£©
+    // å¤åˆ¶åˆ°å¤„ç†ç¼“å†²åŒºï¼ˆåŒç¼“å†²ï¼Œé˜²æ­¢DMAè¦†ç›–ï¼‰
     copy_frame(g_imu_rx.rx_buf, g_imu_rx.frame_buf, IMU_FRAME_LENGTH);
-    g_imu_frame_ready = 0;  // Çå³ý±êÖ¾
+    g_imu_frame_ready = 0;  // æ¸…é™¤æ ‡å¿—
     
-    // ÑéÖ¤Ö¡Í·
+    // éªŒè¯å¸§å¤´
     if (g_imu_rx.frame_buf[0] != IMU_FRAME_HEADER_1 || 
         g_imu_rx.frame_buf[1] != IMU_FRAME_HEADER_2) {
-        // Ö¡Í·´íÎó£¬³¢ÊÔ²éÕÒÕýÈ·Ö¡Í·
+        // å¸§å¤´é”™è¯¯ï¼Œå°è¯•æŸ¥æ‰¾æ­£ç¡®å¸§å¤´
         int pos = find_frame_header(g_imu_rx.frame_buf, IMU_FRAME_LENGTH);
         if (pos < 0) {
-            // ±¾Ö¡ÎÞÓÐÐ§Êý¾Ý£¬ÖØÆô½ÓÊÕ
+            // æœ¬å¸§æ— æœ‰æ•ˆæ•°æ®ï¼Œé‡å¯æŽ¥æ”¶
             IMU_USART_StartReceive();
             return -1;
         }
-        // ÒÆ¶¯Êý¾ÝÊ¹Ö¡Í·¶ÔÆë£¨¼ò»¯´¦Àí£ºÖ±½Ó¶ªÆú±¾Ö¡£©
+        // ç§»åŠ¨æ•°æ®ä½¿å¸§å¤´å¯¹é½ï¼ˆç®€åŒ–å¤„ç†ï¼šç›´æŽ¥ä¸¢å¼ƒæœ¬å¸§ï¼‰
         IMU_USART_StartReceive();
         return -1;
     }
     
-    // µ÷ÓÃÐ­Òé½âÎöº¯Êý
-    //analysis_data() ÊÇÔ­F103´úÂë£¬ÎÒÃÇ´«Èë frame_buf ºÍ³¤¶È67£¬Ëü×Ô¶¯½âÎö²¢´æÈë g_output_info
+    // è°ƒç”¨åè®®è§£æžå‡½æ•°
+    //analysis_data() æ˜¯åŽŸF103ä»£ç ï¼Œæˆ‘ä»¬ä¼ å…¥ frame_buf å’Œé•¿åº¦67ï¼Œå®ƒè‡ªåŠ¨è§£æžå¹¶å­˜å…¥ g_output_info
     int parse_result = analysis_data(g_imu_rx.frame_buf, IMU_FRAME_LENGTH);
     
     if (parse_result == analysis_ok) {
-        result = 1;  // ½âÎö³É¹¦
+        result = 1;  // è§£æžæˆåŠŸ
         g_imu_rx.data_ready = 1;
     } else {
-        result = -1; // Ð£ÑéÊ§°Ü»òÆäËû´íÎó
+        result = -1; // æ ¡éªŒå¤±è´¥æˆ–å…¶ä»–é”™è¯¯
     }
     
-    // ÖØÐÂÆô¶¯DMA½ÓÊÕ£¨¹Ø¼ü£¡£©
+    // é‡æ–°å¯åŠ¨DMAæŽ¥æ”¶ï¼ˆå…³é”®ï¼ï¼‰
     IMU_USART_StartReceive();
     
     return result;
 }
 
 /**
- * @brief  ×Ö½ÚÄ£Ê½´¦Àí£¨±¸ÓÃ/µ÷ÊÔ£©
+ * @brief  å­—èŠ‚æ¨¡å¼å¤„ç†ï¼ˆå¤‡ç”¨/è°ƒè¯•ï¼‰
  */
 void IMU_ByteReceived(uint8_t byte)
 {
@@ -172,7 +172,7 @@ void IMU_ByteReceived(uint8_t byte)
                 g_recv_index = 2;
                 g_recv_state = IMU_STATE_RECEIVING;
             } else if (byte == IMU_FRAME_HEADER_1) {
-                // ÈÔÈ»ÊÇÖ¡Í·1£¬±£³Ö×´Ì¬
+                // ä»ç„¶æ˜¯å¸§å¤´1ï¼Œä¿æŒçŠ¶æ€
                 g_temp_buf[0] = byte;
                 g_recv_index = 1;
             } else {
@@ -183,7 +183,7 @@ void IMU_ByteReceived(uint8_t byte)
         case IMU_STATE_RECEIVING:
             g_temp_buf[g_recv_index++] = byte;
             if (g_recv_index >= IMU_FRAME_LENGTH) {
-                // ½ÓÊÕÍê³É£¬¸´ÖÆµ½»º³åÇø
+                // æŽ¥æ”¶å®Œæˆï¼Œå¤åˆ¶åˆ°ç¼“å†²åŒº
                 copy_frame(g_temp_buf, g_imu_rx.frame_buf, IMU_FRAME_LENGTH);
                 g_imu_frame_ready = 1;
                 g_recv_state = IMU_STATE_IDLE;
@@ -199,65 +199,65 @@ void IMU_ByteReceived(uint8_t byte)
 }
 
 /**
- * @brief  DMA½ÓÊÕÍê³É´¦Àí£¨ÆÕÍ¨º¯Êý£¬ÔÚHAL»Øµ÷ÖÐµ÷ÓÃ£©
+ * @brief  DMAæŽ¥æ”¶å®Œæˆå¤„ç†ï¼ˆæ™®é€šå‡½æ•°ï¼Œåœ¨HALå›žè°ƒä¸­è°ƒç”¨ï¼‰
  * 
- * Ê¹ÓÃ·½Ê½£ºÔÚstm32f4xx_it.cµÄDMAÖÐ¶ÏÖÐµ÷ÓÃ£¬»òÔÚHAL_UART_RxCpltCallbackÖÐµ÷ÓÃ
+ * ä½¿ç”¨æ–¹å¼ï¼šåœ¨stm32f4xx_it.cçš„DMAä¸­æ–­ä¸­è°ƒç”¨ï¼Œæˆ–åœ¨HAL_UART_RxCpltCallbackä¸­è°ƒç”¨
  */
 void IMU_DMA_RxCpltHandler(UART_HandleTypeDef *huart)
 {
     if (huart->Instance != IMU_USART) return;
     
-    // ÉèÖÃÖ¡¾ÍÐ÷±êÖ¾
+    // è®¾ç½®å¸§å°±ç»ªæ ‡å¿—
     g_imu_frame_ready = 1;
     
-    // ¿ÉÑ¡£ºÁ¢¼´´¦Àí£¨²»ÍÆ¼ö£¬½¨ÒéÔÚÖ÷Ñ­»·´¦Àí£©
+    // å¯é€‰ï¼šç«‹å³å¤„ç†ï¼ˆä¸æŽ¨èï¼Œå»ºè®®åœ¨ä¸»å¾ªçŽ¯å¤„ç†ï¼‰
     // IMU_USART_ProcessData();
 }
 
 /**
- * @brief  ´®¿Ú´íÎó´¦Àí£¨ÆÕÍ¨º¯Êý£©
+ * @brief  ä¸²å£é”™è¯¯å¤„ç†ï¼ˆæ™®é€šå‡½æ•°ï¼‰
  */
 void IMU_UART_ErrorHandler(UART_HandleTypeDef *huart)
 {
     if (huart->Instance != IMU_USART) return;
     
-    // Çå³ý´íÎó±êÖ¾
+    // æ¸…é™¤é”™è¯¯æ ‡å¿—
     __HAL_UART_CLEAR_PEFLAG(huart);
     __HAL_UART_CLEAR_FEFLAG(huart);
     __HAL_UART_CLEAR_NEFLAG(huart);
     __HAL_UART_CLEAR_OREFLAG(huart);
     __HAL_UART_CLEAR_IDLEFLAG(huart);
     
-    // ÖØÐÂÆô¶¯½ÓÊÕ
+    // é‡æ–°å¯åŠ¨æŽ¥æ”¶
     HAL_UART_DMAStop(huart);
     IMU_USART_StartReceive();
 }
 
 /**
- * @brief  IMU´¦ÀíÈÎÎñ - ¹©¶¨Ê±Æ÷µ÷ÓÃ
+ * @brief  IMUå¤„ç†ä»»åŠ¡ - ä¾›å®šæ—¶å™¨è°ƒç”¨
  * 
- * Ô­mainÑ­»·ÖÐµÄÂÖÑ¯Âß¼­ÒÆµ½ÕâÀï
+ * åŽŸmainå¾ªçŽ¯ä¸­çš„è½®è¯¢é€»è¾‘ç§»åˆ°è¿™é‡Œ
  */
 void IMU_Process_Task(void)
 {
     int result = IMU_USART_ProcessData();
     
     if (result == 1) {
-        // Êý¾Ý½âÎö³É¹¦£¬¿ÉÔÚÕâÀï´¥·¢ºóÐø´¦Àí
-        // ÀýÈç£º¸üÐÂ×ËÌ¬¿ØÖÆ±äÁ¿¡¢¼ì²éÒì³£µÈ
+        // æ•°æ®è§£æžæˆåŠŸï¼Œå¯åœ¨è¿™é‡Œè§¦å‘åŽç»­å¤„ç†
+        // ä¾‹å¦‚ï¼šæ›´æ–°å§¿æ€æŽ§åˆ¶å˜é‡ã€æ£€æŸ¥å¼‚å¸¸ç­‰
         
-        // Ê¾Àý£º½«Êý¾Ý¸´ÖÆµ½¿ØÖÆÓÃ±äÁ¿£¨±ÜÃâÔÚÖÐ¶ÏÖÐ·ÃÎÊ£©
-        // »òÕßÉèÖÃÁíÒ»¸ö±êÖ¾Í¨ÖªÖ÷Ñ­»·
+        // ç¤ºä¾‹ï¼šå°†æ•°æ®å¤åˆ¶åˆ°æŽ§åˆ¶ç”¨å˜é‡ï¼ˆé¿å…åœ¨ä¸­æ–­ä¸­è®¿é—®ï¼‰
+        // æˆ–è€…è®¾ç½®å¦ä¸€ä¸ªæ ‡å¿—é€šçŸ¥ä¸»å¾ªçŽ¯
     }
     else if (result == -1) {
-        // Ð£ÑéÊ§°Ü£¬¿É¼ÇÂ¼´íÎó¼ÆÊý
+        // æ ¡éªŒå¤±è´¥ï¼Œå¯è®°å½•é”™è¯¯è®¡æ•°
         // g_imu_error_count++;
     }
 }
 
 
 /*======================================================
- *  Êý¾Ý»ñÈ¡½Ó¿Ú
+ *  æ•°æ®èŽ·å–æŽ¥å£
  *======================================================*/
 
 protocol_info_t* IMU_GetOutputInfo(void)

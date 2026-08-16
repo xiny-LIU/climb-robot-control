@@ -3,43 +3,43 @@
 
 #include "stdint.h"
 
-/* ���״̬ö�� */
+/* 电机状态枚举 */
 typedef enum {
-    MOTOR_STATUS_NORMAL = 0,    // ����/��������
-    MOTOR_STATUS_LOADED,        // ���أ�ץȡ���壩
-    MOTOR_STATUS_OBSTACLE,      // �����ϰ�/��ת
-    MOTOR_STATUS_ERROR          // ����/���ȹ���
+    MOTOR_STATUS_NORMAL = 0,    // 空载/正常运行
+    MOTOR_STATUS_LOADED,        // 带载（抓取物体）
+    MOTOR_STATUS_OBSTACLE,      // 遇到障碍/堵转
+    MOTOR_STATUS_ERROR          // 过流/过热故障
 } MotorStatus_t;
 
 /**
- * @brief ��ʼ��PID����������ϵͳ����ʱ����һ�Σ�
+ * @brief 初始化PID控制器（在系统启动时调用一次）
  */
 void PID_Init(void);
 
 /**
- * @brief ���õ��Ŀ��ת��
- * @param motor_id: �����ţ�0��1��
- * @param speed_rpm: Ŀ��ת�٣�RPM������ֵ��ת����ֵ��ת��0=ֹͣ
+ * @brief 设置电机目标转速
+ * @param motor_id: 电机编号（0或1）
+ * @param speed_rpm: 目标转速（RPM），正值正转，负值反转，0=停止
  */
 void PID_SetTargetSpeed(uint8_t motor_id, int16_t speed_rpm);
 
 /**
- * @brief 1ms���ڵ��ã�ִ���ٶȻ�PID������CANָ��
- * @note ������TIM�ж��е��ã���֤Ӳʵʱ��
+ * @brief 1ms周期调用，执行速度环PID并发送CAN指令
+ * @note 必须在TIM中断中调用，保证硬实时性
  */
 void PID_Loop_1ms(void);
 
 /**
- * @brief ��ȡָ�������ʵʱ����ֵ
- * @param motor_id: �����ţ�0��1��
- * @return ����ֵ����λ��mA����Χ-20000~20000��
+ * @brief 获取指定电机的实时电流值
+ * @param motor_id: 电机编号（0或1）
+ * @return 电流值（单位：mA，范围-20000~20000）
  */
 int16_t PID_GetCurrent(uint8_t motor_id);
 
 /**
- * @brief ��ȡ�������״̬�����ڵ����жϣ�
- * @param motor_id: �����ţ�0��1��
- * @return ���״̬ö��ֵ
+ * @brief 获取电机运行状态（基于电流判断）
+ * @param motor_id: 电机编号（0或1）
+ * @return 电机状态枚举值
  */
 MotorStatus_t PID_GetMotorStatus(uint8_t motor_id);
 

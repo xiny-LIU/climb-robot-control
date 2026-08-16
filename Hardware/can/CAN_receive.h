@@ -3,7 +3,7 @@
   * @file       can_receive.c/h
   * @brief      there is CAN interrupt function  to receive motor data,
   *             and CAN send function to send motor current to control motor.
-  *             ÕâÀïÊÇCANÖĞ¶Ï½ÓÊÕº¯Êı£¬½ÓÊÕµç»úÊı¾İ,CAN·¢ËÍº¯Êı·¢ËÍµç»úµçÁ÷¿ØÖÆµç»ú.
+  *             è¿™é‡Œæ˜¯CANä¸­æ–­æ¥æ”¶å‡½æ•°ï¼Œæ¥æ”¶ç”µæœºæ•°æ®,CANå‘é€å‡½æ•°å‘é€ç”µæœºç”µæµæ§åˆ¶ç”µæœº.
   * @note       
   * @history
   *  Version    Date            Author          Modification
@@ -58,11 +58,11 @@ extern motor_measure_t motor_chassis[4];
   * @retval         none
   */
 /**
-  * @brief          ·¢ËÍµç»ú¿ØÖÆµçÁ÷(0x201,0x202,0x203,0x204)
-  * @param[in]      motor1: (0x201) 3508µç»ú¿ØÖÆµçÁ÷, ·¶Î§ [-16384,16384]
-  * @param[in]      motor2: (0x202) 3508µç»ú¿ØÖÆµçÁ÷, ·¶Î§ [-16384,16384]
-  * @param[in]      motor3: (0x203) 3508µç»ú¿ØÖÆµçÁ÷, ·¶Î§ [-16384,16384]
-  * @param[in]      motor4: (0x204) 3508µç»ú¿ØÖÆµçÁ÷, ·¶Î§ [-16384,16384]
+  * @brief          å‘é€ç”µæœºæ§åˆ¶ç”µæµ(0x201,0x202,0x203,0x204)
+  * @param[in]      motor1: (0x201) 3508ç”µæœºæ§åˆ¶ç”µæµ, èŒƒå›´ [-16384,16384]
+  * @param[in]      motor2: (0x202) 3508ç”µæœºæ§åˆ¶ç”µæµ, èŒƒå›´ [-16384,16384]
+  * @param[in]      motor3: (0x203) 3508ç”µæœºæ§åˆ¶ç”µæµ, èŒƒå›´ [-16384,16384]
+  * @param[in]      motor4: (0x204) 3508ç”µæœºæ§åˆ¶ç”µæµ, èŒƒå›´ [-16384,16384]
   * @retval         none
   */
 extern void CAN_cmd_chassis(int16_t motor1, int16_t motor2, int16_t motor3, int16_t motor4);
@@ -74,9 +74,9 @@ extern void CAN_cmd_chassis(int16_t motor1, int16_t motor2, int16_t motor3, int1
   * @retval         motor data point
   */
 /**
-  * @brief          ·µ»Øµ×ÅÌµç»ú 3508µç»úÊı¾İÖ¸Õë
-  * @param[in]      i: µç»ú±àºÅ,·¶Î§[0,3]
-  * @retval         µç»úÊı¾İÖ¸Õë
+  * @brief          è¿”å›åº•ç›˜ç”µæœº 3508ç”µæœºæ•°æ®æŒ‡é’ˆ
+  * @param[in]      i: ç”µæœºç¼–å·,èŒƒå›´[0,3]
+  * @retval         ç”µæœºæ•°æ®æŒ‡é’ˆ
   */
 extern const motor_measure_t *get_chassis_motor_measure_point(uint8_t i);
 

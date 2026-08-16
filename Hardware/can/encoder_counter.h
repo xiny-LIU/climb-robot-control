@@ -4,52 +4,52 @@
 #include "stdint.h"
 
 /**
- * @brief ±àÂëÆ÷¼ÆÊıÆ÷½á¹¹Ìå
+ * @brief ç¼–ç å™¨è®¡æ•°å™¨ç»“æ„ä½“
  */
 typedef struct {
-    int32_t total_angle;    // ÀÛ¼Æ×Ü½Ç¶È£¨¿É¶àÈ¦£¬Õı=Õı×ª£¬¸º=·´×ª£©
-    int32_t turn_count;     // ÍêÕûÈ¦Êı£¨Õı=Õı×ªÈ¦Êı£¬¸º=·´×ªÈ¦Êı£©
-    uint16_t last_ecd;      // ÉÏÒ»´ÎµÄecdÖµ
-    uint8_t  initialized;   // ³õÊ¼»¯±êÖ¾£¨0=Î´³õÊ¼»¯£¬1=ÒÑ³õÊ¼»¯£©
+    int32_t total_angle;    // ç´¯è®¡æ€»è§’åº¦ï¼ˆå¯å¤šåœˆï¼Œæ­£=æ­£è½¬ï¼Œè´Ÿ=åè½¬ï¼‰
+    int32_t turn_count;     // å®Œæ•´åœˆæ•°ï¼ˆæ­£=æ­£è½¬åœˆæ•°ï¼Œè´Ÿ=åè½¬åœˆæ•°ï¼‰
+    uint16_t last_ecd;      // ä¸Šä¸€æ¬¡çš„ecdå€¼
+    uint8_t  initialized;   // åˆå§‹åŒ–æ ‡å¿—ï¼ˆ0=æœªåˆå§‹åŒ–ï¼Œ1=å·²åˆå§‹åŒ–ï¼‰
 } EncoderCounter_t;
 
 /**
- * @brief ³õÊ¼»¯±àÂëÆ÷¼ÆÊıÆ÷
- * @note ÔÚÏµÍ³Æô¶¯ºó¡¢µç»ú×ª¶¯Ç°µ÷ÓÃÒ»´Î
+ * @brief åˆå§‹åŒ–ç¼–ç å™¨è®¡æ•°å™¨
+ * @note åœ¨ç³»ç»Ÿå¯åŠ¨åã€ç”µæœºè½¬åŠ¨å‰è°ƒç”¨ä¸€æ¬¡
  */
 void Encoder_Counter_Init(void);
 
 /**
- * @brief ¸üĞÂÖ¸¶¨µç»úµÄ±àÂëÆ÷¼ÆÊı£¨ÔÚCANÖĞ¶ÏÖĞµ÷ÓÃ£©
- * @param motor_id: µç»ú±àºÅ 0~3
- * @param current_ecd: µ±Ç°±àÂëÆ÷Öµ£¨´ÓCANÊı¾İ»ñÈ¡£©
+ * @brief æ›´æ–°æŒ‡å®šç”µæœºçš„ç¼–ç å™¨è®¡æ•°ï¼ˆåœ¨CANä¸­æ–­ä¸­è°ƒç”¨ï¼‰
+ * @param motor_id: ç”µæœºç¼–å· 0~3
+ * @param current_ecd: å½“å‰ç¼–ç å™¨å€¼ï¼ˆä»CANæ•°æ®è·å–ï¼‰
  */
 void Encoder_Counter_Update(uint8_t motor_id, uint16_t current_ecd);
 
 /**
- * @brief »ñÈ¡µç»úÀÛ¼Æ½Ç¶È
- * @param motor_id: µç»ú±àºÅ 0~3
- * @return ÀÛ¼Æ½Ç¶È£¨8192 = 1È¦£¬¿ÉÕı¸º£©
+ * @brief è·å–ç”µæœºç´¯è®¡è§’åº¦
+ * @param motor_id: ç”µæœºç¼–å· 0~3
+ * @return ç´¯è®¡è§’åº¦ï¼ˆ8192 = 1åœˆï¼Œå¯æ­£è´Ÿï¼‰
  */
 int32_t Encoder_Get_Total_Angle(uint8_t motor_id);
 
 /**
- * @brief »ñÈ¡µç»úÍêÕûÈ¦Êı
- * @param motor_id: µç»ú±àºÅ 0~3
- * @return È¦Êı£¨Õı=Õı×ª£¬¸º=·´×ª£©
+ * @brief è·å–ç”µæœºå®Œæ•´åœˆæ•°
+ * @param motor_id: ç”µæœºç¼–å· 0~3
+ * @return åœˆæ•°ï¼ˆæ­£=æ­£è½¬ï¼Œè´Ÿ=åè½¬ï¼‰
  */
 int32_t Encoder_Get_Turn_Count(uint8_t motor_id);
 
 /**
- * @brief »ñÈ¡µç»úµ±Ç°µ¥È¦½Ç¶È
- * @param motor_id: µç»ú±àºÅ 0~3
+ * @brief è·å–ç”µæœºå½“å‰å•åœˆè§’åº¦
+ * @param motor_id: ç”µæœºç¼–å· 0~3
  * @return 0~8191
  */
 uint16_t Encoder_Get_Current_ECD(uint8_t motor_id);
 
 /**
- * @brief ÖØÖÃÖ¸¶¨µç»úµÄ¼ÆÊıÆ÷£¨ÉèÖÃµ±Ç°Î»ÖÃÎªÁãµã£©
- * @param motor_id: µç»ú±àºÅ 0~3
+ * @brief é‡ç½®æŒ‡å®šç”µæœºçš„è®¡æ•°å™¨ï¼ˆè®¾ç½®å½“å‰ä½ç½®ä¸ºé›¶ç‚¹ï¼‰
+ * @param motor_id: ç”µæœºç¼–å· 0~3
  */
 void Encoder_Counter_Reset(uint8_t motor_id);
 

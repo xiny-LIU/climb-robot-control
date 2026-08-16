@@ -1,44 +1,44 @@
 #include "buzzer.h"
-#include "tim.h"    // CubeMXÉú³ÉµÄ¶¨Ê±Æ÷Í·ÎÄ¼þ
+#include "tim.h"    // CubeMXç”Ÿæˆçš„å®šæ—¶å™¨å¤´æ–‡ä»¶
 
 /**
- * @brief  ·äÃùÆ÷³õÊ¼»¯
- * @note   ÔÚmainº¯ÊýÖÐµ÷ÓÃ£¬È·±£CubeMXÒÑ³õÊ¼»¯TIM12
+ * @brief  èœ‚é¸£å™¨åˆå§‹åŒ–
+ * @note   åœ¨mainå‡½æ•°ä¸­è°ƒç”¨ï¼Œç¡®ä¿CubeMXå·²åˆå§‹åŒ–TIM12
  */
 void Buzzer_Init(void)
 {
-    // Æô¶¯PWM£¬³õÊ¼¾²Òô
+    // å¯åŠ¨PWMï¼Œåˆå§‹é™éŸ³
     HAL_TIM_PWM_Start(&htim12, BUZZER_TIM_CHANNEL);
     Buzzer_Off();
 }
 
 /**
- * @brief  ·äÃùÆ÷¿ªÆô
- * @param  volume: ÒôÁ¿µÈ¼¶£¨0~33332£¬½¨ÒéÊ¹ÓÃBUZZER_VOL_xxºê£©
+ * @brief  èœ‚é¸£å™¨å¼€å¯
+ * @param  volume: éŸ³é‡ç­‰çº§ï¼ˆ0~33332ï¼Œå»ºè®®ä½¿ç”¨BUZZER_VOL_xxå®ï¼‰
  */
 void Buzzer_On(uint16_t volume)
 {
-    // ÏÞÖÆÒôÁ¿·¶Î§
+    // é™åˆ¶éŸ³é‡èŒƒå›´
     if(volume > BUZZER_ARR) volume = BUZZER_ARR;
     
-    // ·´ÏàÇý¶¯£ºÕ¼¿Õ±ÈÔ½Ð¡£¬·äÃùÆ÷Ô½Ïì£¨Èý¼«¹ÜµÍµçÆ½µ¼Í¨£©
-    // ËùÒÔÊµ¼ÊÏì¶ÈÓëÕ¼¿Õ±È³É·´±È£¬ÕâÀï×ö×ª»»
+    // åç›¸é©±åŠ¨ï¼šå ç©ºæ¯”è¶Šå°ï¼Œèœ‚é¸£å™¨è¶Šå“ï¼ˆä¸‰æžç®¡ä½Žç”µå¹³å¯¼é€šï¼‰
+    // æ‰€ä»¥å®žé™…å“åº¦ä¸Žå ç©ºæ¯”æˆåæ¯”ï¼Œè¿™é‡Œåšè½¬æ¢
     uint16_t pulse = (volume >= BUZZER_ARR) ? 0 : (BUZZER_ARR - volume);
     __HAL_TIM_SET_COMPARE(&htim12, BUZZER_TIM_CHANNEL, pulse);
 }
 
 /**
- * @brief  ·äÃùÆ÷¹Ø±Õ£¨¾²Òô£©
+ * @brief  èœ‚é¸£å™¨å…³é—­ï¼ˆé™éŸ³ï¼‰
  */
 void Buzzer_Off(void)
 {
-    // Õ¼¿Õ±È100%Ê±£¬PWM³ÖÐø¸ßµçÆ½£¬Èý¼«¹Ü½ØÖ¹£¬·äÃùÆ÷²»Ïì
+    // å ç©ºæ¯”100%æ—¶ï¼ŒPWMæŒç»­é«˜ç”µå¹³ï¼Œä¸‰æžç®¡æˆªæ­¢ï¼Œèœ‚é¸£å™¨ä¸å“
     __HAL_TIM_SET_COMPARE(&htim12, BUZZER_TIM_CHANNEL, BUZZER_ARR + 1);
 }
 
 /**
- * @brief  ÉèÖÃÒôÁ¿
- * @param  volume: 0~100°Ù·Ö±È
+ * @brief  è®¾ç½®éŸ³é‡
+ * @param  volume: 0~100ç™¾åˆ†æ¯”
  */
 void Buzzer_SetVolume(uint16_t volume)
 {
@@ -48,9 +48,9 @@ void Buzzer_SetVolume(uint16_t volume)
 }
 
 /**
- * @brief  ÉèÖÃ·äÃùÆ÷ÆµÂÊ
- * @param  freq_hz: Ä¿±êÆµÂÊ£¨Hz£©£¬·¶Î§100~20000
- * @note   ÐÞ¸ÄARR»á¸Ä±äPWMÆµÂÊ£¬Í¬Ê±±£³Öµ±Ç°Õ¼¿Õ±È
+ * @brief  è®¾ç½®èœ‚é¸£å™¨é¢‘çŽ‡
+ * @param  freq_hz: ç›®æ ‡é¢‘çŽ‡ï¼ˆHzï¼‰ï¼ŒèŒƒå›´100~20000
+ * @note   ä¿®æ”¹ARRä¼šæ”¹å˜PWMé¢‘çŽ‡ï¼ŒåŒæ—¶ä¿æŒå½“å‰å ç©ºæ¯”
  */
 void Buzzer_SetFreq(uint16_t freq_hz)
 {
@@ -62,9 +62,9 @@ void Buzzer_SetFreq(uint16_t freq_hz)
 }
 
 /**
- * @brief  ·äÃùÆ÷µ¥´ÎÃùÏì
- * @param  time_ms: ÃùÏìÊ±¼ä£¨ºÁÃë£©
- * @param  volume: ÒôÁ¿µÈ¼¶
+ * @brief  èœ‚é¸£å™¨å•æ¬¡é¸£å“
+ * @param  time_ms: é¸£å“æ—¶é—´ï¼ˆæ¯«ç§’ï¼‰
+ * @param  volume: éŸ³é‡ç­‰çº§
  */
 void Buzzer_Beep(uint16_t time_ms, uint16_t volume)
 {
@@ -74,37 +74,37 @@ void Buzzer_Beep(uint16_t time_ms, uint16_t volume)
 }
 
 /**
- * @brief  ¿ª»úÌáÊ¾Òô - Í¨µçÔËÐÐÌáÐÑ
- * @note   ÒôÐ§£º¶Ì-¶Ì-³¤ "µÎ-µÎ-ßÕ~"£¨ÀàËÆÏµÍ³¾ÍÐ÷ÌáÊ¾£©
+ * @brief  å¼€æœºæç¤ºéŸ³ - é€šç”µè¿è¡Œæé†’
+ * @note   éŸ³æ•ˆï¼šçŸ­-çŸ­-é•¿ "æ»´-æ»´-å“’~"ï¼ˆç±»ä¼¼ç³»ç»Ÿå°±ç»ªæç¤ºï¼‰
  */
 void Buzzer_StartUp_Sound(void)
 {
-    // Òôµ÷1£º¶Ì´Ù¸ßÒô£¨100ms£¬75%ÒôÁ¿£©
-    Buzzer_SetFreq(3000);           // ÉÔ¸ßÓÚ¶î¶¨ÆµÂÊ£¬¸üÇå´à
+    // éŸ³è°ƒ1ï¼šçŸ­ä¿ƒé«˜éŸ³ï¼ˆ100msï¼Œ75%éŸ³é‡ï¼‰
+    Buzzer_SetFreq(3000);           // ç¨é«˜äºŽé¢å®šé¢‘çŽ‡ï¼Œæ›´æ¸…è„†
     Buzzer_On(BUZZER_VOL_75);
     HAL_Delay(100);
     Buzzer_Off();
-    HAL_Delay(100);                 // ¼ä¸ô
+    HAL_Delay(100);                 // é—´éš”
     
-    // Òôµ÷2£º¶Ì´Ù¸ßÒô£¨100ms£¬75%ÒôÁ¿£©
+    // éŸ³è°ƒ2ï¼šçŸ­ä¿ƒé«˜éŸ³ï¼ˆ100msï¼Œ75%éŸ³é‡ï¼‰
     Buzzer_On(BUZZER_VOL_75);
     HAL_Delay(100);
     Buzzer_Off();
-    HAL_Delay(100);                 // ¼ä¸ô
+    HAL_Delay(100);                 // é—´éš”
     
-    // Òôµ÷3£º³¤Òô£¨400ms£¬50%ÒôÁ¿£¬»Øµ½¶î¶¨ÆµÂÊ£©
+    // éŸ³è°ƒ3ï¼šé•¿éŸ³ï¼ˆ400msï¼Œ50%éŸ³é‡ï¼Œå›žåˆ°é¢å®šé¢‘çŽ‡ï¼‰
     Buzzer_SetFreq(2700);
     Buzzer_On(BUZZER_VOL_50);
     HAL_Delay(400);
     Buzzer_Off();
     
-    // »Ö¸´Ä¬ÈÏÆµÂÊ
+    // æ¢å¤é»˜è®¤é¢‘çŽ‡
     Buzzer_SetFreq(2700);
 }
 
 /**
- * @brief  ´íÎóÌáÊ¾Òô - ¹ÊÕÏ±¨¾¯
- * @note   ÒôÐ§£ºÁ¬Ðø¶Ì´Ù¼±´ÙÒô "µÎµÎµÎµÎ"
+ * @brief  é”™è¯¯æç¤ºéŸ³ - æ•…éšœæŠ¥è­¦
+ * @note   éŸ³æ•ˆï¼šè¿žç»­çŸ­ä¿ƒæ€¥ä¿ƒéŸ³ "æ»´æ»´æ»´æ»´"
  */
 void Buzzer_Error_Sound(void)
 {

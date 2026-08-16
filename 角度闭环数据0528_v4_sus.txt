@@ -1,0 +1,1151 @@
+start
+=== Encoder Degree Data ===
+CurrentAngle: 45.85 | 107.55 | -0.01 | -0.01
+TARGETAngle: 45.86 | 104.29 | -0.01 | -0.01
+ERROR: 0.01 | -3.26 | 0.00 | 0.00
+SPEED: 0 | 9 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 45.83 | 107.47 | -0.01 | -0.01
+TARGETAngle: 45.86 | 104.29 | -0.01 | -0.01
+ERROR: 0.02 | -3.19 | 0.00 | 0.00
+SPEED: 0 | 9 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 45.84 | 106.96 | -0.01 | -0.01
+TARGETAngle: 45.86 | 104.29 | -0.01 | -0.01
+ERROR: 0.02 | -2.68 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 45.85 | 105.12 | -0.01 | -0.01
+TARGETAngle: 45.86 | 104.29 | -0.01 | -0.01
+ERROR: 0.01 | -0.83 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 45.85 | 106.97 | -0.01 | -0.01
+TARGETAngle: 45.86 | 104.29 | -0.01 | -0.01
+ERROR: 0.01 | -2.68 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 45.85 | 102.54 | -0.01 | -0.01
+TARGETAngle: 45.86 | 104.29 | -0.01 | -0.01
+ERROR: 0.01 | 1.75 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 45.90 | 105.69 | -0.01 | -0.01
+TARGETAngle: 45.86 | 104.29 | -0.01 | -0.01
+ERROR: -0.04 | -1.41 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 45.85 | 104.16 | -0.01 | -0.01
+TARGETAngle: 45.86 | 104.29 | -0.01 | -0.01
+ERROR: 0.01 | 0.13 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 45.85 | 106.07 | -0.01 | -0.01
+TARGETAngle: 45.86 | 104.29 | -0.01 | -0.01
+ERROR: 0.01 | -1.79 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 45.85 | 106.07 | -0.01 | -0.01
+TARGETAngle: 45.86 | 104.29 | -0.01 | -0.01
+ERROR: 0.01 | -1.78 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 45.86 | 107.53 | -0.01 | -0.01
+TARGETAngle: 45.86 | 104.29 | -0.01 | -0.01
+ERROR: 0.00 | -3.25 | 0.00 | 0.00
+SPEED: 0 | 9 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 45.85 | 105.18 | -0.01 | -0.01
+TARGETAngle: 45.86 | 104.29 | -0.01 | -0.01
+ERROR: 0.01 | -0.89 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+[40]
+=== Encoder Degree Data ===
+CurrentAngle: 45.85 | 104.29 | -0.01 | -0.01
+TARGETAngle: 40.00 | 104.29 | -0.01 | -0.01
+ERROR: -2.39 | 0.00 | 0.00 | 0.00
+SPEED: 8 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 45.83 | 106.08 | -0.01 | -0.01
+TARGETAngle: 40.00 | 104.29 | -0.01 | -0.01
+ERROR: -5.83 | -1.79 | 0.00 | 0.00
+SPEED: 17 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 45.63 | 106.07 | -0.01 | -0.01
+TARGETAngle: 40.00 | 104.29 | -0.01 | -0.01
+ERROR: -5.63 | -1.78 | 0.00 | 0.00
+SPEED: 16 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 43.43 | 104.29 | -0.01 | -0.01
+TARGETAngle: 40.00 | 104.29 | -0.01 | -0.01
+ERROR: -3.43 | 0.00 | 0.00 | 0.00
+SPEED: 10 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 41.85 | 105.82 | -0.01 | -0.01
+TARGETAngle: 40.00 | 104.29 | -0.01 | -0.01
+ERROR: -1.85 | -1.53 | 0.00 | 0.00
+SPEED: 8 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 40.64 | 107.23 | -0.01 | -0.01
+TARGETAngle: 40.00 | 104.29 | -0.01 | -0.01
+ERROR: -0.64 | -2.94 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 40.46 | 105.60 | -0.01 | -0.01
+TARGETAngle: 40.00 | 104.29 | -0.01 | -0.01
+ERROR: -0.46 | -1.31 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 40.43 | 102.31 | -0.01 | -0.01
+TARGETAngle: 40.00 | 104.29 | -0.01 | -0.01
+ERROR: -0.43 | 1.98 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 40.33 | 106.07 | -0.01 | -0.01
+TARGETAngle: 40.00 | 104.29 | -0.01 | -0.01
+ERROR: -0.33 | -1.79 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 40.33 | 104.68 | -0.01 | -0.01
+TARGETAngle: 40.00 | 104.29 | -0.01 | -0.01
+ERROR: -0.33 | -0.39 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 40.22 | 105.75 | -0.01 | -0.01
+TARGETAngle: 40.00 | 104.29 | -0.01 | -0.01
+ERROR: -0.22 | -1.46 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 40.22 | 106.52 | -0.01 | -0.01
+TARGETAngle: 40.00 | 104.29 | -0.01 | -0.01
+ERROR: -0.22 | -2.24 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 40.18 | 106.97 | -0.01 | -0.01
+TARGETAngle: 40.00 | 104.29 | -0.01 | -0.01
+ERROR: -0.18 | -2.68 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 40.13 | 106.01 | -0.01 | -0.01
+TARGETAngle: 40.00 | 104.29 | -0.01 | -0.01
+ERROR: -0.13 | -1.72 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 40.07 | 106.07 | -0.01 | -0.01
+TARGETAngle: 40.00 | 104.29 | -0.01 | -0.01
+ERROR: -0.07 | -1.78 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 40.02 | 105.57 | -0.01 | -0.01
+TARGETAngle: 40.00 | 104.29 | -0.01 | -0.01
+ERROR: -0.02 | -1.28 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+[50]
+=== Encoder Degree Data ===
+CurrentAngle: 40.02 | 105.63 | -0.01 | -0.01
+TARGETAngle: 50.00 | 104.29 | -0.01 | -0.01
+ERROR: 3.48 | -1.34 | 0.00 | 0.00
+SPEED: 10 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 40.02 | 105.18 | -0.01 | -0.01
+TARGETAngle: 50.00 | 104.29 | -0.01 | -0.01
+ERROR: 8.28 | -0.90 | 0.00 | 0.00
+SPEED: 24 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 42.20 | 105.56 | -0.01 | -0.01
+TARGETAngle: 50.00 | 104.29 | -0.01 | -0.01
+ERROR: 7.80 | -1.27 | 0.00 | 0.00
+SPEED: 23 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 45.30 | 105.70 | -0.01 | -0.01
+TARGETAngle: 50.00 | 104.29 | -0.01 | -0.01
+ERROR: 4.70 | -1.41 | 0.00 | 0.00
+SPEED: 14 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 47.26 | 104.21 | -0.01 | -0.01
+TARGETAngle: 50.00 | 104.29 | -0.01 | -0.01
+ERROR: 2.74 | 0.08 | 0.00 | 0.00
+SPEED: 8 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 48.43 | 105.05 | -0.01 | -0.01
+TARGETAngle: 50.00 | 104.29 | -0.01 | -0.01
+ERROR: 1.57 | -0.76 | 0.00 | 0.00
+SPEED: 8 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 49.27 | 106.07 | -0.01 | -0.01
+TARGETAngle: 50.00 | 104.29 | -0.01 | -0.01
+ERROR: 0.73 | -1.79 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 49.48 | 103.84 | -0.01 | -0.01
+TARGETAngle: 50.00 | 104.29 | -0.01 | -0.01
+ERROR: 0.52 | 0.45 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 49.61 | 105.18 | -0.01 | -0.01
+TARGETAngle: 50.00 | 104.29 | -0.01 | -0.01
+ERROR: 0.39 | -0.90 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 49.71 | 105.66 | -0.01 | -0.01
+TARGETAngle: 50.00 | 104.29 | -0.01 | -0.01
+ERROR: 0.29 | -1.37 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 49.77 | 107.09 | -0.01 | -0.01
+TARGETAngle: 50.00 | 104.29 | -0.01 | -0.01
+ERROR: 0.23 | -2.80 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 49.81 | 104.86 | -0.01 | -0.01
+TARGETAngle: 50.00 | 104.29 | -0.01 | -0.01
+ERROR: 0.19 | -0.58 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 49.81 | 104.80 | -0.01 | -0.01
+TARGETAngle: 50.00 | 104.29 | -0.01 | -0.01
+ERROR: 0.19 | -0.51 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+[60]
+=== Encoder Degree Data ===
+CurrentAngle: 49.82 | 104.80 | -0.01 | -0.01
+TARGETAngle: 60.00 | 104.29 | -0.01 | -0.01
+ERROR: 0.63 | -0.51 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 50.70 | 104.86 | -0.01 | -0.01
+TARGETAngle: 60.00 | 104.29 | -0.01 | -0.01
+ERROR: 4.55 | -0.58 | 0.00 | 0.00
+SPEED: 13 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 54.74 | 104.67 | -0.01 | -0.01
+TARGETAngle: 60.00 | 104.29 | -0.01 | -0.01
+ERROR: 5.26 | -0.38 | 0.00 | 0.00
+SPEED: 15 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 57.62 | 104.71 | -0.01 | -0.01
+TARGETAngle: 60.00 | 104.29 | -0.01 | -0.01
+ERROR: 2.38 | -0.42 | 0.00 | 0.00
+SPEED: 8 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 59.13 | 104.73 | -0.01 | -0.01
+TARGETAngle: 60.00 | 104.29 | -0.01 | -0.01
+ERROR: 0.87 | -0.44 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 59.47 | 104.21 | -0.01 | -0.01
+TARGETAngle: 60.00 | 104.29 | -0.01 | -0.01
+ERROR: 0.53 | 0.08 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 59.65 | 107.99 | -0.01 | -0.01
+TARGETAngle: 60.00 | 104.29 | -0.01 | -0.01
+ERROR: 0.35 | -3.70 | 0.00 | 0.00
+SPEED: 0 | 11 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 59.76 | 105.18 | -0.01 | -0.01
+TARGETAngle: 60.00 | 104.29 | -0.01 | -0.01
+ERROR: 0.24 | -0.89 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 59.77 | 106.13 | -0.01 | -0.01
+TARGETAngle: 60.00 | 104.29 | -0.01 | -0.01
+ERROR: 0.23 | -1.84 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 59.79 | 105.21 | -0.01 | -0.01
+TARGETAngle: 60.00 | 104.29 | -0.01 | -0.01
+ERROR: 0.21 | -0.92 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 59.80 | 103.33 | -0.01 | -0.01
+TARGETAngle: 60.00 | 104.29 | -0.01 | -0.01
+ERROR: 0.20 | 0.96 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 59.83 | 104.21 | -0.01 | -0.01
+TARGETAngle: 60.00 | 104.29 | -0.01 | -0.01
+ERROR: 0.17 | 0.08 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 59.84 | 106.52 | -0.01 | -0.01
+TARGETAngle: 60.00 | 104.29 | -0.01 | -0.01
+ERROR: 0.16 | -2.24 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 59.82 | 104.15 | -0.01 | -0.01
+TARGETAngle: 60.00 | 104.29 | -0.01 | -0.01
+ERROR: 0.18 | 0.14 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 59.88 | 105.57 | -0.01 | -0.01
+TARGETAngle: 60.00 | 104.29 | -0.01 | -0.01
+ERROR: 0.12 | -1.28 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 59.85 | 104.73 | -0.01 | -0.01
+TARGETAngle: 60.00 | 104.29 | -0.01 | -0.01
+ERROR: 0.15 | -0.44 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+[58]
+=== Encoder Degree Data ===
+CurrentAngle: 59.96 | 104.35 | -0.01 | -0.01
+TARGETAngle: 58.00 | 104.29 | -0.01 | -0.01
+ERROR: -0.96 | -0.07 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 59.94 | 106.13 | -0.01 | -0.01
+TARGETAngle: 58.00 | 104.29 | -0.01 | -0.01
+ERROR: -1.94 | -1.84 | 0.00 | 0.00
+SPEED: 8 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 59.88 | 105.18 | -0.01 | -0.01
+TARGETAngle: 58.00 | 104.29 | -0.01 | -0.01
+ERROR: -1.88 | -0.89 | 0.00 | 0.00
+SPEED: 8 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 59.92 | 105.18 | -0.01 | -0.01
+TARGETAngle: 58.00 | 104.29 | -0.01 | -0.01
+ERROR: -1.92 | -0.89 | 0.00 | 0.00
+SPEED: 8 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 59.91 | 106.07 | -0.01 | -0.01
+TARGETAngle: 58.00 | 104.29 | -0.01 | -0.01
+ERROR: -1.91 | -1.79 | 0.00 | 0.00
+SPEED: 8 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 58.99 | 106.97 | -0.01 | -0.01
+TARGETAngle: 58.00 | 104.29 | -0.01 | -0.01
+ERROR: -0.99 | -2.68 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 58.99 | 105.17 | -0.01 | -0.01
+TARGETAngle: 58.00 | 104.29 | -0.01 | -0.01
+ERROR: -0.99 | -0.88 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 58.93 | 107.09 | -0.01 | -0.01
+TARGETAngle: 58.00 | 104.29 | -0.01 | -0.01
+ERROR: -0.93 | -2.80 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 59.00 | 107.74 | -0.01 | -0.01
+TARGETAngle: 58.00 | 104.29 | -0.01 | -0.01
+ERROR: -1.00 | -3.45 | 0.00 | 0.00
+SPEED: 0 | 10 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 58.99 | 105.18 | -0.01 | -0.01
+TARGETAngle: 58.00 | 104.29 | -0.01 | -0.01
+ERROR: -0.99 | -0.89 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 58.93 | 107.99 | -0.01 | -0.01
+TARGETAngle: 58.00 | 104.29 | -0.01 | -0.01
+ERROR: -0.93 | -3.70 | 0.00 | 0.00
+SPEED: 0 | 11 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 58.94 | 106.07 | -0.01 | -0.01
+TARGETAngle: 58.00 | 104.29 | -0.01 | -0.01
+ERROR: -0.94 | -1.78 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 58.93 | 105.50 | -0.01 | -0.01
+TARGETAngle: 58.00 | 104.29 | -0.01 | -0.01
+ERROR: -0.93 | -1.21 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+[55]
+=== Encoder Degree Data ===
+CurrentAngle: 58.86 | 107.06 | -0.01 | -0.01
+TARGETAngle: 55.00 | 104.29 | -0.01 | -0.01
+ERROR: -1.51 | -2.77 | 0.00 | 0.00
+SPEED: 8 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 57.69 | 103.27 | -0.01 | -0.01
+TARGETAngle: 55.00 | 104.29 | -0.01 | -0.01
+ERROR: -2.69 | 1.02 | 0.00 | 0.00
+SPEED: 8 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 56.19 | 106.58 | -0.01 | -0.01
+TARGETAngle: 55.00 | 104.29 | -0.01 | -0.01
+ERROR: -1.19 | -2.30 | 0.00 | 0.00
+SPEED: 8 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 55.74 | 105.05 | -0.01 | -0.01
+TARGETAngle: 55.00 | 104.29 | -0.01 | -0.01
+ERROR: -0.74 | -0.76 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 55.66 | 108.25 | -0.01 | -0.01
+TARGETAngle: 55.00 | 104.29 | -0.01 | -0.01
+ERROR: -0.66 | -3.97 | 0.00 | 0.00
+SPEED: 0 | 11 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 55.64 | 110.15 | -0.01 | -0.01
+TARGETAngle: 55.00 | 104.29 | -0.01 | -0.01
+ERROR: -0.64 | -5.86 | 0.00 | 0.00
+SPEED: 0 | 17 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 55.59 | 106.15 | -0.01 | -0.01
+TARGETAngle: 55.00 | 104.29 | -0.01 | -0.01
+ERROR: -0.59 | -1.86 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 55.51 | 106.20 | -0.01 | -0.01
+TARGETAngle: 55.00 | 104.29 | -0.01 | -0.01
+ERROR: -0.51 | -1.92 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 55.49 | 103.84 | -0.01 | -0.01
+TARGETAngle: 55.00 | 104.29 | -0.01 | -0.01
+ERROR: -0.49 | 0.45 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 55.52 | 102.69 | -0.01 | -0.01
+TARGETAngle: 55.00 | 104.29 | -0.01 | -0.01
+ERROR: -0.52 | 1.60 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 55.49 | 106.52 | -0.01 | -0.01
+TARGETAngle: 55.00 | 104.29 | -0.01 | -0.01
+ERROR: -0.49 | -2.23 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 55.46 | 106.19 | -0.01 | -0.01
+TARGETAngle: 55.00 | 104.29 | -0.01 | -0.01
+ERROR: -0.46 | -1.91 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 55.40 | 104.22 | -0.01 | -0.01
+TARGETAngle: 55.00 | 104.29 | -0.01 | -0.01
+ERROR: -0.40 | 0.07 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 55.40 | 103.77 | -0.01 | -0.01
+TARGETAngle: 55.00 | 104.29 | -0.01 | -0.01
+ERROR: -0.40 | 0.52 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 55.38 | 106.52 | -0.01 | -0.01
+TARGETAngle: 55.00 | 104.29 | -0.01 | -0.01
+ERROR: -0.38 | -2.23 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 55.36 | 103.27 | -0.01 | -0.01
+TARGETAngle: 55.00 | 104.29 | -0.01 | -0.01
+ERROR: -0.36 | 1.02 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 55.41 | 106.07 | -0.01 | -0.01
+TARGETAngle: 55.00 | 104.29 | -0.01 | -0.01
+ERROR: -0.41 | -1.79 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 55.41 | 104.22 | -0.01 | -0.01
+TARGETAngle: 55.00 | 104.29 | -0.01 | -0.01
+ERROR: -0.41 | 0.07 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 55.37 | 103.77 | -0.01 | -0.01
+TARGETAngle: 55.00 | 104.29 | -0.01 | -0.01
+ERROR: -0.37 | 0.52 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 55.35 | 104.86 | -0.01 | -0.01
+TARGETAngle: 55.00 | 104.29 | -0.01 | -0.01
+ERROR: -0.35 | -0.58 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 55.34 | 104.73 | -0.01 | -0.01
+TARGETAngle: 55.00 | 104.29 | -0.01 | -0.01
+ERROR: -0.34 | -0.44 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 55.37 | 104.68 | -0.01 | -0.01
+TARGETAngle: 55.00 | 104.29 | -0.01 | -0.01
+ERROR: -0.37 | -0.39 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 55.37 | 107.09 | -0.01 | -0.01
+TARGETAngle: 55.00 | 104.29 | -0.01 | -0.01
+ERROR: -0.37 | -2.81 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 55.36 | 105.18 | -0.01 | -0.01
+TARGETAngle: 55.00 | 104.29 | -0.01 | -0.01
+ERROR: -0.36 | -0.90 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 55.32 | 104.35 | -0.01 | -0.01
+TARGETAngle: 55.00 | 104.29 | -0.01 | -0.01
+ERROR: -0.32 | -0.07 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 55.39 | 104.68 | -0.01 | -0.01
+TARGETAngle: 55.00 | 104.29 | -0.01 | -0.01
+ERROR: -0.39 | -0.39 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 55.36 | 107.42 | -0.01 | -0.01
+TARGETAngle: 55.00 | 104.29 | -0.01 | -0.01
+ERROR: -0.36 | -3.13 | 0.00 | 0.00
+SPEED: 0 | 9 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 55.31 | 104.54 | -0.01 | -0.01
+TARGETAngle: 55.00 | 104.29 | -0.01 | -0.01
+ERROR: -0.31 | -0.25 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 55.31 | 105.70 | -0.01 | -0.01
+TARGETAngle: 55.00 | 104.29 | -0.01 | -0.01
+ERROR: -0.31 | -1.41 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 55.30 | 106.97 | -0.01 | -0.01
+TARGETAngle: 55.00 | 104.29 | -0.01 | -0.01
+ERROR: -0.30 | -2.68 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 55.38 | 105.99 | -0.01 | -0.01
+TARGETAngle: 55.00 | 104.29 | -0.01 | -0.01
+ERROR: -0.38 | -1.70 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 55.39 | 106.13 | -0.01 | -0.01
+TARGETAngle: 55.00 | 104.29 | -0.01 | -0.01
+ERROR: -0.39 | -1.84 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 55.30 | 104.79 | -0.01 | -0.01
+TARGETAngle: 55.00 | 104.29 | -0.01 | -0.01
+ERROR: -0.30 | -0.50 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 55.32 | 104.15 | -0.01 | -0.01
+TARGETAngle: 55.00 | 104.29 | -0.01 | -0.01
+ERROR: -0.32 | 0.14 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 55.29 | 106.07 | -0.01 | -0.01
+TARGETAngle: 55.00 | 104.29 | -0.01 | -0.01
+ERROR: -0.29 | -1.79 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 55.29 | 105.50 | -0.01 | -0.01
+TARGETAngle: 55.00 | 104.29 | -0.01 | -0.01
+ERROR: -0.29 | -1.21 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 55.28 | 105.56 | -0.01 | -0.01
+TARGETAngle: 55.00 | 104.29 | -0.01 | -0.01
+ERROR: -0.28 | -1.27 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 55.28 | 107.54 | -0.01 | -0.01
+TARGETAngle: 55.00 | 104.29 | -0.01 | -0.01
+ERROR: -0.28 | -3.25 | 0.00 | 0.00
+SPEED: 0 | 9 | 0 | 0
+[0]
+=== Encoder Degree Data ===
+CurrentAngle: 55.32 | 103.72 | -0.01 | -0.01
+TARGETAngle: 0.00 | 104.29 | -0.01 | -0.01
+ERROR: -0.87 | 0.57 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 54.01 | 105.57 | -0.01 | -0.01
+TARGETAngle: 0.00 | 104.29 | -0.01 | -0.01
+ERROR: -4.36 | -1.29 | 0.00 | 0.00
+SPEED: 13 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 50.04 | 104.80 | -0.01 | -0.01
+TARGETAngle: 0.00 | 104.29 | -0.01 | -0.01
+ERROR: -5.24 | -0.51 | 0.00 | 0.00
+SPEED: 15 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 45.51 | 105.63 | -0.01 | -0.01
+TARGETAngle: 0.00 | 104.29 | -0.01 | -0.01
+ERROR: -5.51 | -1.34 | 0.00 | 0.00
+SPEED: 16 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 40.58 | 103.56 | -0.01 | -0.01
+TARGETAngle: 0.00 | 104.29 | -0.01 | -0.01
+ERROR: -5.38 | 0.73 | 0.00 | 0.00
+SPEED: 16 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 36.12 | 105.05 | -0.01 | -0.01
+TARGETAngle: 0.00 | 104.29 | -0.01 | -0.01
+ERROR: -5.77 | -0.76 | 0.00 | 0.00
+SPEED: 17 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 30.47 | 106.07 | -0.01 | -0.01
+TARGETAngle: 0.00 | 104.29 | -0.01 | -0.01
+ERROR: -4.92 | -1.79 | 0.00 | 0.00
+SPEED: 14 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 26.14 | 105.11 | -0.01 | -0.01
+TARGETAngle: 0.00 | 104.29 | -0.01 | -0.01
+ERROR: -5.39 | -0.82 | 0.00 | 0.00
+SPEED: 16 | 0 | 0 | 0
+start
+=== Encoder Degree Data ===
+CurrentAngle: 22.58 | 107.87 | -0.01 | -0.01
+TARGETAngle: 22.62 | 105.18 | -0.01 | -0.01
+ERROR: 0.04 | -2.69 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 22.58 | 105.18 | -0.01 | -0.01
+TARGETAngle: 22.62 | 105.18 | -0.01 | -0.01
+ERROR: 0.04 | -0.01 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 22.51 | 105.19 | -0.01 | -0.01
+TARGETAngle: 22.62 | 105.18 | -0.01 | -0.01
+ERROR: 0.11 | -0.01 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 22.45 | 105.68 | -0.01 | -0.01
+TARGETAngle: 22.62 | 105.18 | -0.01 | -0.01
+ERROR: 0.17 | -0.51 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 22.37 | 106.97 | -0.01 | -0.01
+TARGETAngle: 22.62 | 105.18 | -0.01 | -0.01
+ERROR: 0.25 | -1.79 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 22.38 | 107.48 | -0.01 | -0.01
+TARGETAngle: 22.62 | 105.18 | -0.01 | -0.01
+ERROR: 0.23 | -2.30 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 22.38 | 107.54 | -0.01 | -0.01
+TARGETAngle: 22.62 | 105.18 | -0.01 | -0.01
+ERROR: 0.24 | -2.36 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 22.39 | 104.15 | -0.01 | -0.01
+TARGETAngle: 22.62 | 105.18 | -0.01 | -0.01
+ERROR: 0.23 | 1.03 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 22.38 | 106.97 | -0.01 | -0.01
+TARGETAngle: 22.62 | 105.18 | -0.01 | -0.01
+ERROR: 0.23 | -1.79 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 22.38 | 106.52 | -0.01 | -0.01
+TARGETAngle: 22.62 | 105.18 | -0.01 | -0.01
+ERROR: 0.24 | -1.34 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 22.30 | 107.09 | -0.01 | -0.01
+TARGETAngle: 22.62 | 105.18 | -0.01 | -0.01
+ERROR: 0.31 | -1.91 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 22.32 | 105.06 | -0.01 | -0.01
+TARGETAngle: 22.62 | 105.18 | -0.01 | -0.01
+ERROR: 0.30 | 0.12 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 22.29 | 107.41 | -0.01 | -0.01
+TARGETAngle: 22.62 | 105.18 | -0.01 | -0.01
+ERROR: 0.33 | -2.24 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 22.30 | 105.86 | -0.01 | -0.01
+TARGETAngle: 22.62 | 105.18 | -0.01 | -0.01
+ERROR: 0.31 | -0.69 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+[40]
+=== Encoder Degree Data ===
+CurrentAngle: 22.28 | 107.42 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: 2.39 | -2.24 | 0.00 | 0.00
+SPEED: 8 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 22.25 | 106.62 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: 7.21 | -1.44 | 0.00 | 0.00
+SPEED: 21 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 24.12 | 103.21 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: 10.14 | 1.97 | 0.00 | 0.00
+SPEED: 30 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 29.38 | 105.18 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: 9.69 | -0.01 | 0.00 | 0.00
+SPEED: 29 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 34.89 | 104.90 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: 5.11 | 0.27 | 0.00 | 0.00
+SPEED: 15 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 37.27 | 106.07 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: 2.73 | -0.90 | 0.00 | 0.00
+SPEED: 8 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 38.49 | 107.09 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: 1.51 | -1.92 | 0.00 | 0.00
+SPEED: 8 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 39.28 | 106.96 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.72 | -1.79 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 39.35 | 107.09 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.65 | -1.91 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 39.48 | 105.63 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.52 | -0.46 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 39.59 | 107.52 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.41 | -2.34 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 39.66 | 106.14 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.34 | -0.97 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 39.68 | 108.57 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.32 | -3.39 | 0.00 | 0.00
+SPEED: 0 | 10 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 39.68 | 106.01 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.32 | -0.83 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 39.69 | 106.87 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.31 | -1.69 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 39.77 | 106.97 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.23 | -1.79 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+[55]
+=== Encoder Degree Data ===
+CurrentAngle: 39.74 | 106.58 | -0.01 | -0.01
+TARGETAngle: 55.00 | 105.18 | -0.01 | -0.01
+ERROR: 1.16 | -1.40 | 0.00 | 0.00
+SPEED: 8 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 40.79 | 106.90 | -0.01 | -0.01
+TARGETAngle: 55.00 | 105.18 | -0.01 | -0.01
+ERROR: 4.91 | -1.72 | 0.00 | 0.00
+SPEED: 14 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 44.59 | 106.96 | -0.01 | -0.01
+TARGETAngle: 55.00 | 105.18 | -0.01 | -0.01
+ERROR: 5.91 | -1.79 | 0.00 | 0.00
+SPEED: 17 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 48.98 | 108.37 | -0.01 | -0.01
+TARGETAngle: 55.00 | 105.18 | -0.01 | -0.01
+ERROR: 6.02 | -3.20 | 0.00 | 0.00
+SPEED: 18 | 9 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 52.12 | 103.43 | -0.01 | -0.01
+TARGETAngle: 55.00 | 105.18 | -0.01 | -0.01
+ERROR: 2.88 | 1.75 | 0.00 | 0.00
+SPEED: 8 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 53.67 | 105.12 | -0.01 | -0.01
+TARGETAngle: 55.00 | 105.18 | -0.01 | -0.01
+ERROR: 1.33 | 0.05 | 0.00 | 0.00
+SPEED: 8 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 54.42 | 108.83 | -0.01 | -0.01
+TARGETAngle: 55.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.58 | -3.65 | 0.00 | 0.00
+SPEED: 0 | 10 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 54.57 | 107.03 | -0.01 | -0.01
+TARGETAngle: 55.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.43 | -1.85 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 54.62 | 106.07 | -0.01 | -0.01
+TARGETAngle: 55.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.38 | -0.89 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 54.66 | 108.00 | -0.01 | -0.01
+TARGETAngle: 55.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.34 | -2.82 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 54.78 | 108.47 | -0.01 | -0.01
+TARGETAngle: 55.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.22 | -3.29 | 0.00 | 0.00
+SPEED: 0 | 9 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 54.78 | 107.09 | -0.01 | -0.01
+TARGETAngle: 55.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.22 | -1.91 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 54.85 | 106.58 | -0.01 | -0.01
+TARGETAngle: 55.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.15 | -1.41 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 54.89 | 106.07 | -0.01 | -0.01
+TARGETAngle: 55.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.11 | -0.90 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 54.93 | 103.23 | -0.01 | -0.01
+TARGETAngle: 55.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.07 | 1.94 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 54.89 | 106.52 | -0.01 | -0.01
+TARGETAngle: 55.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.11 | -1.35 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 54.97 | 107.04 | -0.01 | -0.01
+TARGETAngle: 55.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.03 | -1.86 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 54.98 | 105.56 | -0.01 | -0.01
+TARGETAngle: 55.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.02 | -0.38 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 54.98 | 105.56 | -0.01 | -0.01
+TARGETAngle: 55.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.02 | -0.38 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 55.03 | 105.24 | -0.01 | -0.01
+TARGETAngle: 55.00 | 105.18 | -0.01 | -0.01
+ERROR: -0.03 | -0.07 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 54.96 | 105.05 | -0.01 | -0.01
+TARGETAngle: 55.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.04 | 0.13 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 55.01 | 105.50 | -0.01 | -0.01
+TARGETAngle: 55.00 | 105.18 | -0.01 | -0.01
+ERROR: -0.01 | -0.32 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 55.00 | 109.33 | -0.01 | -0.01
+TARGETAngle: 55.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.00 | -4.15 | 0.00 | 0.00
+SPEED: 0 | 12 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 55.00 | 105.12 | -0.01 | -0.01
+TARGETAngle: 55.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.00 | 0.05 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 55.05 | 104.72 | -0.01 | -0.01
+TARGETAngle: 55.00 | 105.18 | -0.01 | -0.01
+ERROR: -0.05 | 0.46 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 55.07 | 105.18 | -0.01 | -0.01
+TARGETAngle: 55.00 | 105.18 | -0.01 | -0.01
+ERROR: -0.07 | -0.01 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+[40]
+=== Encoder Degree Data ===
+CurrentAngle: 55.11 | 106.01 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: -0.91 | -0.83 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 55.01 | 106.52 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: -5.66 | -1.34 | 0.00 | 0.00
+SPEED: 16 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 54.84 | 107.44 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: -10.29 | -2.26 | 0.00 | 0.00
+SPEED: 30 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 49.31 | 106.52 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: -9.31 | -1.35 | 0.00 | 0.00
+SPEED: 27 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 43.93 | 107.86 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: -3.93 | -2.69 | 0.00 | 0.00
+SPEED: 11 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 41.08 | 107.48 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: -1.08 | -2.30 | 0.00 | 0.00
+SPEED: 8 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 40.55 | 107.34 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: -0.55 | -2.16 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 40.49 | 105.23 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: -0.49 | -0.05 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 40.30 | 104.88 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: -0.30 | 0.30 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 40.23 | 103.83 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: -0.23 | 1.35 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 40.16 | 107.48 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: -0.16 | -2.30 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 40.18 | 106.75 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: -0.18 | -1.58 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 40.14 | 104.73 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: -0.14 | 0.45 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 40.14 | 105.47 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: -0.14 | -0.30 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 40.08 | 106.96 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: -0.08 | -1.79 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 40.07 | 108.89 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: -0.07 | -3.71 | 0.00 | 0.00
+SPEED: 0 | 11 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 40.08 | 104.19 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: -0.08 | 0.98 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 40.08 | 101.40 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: -0.08 | 3.77 | 0.00 | 0.00
+SPEED: 0 | 11 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 40.05 | 103.78 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: -0.05 | 1.40 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 40.06 | 106.31 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: -0.06 | -1.14 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 40.00 | 105.17 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: -0.00 | 0.01 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 40.05 | 104.25 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: -0.05 | 0.93 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 40.02 | 104.29 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: -0.02 | 0.89 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 40.02 | 103.78 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: -0.02 | 1.40 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 40.02 | 105.62 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: -0.02 | -0.44 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 39.98 | 107.03 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.02 | -1.86 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 39.89 | 104.57 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.11 | 0.60 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 39.87 | 103.21 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.13 | 1.97 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 39.91 | 106.64 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.09 | -1.47 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 39.87 | 104.28 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.13 | 0.90 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 39.84 | 104.22 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.16 | 0.96 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 39.84 | 104.28 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.16 | 0.90 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 39.84 | 107.24 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.16 | -2.06 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 39.87 | 104.66 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.13 | 0.52 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 39.83 | 105.18 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.17 | 0.00 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 39.84 | 106.01 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.16 | -0.83 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 39.84 | 103.39 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.16 | 1.79 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 39.80 | 105.64 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.20 | -0.47 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 39.78 | 105.82 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.22 | -0.64 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 39.83 | 106.07 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.17 | -0.90 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 39.79 | 104.29 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.21 | 0.88 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 39.79 | 105.11 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.21 | 0.07 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 39.80 | 107.48 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.20 | -2.30 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 39.73 | 101.98 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.27 | 3.20 | 0.00 | 0.00
+SPEED: 0 | 9 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 39.79 | 103.84 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.21 | 1.34 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 39.77 | 104.29 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.23 | 0.89 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 39.77 | 105.18 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.23 | -0.01 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 39.73 | 102.50 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.27 | 2.68 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 39.75 | 105.36 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.25 | -0.19 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 39.74 | 102.11 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.26 | 3.07 | 0.00 | 0.00
+SPEED: 0 | 9 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 39.74 | 103.76 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.26 | 1.42 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 39.69 | 105.68 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.31 | -0.51 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 39.74 | 101.98 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.26 | 3.20 | 0.00 | 0.00
+SPEED: 0 | 9 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 39.70 | 102.31 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.30 | 2.87 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 39.74 | 103.83 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.26 | 1.35 | 0.00 | 0.00
+SPEED: 0 | 8 | 0 | 0
+=== Encoder Degree Data ===
+CurrentAngle: 39.69 | 106.15 | -0.01 | -0.01
+TARGETAngle: 40.00 | 105.18 | -0.01 | -0.01
+ERROR: 0.31 | -0.97 | 0.00 | 0.00
+SPEED: 0 | 0 | 0 | 0

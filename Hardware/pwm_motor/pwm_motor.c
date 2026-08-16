@@ -1,13 +1,14 @@
 #include "pwm_motor.h"
 #include "tim.h"
+#include <stdio.h>
 
-// µç»úPWMÅäÖÃ²ÎÊı
-#define PWM_FREQUENCY_HZ        20000   // PWMÆµÂÊ20kHz
-#define PWM_TIMER_HANDLE        &htim2  // TIM2×÷ÎªPWMÔ´
+// ç”µæœºPWMé…ç½®å‚æ•°
+#define PWM_FREQUENCY_HZ        20000   // PWMé¢‘ç‡20kHz
+#define PWM_TIMER_HANDLE        &htim2  // TIM2ä½œä¸ºPWMæº
 #define PWM_PRESCALER           89
 #define PWM_PERIOD_ARR          49
 
-// PWMÍ¨µÀÓ³Éä
+// PWMé€šé“æ˜ å°„
 static const uint32_t motor_pwm_channels[] = {
     TIM_CHANNEL_1,  // MOTOR_A - PA0
     TIM_CHANNEL_2,  // MOTOR_B - PA1
@@ -15,21 +16,21 @@ static const uint32_t motor_pwm_channels[] = {
     TIM_CHANNEL_4   // MOTOR_D - PA3
 };
 
-// µç»ú¿ØÖÆÊµÀı
+// ç”µæœºæ§åˆ¶å®ä¾‹
 Motor_Control_t motor_A = {.id = MOTOR_A, .state = MOTOR_STATE_STOPPED, .direction = DIRECTION_FORWARD, .speed_percent = 0};
 Motor_Control_t motor_B = {.id = MOTOR_B, .state = MOTOR_STATE_STOPPED, .direction = DIRECTION_FORWARD, .speed_percent = 0};
 Motor_Control_t motor_C = {.id = MOTOR_C, .state = MOTOR_STATE_STOPPED, .direction = DIRECTION_FORWARD, .speed_percent = 0};
 Motor_Control_t motor_D = {.id = MOTOR_D, .state = MOTOR_STATE_STOPPED, .direction = DIRECTION_FORWARD, .speed_percent = 0};
 
-// ÄÚ²¿¸¨Öúº¯Êı
+// å†…éƒ¨è¾…åŠ©å‡½æ•°
 static Motor_Control_t* get_motor_instance(Motor_ID_t motor_id);
 static void update_motor_gpio(Motor_ID_t motor_id);
 
-// µç»úËø¶¨¿ØÖÆ£¨ÓÃÓÚPS2½ô¼±Í£Ö¹£©
-static uint8_t motor_system_locked = 0;  // 0=½âËø, 1=Ëø¶¨
+// ç”µæœºé”å®šæ§åˆ¶ï¼ˆç”¨äºPS2ç´§æ€¥åœæ­¢ï¼‰
+static uint8_t motor_system_locked = 0;  // 0=è§£é”, 1=é”å®š
 
 /**
- * @brief ¸ù¾İµç»úID»ñÈ¡¿ØÖÆÊµÀı
+ * @brief æ ¹æ®ç”µæœºIDè·å–æ§åˆ¶å®ä¾‹
  */
 static Motor_Control_t* get_motor_instance(Motor_ID_t motor_id)
 {
@@ -43,19 +44,19 @@ static Motor_Control_t* get_motor_instance(Motor_ID_t motor_id)
 }
 
 /**
- * @brief ¸üĞÂµç»úGPIO×´Ì¬
+ * @brief æ›´æ–°ç”µæœºGPIOçŠ¶æ€
  */
 static void update_motor_gpio(Motor_ID_t motor_id)
 {
     Motor_Control_t* motor = get_motor_instance(motor_id);
     
-    // ¸ù¾İµç»ú×´Ì¬ÉèÖÃGPIO
+    // æ ¹æ®ç”µæœºçŠ¶æ€è®¾ç½®GPIO
     if (motor->state == MOTOR_STATE_STOPPED || motor->speed_percent == 0) {
-        // Í£Ö¹×´Ì¬£ºÉ²³µÉúĞ§£¬µçÔ´ÇĞ¶Ï
+        // åœæ­¢çŠ¶æ€ï¼šåˆ¹è½¦ç”Ÿæ•ˆï¼Œç”µæºåˆ‡æ–­
         switch(motor_id) {
             case MOTOR_A:
-                HAL_GPIO_WritePin(A_Brake_GPIO_Port, A_Brake_Pin, GPIO_PIN_RESET);    // É²³µ
-                HAL_GPIO_WritePin(POWER1_GPIO_Port, POWER1_Pin, GPIO_PIN_RESET);      // ¶Ïµç
+                HAL_GPIO_WritePin(A_Brake_GPIO_Port, A_Brake_Pin, GPIO_PIN_RESET);    // åˆ¹è½¦
+                HAL_GPIO_WritePin(POWER1_GPIO_Port, POWER1_Pin, GPIO_PIN_RESET);      // æ–­ç”µ
                 break;
             case MOTOR_B:
                 HAL_GPIO_WritePin(B_Brake_GPIO_Port, B_Brake_Pin, GPIO_PIN_RESET);
@@ -71,12 +72,12 @@ static void update_motor_gpio(Motor_ID_t motor_id)
                 break;
         }
     } else {
-        // ÔËĞĞ×´Ì¬£º½â³ıÉ²³µ£¬½ÓÍ¨µçÔ´
+        // è¿è¡ŒçŠ¶æ€ï¼šè§£é™¤åˆ¹è½¦ï¼Œæ¥é€šç”µæº
         switch(motor_id) {
             case MOTOR_A:
-                HAL_GPIO_WritePin(A_Brake_GPIO_Port, A_Brake_Pin, GPIO_PIN_SET);      // ½â³ıÉ²³µ
-                HAL_GPIO_WritePin(POWER1_GPIO_Port, POWER1_Pin, GPIO_PIN_SET);        // Í¨µç
-                // ÉèÖÃ·½Ïò
+                HAL_GPIO_WritePin(A_Brake_GPIO_Port, A_Brake_Pin, GPIO_PIN_SET);      // è§£é™¤åˆ¹è½¦
+                HAL_GPIO_WritePin(POWER1_GPIO_Port, POWER1_Pin, GPIO_PIN_SET);        // é€šç”µ
+                // è®¾ç½®æ–¹å‘
                 HAL_GPIO_WritePin(A_Reverse_GPIO_Port, A_Reverse_Pin, 
                     motor->direction == DIRECTION_REVERSE ? GPIO_PIN_RESET : GPIO_PIN_SET);
                 break;
@@ -103,21 +104,21 @@ static void update_motor_gpio(Motor_ID_t motor_id)
 }
 
 /**
- * @brief ¼ÆËãPWMÕ¼¿Õ±È¶ÔÓ¦µÄCCRÖµ
+ * @brief è®¡ç®—PWMå ç©ºæ¯”å¯¹åº”çš„CCRå€¼
  */
 static uint32_t calculate_ccr_value(uint8_t speed_percent)
 {
     if (speed_percent > 100) speed_percent = 100;
     
-    // ·´±ÈÓ³Éä£ºspeed_percent=100 ¡ú CCR=0£¨×ªËÙ×î¿ì£©
-    // speed_percent=0 ¡ú CCR=ARR£¨×ªËÙ×îÂı£©
+    // åæ¯”æ˜ å°„ï¼šspeed_percent=100 â†’ CCR=0ï¼ˆè½¬é€Ÿæœ€å¿«ï¼‰
+    // speed_percent=0 â†’ CCR=ARRï¼ˆè½¬é€Ÿæœ€æ…¢ï¼‰
     float inverted_percent = 100.0f - speed_percent;
     
-    // ¾«È·¹«Ê½£º(CCR + 1) / (ARR + 1) = inverted_percent / 100
-    // ¡ú CCR = inverted_percent * (ARR + 1) / 100 - 1
+    // ç²¾ç¡®å…¬å¼ï¼š(CCR + 1) / (ARR + 1) = inverted_percent / 100
+    // â†’ CCR = inverted_percent * (ARR + 1) / 100 - 1
     float ccr_float = inverted_percent * (PWM_PERIOD_ARR + 1) / 100.0f - 1.0f;    
     
-    // ±ß½ç±£»¤
+    // è¾¹ç•Œä¿æŠ¤
     if (ccr_float < 0) return 0;
     if (ccr_float > PWM_PERIOD_ARR) return PWM_PERIOD_ARR;
     
@@ -126,17 +127,17 @@ static uint32_t calculate_ccr_value(uint8_t speed_percent)
 
 }
 
-// ¹«¿ªAPIº¯ÊıÊµÏÖ
+// å…¬å¼€APIå‡½æ•°å®ç°
 
 void Motor_Init(Motor_ID_t motor_id)
 {
-    // Æô¶¯¶ÔÓ¦PWMÍ¨µÀ
+    // å¯åŠ¨å¯¹åº”PWMé€šé“
     HAL_TIM_PWM_Start(PWM_TIMER_HANDLE, motor_pwm_channels[motor_id]);
     
-    // ³õÊ¼Õ¼¿Õ±ÈÎª0
-    __HAL_TIM_SET_COMPARE(PWM_TIMER_HANDLE, motor_pwm_channels[motor_id], 0);
+    // åˆå§‹å ç©ºæ¯”ä¸º0
+    __HAL_TIM_SET_COMPARE(PWM_TIMER_HANDLE, motor_pwm_channels[motor_id], calculate_ccr_value(0));
     
-    // ¸üĞÂGPIO×´Ì¬£¨³õÊ¼ÎªÍ£Ö¹×´Ì¬£©
+    // æ›´æ–°GPIOçŠ¶æ€ï¼ˆåˆå§‹ä¸ºåœæ­¢çŠ¶æ€ï¼‰
     update_motor_gpio(motor_id);
 }
 
@@ -150,11 +151,11 @@ void Motor_Init_All(void)
 
 void Motor_Start(Motor_ID_t motor_id)
 {
-    if (motor_system_locked) return;  // Èç¹ûÏµÍ³Ëø¶¨£¬Ö±½Ó·µ»Ø
+    if (motor_system_locked) return;  // å¦‚æœç³»ç»Ÿé”å®šï¼Œç›´æ¥è¿”å›
     Motor_Control_t* motor = get_motor_instance(motor_id);
     
     if (motor->speed_percent == 0) {
-        // Èç¹ûÃ»ÓĞÉèÖÃËÙ¶È£¬Ä¬ÈÏ30%
+        // å¦‚æœæ²¡æœ‰è®¾ç½®é€Ÿåº¦ï¼Œé»˜è®¤30%
         Motor_SetSpeed(motor_id, 70);
     } else {
         motor->state = MOTOR_STATE_RUNNING;
@@ -164,48 +165,59 @@ void Motor_Start(Motor_ID_t motor_id)
 
 void Motor_Stop(Motor_ID_t motor_id)
 {
-     if (motor_system_locked) return;  // Èç¹ûÏµÍ³Ëø¶¨£¬Ö±½Ó·µ»Ø
+     if (motor_system_locked) return;  // å¦‚æœç³»ç»Ÿé”å®šï¼Œç›´æ¥è¿”å›
     Motor_Control_t* motor = get_motor_instance(motor_id);
     
     motor->state = MOTOR_STATE_STOPPED;
     motor->speed_percent = 0;
     
-    // ÉèÖÃPWMÕ¼¿Õ±ÈÎª0
-    __HAL_TIM_SET_COMPARE(PWM_TIMER_HANDLE, motor_pwm_channels[motor_id], 0);
+    // è®¾ç½®PWMå ç©ºæ¯”ä¸º0
+    __HAL_TIM_SET_COMPARE(PWM_TIMER_HANDLE, motor_pwm_channels[motor_id], calculate_ccr_value(0));
     
-    // ¸üĞÂGPIO×´Ì¬
+    // æ›´æ–°GPIOçŠ¶æ€
     update_motor_gpio(motor_id);
 }
 
 void Motor_SetSpeed(Motor_ID_t motor_id, uint8_t speed_percent)
 {
-     if (motor_system_locked) return;  // Èç¹ûÏµÍ³Ëø¶¨£¬Ö±½Ó·µ»Ø
+     if (motor_system_locked) return;  // å¦‚æœç³»ç»Ÿé”å®šï¼Œç›´æ¥è¿”å›
     Motor_Control_t* motor = get_motor_instance(motor_id);
     
-    motor->speed_percent = speed_percent;//ÆÚÍûÕ¼¿Õ±È
+    motor->speed_percent = speed_percent;//æœŸæœ›å ç©ºæ¯”
     
-    // ÉèÖÃPWMÕ¼¿Õ±È
-    uint32_t ccr_value = calculate_ccr_value(speed_percent);//Êµ¼ÊÕ¼¿Õ±È
+    // è®¾ç½®PWMå ç©ºæ¯”
+    uint32_t ccr_value = calculate_ccr_value(speed_percent);//å®é™…å ç©ºæ¯”
     __HAL_TIM_SET_COMPARE(PWM_TIMER_HANDLE, motor_pwm_channels[motor_id], ccr_value);
     
-    // ¸üĞÂ×´Ì¬ºÍGPIO
+    // æ›´æ–°çŠ¶æ€å’ŒGPIO
     if (speed_percent > 0) {
         motor->state = MOTOR_STATE_RUNNING;
     } else {
         motor->state = MOTOR_STATE_STOPPED;
     }
-    
     update_motor_gpio(motor_id);
+    //æ‰“å°æµ‹è¯•
+//    update_motor_gpio(motor_id);
+//    
+//        if (motor_id == MOTOR_A) {
+//        printf("[MOTOR_A] speed=%d, ccr=%u, state=%d, dir=%d, locked=%d\r\n",
+//               speed_percent,
+//               ccr_value,
+//               motor->state,
+//               motor->direction,
+//               motor_system_locked);
+//    }
+
 }
 
 void Motor_SetDirection(Motor_ID_t motor_id, Motor_Direction_t direction)
 {
-     if (motor_system_locked) return;  // Èç¹ûÏµÍ³Ëø¶¨£¬Ö±½Ó·µ»Ø
+     if (motor_system_locked) return;  // å¦‚æœç³»ç»Ÿé”å®šï¼Œç›´æ¥è¿”å›
     Motor_Control_t* motor = get_motor_instance(motor_id);
     
     motor->direction = direction;
     
-    // Èç¹ûµç»úÕıÔÚÔËĞĞ£¬Á¢¼´¸üĞÂ·½ÏòGPIO
+    // å¦‚æœç”µæœºæ­£åœ¨è¿è¡Œï¼Œç«‹å³æ›´æ–°æ–¹å‘GPIO
     if (motor->state == MOTOR_STATE_RUNNING) {
         update_motor_gpio(motor_id);
     }
@@ -213,14 +225,14 @@ void Motor_SetDirection(Motor_ID_t motor_id, Motor_Direction_t direction)
 
 void Motor_Reverse(Motor_ID_t motor_id)
 {
-     if (motor_system_locked) return;  // Èç¹ûÏµÍ³Ëø¶¨£¬Ö±½Ó·µ»Ø
+     if (motor_system_locked) return;  // å¦‚æœç³»ç»Ÿé”å®šï¼Œç›´æ¥è¿”å›
     Motor_Control_t* motor = get_motor_instance(motor_id);
     
-    // ÇĞ»»·½Ïò
+    // åˆ‡æ¢æ–¹å‘
     motor->direction = (motor->direction == DIRECTION_FORWARD) ? 
                        DIRECTION_REVERSE : DIRECTION_FORWARD;
     
-    // Èç¹ûµç»úÕıÔÚÔËĞĞ£¬Á¢¼´¸üĞÂ·½ÏòGPIO
+    // å¦‚æœç”µæœºæ­£åœ¨è¿è¡Œï¼Œç«‹å³æ›´æ–°æ–¹å‘GPIO
     if (motor->state == MOTOR_STATE_RUNNING) {
         update_motor_gpio(motor_id);
     }
@@ -252,26 +264,26 @@ void Motor_SetSpeed_All(uint8_t speed_percent)
 
 void Motor_Emergency_Stop(void)
 {
-    motor_system_locked = 1;  // ÉèÖÃËø¶¨±êÖ¾
-    // Á¢¼´Í£Ö¹ËùÓĞPWMÊä³ö
+    motor_system_locked = 1;  // è®¾ç½®é”å®šæ ‡å¿—
+    // ç«‹å³åœæ­¢æ‰€æœ‰PWMè¾“å‡º
     __HAL_TIM_SET_COMPARE(PWM_TIMER_HANDLE, TIM_CHANNEL_1, 0);
     __HAL_TIM_SET_COMPARE(PWM_TIMER_HANDLE, TIM_CHANNEL_2, 0);
     __HAL_TIM_SET_COMPARE(PWM_TIMER_HANDLE, TIM_CHANNEL_3, 0);
     __HAL_TIM_SET_COMPARE(PWM_TIMER_HANDLE, TIM_CHANNEL_4, 0);
     
-    // ËùÓĞÉ²³µÍ¨µÀÀ­µÍ£¨´¥·¢É²³µ£©
+    // æ‰€æœ‰åˆ¹è½¦é€šé“æ‹‰ä½ï¼ˆè§¦å‘åˆ¹è½¦ï¼‰
     HAL_GPIO_WritePin(A_Brake_GPIO_Port, A_Brake_Pin, GPIO_PIN_RESET);
     HAL_GPIO_WritePin(B_Brake_GPIO_Port, B_Brake_Pin, GPIO_PIN_RESET);
     HAL_GPIO_WritePin(C_Brake_GPIO_Port, C_Brake_Pin, GPIO_PIN_RESET);
     HAL_GPIO_WritePin(D_Brake_GPIO_Port, D_Brake_Pin, GPIO_PIN_RESET);
     
-    // ËùÓĞµçÔ´Í¨µÀÀ­µÍ£¨ÇĞ¶ÏµçÔ´£©
+    // æ‰€æœ‰ç”µæºé€šé“æ‹‰ä½ï¼ˆåˆ‡æ–­ç”µæºï¼‰
     HAL_GPIO_WritePin(POWER1_GPIO_Port, POWER1_Pin, GPIO_PIN_RESET);
     HAL_GPIO_WritePin(POWER2_GPIO_Port, POWER2_Pin, GPIO_PIN_RESET);
     HAL_GPIO_WritePin(POWER3_GPIO_Port, POWER3_Pin, GPIO_PIN_RESET);
     HAL_GPIO_WritePin(POWER4_GPIO_Port, POWER4_Pin, GPIO_PIN_RESET);
     
-    // ¸üĞÂËùÓĞµç»ú×´Ì¬
+    // æ›´æ–°æ‰€æœ‰ç”µæœºçŠ¶æ€
     motor_A.state = MOTOR_STATE_STOPPED;
     motor_B.state = MOTOR_STATE_STOPPED;
     motor_C.state = MOTOR_STATE_STOPPED;
@@ -284,14 +296,14 @@ void Motor_Emergency_Stop(void)
 
 void Motor_Lock_All(void)
 {
-    Motor_Emergency_Stop();  // µ÷ÓÃÒÑÓĞµÄ½ô¼±Í£Ö¹º¯Êı£¨°üº¬Ëø¶¨±êÖ¾ÉèÖÃ£©
+    Motor_Emergency_Stop();  // è°ƒç”¨å·²æœ‰çš„ç´§æ€¥åœæ­¢å‡½æ•°ï¼ˆåŒ…å«é”å®šæ ‡å¿—è®¾ç½®ï¼‰
 }
 
 void Motor_Unlock_All(void)
 {
-    motor_system_locked = 0;  // Çå³ıËø¶¨±êÖ¾
+    motor_system_locked = 0;  // æ¸…é™¤é”å®šæ ‡å¿—
     
-    // ±£³ÖËùÓĞµç»úÔÚÍ£Ö¹×´Ì¬£¨°²È«Æğ¼û£©
+    // ä¿æŒæ‰€æœ‰ç”µæœºåœ¨åœæ­¢çŠ¶æ€ï¼ˆå®‰å…¨èµ·è§ï¼‰
     Motor_Stop_All();
 }
 

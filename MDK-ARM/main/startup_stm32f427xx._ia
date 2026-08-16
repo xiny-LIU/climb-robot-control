@@ -1,5 +1,0 @@
---cpu Cortex-M4.fp.sp -g --apcs=interwork 
--I.\RTE\_main
--ID:\keil5\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include
---pd "__UVISION_VERSION SETA 542" --pd "STM32F427xx SETA 1" --pd "_RTE_ SETA 1"
---list startup_stm32f427xx.lst --xref -o main\startup_stm32f427xx.o --depend main\startup_stm32f427xx.d "startup_stm32f427xx.s"

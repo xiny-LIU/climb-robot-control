@@ -48,7 +48,10 @@
 #include "usart6.h"
 #include "analysis_data.h" 
 #include "spi4.h"
+//双臂协同控制
 #include "climb_control.h"
+#include "pwm_angle_servo.h"
+#include "m3508_position.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -140,6 +143,12 @@ int main(void)
   BT_Init();
   PS2_Control_Init();
   PID_Init();
+  num_input = 0;
+  cmd_update = 0;
+  M3508_Position_Init();
+  M3508_Position_Enable(0);
+
+  PWM_AngleServo_Init();
 
     // imu
     IMU_USART_Init(&huart6);
@@ -150,6 +159,8 @@ int main(void)
   //unusable
 //  HAL_CAN_Start(&hcan1);
 //  HAL_CAN_ActivateNotification(&hcan1, CAN_IT_RX_FIFO0_MSG_PENDING);
+    
+    
 
   /* USER CODE END 2 */
 
@@ -160,8 +171,26 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    TIM3_Task_Execute();//tim
+    
+//    USART2_PrintMessage();
+//设置pwm电机角度
+    // if (cmd_update && PWM_AngleServo_IsEnabled())
+    // {
+    //     PWM_AngleServo_SetTarget(PWM_ANGLE_LEFT_YAW, num_input);
+    //     cmd_update = 0;
+    // }
 
+  //设置m3508电机目标长度
+    if (cmd_update)
+    {
+        if (M3508_Position_IsEnabled())
+        {
+            M3508_Position_SetTargetLengthBoth((float)num_input, (float)num_input);
+            // M3508_Position_SetTargetLength(M3508_POS_LEFT, (float)num_input);
+        }
+        cmd_update = 0;
+    }
+    TIM3_Task_Execute();//tim
   }
   /* USER CODE END 3 */
 }

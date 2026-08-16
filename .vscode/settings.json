@@ -1,0 +1,36 @@
+{
+    "files.encoding":  "utf8",
+    "files.autoGuessEncoding":  false,
+    "files.eol":  "\r\n",
+    "files.associations":  {
+                               "*.c":  "c",
+                               "*.h":  "c",
+                               "*.ioc":  "ini"
+                           },
+    "C_Cpp.default.cStandard":  "c99",
+    "C_Cpp.default.includePath":  [
+                                      "${workspaceFolder}/Core/Inc",
+                                      "${workspaceFolder}/Drivers/STM32F4xx_HAL_Driver/Inc",
+                                      "${workspaceFolder}/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy",
+                                      "${workspaceFolder}/Drivers/CMSIS/Device/ST/STM32F4xx/Include",
+                                      "${workspaceFolder}/Drivers/CMSIS/Include",
+                                      "${workspaceFolder}/Hardware",
+                                      "${workspaceFolder}/Hardware/bluetooth",
+                                      "${workspaceFolder}/Hardware/buzzer",
+                                      "${workspaceFolder}/Hardware/can",
+                                      "${workspaceFolder}/Hardware/climb",
+                                      "${workspaceFolder}/Hardware/imu",
+                                      "${workspaceFolder}/Hardware/Led",
+                                      "${workspaceFolder}/Hardware/num_command",
+                                      "${workspaceFolder}/Hardware/PS2",
+                                      "${workspaceFolder}/Hardware/pwm_motor",
+                                      "${workspaceFolder}/Hardware/spi4",
+                                      "${workspaceFolder}/Hardware/user_tim",
+                                      "${workspaceFolder}/Hardware/user_usart"
+                                  ],
+    "C_Cpp.default.defines":  [
+                                  "USE_HAL_DRIVER",
+                                  "STM32F427xx"
+                            ],
+                            "cmake.sourceDirectory": "F:/control_progaram/a_climb/Drivers/CMSIS/NN"
+}

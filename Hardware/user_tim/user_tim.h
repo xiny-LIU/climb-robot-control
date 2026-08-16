@@ -3,25 +3,25 @@
 
 #include "stdint.h"
 
-// TIM3¹ÜÀí½á¹¹Ìå
+// TIM3ç®¡ç†ç»“æ„ä½“
 typedef struct {
-    volatile uint8_t flag_5ms;      // Ã¿5msÖÃ1
-    volatile uint16_t counter_25ms; // 25ms·ÖÆµ¼ÆÊıÆ÷
-    volatile uint32_t tick_count;   // ÀÛ¼ÆÊ±¼ä´Á£¨ÓÃÓÚÏû¶¶£©
+    volatile uint8_t flag_5ms;      // æ¯5msç½®1
+    volatile uint16_t counter_25ms; // 25msåˆ†é¢‘è®¡æ•°å™¨
+    volatile uint32_t tick_count;   // ç´¯è®¡æ—¶é—´æˆ³ï¼ˆç”¨äºæ¶ˆæŠ–ï¼‰
     
-    // IMUÈÎÎñÏà¹Ø (5ms)
+    // IMUä»»åŠ¡ç›¸å…³ (5ms)
     volatile uint8_t flag_imu;      
     volatile uint8_t imu_busy;      
     
-    // ±àÂëÆ÷ÈÎÎñÏà¹Ø (5ms)
+    // ç¼–ç å™¨ä»»åŠ¡ç›¸å…³ (5ms)
     volatile uint8_t flag_encoder;  
     volatile uint8_t encoder_busy;  
     
-    // ĞÂÔö£ºPS2Ò£¿ØÆ÷ÈÎÎñÏà¹Ø (25ms)
+    // æ–°å¢ï¼šPS2é¥æ§å™¨ä»»åŠ¡ç›¸å…³ (25ms)
     volatile uint8_t flag_ps2;      
     volatile uint8_t ps2_busy;      
 
-    // 1Ãë´òÓ¡·ÖÆµ (500ms)
+    // 1ç§’æ‰“å°åˆ†é¢‘ (500ms)
     volatile uint16_t counter_500ms;   
     volatile uint8_t flag_500ms;       
     volatile uint8_t print_busy;    
@@ -30,7 +30,7 @@ typedef struct {
 
 extern TIM3_Manager_t tim3_mgr;
 
-// º¯ÊıÉùÃ÷
+// å‡½æ•°å£°æ˜
 void TIM3_PeriodElapsed_Handler(void);
 extern void IMU_Process_Task(void);
 void TIM3_Task_Execute(void);

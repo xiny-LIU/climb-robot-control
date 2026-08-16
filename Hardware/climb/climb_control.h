@@ -3,66 +3,140 @@
 
 #include "stdint.h"
 
-/* ÎïÀí³£Á¿¶¨Òå */
-#define WHEEL_RADIUS        162.76f    // ³µÂÖ°ë¾¶ R (mm)
-#define BODY_L_W            270.0f   // ºáÏò°²×°¾à Lw (mm)
-#define SAFE_HEIGHT         60.0f    // ¼ç¹Ø½ÚÀëÇ½°²È«¾àÀë H_safe (mm)
-#define PULLEY_RADIUS       19.0f    // Ä¦²ÁÂÖ°ë¾¶ (38mmÖ±¾¶/2)
-#define EXT_GEAR_RATIO      36.0f    // ÉìËõµç»ú¼õËÙ±È
+/* ç‰©ç†å¸¸é‡ï¼Œé™¤ç‰¹åˆ«è¯´æ˜å¤–å•ä½å‡ä¸º mmã€‚ */
+#define WHEEL_RADIUS        162.76f
+#define BODY_L_W            270.0f
+#define SAFE_HEIGHT         60.0f
+#define PULLEY_RADIUS       19.0f
+#define EXT_GEAR_RATIO      36.0f
 
-/* ÎïÀí³£Á¿¸üĞÂ */
-#define D3_MIN_LENGTH       550.0f   // ÉìËõ¸Ë×îĞ¡³¤¶È (mm)
-#define D3_MAX_LENGTH       2000.0f   // ¡¾ĞÂÔö¡¿ÉìËõ¸Ë×î´ó³¤¶È (mm) Ğè¸ù¾İÄãµÄ¹Ü³¤Éè¶¨
+/*
+ * å…¼å®¹æ—§ä»£ç ä¿ç•™çš„é™ä½å®ã€‚
+ * climb_control ä¸å†æŠŠè¿™äº›å®ä½œä¸ºæœ€ç»ˆä¿æŠ¤æºï¼ŒçœŸå®è½¯é™ä½ä»¥é—­ç¯æ¨¡å—ä¸ºå‡†ã€‚
+ */
+#define D3_MIN_LENGTH       550.0f
+#define D3_MAX_LENGTH       2000.0f
+#define YAW_MIN             -6.0f
+#define YAW_MAX             22.0f
+#define PITCH_MIN           -8.0f
+#define PITCH_MAX           30.0f
 
-/* ¹Ø½Ú½Ç¶ÈÈíÏŞÎ» (¶È) */
-#define YAW_MIN             -6.0f    // Æ«º½½Ç¼«Ğ¡Öµ
-#define YAW_MAX             22.0f    // Æ«º½½Ç¼«´óÖµ
-#define PITCH_MIN           -8.0f    // ¸©Ñö½Ç¼«Ğ¡Öµ
-#define PITCH_MAX           30.0f    // ¸©Ñö½Ç¼«´óÖµ
-
-/* ÅÊÅÀ×´Ì¬Ã¶¾Ù */
 typedef enum {
-    CLIMB_IDLE = 0,             // ´ı»ú
-    CLIMB_INIT_POSITION,        // ³õÊ¼Î»×ËÈ·Á¢
-    CLIMB_PRE_BIAS_TO_RIGHT,    // ÖØĞÄÒÆÏòÓÒ±Û
-    CLIMB_RELEASE_LEFT,         // ÊÍ·Å×ó±Û
-    CLIMB_MOVE_LEFT_ARM,        // ×ó±ÛÇ°ÒÆ
-    CLIMB_GRAB_LEFT,            // ×ó±Û×¥È¡
-    CLIMB_PULL_UP,              // Ë«±ÛÀ­Éı (Ğ­Í¬ÔË¶¯)
-    CLIMB_PRE_BIAS_TO_LEFT,     // ÖØĞÄÒÆÏò×ó±Û
-    CLIMB_RELEASE_RIGHT,        // ÊÍ·ÅÓÒ±Û
-    CLIMB_MOVE_RIGHT_ARM,       // ÓÒ±ÛÇ°ÒÆ
-    CLIMB_GRAB_RIGHT,           // ÓÒ±Û×¥È¡
-    CLIMB_EMERGENCY_STOP        // ½ô¼±Í£Ö¹
+    CLIMB_IDLE = 0,
+    CLIMB_INIT_POSITION,
+    CLIMB_PRE_BIAS_TO_RIGHT,
+    CLIMB_RELEASE_LEFT,
+    CLIMB_MOVE_LEFT_ARM,
+    CLIMB_GRAB_LEFT,
+    CLIMB_PULL_UP,
+    CLIMB_PRE_BIAS_TO_LEFT,
+    CLIMB_RELEASE_RIGHT,
+    CLIMB_MOVE_RIGHT_ARM,
+    CLIMB_GRAB_RIGHT,
+    CLIMB_EMERGENCY_STOP
 } Climb_State_t;
 
-/* ×ø±êµã½á¹¹Ìå */
+typedef enum {
+    CLIMB_SIDE_LEFT = 0,
+    CLIMB_SIDE_RIGHT = 1
+} Climb_Side_t;
+
+typedef enum {
+    CLIMB_IK_OK = 0,
+    CLIMB_IK_UNREACHABLE,
+    CLIMB_IK_LIMITED,
+    CLIMB_IK_SINGULAR
+} Climb_IKStatus_t;
+
 typedef struct {
     float x;
     float y;
     float z;
 } Point3D_t;
 
-/* ¹Ø½Ú½Ç¶È½á¹¹Ìå */
 typedef struct {
-    float theta1;   // Æ«º½ (deg)
-    float theta2;   // ¸©Ñö (deg)
-    float d3;       // Éì³¤ (mm)
+    float theta1;   /* åèˆªè§’ yawï¼Œå•ä½ deg */
+    float theta2;   /* ä¿¯ä»°è§’ pitchï¼Œå•ä½ deg */
+    float d3;       /* ä¼¸ç¼©é•¿åº¦ï¼Œå•ä½ mm */
 } JointAngle_t;
 
-/* »úÆ÷ÈËÈ«¾Ö×´Ì¬½á¹¹Ìå */
+typedef struct {
+    Point3D_t anchor_w;             /* è¯¥ä¾§çˆªå­é”å®šæ—¶çš„ä¸–ç•Œåæ ‡é”šç‚¹ */
+    uint8_t attached;               /* 1=è¯¥ä¾§çˆªå­å‚ä¸é‡Œç¨‹è®¡é—­é“¾çº¦æŸ */
+    JointAngle_t current_joint;     /* ä»é—­ç¯/ç¼–ç å™¨è¯»å–çš„å½“å‰å…³èŠ‚é‡ */
+    JointAngle_t target_joint;      /* climb_control æœ€è¿‘ä¸€æ¬¡ä¸‹å‘çš„ç›®æ ‡ */
+    Climb_IKStatus_t ik_status;     /* æœ€è¿‘ä¸€æ¬¡ IK æ±‚è§£çŠ¶æ€ï¼Œä¾¿äºè°ƒè¯• */
+} Climb_ArmState_t;
+
 typedef struct {
     Climb_State_t state;
-    Point3D_t body_pos_w;       // »úÉíÔÚÊÀ½ç×ø±êÏµÏÂµÄ×ø±ê (Xb, Yb, R)
-    Point3D_t anchor_left_w;    // ×óÃªµãÊÀ½ç×ø±ê
-    Point3D_t anchor_right_w;   // ÓÒÃªµãÊÀ½ç×ø±ê
-    float target_dist;          // Ä¿±êÅÊÅÀ¾àÀë
-    float current_dist;         // ÒÑÍê³É¾àÀë
+
+    Point3D_t body_pos_w;
+    float roll_deg;
+    float pitch_deg;
+    float yaw_deg;
+
+    Climb_ArmState_t left;
+    Climb_ArmState_t right;
+
+    /* å…¼å®¹æ—§å­—æ®µåï¼Œå®é™…æ•°æ®ä¸ left/right.anchor_w åŒæ­¥ã€‚ */
+    Point3D_t anchor_left_w;
+    Point3D_t anchor_right_w;
+
+    float target_dist;
+    float current_dist;
+    float step_length;
+    float start_body_x;
 } Climb_Robot_t;
 
-/* ¶ÔÍâ½Ó¿Ú */
+extern Climb_Robot_t robot;
+
+/**
+ * @brief åˆå§‹åŒ–æ”€çˆ¬æ§åˆ¶çŠ¶æ€æœºä¸å†…éƒ¨çŠ¶æ€ç¼“å­˜ã€‚
+ * @note åªåˆå§‹åŒ– climb_control è‡ªèº«çŠ¶æ€ï¼Œä¸åˆå§‹åŒ–åº•å±‚é—­ç¯æ¨¡å—ã€‚
+ */
 void Climb_Control_Init(void);
+
+/**
+ * @brief æ”€çˆ¬æ§åˆ¶ 5ms å‘¨æœŸä»»åŠ¡å…¥å£ã€‚
+ * @note å»ºè®®åœ¨ IMU å’Œç¼–ç å™¨æ•°æ®åˆ·æ–°åè°ƒç”¨ï¼›æœ¬å‡½æ•°åªç”Ÿæˆé—­ç¯ç›®æ ‡ã€‚
+ */
 void Climb_Control_Loop_5ms(void);
+
+/**
+ * @brief å¯åŠ¨ä¸€æ¬¡æ”€çˆ¬ä»»åŠ¡ã€‚
+ * @param distance ç›®æ ‡æ”€çˆ¬è·ç¦»ï¼Œå•ä½ mmã€‚
+ */
 void Climb_Start(float distance);
+
+/**
+ * @brief åœæ­¢æ”€çˆ¬ä»»åŠ¡ï¼Œå¹¶åœæ­¢ä¸¤ä¸ªä½ç½®é—­ç¯æ¨¡å—çš„å½“å‰è¾“å‡ºã€‚
+ */
+void Climb_Stop(void);
+
+/**
+ * @brief è·å–å½“å‰æ”€çˆ¬çŠ¶æ€æœºçŠ¶æ€ã€‚
+ * @return å½“å‰ Climb_State_t çŠ¶æ€ã€‚
+ */
+Climb_State_t Climb_GetState(void);
+
+/**
+ * @brief å•è‡‚å±€éƒ¨æ­£è¿åŠ¨å­¦ã€‚
+ * @param joint å•è‡‚å…³èŠ‚é‡ï¼Œtheta1/yawã€theta2/pitch å•ä½ degï¼Œd3 å•ä½ mmã€‚
+ * @param l4 å½“å‰ä¾§æœ«ç«¯ç»“æ„å‚æ•°ï¼Œå•ä½ mmã€‚
+ * @return çˆªç«¯åœ¨è¯¥ä¾§å±€éƒ¨åŸºåº§åæ ‡ç³» {0_s} ä¸‹çš„ä½ç½®ã€‚
+ */
+Point3D_t Kinematics_FK(JointAngle_t joint, float l4);
+
+/**
+ * @brief å•è‡‚å±€éƒ¨é€†è¿åŠ¨å­¦ã€‚
+ * @param p0 çˆªç«¯åœ¨è¯¥ä¾§å±€éƒ¨åŸºåº§åæ ‡ç³» {0_s} ä¸‹çš„ç›®æ ‡ä½ç½®ã€‚
+ * @param side å·¦å³è‡‚ä¾§åˆ«ï¼Œç”¨äºé€‰æ‹© L4 ä¸å·¦å³é™ä½ã€‚
+ * @param out_joint è¾“å‡ºæ±‚è§£å¾—åˆ°çš„å…³èŠ‚ç›®æ ‡ã€‚
+ * @return IK æ±‚è§£çŠ¶æ€ã€‚
+ */
+Climb_IKStatus_t Climb_Kinematics_IK(Point3D_t p0,
+                                      Climb_Side_t side,
+                                      JointAngle_t *out_joint);
 
 #endif

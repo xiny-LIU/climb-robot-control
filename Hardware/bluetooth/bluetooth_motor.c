@@ -4,19 +4,19 @@
 #include "string.h"
 #include "stdio.h"
 
-/* Ë½ÓĞ±äÁ¿ */
+/* ç§æœ‰å˜é‡ */
 static uint32_t last_send_time = 0;
 static uint8_t output_enabled = 1;
-static char tx_buffer[128];  /* ·¢ËÍ»º³åÇø */
+static char tx_buffer[128];  /* å‘é€ç¼“å†²åŒº */
 
 /**
- * @brief  ³õÊ¼»¯À¶ÑÀµç»úÊı¾İÊä³öÄ£¿é
- * @note   »á×Ô¶¯³õÊ¼»¯USART2
+ * @brief  åˆå§‹åŒ–è“ç‰™ç”µæœºæ•°æ®è¾“å‡ºæ¨¡å—
+ * @note   ä¼šè‡ªåŠ¨åˆå§‹åŒ–USART2
  * @retval None
  */
 void BT_Init(void)
 {
-    /* ³õÊ¼»¯USART2£¨À¶ÑÀ´®¿Ú£© */
+    /* åˆå§‹åŒ–USART2ï¼ˆè“ç‰™ä¸²å£ï¼‰ */
     USART2_init();
     
     output_enabled = 1;
@@ -26,8 +26,8 @@ void BT_Init(void)
 }
 
 /**
- * @brief  ¸ñÊ½»¯²¢·¢ËÍµç»úÊı¾İ
- * @note   Ë½ÓĞº¯Êı£¬ÄÚ²¿Ê¹ÓÃ
+ * @brief  æ ¼å¼åŒ–å¹¶å‘é€ç”µæœºæ•°æ®
+ * @note   ç§æœ‰å‡½æ•°ï¼Œå†…éƒ¨ä½¿ç”¨
  * @retval None
  */
 static void SendMotorData(void)
@@ -38,7 +38,7 @@ static void SendMotorData(void)
     if (motor1 == NULL || motor2 == NULL) return;
     
 #if BT_OUTPUT_FORMAT_JSON
-    /* JSON¸ñÊ½Êä³ö£¬±ãÓÚÉÏÎ»»ú½âÎö */
+    /* JSONæ ¼å¼è¾“å‡ºï¼Œä¾¿äºä¸Šä½æœºè§£æ */
     int len = snprintf(tx_buffer, sizeof(tx_buffer), 
         "{\"M1\":{\"A\":%d,\"S\":%d,\"C\":%d},\"M2\":{\"A\":%d,\"S\":%d,\"C\":%d}}\r\n",
         motor1->ecd,
@@ -49,7 +49,7 @@ static void SendMotorData(void)
         motor2->given_current
     );
 #else
-    /* CSV¸ñÊ½Êä³ö£ºM1,½Ç¶È,×ªËÙ,µçÁ÷|M2,½Ç¶È,×ªËÙ,µçÁ÷ */
+    /* CSVæ ¼å¼è¾“å‡ºï¼šM1,è§’åº¦,è½¬é€Ÿ,ç”µæµ|M2,è§’åº¦,è½¬é€Ÿ,ç”µæµ */
     int len = snprintf(tx_buffer, sizeof(tx_buffer), 
         "M1,%d,%d,%d|M2,%d,%d,%d\r\n",
         motor1->ecd,
@@ -61,13 +61,13 @@ static void SendMotorData(void)
     );
 #endif
 
-    /* Í¨¹ıUSART2·¢ËÍ£¨Ê¹ÓÃprintfÖØ¶¨Ïò£© */
+    /* é€šè¿‡USART2å‘é€ï¼ˆä½¿ç”¨printfé‡å®šå‘ï¼‰ */
     printf("%s", tx_buffer);
 }
 
 /**
- * @brief  Ö÷Ñ­»·´¦Àíº¯Êı£¬°´ÖÜÆÚ×Ô¶¯·¢ËÍÊı¾İ
- * @note   ĞèÒª·ÅÔÚÖ÷Ñ­»·ÖĞÑ­»·µ÷ÓÃ
+ * @brief  ä¸»å¾ªç¯å¤„ç†å‡½æ•°ï¼ŒæŒ‰å‘¨æœŸè‡ªåŠ¨å‘é€æ•°æ®
+ * @note   éœ€è¦æ”¾åœ¨ä¸»å¾ªç¯ä¸­å¾ªç¯è°ƒç”¨
  * @retval None
  */
 void BT_Process(void)
@@ -76,7 +76,7 @@ void BT_Process(void)
     
     uint32_t current_time = HAL_GetTick();
     
-    /* ¼ì²éÊÇ·ñµ½´ï·¢ËÍÖÜÆÚ */
+    /* æ£€æŸ¥æ˜¯å¦åˆ°è¾¾å‘é€å‘¨æœŸ */
     if (current_time - last_send_time >= BT_OUTPUT_PERIOD_MS)
     {
         last_send_time = current_time;
@@ -85,7 +85,7 @@ void BT_Process(void)
 }
 
 /**
- * @brief  Á¢¼´·¢ËÍÒ»´Îµ±Ç°µç»úÊı¾İ£¨ÎŞÊÓÖÜÆÚÏŞÖÆ£©
+ * @brief  ç«‹å³å‘é€ä¸€æ¬¡å½“å‰ç”µæœºæ•°æ®ï¼ˆæ— è§†å‘¨æœŸé™åˆ¶ï¼‰
  * @retval None
  */
 void BT_SendData(void)
@@ -94,8 +94,8 @@ void BT_SendData(void)
 }
 
 /**
- * @brief  ÉèÖÃÊı¾İÊä³öÊ¹ÄÜ×´Ì¬
- * @param  enable: 1-Ê¹ÄÜÊä³ö, 0-½ûÓÃÊä³ö
+ * @brief  è®¾ç½®æ•°æ®è¾“å‡ºä½¿èƒ½çŠ¶æ€
+ * @param  enable: 1-ä½¿èƒ½è¾“å‡º, 0-ç¦ç”¨è¾“å‡º
  * @retval None
  */
 void BT_SetOutputEnable(uint8_t enable)

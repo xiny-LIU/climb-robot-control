@@ -10,12 +10,17 @@
 *.lst
 *.hex
 *.axf
+*.log
+*.log.lock
+*.__i
+*._ia
 *.uvguix.*
 *.uvoptx
 *.uvprojx
 Objects/
 Listings/
 DebugConfig/
+MDK-ARM/main/
 *.Administrator
 *.bak
 

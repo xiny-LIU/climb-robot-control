@@ -3,14 +3,14 @@
 
 #include "stdint.h"
 
-// 初始化PS2控制系统
+// 鍒濆鍖朠S2鎺у埗绯荤粺
 void PS2_Control_Init(void);
 
-// 主处理循环（在main的while中调用）
+// 涓诲鐞嗗惊鐜紙鍦╩ain鐨剋hile涓皟鐢級
 void PS2_Control_Process(void);
 void PS2_Control_TIM3_Callback(void);
-// 新增：获取当前PS2模式
+// 鏂板锛氳幏鍙栧綋鍓峆S2妯″紡
 uint8_t PS2_GetCurrentMode(void);
-extern uint8_t print_mode;
+//extern uint8_t print_mode;
 #endif
 

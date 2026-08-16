@@ -4,20 +4,20 @@
 #include "stm32f4xx_hal.h"
 #include "stdio.h"
 
-/* ÅäÖÃÑ¡Ïî */
-#define BT_OUTPUT_PERIOD_MS     100     /* Êý¾ÝÊä³öÖÜÆÚ(ms)£¬Ä¬ÈÏ100ms */
-#define BT_OUTPUT_FORMAT_JSON   0       /* ÉèÖÃÎª1Êä³öJSON¸ñÊ½£¬0Êä³öCSV¸ñÊ½ */
+/* é…ç½®é€‰é¡¹ */
+#define BT_OUTPUT_PERIOD_MS     100     /* æ•°æ®è¾“å‡ºå‘¨æœŸ(ms)ï¼Œé»˜è®¤100ms */
+#define BT_OUTPUT_FORMAT_JSON   0       /* è®¾ç½®ä¸º1è¾“å‡ºJSONæ ¼å¼ï¼Œ0è¾“å‡ºCSVæ ¼å¼ */
 
-/* ³õÊ¼»¯º¯Êý */
+/* åˆå§‹åŒ–å‡½æ•° */
 void BT_Init(void);
 
-/* Êý¾ÝÊä³öº¯Êý - ÐèÒªÔÚÖ÷Ñ­»·ÖÐÖÜÆÚÐÔµ÷ÓÃ */
+/* æ•°æ®è¾“å‡ºå‡½æ•° - éœ€è¦åœ¨ä¸»å¾ªçŽ¯ä¸­å‘¨æœŸæ€§è°ƒç”¨ */
 void BT_Process(void);
 
-/* Á¢¼´·¢ËÍÒ»´Îµç»úÊý¾Ý */
+/* ç«‹å³å‘é€ä¸€æ¬¡ç”µæœºæ•°æ® */
 void BT_SendData(void);
 
-/* ÉèÖÃÊä³öÊ¹ÄÜ/½ûÓÃ */
+/* è®¾ç½®è¾“å‡ºä½¿èƒ½/ç¦ç”¨ */
 void BT_SetOutputEnable(uint8_t enable);
 
 #endif /* _BLUETOOTH_MOTOR_H */

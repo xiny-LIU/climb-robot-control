@@ -6,24 +6,27 @@
 #include <stdio.h>
 #include "usart6.h"
 #include "spi4.h"
+#include "pwm_angle_servo.h"
+#include "m3508_position.h"
 
 #include "ps2_control.h"
 #include "ps2.h"
-/* Èç¹ûÊ¹ÓÃos,Ôò°üÀ¨ÏÂÃæµÄÍ·ÎÄ¼ş¼´¿É */
+
+/* å¦‚æœä½¿ç”¨os,åˆ™åŒ…æ‹¬ä¸‹é¢çš„å¤´æ–‡ä»¶å³å¯ */
 #if SYS_SUPPORT_OS
-#include "os.h"                               /* os Ê¹ÓÃ */
+#include "os.h"                               /* os ä½¿ç”¨ */
 #endif
 
 /******************************************************************************************/
-/* ¼ÓÈëÒÔÏÂ´úÂë, Ö§³Öprintfº¯Êı, ¶ø²»ĞèÒªÑ¡Ôñuse MicroLIB */
+/* åŠ å…¥ä»¥ä¸‹ä»£ç , æ”¯æŒprintfå‡½æ•°, è€Œä¸éœ€è¦é€‰æ‹©use MicroLIB */
 
 #if 1
-#if (__ARMCC_VERSION >= 6010050)                    /* Ê¹ÓÃAC6±àÒëÆ÷Ê± */
-__asm(".global __use_no_semihosting\n\t");          /* ÉùÃ÷²»Ê¹ÓÃ°ëÖ÷»úÄ£Ê½ */
-__asm(".global __ARM_use_no_argv \n\t");            /* AC6ÏÂĞèÒªÉùÃ÷mainº¯ÊıÎªÎŞ²ÎÊı¸ñÊ½£¬·ñÔò²¿·ÖÀı³Ì¿ÉÄÜ³öÏÖ°ëÖ÷»úÄ£Ê½ */
+#if (__ARMCC_VERSION >= 6010050)                    /* ä½¿ç”¨AC6ç¼–è¯‘å™¨æ—¶ */
+__asm(".global __use_no_semihosting\n\t");          /* å£°æ˜ä¸ä½¿ç”¨åŠä¸»æœºæ¨¡å¼ */
+__asm(".global __ARM_use_no_argv \n\t");            /* AC6ä¸‹éœ€è¦å£°æ˜mainå‡½æ•°ä¸ºæ— å‚æ•°æ ¼å¼ï¼Œå¦åˆ™éƒ¨åˆ†ä¾‹ç¨‹å¯èƒ½å‡ºç°åŠä¸»æœºæ¨¡å¼ */
 
 #else
-/* Ê¹ÓÃAC5±àÒëÆ÷Ê±, ÒªÔÚÕâÀï¶¨Òå__FILE ºÍ ²»Ê¹ÓÃ°ëÖ÷»úÄ£Ê½ */
+/* ä½¿ç”¨AC5ç¼–è¯‘å™¨æ—¶, è¦åœ¨è¿™é‡Œå®šä¹‰__FILE å’Œ ä¸ä½¿ç”¨åŠä¸»æœºæ¨¡å¼ */
 #pragma import(__use_no_semihosting)
 
 struct __FILE
@@ -36,14 +39,14 @@ struct __FILE
 
 #endif
 
-/* ²»Ê¹ÓÃ°ëÖ÷»úÄ£Ê½£¬ÖÁÉÙĞèÒªÖØ¶¨Òå_ttywrch\_sys_exit\_sys_command_stringº¯Êı,ÒÔÍ¬Ê±¼æÈİAC6ºÍAC5Ä£Ê½ */
+/* ä¸ä½¿ç”¨åŠä¸»æœºæ¨¡å¼ï¼Œè‡³å°‘éœ€è¦é‡å®šä¹‰_ttywrch\_sys_exit\_sys_command_stringå‡½æ•°,ä»¥åŒæ—¶å…¼å®¹AC6å’ŒAC5æ¨¡å¼ */
 int _ttywrch(int ch)
 {
     ch = ch;
     return ch;
 }
 
-/* ¶¨Òå_sys_exit()ÒÔ±ÜÃâÊ¹ÓÃ°ëÖ÷»úÄ£Ê½ */
+/* å®šä¹‰_sys_exit()ä»¥é¿å…ä½¿ç”¨åŠä¸»æœºæ¨¡å¼ */
 void _sys_exit(int x)
 {
     x = x;
@@ -54,93 +57,93 @@ char *_sys_command_string(char *cmd, int len)
     return NULL;
 }
 
-/* FILE ÔÚ stdio.hÀïÃæ¶¨Òå. */
+/* FILE åœ¨ stdio.hé‡Œé¢å®šä¹‰. */
 FILE __stdout;
 
-/* ÖØ¶¨Òåfputcº¯Êı, printfº¯Êı×îÖÕ»áÍ¨¹ıµ÷ÓÃfputcÊä³ö×Ö·û´®µ½´®¿Ú */
+/* é‡å®šä¹‰fputcå‡½æ•°, printfå‡½æ•°æœ€ç»ˆä¼šé€šè¿‡è°ƒç”¨fputcè¾“å‡ºå­—ç¬¦ä¸²åˆ°ä¸²å£ */
 int fputc(int ch, FILE *f)
 {
-    while ((USART2->SR & 0X40) == 0);               /* µÈ´ıÉÏÒ»¸ö×Ö·û·¢ËÍÍê³É */
+    while ((USART2->SR & 0X40) == 0);               /* ç­‰å¾…ä¸Šä¸€ä¸ªå­—ç¬¦å‘é€å®Œæˆ */
 
-    USART2->DR = (uint8_t)ch;                       /* ½«Òª·¢ËÍµÄ×Ö·û ch Ğ´Èëµ½DR¼Ä´æÆ÷ */
+    USART2->DR = (uint8_t)ch;                       /* å°†è¦å‘é€çš„å­—ç¬¦ ch å†™å…¥åˆ°DRå¯„å­˜å™¨ */
     return ch;
 }
 #endif
 /***********************************************END*******************************************/
-#if USART_EN_RX                                     /* Èç¹ûÊ¹ÄÜÁË½ÓÊÕ */
+#if USART_EN_RX                                     /* å¦‚æœä½¿èƒ½äº†æ¥æ”¶ */
 
-/* ½ÓÊÕ»º³å, ×î´óUSART_REC_LEN¸ö×Ö½Ú. */
+/* æ¥æ”¶ç¼“å†², æœ€å¤§USART_REC_LENä¸ªå­—èŠ‚. */
 uint8_t g_usart_rx_buf[USART_REC_LEN];
 
-/*  ½ÓÊÕ×´Ì¬
- *  bit15£¬      ½ÓÊÕÍê³É±êÖ¾
- *  bit14£¬      ½ÓÊÕµ½0x0d
- *  bit13~0£¬    ½ÓÊÕµ½µÄÓĞĞ§×Ö½ÚÊıÄ¿
+/*  æ¥æ”¶çŠ¶æ€
+ *  bit15ï¼Œ      æ¥æ”¶å®Œæˆæ ‡å¿—
+ *  bit14ï¼Œ      æ¥æ”¶åˆ°0x0d
+ *  bit13~0ï¼Œ    æ¥æ”¶åˆ°çš„æœ‰æ•ˆå­—èŠ‚æ•°ç›®
 */
 uint16_t g_usart_rx_sta = 0;
 
-uint8_t g_rx_buffer[RXBUFFERSIZE];    /* HAL¿âÊ¹ÓÃµÄ´®¿Ú½ÓÊÕ»º³å */
+uint8_t g_rx_buffer[RXBUFFERSIZE];    /* HALåº“ä½¿ç”¨çš„ä¸²å£æ¥æ”¶ç¼“å†² */
 
-//UART_HandleTypeDef huart2;    /* UART¾ä±ú */
+//UART_HandleTypeDef huart2;    /* UARTå¥æŸ„ */
 
 /**
- * @brief       ´®¿ÚXÖĞ¶Ï·şÎñº¯Êı
- * @param       ÎŞ
- * @retval      ÎŞ
+ * @brief       ä¸²å£Xä¸­æ–­æœåŠ¡å‡½æ•°
+ * @param       æ— 
+ * @retval      æ— 
  */
-/*stm_itÎÄ¼şÀïÓĞ*/
+/*stm_itæ–‡ä»¶é‡Œæœ‰*/
 //void USART_UX_IRQHandler(void)
 //{ 
-//#if SYS_SUPPORT_OS                              /* Ê¹ÓÃOS */
+//#if SYS_SUPPORT_OS                              /* ä½¿ç”¨OS */
 //    OSIntEnter();    
 //#endif
 
-//    HAL_UART_IRQHandler(&huart2);       /* µ÷ÓÃHAL¿âÖĞ¶Ï´¦Àí¹«ÓÃº¯Êı */
+//    HAL_UART_IRQHandler(&huart2);       /* è°ƒç”¨HALåº“ä¸­æ–­å¤„ç†å…¬ç”¨å‡½æ•° */
 
-//#if SYS_SUPPORT_OS                              /* Ê¹ÓÃOS */
+//#if SYS_SUPPORT_OS                              /* ä½¿ç”¨OS */
 //    OSIntExit();
 //#endif
 //}
 
 
 ///**
-// * @brief       ´®¿ÚX³õÊ¼»¯º¯Êı
-// * @param       baudrate: ²¨ÌØÂÊ, ¸ù¾İ×Ô¼ºĞèÒªÉèÖÃ²¨ÌØÂÊÖµ
-// * @retval      ÎŞ
+// * @brief       ä¸²å£Xåˆå§‹åŒ–å‡½æ•°
+// * @param       baudrate: æ³¢ç‰¹ç‡, æ ¹æ®è‡ªå·±éœ€è¦è®¾ç½®æ³¢ç‰¹ç‡å€¼
+// * @retval      æ— 
 // */
 //void usart_init(uint32_t baudrate)
 void USART2_init(void)
 {
     
-//    /* ¸Ãº¯Êı»á¿ªÆô½ÓÊÕÖĞ¶Ï£º±êÖ¾Î»UART_IT_RXNE£¬²¢ÇÒÉèÖÃ½ÓÊÕ»º³åÒÔ¼°½ÓÊÕ»º³å½ÓÊÕ×î´óÊı¾İÁ¿ */
+//    /* è¯¥å‡½æ•°ä¼šå¼€å¯æ¥æ”¶ä¸­æ–­ï¼šæ ‡å¿—ä½UART_IT_RXNEï¼Œå¹¶ä¸”è®¾ç½®æ¥æ”¶ç¼“å†²ä»¥åŠæ¥æ”¶ç¼“å†²æ¥æ”¶æœ€å¤§æ•°æ®é‡ */
     HAL_UART_Receive_IT(&huart2, (uint8_t *)g_rx_buffer, RXBUFFERSIZE);
 }
 
 
 /**
- * @brief       Rx´«Êä»Øµ÷º¯Êı
- * @param       huart: UART¾ä±úÀàĞÍÖ¸Õë
- * @retval      ÎŞ
+ * @brief       Rxä¼ è¾“å›è°ƒå‡½æ•°
+ * @param       huart: UARTå¥æŸ„ç±»å‹æŒ‡é’ˆ
+ * @retval      æ— 
  */
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
     
-    if (huart->Instance == USART2)            /* Èç¹ûÊÇ´®¿Ú2 */
+    if (huart->Instance == USART2)            /* å¦‚æœæ˜¯ä¸²å£2 */
     {   
-        if ((g_usart_rx_sta & 0x8000) == 0)     /* ½ÓÊÕÎ´Íê³É */
+        if ((g_usart_rx_sta & 0x8000) == 0)     /* æ¥æ”¶æœªå®Œæˆ */
         {
-            if (g_usart_rx_sta & 0x4000)        /* ½ÓÊÕµ½ÁË0x0d */
+            if (g_usart_rx_sta & 0x4000)        /* æ¥æ”¶åˆ°äº†0x0d */
             {
-                if (g_rx_buffer[0] != 0x0a)      /* Ã»½ÓÊÕµ½0x0a */
+                if (g_rx_buffer[0] != 0x0a)      /* æ²¡æ¥æ”¶åˆ°0x0a */
                 {
-                    g_usart_rx_sta = 0;         /* ½ÓÊÕ´íÎó,ÖØĞÂ¿ªÊ¼ */
+                    g_usart_rx_sta = 0;         /* æ¥æ”¶é”™è¯¯,é‡æ–°å¼€å§‹ */
                 }
                 else 
                 {
-                    g_usart_rx_sta |= 0x8000;   /* ½ÓÊÕÍê³ÉÁË */
+                    g_usart_rx_sta |= 0x8000;   /* æ¥æ”¶å®Œæˆäº† */
                 }
             }
-            else                                /* »¹Ã»ÊÕµ½0X0D */
+            else                                /* è¿˜æ²¡æ”¶åˆ°0X0D */
             {
                 if (g_rx_buffer[0] == 0x0d)
                 {
@@ -152,11 +155,14 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
                     g_usart_rx_sta++;
                     if (g_usart_rx_sta > (USART_REC_LEN - 1))
                     {
-                        g_usart_rx_sta = 0;     /* ½ÓÊÕÊı¾İ´íÎó,ÖØĞÂ¿ªÊ¼½ÓÊÕ */
+                        g_usart_rx_sta = 0;     /* æ¥æ”¶æ•°æ®é”™è¯¯,é‡æ–°å¼€å§‹æ¥æ”¶ */
                     }
                 }
             }
         }
+//        // ã€é˜²æŒ‚æ­»ä¼˜åŒ–ã€‘ï¼šåœ¨é‡æ–°å¼€å¯ä¸­æ–­å‰ï¼Œå¼ºåˆ¶æ¸…é™¤å¯èƒ½å­˜åœ¨çš„æº¢å‡ºé”™è¯¯æ ‡å¿—(ORE)
+//        __HAL_UART_CLEAR_OREFLAG(huart);
+        
         HAL_UART_Receive_IT(&huart2, (uint8_t *)g_rx_buffer, RXBUFFERSIZE);
     }
     else if (huart->Instance == USART6)
@@ -164,20 +170,20 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
         IMU_DMA_RxCpltHandler(huart);
     }
 }
-///* --------------- ´òÓ¡½ÓÊÕµ½µÄÖ¸Áî£¨µ÷ÊÔÓÃ£© --------------- */
+///* --------------- æ‰“å°æ¥æ”¶åˆ°çš„æŒ‡ä»¤ï¼ˆè°ƒè¯•ç”¨ï¼‰ --------------- */
 //uint8_t len;
 //uint16_t times = 0;
 //void USART2_PrintMessage(void)
 //{
 
-// if (g_usart_rx_sta & 0x8000)                                                    /* ½ÓÊÕµ½ÁËÊı¾İ? */
+// if (g_usart_rx_sta & 0x8000)                                                    /* æ¥æ”¶åˆ°äº†æ•°æ®? */
 //    {
-//        len = g_usart_rx_sta & 0x3fff;                                              /* µÃµ½´Ë´Î½ÓÊÕµ½µÄÊı¾İ³¤¶È */
-//        printf("\r\nÄú·¢ËÍµÄÏûÏ¢Îª:\r\n");
+//        len = g_usart_rx_sta & 0x3fff;                                              /* å¾—åˆ°æ­¤æ¬¡æ¥æ”¶åˆ°çš„æ•°æ®é•¿åº¦ */
+//        printf("\r\næ‚¨å‘é€çš„æ¶ˆæ¯ä¸º:\r\n");
 
-//        HAL_UART_Transmit(&huart2, (uint8_t *)g_usart_rx_buf, len, 1000);   /* ·¢ËÍ½ÓÊÕµ½µÄÊı¾İ */
-//        while(__HAL_UART_GET_FLAG(&huart2, UART_FLAG_TC) != SET);           /* µÈ´ı·¢ËÍ½áÊø */
-//        printf("\r\n\r\n");                                                         /* ²åÈë»»ĞĞ */
+//        HAL_UART_Transmit(&huart2, (uint8_t *)g_usart_rx_buf, len, 1000);   /* å‘é€æ¥æ”¶åˆ°çš„æ•°æ® */
+//        while(__HAL_UART_GET_FLAG(&huart2, UART_FLAG_TC) != SET);           /* ç­‰å¾…å‘é€ç»“æŸ */
+//        printf("\r\n\r\n");                                                         /* æ’å…¥æ¢è¡Œ */
 //        g_usart_rx_sta = 0;
 //    }
 //    else
@@ -186,77 +192,326 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 
 //        if (times % 50000 == 0)
 //        {
-//            printf("\r\n´®¿Úµ÷ÊÔ\r\n");
+//            printf("\r\nä¸²å£è°ƒè¯•\r\n");
 //        }
 
 //        if (times % 2000 == 0) 
 //        {
-//            printf("ÇëÊäÈëÊı¾İ,ÒÔ»Ø³µ¼ü½áÊø\r\n");
+//            printf("è¯·è¾“å…¥æ•°æ®,ä»¥å›è½¦é”®ç»“æŸ\r\n");
 //        }
 
 //        if (times % 300  == 0)
 //        {
-////            LED0_TOGGLE();                                         /* ÉÁË¸LED,ÌáÊ¾ÏµÍ³ÕıÔÚÔËĞĞ */
-//            printf("ÏµÍ³ÕıÔÚÔËĞĞ\r\n");
+////            LED0_TOGGLE();                                         /* é—ªçƒLED,æç¤ºç³»ç»Ÿæ­£åœ¨è¿è¡Œ */
+//            printf("ç³»ç»Ÿæ­£åœ¨è¿è¡Œ\r\n");
 //        }
 
 //        HAL_Delay(10);
 //    }
 //}
 
-
-
 /**
- * @brief  ´òÓ¡ÈÎÎñ - Ä¬ÈÏ´òÓ¡M3508Êı¾İ£¬°´ÏÂPSB_PINKºóÇĞ»»´òÓ¡×ËÌ¬Êı¾İ
+ * @brief       ä¸²å£å‘½ä»¤è§£æå™¨ï¼ˆåŸºäºé«˜é²æ£’æ€§æ•°å€¼è½¬æ¢é€»è¾‘ï¼‰
+ * @note        åœ¨ mainå¾ªç¯ å†…éƒ¨è°ƒç”¨ï¼Œè‡ªåŠ¨å¤„ç†æ¥è‡ªä¸²å£åŠ©æ‰‹çš„æŒ‡ä»¤åˆ‡æ¢
+ */
+int32_t num_input = 0;
+int cmd_update = 0;
+void USART2_ProcessCommand(void)
+{
+    uint8_t i;
+    uint8_t len;
+    int32_t value = 0;
+    uint8_t valid_digits = 0;
+    uint8_t parse_index = 0;
+    uint8_t is_print_cmd = 0;
+    int8_t sign = 1;
+    
+    // ã€é˜²æŒ‚æ­»æœºåˆ¶ã€‘é«˜é¢‘æ‰“å°å®¹æ˜“è§¦å‘ ORE é”™è¯¯å¯¼è‡´ä¸­æ–­å…³é—­ï¼Œåœ¨è¿™é‡Œå¼ºåˆ¶å®šæœŸæ¸…é™¤
+    __HAL_UART_CLEAR_OREFLAG(&huart2);
+    
+    // 1. æ£€æŸ¥æ˜¯å¦æ¥æ”¶å®Œæˆï¼ˆæœ€é«˜ä½ä¸º1è¡¨ç¤ºæ¥æ”¶åˆ°äº†å®Œæ•´çš„ \r\nï¼‰
+    // å¦‚æœæ²¡æœ‰æ¥æ”¶å®Œï¼Œç›´æ¥é»˜é»˜è¿”å›ï¼Œç»å¯¹ä¸è¦åœ¨è¿™é‡Œæ‰“å°ä»»ä½•ä¸œè¥¿ï¼Œå¦åˆ™ä¼šå†²åˆ·å±å¹•
+    if ((g_usart_rx_sta & 0x8000) == 0)  
+    {
+        return;  // æœªæ¥æ”¶åˆ°å®Œæ•´æ•°æ®ï¼Œç›´æ¥è¿”å›
+    }
+    
+//    // ===== èƒ½èµ°åˆ°è¿™é‡Œï¼Œè¯´æ˜ä¸²å£ã€çœŸæ­£ã€å®Œæ•´ã€‘åœ°æ”¶åˆ°äº†ä¸€åŒ…å¸¦å›è½¦çš„æ•°æ® =====
+//    printf("[DEBUG] ä¸²å£æ¥æ”¶è§¦å‘ï¼å½“å‰æ¥æ”¶å¯„å­˜å™¨çŠ¶æ€ç  sta: 0x%04X\r\n", g_usart_rx_sta);
+    
+    // 2. è·å–æ¥æ”¶åˆ°çš„æœ‰æ•ˆæ•°æ®é•¿åº¦
+    len = g_usart_rx_sta & 0x3FFF;  
+    
+    // 3. æ£€æŸ¥æ•°æ®é•¿åº¦æ˜¯å¦åˆç†
+    if (len == 0 || len >= USART_REC_LEN)
+    {
+        g_usart_rx_sta = 0;  // çŠ¶æ€é”™è¯¯ï¼Œæ¸…ç©ºæ¥æ”¶æ ‡å¿—
+//        printf("[ERROR] æ¥æ”¶é•¿åº¦é”™è¯¯ï¼Œlen = %d\r\n", len);
+        return;  
+    }
+
+    if (g_usart_rx_buf[0] == 'c' || g_usart_rx_buf[0] == 'C')
+    {
+        is_print_cmd = 1;
+        parse_index = 1;
+    }
+    else if (g_usart_rx_buf[0] == '-' || g_usart_rx_buf[0] == '+')
+    {
+        sign = (g_usart_rx_buf[0] == '-') ? -1 : 1;
+        parse_index = 1;
+    }
+    
+    // 4. éå†æ¥æ”¶åˆ°çš„æ•°æ®ï¼Œè½¬æ¢ä¸ºæ•°å­—
+    for (i = parse_index; i < len; i++)
+    {
+        /* åªå¤„ç†æ•°å­—å­—ç¬¦ */
+        if (g_usart_rx_buf[i] >= '0' && g_usart_rx_buf[i] <= '9')
+        {
+            value = value * 10 + (g_usart_rx_buf[i] - '0');
+            valid_digits++;
+            
+            /* å®‰å…¨é™åˆ¶ï¼šé˜²æ­¢æ•°å€¼æº¢å‡º */
+            if ((!is_print_cmd && value > 2500) ||
+                (is_print_cmd && value > 4))
+            {
+                g_usart_rx_sta = 0;
+//                printf("\r\n[ERROR] æ¨¡å¼æ•°å­—è¿‡å¤§ï¼\r\n\r\n");
+                return;  
+            }
+        }
+        /* å¦‚æœé‡åˆ°å›è½¦æ¢è¡Œï¼Œæå‰ç»“æŸè§£æ */
+        else if (g_usart_rx_buf[i] == 0x0D || g_usart_rx_buf[i] == 0x0A)
+        {
+            break;
+        }
+        /* å…¶ä»–éæ³•å­—ç¬¦ï¼ˆå¦‚å­—æ¯ã€ç©ºæ ¼ç­‰ï¼‰ */
+        else
+        {
+            g_usart_rx_sta = 0;
+//            printf("\r\n[ERROR] åŒ…å«éæ³•å­—ç¬¦ '%c'ï¼\r\n\r\n", g_usart_rx_buf[i]);
+            return;  
+        }
+    }
+    
+    // 5. æ£€æŸ¥æ˜¯å¦è‡³å°‘æœ‰ä¸€ä¸ªæœ‰æ•ˆæ•°å­—
+    if (valid_digits == 0)
+    {
+        g_usart_rx_sta = 0;
+//        printf("[WARNING] æœªè¯†åˆ«åˆ°ä»»ä½•æœ‰æ•ˆæ•°å­—\r\n");
+        return;  
+    }
+
+    if (is_print_cmd)
+    {
+        if (value >= 1 && value <= 4)
+        {
+            print_mode = (uint8_t)value;
+            printf("[PRINT_MODE:%d]\r\n", print_mode);
+        }
+        g_usart_rx_sta = 0;
+        return;
+    }
+    
+    value *= sign;
+    
+//    // 6. æˆåŠŸè§£æï¼Œæ ¹æ®æ•°å€¼æ‰§è¡Œæ¨¡å¼åˆ‡æ¢
+//    if (value >= 1 && value <= 3)
+//    {
+//        print_mode = (uint8_t)value; // æ”¹å˜å…¨å±€æ‰“å°æ¨¡å¼
+//        printf("\r\n>>> [SYS] æˆåŠŸåˆ‡æ¢è‡³æ‰“å°æ¨¡å¼ [%d] <<<\r\n\r\n", print_mode);
+//    }
+//    else
+//    {
+//        printf("\r\n[WARNING] æ¨¡å¼ %d ä¸å­˜åœ¨ï¼è¯·è¾“å…¥ 1, 2 æˆ– 3\r\n\r\n", value);
+//    }
+    
+    // 7. å¿…é¡»æ¸…ç©ºæ¥æ”¶æ ‡å¿—ï¼Œå‡†å¤‡ä¸‹ä¸€æ¬¡æ¥æ”¶
+    num_input = value;
+    cmd_update = 1;
+    printf("[%d]\r\n", (int)num_input);
+    g_usart_rx_sta = 0;  
+}
+
+uint8_t print_mode = 4;
+/**
+ * @brief  å¤šå­ä»»åŠ¡æ‰“å°ç®¡ç†ï¼Œåœ¨ä¸²å£è¾“å…¥æ•°å­—è¿›è¡Œåˆ‡æ¢
  */
 void Print_Task(void)
 {
+
+    // 1. mainä¸­å¾ªç¯è°ƒç”¨USART2_ProcessCommandè§£æä¸²å£æ•°æ®
     
-    // »ñÈ¡IMUÊı¾İÖ¸Õë
+    // 2. è·å–IMUæ•°æ®æŒ‡é’ˆ
     protocol_info_t *imu = IMU_GetOutputInfo();
     
-    // ¸ù¾İÄ£Ê½Ö´ĞĞ²»Í¬µÄ´òÓ¡
-    if (print_mode == 1)
+    // 3. æ ¹æ®å½“å‰ print_mode é€‰æ‹©å¯¹åº”çš„æ‰“å°å­ä»»åŠ¡
+    switch (print_mode)
     {
-        /* --------------- ´òÓ¡×ËÌ¬Êı¾İ --------------- */ 
-        printf("=== IMU Data (0.5s) ===\r\n");
-        printf("Euler: Roll: %.2f, Pitch: %.2f, Yaw: %.2f\r\n", 
-               imu->roll, imu->pitch, imu->yaw);//×ËÌ¬ 
-        printf("Acc: %.3f, %.3f, %.3f\r\n", 
-               imu->accel_x, imu->accel_y, imu->accel_z);//¼ÓËÙ¶È
-        printf("Angle: %.2f, %.2f, %.2f\r\n", 
-               imu->angle_x, imu->angle_y, imu->angle_z);//½ÇËÙ¶È
+        case 1:
+        {
+            /* --------------- å­ä»»åŠ¡ 1ï¼šæ‰“å°å§¿æ€ä¸åŠ é€Ÿåº¦æ•°æ® --------------- */ 
+            printf("=== IMU Data (0.5s) ===\r\n");
+            printf("Euler: Roll: %.2f, Pitch: %.2f, Yaw: %.2f\r\n", 
+                   imu->roll, imu->pitch, imu->yaw); // å§¿æ€ 
+            printf("Acc: %.3f, %.3f, %.3f\r\n", 
+                   imu->accel_x, imu->accel_y, imu->accel_z); // åŠ é€Ÿåº¦
+            printf("Angle: %.2f, %.2f, %.2f\r\n", 
+                   imu->angle_x, imu->angle_y, imu->angle_z); // è§’é€Ÿåº¦
+            break;
+        }
         
-        printf("ENC: %.1f | %.1f | %.1f | %.1f\r\n", 
-                encoder_data[ENC_1].degree, 
-                encoder_data[ENC_2].degree, 
-                encoder_data[ENC_3].degree, 
-                encoder_data[ENC_4].degree);
-    }
-    else
-    {
-        int32_t turn0 = Encoder_Get_Turn_Count(0);
-        int32_t turn1 = - Encoder_Get_Turn_Count(1);
-        int32_t speed_rpm0 = motor_chassis[0].speed_rpm/36;
-        int32_t speed_rpm1 = motor_chassis[1].speed_rpm/36;
-        int32_t current0 = motor_chassis[0].given_current;
-        int32_t current1 = motor_chassis[1].given_current;
-        int32_t temp0 = motor_chassis[0].temperate;
-        int32_t temp1 = motor_chassis[1].temperate;
-        /* --------------- Ä¬ÈÏ£º´òÓ¡M3508ÊµÊ±Êı¾İ --------------- */
-        printf("=== M3508 Motor Data ===\r\n");
-        printf("M1  speed_rpm:%d current:%d turns:%d temp:%d\r\n",
-               speed_rpm0, 
-               current0,
-               turn0,
-               temp0);
-        printf("M2  speed_rpm:%d current:%d turns:%d temp:%d\r\n",
-               speed_rpm1, 
-               current1,
-               turn1,
-               temp1);//ÎÂ¶È´óÓÚ80¶È¹ıÈÈ
+        case 2:
+        {
+            /* --------------- å­ä»»åŠ¡ 2ï¼šé»˜è®¤æ‰“å° M3508 å®æ—¶æ•°æ® --------------- */
+            float ratio = M3508_Position_GetReductionRatio();
+            float output_turn0 =
+                (float)Encoder_Get_Total_Angle(0) / 8192.0f / ratio;
+            float output_turn1 =
+                -(float)Encoder_Get_Total_Angle(1) / 8192.0f / ratio;
+            float turn1 = output_turn1;
+            int32_t speed_rpm0 = motor_chassis[0].speed_rpm / 36;
+            int32_t speed_rpm1 = motor_chassis[1].speed_rpm / 36;
+            int32_t current0 = motor_chassis[0].given_current;
+            int32_t current1 = motor_chassis[1].given_current;
+            int32_t temp0 = motor_chassis[0].temperate;
+            int32_t temp1 = motor_chassis[1].temperate;
+            
+            printf("=== M3508 Motor Data ===\r\n");
+            printf("M1  speed_rpm:%d current:%d output_turns:%.2f temp:%d\r\n",
+                   speed_rpm0, current0, output_turn0, temp0);
+            printf("M2  speed_rpm:%d current:%d output_turns:%.2f temp:%d\r\n",
+                   speed_rpm1, current1, turn1, temp1); // æ¸©åº¦å¤§äº80åº¦è¿‡çƒ­
+            break;
+        }
+        
+        case 3:
+        {
+            PWM_AngleDebug_t dbg;
+            PWM_AngleServo_GetDebugInfo(&dbg);
+            /* --------------- å­ä»»åŠ¡ 3ï¼šä¸“é—¨æ‰“å°ç¼–ç å™¨è§’åº¦æ•°æ® --------------- */
+            printf("=== Encoder Degree Data ===\r\n");
+            printf("ENABLE: %d\r\n", PWM_AngleServo_IsEnabled());
+//            printf("ENC: %.1f | %.1f | %.1f | %.1f\r\n", 
+//                    encoder_data[ENC_1].degree, 
+//                    encoder_data[ENC_2].degree, 
+//                    encoder_data[ENC_3].degree, 
+//                    encoder_data[ENC_4].degree);
+            
+            printf("CurrentAngle: %.2f | %.2f | %.2f | %.2f\r\n", 
+                dbg.joint[PWM_ANGLE_LEFT_PITCH].current_deg, 
+                dbg.joint[PWM_ANGLE_LEFT_YAW].current_deg, 
+                dbg.joint[PWM_ANGLE_RIGHT_PITCH].current_deg, 
+                dbg.joint[PWM_ANGLE_RIGHT_YAW].current_deg);
+            printf("TARGETAngle: %.2f | %.2f | %.2f | %.2f\r\n", 
+                dbg.joint[PWM_ANGLE_LEFT_PITCH].target_deg, 
+                dbg.joint[PWM_ANGLE_LEFT_YAW].target_deg, 
+                dbg.joint[PWM_ANGLE_RIGHT_PITCH].target_deg, 
+                dbg.joint[PWM_ANGLE_RIGHT_YAW].target_deg);
+                
+            printf("ERROR: %.2f | %.2f | %.2f | %.2f\r\n",
+               dbg.joint[PWM_ANGLE_LEFT_PITCH].error_deg,
+               dbg.joint[PWM_ANGLE_LEFT_YAW].error_deg,
+               dbg.joint[PWM_ANGLE_RIGHT_PITCH].error_deg,
+               dbg.joint[PWM_ANGLE_RIGHT_YAW].error_deg);
+
+            printf("SPEED: %d | %d | %d | %d\r\n",
+               dbg.joint[PWM_ANGLE_LEFT_PITCH].speed_percent,
+               dbg.joint[PWM_ANGLE_LEFT_YAW].speed_percent,
+               dbg.joint[PWM_ANGLE_RIGHT_PITCH].speed_percent,
+               dbg.joint[PWM_ANGLE_RIGHT_YAW].speed_percent);
+            break;
+        }
+
+        case 4:
+        {
+            M3508_PositionDebug_t dbg;
+            M3508_Position_GetDebugInfo(&dbg);
+            float left_cur = M3508_Position_GetCurrentLength(M3508_POS_LEFT);
+            float right_cur = M3508_Position_GetCurrentLength(M3508_POS_RIGHT);
+            /* --------------- å­ä»»åŠ¡ 4ï¼šæ‰“å°è¾“å‡ºè½´æ•°æ® --------------- */
+            printf("=== M3508 Position Data ===\r\n");
+            printf("ENABLE: %d\r\n", M3508_Position_IsEnabled());
+            printf("LEFT  LEN: cur %.2f target %.2f err %.2f\r\n",
+                   left_cur,
+                   dbg.left.target_length_mm,
+                   dbg.left.target_length_mm - left_cur);
+            printf("RIGHT LEN: cur %.2f target %.2f err %.2f\r\n",
+                   right_cur,
+                   dbg.right.target_length_mm,
+                   dbg.right.target_length_mm - right_cur);
+            printf("OUT_RPM: %.2f | %.2f\r\n",
+                   dbg.left.output_rpm,
+                   dbg.right.output_rpm);
+            printf("TGT_OUT_RPM: %.2f | %.2f\r\n",
+                   dbg.left.target_output_rpm,
+                   dbg.right.target_output_rpm);
+            printf("ROTOR_SET: %.2f | %.2f\r\n",
+                   dbg.left.rotor_rpm_set,
+                   dbg.right.rotor_rpm_set);
+            printf("STATUS: %d | %d\r\n",
+                   dbg.left.status,
+                   dbg.right.status);
+            break;
+        }
+        
+        default:
+            // å…œåº•é˜²å¾¡ï¼Œé˜²æ­¢å¤–ç•Œå¼‚å¸¸ç¯¡æ”¹å˜é‡
+            print_mode = 4;
+            break;
     }
 }
+
+///**
+// * @brief  æ‰“å°ä»»åŠ¡ - é»˜è®¤æ‰“å°M3508æ•°æ®ï¼ŒæŒ‰ä¸‹PSB_PINKååˆ‡æ¢æ‰“å°å§¿æ€æ•°æ®
+// */
+//void Print_Task(void)
+//{
+//    
+//    // è·å–IMUæ•°æ®æŒ‡é’ˆ
+//    protocol_info_t *imu = IMU_GetOutputInfo();
+//    
+//    // æ ¹æ®æ¨¡å¼æ‰§è¡Œä¸åŒçš„æ‰“å°
+//    if (print_mode == 1)
+//    {
+//        /* --------------- æ‰“å°å§¿æ€æ•°æ® --------------- */ 
+//        printf("=== IMU Data (0.5s) ===\r\n");
+//        printf("Euler: Roll: %.2f, Pitch: %.2f, Yaw: %.2f\r\n", 
+//               imu->roll, imu->pitch, imu->yaw);//å§¿æ€ 
+//        printf("Acc: %.3f, %.3f, %.3f\r\n", 
+//               imu->accel_x, imu->accel_y, imu->accel_z);//åŠ é€Ÿåº¦
+//        printf("Angle: %.2f, %.2f, %.2f\r\n", 
+//               imu->angle_x, imu->angle_y, imu->angle_z);//è§’é€Ÿåº¦
+//        
+//        printf("ENC: %.1f | %.1f | %.1f | %.1f\r\n", 
+//                encoder_data[ENC_1].degree, 
+//                encoder_data[ENC_2].degree, 
+//                encoder_data[ENC_3].degree, 
+//                encoder_data[ENC_4].degree);
+//    }
+//    else
+//    {
+//        int32_t turn0 = Encoder_Get_Turn_Count(0);
+//        int32_t turn1 = - Encoder_Get_Turn_Count(1);
+//        int32_t speed_rpm0 = motor_chassis[0].speed_rpm/36;
+//        int32_t speed_rpm1 = motor_chassis[1].speed_rpm/36;
+//        int32_t current0 = motor_chassis[0].given_current;
+//        int32_t current1 = motor_chassis[1].given_current;
+//        int32_t temp0 = motor_chassis[0].temperate;
+//        int32_t temp1 = motor_chassis[1].temperate;
+//        /* --------------- é»˜è®¤ï¼šæ‰“å°M3508å®æ—¶æ•°æ® --------------- */
+//        printf("=== M3508 Motor Data ===\r\n");
+//        printf("M1  speed_rpm:%d current:%d turns:%d temp:%d\r\n",
+//               speed_rpm0, 
+//               current0,
+//               turn0,
+//               temp0);
+//        printf("M2  speed_rpm:%d current:%d turns:%d temp:%d\r\n",
+//               speed_rpm1, 
+//               current1,
+//               turn1,
+//               temp1);//æ¸©åº¦å¤§äº80åº¦è¿‡çƒ­
+//    }
+//}
 #endif
 
 
