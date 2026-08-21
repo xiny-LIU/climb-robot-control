@@ -14,7 +14,7 @@ extern int cmd_update;
 extern uint8_t  g_usart_rx_buf[USART_REC_LEN];  /* 接收缓冲,最大USART_REC_LEN个字节.末字节为换行符 */
 extern uint16_t g_usart_rx_sta;                 /* 接收状态标记 */
 extern uint8_t g_rx_buffer[RXBUFFERSIZE];       /* HAL库USART接收Buffer */
-extern uint8_t  print_mode;                     /* Print mode: 1-IMU, 2-Motor, 3-Encoder, 4-M3508 Position */
+extern uint8_t  print_mode;                     /* Print mode: 1-IMU, 2-Motor, 3-Encoder, 4-Position, 5-Combined, 6-PS2 Joystick */
 
 
 void USART2_init(void);             /* 串口初始化函数 */

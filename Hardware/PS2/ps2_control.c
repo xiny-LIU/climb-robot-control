@@ -22,6 +22,20 @@ static uint8_t current_mode = 0xFF;
 static uint32_t led_flash_timer = 0;  // LED闪烁计时器
 static uint32_t motor_stop_timer = 0;  // 改用TIM3时间戳 电机停止计时器（消抖用）
 static uint8_t KeyNum = 0;
+static PS2_JoystickDebug_t joystick_debug = {
+    .raw_lx = 128,
+    .raw_ly = 128,
+    .raw_rx = 128,
+    .raw_ry = 128,
+    .filtered_lx = 128,
+    .filtered_ly = 128,
+    .filtered_rx = 128,
+    .filtered_ry = 128,
+    .offset_lx = 0,
+    .offset_ly = 0,
+    .offset_rx = 0,
+    .offset_ry = 0
+};
 
 // 摇杆死区定义
 #define STICK_DEAD_ZONE         15      // 摇杆死区范围
@@ -95,6 +109,16 @@ void PS2_Control_TIM3_Callback(void)
 }
 uint8_t PS2_GetCurrentMode(void) {      // 外部通过函数访问current_mode
     return current_mode;
+}
+
+void PS2_GetJoystickDebug(PS2_JoystickDebug_t *debug)
+{
+    if (debug == NULL)
+    {
+        return;
+    }
+
+    *debug = joystick_debug;
 }
 
 // --------------------------------------------------------------
@@ -329,6 +353,31 @@ static uint8_t stick_to_speed(unsigned char stick_value)
 static void process_motor_control(void)
 {
     uint8_t motor_control_active = 0;
+    uint8_t raw_lx = ps2_get_anolog_data(PSS_LX);
+    uint8_t raw_ly = ps2_get_anolog_data(PSS_LY);
+    uint8_t raw_rx = ps2_get_anolog_data(PSS_RX);
+    uint8_t raw_ry = ps2_get_anolog_data(PSS_RY);
+    uint8_t ps2_lx = PS2_Filter_Get_LX(raw_lx);
+    uint8_t ps2_ly = PS2_Filter_Get_LY(raw_ly);
+    uint8_t ps2_rx = PS2_Filter_Get_RX(raw_rx);
+    uint8_t ps2_ry = PS2_Filter_Get_RY(raw_ry);
+    int lx_offset = (int)ps2_lx - 128;
+    int ly_offset = (int)ps2_ly - 128;
+    int rx_offset = (int)ps2_rx - 128;
+    int ry_offset = (int)ps2_ry - 128;
+
+    joystick_debug.raw_lx = raw_lx;
+    joystick_debug.raw_ly = raw_ly;
+    joystick_debug.raw_rx = raw_rx;
+    joystick_debug.raw_ry = raw_ry;
+    joystick_debug.filtered_lx = ps2_lx;
+    joystick_debug.filtered_ly = ps2_ly;
+    joystick_debug.filtered_rx = ps2_rx;
+    joystick_debug.filtered_ry = ps2_ry;
+    joystick_debug.offset_lx = (int16_t)lx_offset;
+    joystick_debug.offset_ly = (int16_t)ly_offset;
+    joystick_debug.offset_rx = (int16_t)rx_offset;
+    joystick_debug.offset_ry = (int16_t)ry_offset;
 
     if (PWM_AngleServo_IsEnabled())
     {
@@ -344,29 +393,11 @@ static void process_motor_control(void)
     // 红灯模式下处理电机控制
     if (ps2_mode_get() == PSB_REDLIGHT_MODE)
     {
-        // 获取原始值
-        uint8_t raw_lx = ps2_get_anolog_data(PSS_LX);
-        uint8_t raw_ly = ps2_get_anolog_data(PSS_LY);
-        uint8_t raw_rx = ps2_get_anolog_data(PSS_RX);
-        uint8_t raw_ry = ps2_get_anolog_data(PSS_RY);
-        
-        // 应用滤波（关键修改点）
-        uint8_t ps2_lx = PS2_Filter_Get_LX(raw_lx);
-        uint8_t ps2_ly = PS2_Filter_Get_LY(raw_ly);
-        uint8_t ps2_rx = PS2_Filter_Get_RX(raw_rx);
-        uint8_t ps2_ry = PS2_Filter_Get_RY(raw_ry);
-        
         // 调试输出（确认值正确）
 //        printf("RAW LY:%d RX:%d | FLT LY:%d RX:%d\r\n", raw_ly, raw_rx, ps2_ly, ps2_rx);
 //        printf("LY:%d LX:%d RY:%d RX:%d Active:%d\r\n", ps2_ly, ps2_lx, ps2_ry, ps2_rx, motor_control_active);   //rx自动漂移为0
 //        printf("LY:%d LX:%d RY:%d RX:%d Active:%d\r\n", raw_ly, raw_lx, raw_ry, raw_rx, motor_control_active);   //rx自动漂移为0
 
-        // 计算偏移量（后续逻辑完全不变）
-        int ly_offset = (int)ps2_ly - 128;
-        int lx_offset = (int)ps2_lx - 128;
-        int ry_offset = (int)ps2_ry - 128;
-        int rx_offset = (int)ps2_rx - 128;
-     
      // MOTOR_A控制：左摇杆Y轴（前后推）
     if (ly_offset < -STICK_DEAD_ZONE)  // 向前推
     {

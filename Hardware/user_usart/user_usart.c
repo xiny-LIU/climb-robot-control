@@ -287,7 +287,7 @@ void USART2_ProcessCommand(void)
             
             /* 安全限制：防止数值溢出 */
             if ((!is_print_cmd && value > 2500) ||
-                (is_print_cmd && value > 4))
+                (is_print_cmd && value > 6))
             {
                 g_usart_rx_sta = 0;
 //                printf("\r\n[ERROR] 模式数字过大！\r\n\r\n");
@@ -318,7 +318,7 @@ void USART2_ProcessCommand(void)
 
     if (is_print_cmd)
     {
-        if (value >= 1 && value <= 5)
+        if (value >= 1 && value <= 6)
         {
             print_mode = (uint8_t)value;
             printf("[PRINT_MODE:%d]\r\n", print_mode);
@@ -507,6 +507,29 @@ void Print_Task(void)
                    dbg.right.target_length_mm - right_cur);
             printf("M2  speed_rpm:%d current:%.2fA output_turns:%.2f temp:%d\r\n",
                    speed_rpm1, current1_a, output_turn1, temp1);
+            break;
+        }
+
+        case 6:
+        {
+            PS2_JoystickDebug_t dbg;
+            PS2_GetJoystickDebug(&dbg);
+
+            printf("=== PS2 Joystick Debug ===\r\n");
+            printf("LEFT  raw X:%u Y:%u | filtered X:%u Y:%u | offset X:%d Y:%d\r\n",
+                   (unsigned int)dbg.raw_lx,
+                   (unsigned int)dbg.raw_ly,
+                   (unsigned int)dbg.filtered_lx,
+                   (unsigned int)dbg.filtered_ly,
+                   (int)dbg.offset_lx,
+                   (int)dbg.offset_ly);
+            printf("RIGHT raw X:%u Y:%u | filtered X:%u Y:%u | offset X:%d Y:%d\r\n",
+                   (unsigned int)dbg.raw_rx,
+                   (unsigned int)dbg.raw_ry,
+                   (unsigned int)dbg.filtered_rx,
+                   (unsigned int)dbg.filtered_ry,
+                   (int)dbg.offset_rx,
+                   (int)dbg.offset_ry);
             break;
         }
         
