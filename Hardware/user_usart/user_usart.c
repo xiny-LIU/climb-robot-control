@@ -318,7 +318,7 @@ void USART2_ProcessCommand(void)
 
     if (is_print_cmd)
     {
-        if (value >= 1 && value <= 4)
+        if (value >= 1 && value <= 5)
         {
             print_mode = (uint8_t)value;
             printf("[PRINT_MODE:%d]\r\n", print_mode);
@@ -347,7 +347,7 @@ void USART2_ProcessCommand(void)
     g_usart_rx_sta = 0;  
 }
 
-uint8_t print_mode = 4;
+uint8_t print_mode = 5;
 /**
  * @brief  多子任务打印管理，在串口输入数字进行切换
  */
@@ -466,6 +466,47 @@ void Print_Task(void)
             printf("STATUS: %d | %d\r\n",
                    dbg.left.status,
                    dbg.right.status);
+            break;
+        }
+
+        case 5:
+        {
+            M3508_PositionDebug_t dbg;
+            float ratio = M3508_Position_GetReductionRatio();
+            float left_cur = M3508_Position_GetCurrentLength(M3508_POS_LEFT);
+            float right_cur = M3508_Position_GetCurrentLength(M3508_POS_RIGHT);
+            float output_turn0 =
+                (float)Encoder_Get_Total_Angle(0) / 8192.0f / ratio;
+            float output_turn1 =
+                -(float)Encoder_Get_Total_Angle(1) / 8192.0f / ratio;
+            int32_t speed_rpm0 = motor_chassis[0].speed_rpm / 36;
+            int32_t speed_rpm1 = motor_chassis[1].speed_rpm / 36;
+            float current0_a =
+                (float)motor_chassis[0].given_current * 20.0f / 16384.0f;
+            float current1_a =
+                (float)motor_chassis[1].given_current * 20.0f / 16384.0f;
+            int32_t temp0 = motor_chassis[0].temperate;
+            int32_t temp1 = motor_chassis[1].temperate;
+
+            M3508_Position_GetDebugInfo(&dbg);
+
+            /* --------------- 子任务 5：打印位置与电机实时数据 --------------- */
+            printf("ENABLE: %d\r\n", M3508_Position_IsEnabled());
+
+            printf("=== Motor Data ===\r\n");
+            printf("LEFT  LEN: cur %.2f target %.2f err %.2f\r\n",
+                   left_cur,
+                   dbg.left.target_length_mm,
+                   dbg.left.target_length_mm - left_cur);
+            printf("M1  speed_rpm:%d current:%.2fA output_turns:%.2f temp:%d\r\n",
+                   speed_rpm0, current0_a, output_turn0, temp0);
+
+            printf("RIGHT LEN: cur %.2f target %.2f err %.2f\r\n",
+                   right_cur,
+                   dbg.right.target_length_mm,
+                   dbg.right.target_length_mm - right_cur);
+            printf("M2  speed_rpm:%d current:%.2fA output_turns:%.2f temp:%d\r\n",
+                   speed_rpm1, current1_a, output_turn1, temp1);
             break;
         }
         
