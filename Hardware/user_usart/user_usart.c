@@ -514,7 +514,7 @@ void Print_Task(void)
         {
             PS2_JoystickDebug_t dbg;
             PS2_GetJoystickDebug(&dbg);
-
+            printf("ENABLE: %d\r\n", M3508_Position_IsEnabled());
             printf("=== PS2 Joystick Debug ===\r\n");
             printf("LEFT  raw X:%u Y:%u | filtered X:%u Y:%u | offset X:%d Y:%d\r\n",
                    (unsigned int)dbg.raw_lx,

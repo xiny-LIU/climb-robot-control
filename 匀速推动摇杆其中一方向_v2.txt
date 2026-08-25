@@ -1,0 +1,988 @@
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:109 Y:127 | filtered X:109 Y:127 | offset X:-19 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:109 Y:127 | filtered X:109 Y:127 | offset X:-19 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:104 Y:127 | filtered X:104 Y:127 | offset X:-24 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:100 Y:127 | filtered X:100 Y:127 | offset X:-28 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:98 Y:127 | filtered X:98 Y:127 | offset X:-30 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:91 Y:127 | filtered X:93 Y:127 | offset X:-35 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:85 Y:127 | filtered X:87 Y:127 | offset X:-41 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:80 Y:127 | filtered X:80 Y:127 | offset X:-48 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:69 Y:127 | filtered X:69 Y:127 | offset X:-59 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:56 Y:127 | filtered X:58 Y:127 | offset X:-70 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:53 Y:127 | filtered X:53 Y:127 | offset X:-75 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:43 Y:127 | filtered X:45 Y:127 | offset X:-83 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:38 Y:127 | filtered X:38 Y:127 | offset X:-90 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:32 Y:127 | filtered X:32 Y:127 | offset X:-96 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:20 Y:127 | filtered X:20 Y:127 | offset X:-108 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:14 Y:127 | filtered X:14 Y:127 | offset X:-114 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:5 Y:127 | filtered X:5 Y:127 | offset X:-123 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:0 Y:127 | filtered X:0 Y:127 | offset X:-128 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:0 Y:127 | filtered X:0 Y:127 | offset X:-128 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:0 Y:90 | filtered X:0 Y:127 | offset X:-128 Y:-1
+RIGHT raw X:0 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:0 Y:127 | filtered X:0 Y:127 | offset X:-128 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:159 Y:127 | filtered X:154 Y:127 | offset X:26 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:167 Y:127 | filtered X:165 Y:127 | offset X:37 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:170 Y:127 | filtered X:170 Y:127 | offset X:42 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:172 Y:90 | filtered X:172 Y:127 | offset X:44 Y:-1
+RIGHT raw X:3 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:172 Y:127 | filtered X:172 Y:127 | offset X:44 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:178 Y:127 | filtered X:175 Y:127 | offset X:47 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:191 Y:127 | filtered X:189 Y:127 | offset X:61 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:212 Y:127 | filtered X:212 Y:127 | offset X:84 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:217 Y:127 | filtered X:217 Y:127 | offset X:89 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:225 Y:127 | filtered X:225 Y:127 | offset X:97 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:252 Y:127 | filtered X:252 Y:127 | offset X:124 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:255 Y:127 | filtered X:255 Y:127 | offset X:127 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:255 Y:127 | filtered X:255 Y:127 | offset X:127 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:255 Y:127 | filtered X:255 Y:127 | offset X:127 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:255 Y:127 | filtered X:255 Y:127 | offset X:127 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:255 Y:127 | filtered X:255 Y:127 | offset X:127 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:255 Y:127 | filtered X:255 Y:127 | offset X:127 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:255 Y:127 | offset X:127 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:74 | filtered X:128 Y:75 | offset X:0 Y:-53
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:44 | filtered X:128 Y:44 | offset X:0 Y:-84
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:38 | filtered X:128 Y:38 | offset X:0 Y:-90
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:4 | filtered X:128 Y:7 | offset X:0 Y:-121
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:0 | filtered X:128 Y:0 | offset X:0 Y:-128
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:0 | filtered X:128 Y:0 | offset X:0 Y:-128
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:90 | filtered X:128 Y:0 | offset X:0 Y:-128
+RIGHT raw X:3 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:0 | filtered X:128 Y:0 | offset X:0 Y:-128
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:255 Y:255 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:255 Y:255 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:90 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:0 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:255 Y:255 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:255 Y:255 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:90 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:0 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:112 | filtered X:128 Y:112 | offset X:0 Y:-16
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:90 | filtered X:128 Y:92 | offset X:0 Y:-36
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:90 | filtered X:128 Y:80 | offset X:0 Y:-48
+RIGHT raw X:0 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:65 | filtered X:128 Y:66 | offset X:0 Y:-62
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:48 | filtered X:128 Y:50 | offset X:0 Y:-78
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:37 | filtered X:128 Y:38 | offset X:0 Y:-90
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:255 Y:255 | filtered X:128 Y:24 | offset X:0 Y:-104
+RIGHT raw X:255 Y:255 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:3 | filtered X:128 Y:6 | offset X:0 Y:-122
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:0 | filtered X:128 Y:0 | offset X:0 Y:-128
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:0 | offset X:0 Y:-128
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:146 | filtered X:128 Y:146 | offset X:0 Y:18
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:171 | filtered X:128 Y:171 | offset X:0 Y:43
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:173 | filtered X:128 Y:173 | offset X:0 Y:45
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:184 | filtered X:128 Y:181 | offset X:0 Y:53
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:202 | filtered X:128 Y:202 | offset X:0 Y:74
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:219 | filtered X:128 Y:219 | offset X:0 Y:91
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:248 | filtered X:128 Y:248 | offset X:0 Y:120
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:255 | filtered X:128 Y:255 | offset X:0 Y:127
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:255 | filtered X:128 Y:255 | offset X:0 Y:127
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:156 Y:255 | filtered X:156 Y:255 | offset X:28 Y:127
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:156 Y:255 | filtered X:156 Y:255 | offset X:28 Y:127
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:255 Y:255 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:255 Y:255 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:90 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:0 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:90 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:3 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:166 | filtered X:128 Y:165 | offset X:0 Y:37
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:90 | filtered X:128 Y:170 | offset X:0 Y:42
+RIGHT raw X:3 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:90 | filtered X:128 Y:180 | offset X:0 Y:52
+RIGHT raw X:3 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:201 | filtered X:128 Y:200 | offset X:0 Y:72
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:220 | filtered X:128 Y:218 | offset X:0 Y:90
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:240 | filtered X:128 Y:239 | offset X:0 Y:111
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:255 Y:255 | filtered X:128 Y:255 | offset X:0 Y:127
+RIGHT raw X:255 Y:255 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:255 | filtered X:128 Y:255 | offset X:0 Y:127
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:172 | filtered X:128 Y:172 | offset X:0 Y:44
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:180 | filtered X:128 Y:179 | offset X:0 Y:51
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:189 | filtered X:128 Y:188 | offset X:0 Y:60
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:194 | filtered X:128 Y:193 | offset X:0 Y:65
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:90 | filtered X:128 Y:203 | offset X:0 Y:75
+RIGHT raw X:0 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:207 | filtered X:128 Y:206 | offset X:0 Y:78
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:215 | filtered X:128 Y:214 | offset X:0 Y:86
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:225 | filtered X:128 Y:225 | offset X:0 Y:97
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:234 | filtered X:128 Y:233 | offset X:0 Y:105
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:249 | filtered X:128 Y:247 | offset X:0 Y:119
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:255 | filtered X:128 Y:255 | offset X:0 Y:127
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:255 | filtered X:128 Y:255 | offset X:0 Y:127
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:255 | offset X:0 Y:127
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:90 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:3 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:90 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:0 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:112 | filtered X:128 Y:112 | offset X:0 Y:-16
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:106 | filtered X:128 Y:106 | offset X:0 Y:-22
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:102 | filtered X:128 Y:102 | offset X:0 Y:-26
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:95 | filtered X:128 Y:96 | offset X:0 Y:-32
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:90 | filtered X:128 Y:90 | offset X:0 Y:-38
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:90 | filtered X:128 Y:86 | offset X:0 Y:-42
+RIGHT raw X:0 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:77 | filtered X:128 Y:77 | offset X:0 Y:-51
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:69 | filtered X:128 Y:69 | offset X:0 Y:-59
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:61 | filtered X:128 Y:76 | offset X:0 Y:-52
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:52 | filtered X:128 Y:53 | offset X:0 Y:-75
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:45 | filtered X:128 Y:46 | offset X:0 Y:-82
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:37 | filtered X:128 Y:39 | offset X:0 Y:-89
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:30 | filtered X:128 Y:30 | offset X:0 Y:-98
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:22 | filtered X:128 Y:23 | offset X:0 Y:-105
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:7 | filtered X:128 Y:9 | offset X:0 Y:-119
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:255 Y:255 | filtered X:128 Y:0 | offset X:0 Y:-128
+RIGHT raw X:255 Y:255 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:0 | filtered X:128 Y:0 | offset X:0 Y:-128
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:255 Y:255 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:255 Y:255 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:111 | filtered X:128 Y:112 | offset X:0 Y:-16
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:87 | filtered X:128 Y:88 | offset X:0 Y:-40
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:83 | filtered X:128 Y:83 | offset X:0 Y:-45
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:82 | filtered X:128 Y:83 | offset X:0 Y:-45
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:80 | filtered X:128 Y:80 | offset X:0 Y:-48
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:73 | filtered X:128 Y:76 | offset X:0 Y:-52
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:71 | filtered X:128 Y:72 | offset X:0 Y:-56
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:65 | filtered X:128 Y:65 | offset X:0 Y:-63
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:60 | filtered X:128 Y:61 | offset X:0 Y:-67
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:53 | filtered X:128 Y:54 | offset X:0 Y:-74
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:47 | filtered X:128 Y:48 | offset X:0 Y:-80
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:43 | filtered X:128 Y:43 | offset X:0 Y:-85
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:34 | filtered X:128 Y:35 | offset X:0 Y:-93
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:23 | filtered X:128 Y:24 | offset X:0 Y:-104
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:17 | filtered X:128 Y:17 | offset X:0 Y:-111
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:5 | filtered X:128 Y:6 | offset X:0 Y:-122
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:0 | filtered X:128 Y:0 | offset X:0 Y:-128
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:0 | filtered X:128 Y:0 | offset X:0 Y:-128
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:255 Y:255 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:255 Y:255 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:90 | offset X:0 Y:-38
+RIGHT raw X:128 Y:152 | filtered X:0 Y:151 | offset X:-128 Y:23
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:158 | filtered X:128 Y:157 | offset X:0 Y:29
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:162 | filtered X:128 Y:162 | offset X:0 Y:34
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:168 | filtered X:128 Y:167 | offset X:0 Y:39
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:171 | filtered X:128 Y:170 | offset X:0 Y:42
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:177 | filtered X:128 Y:176 | offset X:0 Y:48
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:90 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:3 Y:182 | filtered X:128 Y:181 | offset X:0 Y:53
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:187 | filtered X:128 Y:186 | offset X:0 Y:58
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:194 | filtered X:128 Y:192 | offset X:0 Y:64
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:255 Y:255 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:255 Y:255 | filtered X:128 Y:196 | offset X:0 Y:68
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:255 Y:255 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:255 Y:255 | filtered X:128 Y:205 | offset X:0 Y:77
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:213 | filtered X:128 Y:211 | offset X:0 Y:83
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:233 | filtered X:128 Y:231 | offset X:0 Y:103
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:255 | filtered X:128 Y:255 | offset X:0 Y:127
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:255 Y:255 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:255 Y:255 | filtered X:92 Y:127 | offset X:-36 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:70 Y:127 | filtered X:71 Y:127 | offset X:-57 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:59 Y:127 | filtered X:61 Y:127 | offset X:-67 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:48 Y:127 | filtered X:48 Y:127 | offset X:-80 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:43 Y:127 | filtered X:43 Y:127 | offset X:-85 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:30 Y:127 | filtered X:31 Y:127 | offset X:-97 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:24 Y:127 | filtered X:24 Y:127 | offset X:-104 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:15 Y:127 | filtered X:15 Y:127 | offset X:-113 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:10 Y:127 | filtered X:11 Y:127 | offset X:-117 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:3 Y:127 | filtered X:3 Y:127 | offset X:-125 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:0 Y:127 | filtered X:0 Y:127 | offset X:-128 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:255 Y:255 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:255 Y:255 | filtered X:147 Y:127 | offset X:19 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:150 Y:127 | filtered X:149 Y:127 | offset X:21 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:155 Y:127 | filtered X:155 Y:127 | offset X:27 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:159 Y:127 | filtered X:159 Y:127 | offset X:31 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:255 Y:255 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:255 Y:255 | filtered X:166 Y:127 | offset X:38 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:171 Y:127 | filtered X:169 Y:127 | offset X:41 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:90 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:3 Y:127 | filtered X:174 Y:127 | offset X:46 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:179 Y:127 | filtered X:179 Y:127 | offset X:51 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:90 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:3 Y:127 | filtered X:185 Y:127 | offset X:57 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:193 Y:127 | filtered X:191 Y:127 | offset X:63 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:197 Y:127 | filtered X:196 Y:127 | offset X:68 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:204 Y:127 | filtered X:203 Y:127 | offset X:75 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:213 Y:127 | filtered X:212 Y:127 | offset X:84 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:214 Y:127 | filtered X:213 Y:127 | offset X:85 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:217 Y:127 | filtered X:216 Y:127 | offset X:88 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:232 Y:127 | filtered X:232 Y:127 | offset X:104 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:241 Y:127 | filtered X:240 Y:127 | offset X:112 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:255 Y:127 | filtered X:255 Y:127 | offset X:127 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:255 Y:255 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:255 Y:255 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:110 | filtered X:128 Y:119 | offset X:0 Y:-9
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:93 | filtered X:128 Y:93 | offset X:0 Y:-35
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:80 | filtered X:128 Y:81 | offset X:0 Y:-47
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:71 | filtered X:128 Y:72 | offset X:0 Y:-56
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:58 | filtered X:128 Y:59 | offset X:0 Y:-69
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:43 | filtered X:128 Y:44 | offset X:0 Y:-84
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:23 | filtered X:128 Y:24 | offset X:0 Y:-104
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:10 | filtered X:128 Y:11 | offset X:0 Y:-117
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:0 | filtered X:128 Y:0 | offset X:0 Y:-128
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:164 | filtered X:128 Y:164 | offset X:0 Y:36
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:180 | filtered X:128 Y:180 | offset X:0 Y:52
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:188 | filtered X:128 Y:188 | offset X:0 Y:60
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:202 | filtered X:128 Y:201 | offset X:0 Y:73
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:90 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:0 Y:219 | filtered X:128 Y:216 | offset X:0 Y:88
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:244 | filtered X:128 Y:242 | offset X:0 Y:114
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:255 | filtered X:128 Y:255 | offset X:0 Y:127
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:255 | filtered X:128 Y:255 | offset X:0 Y:127
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+ENABLE: 0
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1

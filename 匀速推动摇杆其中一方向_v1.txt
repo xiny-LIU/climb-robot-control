@@ -1,0 +1,740 @@
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:143 | offset X:0 Y:15
+RIGHT raw X:128 Y:127 | filtered X:143 Y:127 | offset X:15 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:0%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:90 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:0 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:0%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:0%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:0%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:0%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:0%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:0%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:0%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:0%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:0%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:109 Y:127 | filtered X:110 Y:127 | offset X:-18 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:0%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:107 Y:127 | filtered X:108 Y:127 | offset X:-20 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:0%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:103 Y:127 | filtered X:103 Y:127 | offset X:-25 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:151 | offset X:0 Y:23
+RIGHT raw X:92 Y:127 | filtered X:124 Y:127 | offset X:-4 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:143 | offset X:0 Y:15
+RIGHT raw X:91 Y:127 | filtered X:111 Y:127 | offset X:-17 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:163 | offset X:0 Y:35
+RIGHT raw X:84 Y:127 | filtered X:131 Y:127 | offset X:3 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:255 Y:255 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:255 Y:255 | filtered X:84 Y:127 | offset X:-44 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:81 Y:127 | filtered X:81 Y:127 | offset X:-47 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:79 Y:127 | filtered X:79 Y:127 | offset X:-49 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:71 Y:127 | filtered X:71 Y:127 | offset X:-57 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:90 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:0 Y:127 | filtered X:66 Y:127 | offset X:-62 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:90 | filtered X:128 Y:143 | offset X:0 Y:15
+RIGHT raw X:0 Y:127 | filtered X:85 Y:127 | offset X:-43 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:56 Y:127 | filtered X:57 Y:127 | offset X:-71 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:50 Y:127 | filtered X:52 Y:127 | offset X:-76 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:46 Y:127 | filtered X:46 Y:127 | offset X:-82 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:44 Y:127 | filtered X:45 Y:127 | offset X:-83 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:255 Y:255 | filtered X:191 Y:191 | offset X:63 Y:63
+RIGHT raw X:255 Y:255 | filtered X:147 Y:191 | offset X:19 Y:63
+MOTOR_C RY_dead_zone:0 mapped_speed:42% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:36 Y:127 | filtered X:37 Y:127 | offset X:-91 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:32 Y:127 | filtered X:32 Y:127 | offset X:-96 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:26 Y:127 | filtered X:26 Y:127 | offset X:-102 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:21 Y:127 | filtered X:22 Y:127 | offset X:-106 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:15 Y:127 | filtered X:15 Y:127 | offset X:-113 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:9 Y:127 | filtered X:9 Y:127 | offset X:-119 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:3 Y:127 | filtered X:4 Y:127 | offset X:-124 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:0 Y:127 | filtered X:0 Y:127 | offset X:-128 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:0 Y:127 | filtered X:0 Y:127 | offset X:-128 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:0%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:0%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:0%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:0%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:0%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:0%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:0%
+=== PS2 Joystick Debug ===
+LEFT  raw X:255 Y:255 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:255 Y:255 | filtered X:145 Y:127 | offset X:17 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:0%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:147 Y:127 | filtered X:147 Y:127 | offset X:19 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:151 Y:127 | filtered X:151 Y:127 | offset X:23 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:152 Y:127 | filtered X:152 Y:127 | offset X:24 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:156 Y:127 | filtered X:156 Y:127 | offset X:28 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:160 Y:127 | filtered X:160 Y:127 | offset X:32 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:164 Y:127 | filtered X:164 Y:127 | offset X:36 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:166 Y:127 | filtered X:166 Y:127 | offset X:38 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:174 Y:127 | filtered X:172 Y:127 | offset X:44 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:181 Y:127 | filtered X:181 Y:127 | offset X:53 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:189 Y:127 | filtered X:187 Y:127 | offset X:59 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:197 Y:127 | filtered X:195 Y:127 | offset X:67 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:90 | filtered X:128 Y:143 | offset X:0 Y:15
+RIGHT raw X:0 Y:127 | filtered X:213 Y:127 | offset X:85 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:212 Y:127 | filtered X:212 Y:127 | offset X:84 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:222 Y:127 | filtered X:222 Y:127 | offset X:94 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:233 Y:127 | filtered X:233 Y:127 | offset X:105 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:143 | offset X:0 Y:15
+RIGHT raw X:241 Y:127 | filtered X:241 Y:127 | offset X:113 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:251 Y:127 | filtered X:251 Y:127 | offset X:123 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:255 Y:127 | filtered X:255 Y:127 | offset X:127 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:255 Y:127 | filtered X:255 Y:127 | offset X:127 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:90 | filtered X:128 Y:143 | offset X:0 Y:15
+RIGHT raw X:0 Y:127 | filtered X:255 Y:127 | offset X:127 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:255 Y:255 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:255 Y:255 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:0%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:0%
+=== PS2 Joystick Debug ===
+LEFT  raw X:255 Y:255 | filtered X:191 Y:191 | offset X:63 Y:63
+RIGHT raw X:255 Y:255 | filtered X:191 Y:191 | offset X:63 Y:63
+MOTOR_C RY_dead_zone:0 mapped_speed:42% output_speed:0%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:108 | filtered X:128 Y:110 | offset X:0 Y:-18
+MOTOR_C RY_dead_zone:0 mapped_speed:2% output_speed:2%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:94 | filtered X:128 Y:96 | offset X:0 Y:-32
+MOTOR_C RY_dead_zone:0 mapped_speed:15% output_speed:15%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:81 | filtered X:128 Y:81 | offset X:0 Y:-47
+MOTOR_C RY_dead_zone:0 mapped_speed:28% output_speed:28%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:90 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:0 Y:72 | filtered X:128 Y:73 | offset X:0 Y:-55
+MOTOR_C RY_dead_zone:0 mapped_speed:35% output_speed:35%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:65 | filtered X:128 Y:65 | offset X:0 Y:-63
+MOTOR_C RY_dead_zone:0 mapped_speed:42% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:57 | filtered X:128 Y:58 | offset X:0 Y:-70
+MOTOR_C RY_dead_zone:0 mapped_speed:48% output_speed:48%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:138 | offset X:0 Y:10
+RIGHT raw X:128 Y:46 | filtered X:139 Y:46 | offset X:11 Y:-82
+MOTOR_C RY_dead_zone:0 mapped_speed:59% output_speed:59%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:90 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:0 Y:36 | filtered X:145 Y:37 | offset X:17 Y:-91
+MOTOR_C RY_dead_zone:0 mapped_speed:67% output_speed:67%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:147 Y:26 | filtered X:147 Y:28 | offset X:19 Y:-100
+MOTOR_C RY_dead_zone:0 mapped_speed:75% output_speed:75%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:159 | offset X:0 Y:31
+RIGHT raw X:147 Y:19 | filtered X:174 Y:20 | offset X:46 Y:-108
+MOTOR_C RY_dead_zone:0 mapped_speed:82% output_speed:82%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:147 Y:7 | filtered X:147 Y:8 | offset X:19 Y:-120
+MOTOR_C RY_dead_zone:0 mapped_speed:92% output_speed:92%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:147 Y:0 | filtered X:147 Y:0 | offset X:19 Y:-128
+MOTOR_C RY_dead_zone:0 mapped_speed:100% output_speed:100%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:131 | offset X:0 Y:3
+RIGHT raw X:149 Y:0 | filtered X:152 Y:0 | offset X:24 Y:-128
+MOTOR_C RY_dead_zone:0 mapped_speed:100% output_speed:100%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:54 | filtered X:128 Y:51 | offset X:0 Y:-77
+MOTOR_C RY_dead_zone:0 mapped_speed:54% output_speed:54%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:14%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:0%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:0%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:159 | filtered X:128 Y:159 | offset X:0 Y:31
+MOTOR_C RY_dead_zone:0 mapped_speed:14% output_speed:14%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:171 | filtered X:128 Y:170 | offset X:0 Y:42
+MOTOR_C RY_dead_zone:0 mapped_speed:23% output_speed:23%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:172 | filtered X:128 Y:171 | offset X:0 Y:43
+MOTOR_C RY_dead_zone:0 mapped_speed:24% output_speed:24%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:181 | filtered X:128 Y:181 | offset X:0 Y:53
+MOTOR_C RY_dead_zone:0 mapped_speed:33% output_speed:33%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:188 | filtered X:128 Y:187 | offset X:0 Y:59
+MOTOR_C RY_dead_zone:0 mapped_speed:38% output_speed:38%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:199 | filtered X:128 Y:198 | offset X:0 Y:70
+MOTOR_C RY_dead_zone:0 mapped_speed:48% output_speed:48%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:208 | filtered X:128 Y:206 | offset X:0 Y:78
+MOTOR_C RY_dead_zone:0 mapped_speed:55% output_speed:55%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:143 | offset X:0 Y:15
+RIGHT raw X:128 Y:215 | filtered X:143 Y:215 | offset X:15 Y:87
+MOTOR_C RY_dead_zone:0 mapped_speed:63% output_speed:63%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:90 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:0 Y:227 | filtered X:128 Y:225 | offset X:0 Y:97
+MOTOR_C RY_dead_zone:0 mapped_speed:72% output_speed:72%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:234 | filtered X:128 Y:234 | offset X:0 Y:106
+MOTOR_C RY_dead_zone:0 mapped_speed:80% output_speed:80%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:246 | filtered X:128 Y:243 | offset X:0 Y:115
+MOTOR_C RY_dead_zone:0 mapped_speed:88% output_speed:88%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:252 | filtered X:128 Y:252 | offset X:0 Y:124
+MOTOR_C RY_dead_zone:0 mapped_speed:96% output_speed:96%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:255 | filtered X:128 Y:255 | offset X:0 Y:127
+MOTOR_C RY_dead_zone:0 mapped_speed:99% output_speed:99%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:90 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:0 Y:255 | filtered X:128 Y:255 | offset X:0 Y:127
+MOTOR_C RY_dead_zone:0 mapped_speed:99% output_speed:99%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:241 | filtered X:128 Y:253 | offset X:0 Y:125
+MOTOR_C RY_dead_zone:0 mapped_speed:97% output_speed:97%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:0%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:0%
+=== PS2 Joystick Debug ===
+LEFT  raw X:255 Y:255 | filtered X:191 Y:207 | offset X:63 Y:79
+RIGHT raw X:255 Y:255 | filtered X:207 Y:191 | offset X:79 Y:63
+MOTOR_C RY_dead_zone:0 mapped_speed:42% output_speed:0%
+=== PS2 Joystick Debug ===
+LEFT  raw X:102 Y:127 | filtered X:103 Y:127 | offset X:-25 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:81 Y:127 | filtered X:81 Y:127 | offset X:-47 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:76 Y:127 | filtered X:76 Y:127 | offset X:-52 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:66 Y:90 | filtered X:66 Y:127 | offset X:-62 Y:-1
+RIGHT raw X:0 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:108 Y:127 | filtered X:95 Y:127 | offset X:-33 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:0%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:0%
+=== PS2 Joystick Debug ===
+LEFT  raw X:109 Y:127 | filtered X:109 Y:127 | offset X:-19 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:0%
+=== PS2 Joystick Debug ===
+LEFT  raw X:102 Y:127 | filtered X:102 Y:127 | offset X:-26 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:0%
+=== PS2 Joystick Debug ===
+LEFT  raw X:96 Y:127 | filtered X:97 Y:127 | offset X:-31 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:0%
+=== PS2 Joystick Debug ===
+LEFT  raw X:86 Y:127 | filtered X:86 Y:127 | offset X:-42 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:0%
+=== PS2 Joystick Debug ===
+LEFT  raw X:81 Y:127 | filtered X:81 Y:127 | offset X:-47 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:0%
+=== PS2 Joystick Debug ===
+LEFT  raw X:78 Y:127 | filtered X:78 Y:127 | offset X:-50 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:0%
+=== PS2 Joystick Debug ===
+LEFT  raw X:70 Y:127 | filtered X:71 Y:127 | offset X:-57 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:0%
+=== PS2 Joystick Debug ===
+LEFT  raw X:62 Y:127 | filtered X:64 Y:127 | offset X:-64 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:0%
+=== PS2 Joystick Debug ===
+LEFT  raw X:54 Y:127 | filtered X:155 Y:191 | offset X:27 Y:63
+RIGHT raw X:128 Y:127 | filtered X:191 Y:191 | offset X:63 Y:63
+MOTOR_C RY_dead_zone:0 mapped_speed:42% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:50 Y:127 | filtered X:51 Y:127 | offset X:-77 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:44 Y:127 | filtered X:44 Y:127 | offset X:-84 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:33 Y:127 | filtered X:33 Y:127 | offset X:-95 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:28 Y:127 | filtered X:28 Y:127 | offset X:-100 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:20 Y:127 | filtered X:22 Y:127 | offset X:-106 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:11 Y:127 | filtered X:12 Y:127 | offset X:-116 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:3 Y:127 | filtered X:3 Y:127 | offset X:-125 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:0 Y:127 | filtered X:0 Y:127 | offset X:-128 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:0 Y:90 | filtered X:0 Y:127 | offset X:-128 Y:-1
+RIGHT raw X:0 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:43 Y:127 | filtered X:32 Y:127 | offset X:-96 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:0%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:0%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:0%
+=== PS2 Joystick Debug ===
+LEFT  raw X:151 Y:127 | filtered X:151 Y:127 | offset X:23 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:0%
+=== PS2 Joystick Debug ===
+LEFT  raw X:155 Y:127 | filtered X:154 Y:127 | offset X:26 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:0%
+=== PS2 Joystick Debug ===
+LEFT  raw X:157 Y:127 | filtered X:157 Y:127 | offset X:29 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:0%
+=== PS2 Joystick Debug ===
+LEFT  raw X:167 Y:127 | filtered X:165 Y:127 | offset X:37 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:255 Y:255 | filtered X:173 Y:127 | offset X:45 Y:-1
+RIGHT raw X:255 Y:255 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:184 Y:127 | filtered X:182 Y:127 | offset X:54 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:193 Y:90 | filtered X:192 Y:127 | offset X:64 Y:-1
+RIGHT raw X:0 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:206 Y:127 | filtered X:205 Y:127 | offset X:77 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:255 Y:255 | filtered X:208 Y:163 | offset X:80 Y:35
+RIGHT raw X:255 Y:255 | filtered X:163 Y:127 | offset X:35 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:212 Y:127 | filtered X:212 Y:127 | offset X:84 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:225 Y:127 | filtered X:225 Y:127 | offset X:97 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:244 Y:127 | filtered X:243 Y:127 | offset X:115 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:252 Y:127 | filtered X:251 Y:127 | offset X:123 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:255 Y:255 | filtered X:255 Y:127 | offset X:127 Y:-1
+RIGHT raw X:255 Y:255 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:255 Y:127 | filtered X:255 Y:127 | offset X:127 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:255 Y:127 | filtered X:255 Y:127 | offset X:127 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:200 Y:127 | filtered X:204 Y:127 | offset X:76 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:90 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:0 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:0%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:143 | offset X:0 Y:15
+RIGHT raw X:128 Y:127 | filtered X:143 Y:127 | offset X:15 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:0%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:107 | filtered X:128 Y:144 | offset X:0 Y:16
+RIGHT raw X:128 Y:127 | filtered X:159 Y:127 | offset X:31 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:98 | filtered X:128 Y:190 | offset X:0 Y:62
+RIGHT raw X:128 Y:127 | filtered X:131 Y:127 | offset X:3 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:255 Y:255 | filtered X:191 Y:245 | offset X:63 Y:117
+RIGHT raw X:255 Y:255 | filtered X:191 Y:191 | offset X:63 Y:63
+MOTOR_C RY_dead_zone:0 mapped_speed:42% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:83 | filtered X:128 Y:244 | offset X:0 Y:116
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:73 | filtered X:128 Y:142 | offset X:0 Y:14
+RIGHT raw X:128 Y:127 | filtered X:163 Y:127 | offset X:35 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:64 | filtered X:128 Y:65 | offset X:0 Y:-63
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:90 | filtered X:128 Y:64 | offset X:0 Y:-64
+RIGHT raw X:0 Y:127 | filtered X:130 Y:127 | offset X:2 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:49 | filtered X:128 Y:51 | offset X:0 Y:-77
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:90 | filtered X:128 Y:43 | offset X:0 Y:-85
+RIGHT raw X:0 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:90 | filtered X:128 Y:38 | offset X:0 Y:-90
+RIGHT raw X:0 Y:127 | filtered X:131 Y:127 | offset X:3 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:17 | filtered X:128 Y:18 | offset X:0 Y:-110
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:90 | filtered X:128 Y:32 | offset X:0 Y:-96
+RIGHT raw X:0 Y:127 | filtered X:143 Y:127 | offset X:15 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:0 | filtered X:128 Y:0 | offset X:0 Y:-128
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:90 | filtered X:128 Y:89 | offset X:0 Y:-39
+RIGHT raw X:0 Y:127 | filtered X:172 Y:127 | offset X:44 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:0%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:147 | filtered X:128 Y:146 | offset X:0 Y:18
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:0%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:151 | filtered X:128 Y:150 | offset X:0 Y:22
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:0%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:156 | filtered X:128 Y:155 | offset X:0 Y:27
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:0%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:169 | filtered X:128 Y:166 | offset X:0 Y:38
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:181 | filtered X:128 Y:180 | offset X:0 Y:52
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:191 | filtered X:128 Y:191 | offset X:0 Y:63
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:204 | filtered X:128 Y:204 | offset X:0 Y:76
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:217 | filtered X:128 Y:216 | offset X:0 Y:88
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:231 | filtered X:128 Y:230 | offset X:0 Y:102
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:238 | filtered X:128 Y:237 | offset X:0 Y:109
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:247 | filtered X:128 Y:246 | offset X:0 Y:118
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:255 | filtered X:191 Y:255 | offset X:63 Y:127
+RIGHT raw X:128 Y:127 | filtered X:191 Y:191 | offset X:63 Y:63
+MOTOR_C RY_dead_zone:0 mapped_speed:42% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:90 | filtered X:128 Y:255 | offset X:0 Y:127
+RIGHT raw X:0 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:146 Y:255 | filtered X:146 Y:255 | offset X:18 Y:127
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:42%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:90 | filtered X:128 Y:143 | offset X:0 Y:15
+RIGHT raw X:0 Y:127 | filtered X:143 Y:127 | offset X:15 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:0%
+=== PS2 Joystick Debug ===
+LEFT  raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+RIGHT raw X:128 Y:127 | filtered X:128 Y:127 | offset X:0 Y:-1
+MOTOR_C RY_dead_zone:1 mapped_speed:0% output_speed:0%
